@@ -1,46 +1,63 @@
 import Link from 'next/link';
 
-const footerLinks = [
+const LINKS = [
+  { href: '/portfolio', label: 'Work' },
   { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-card-bg/50">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-        {/* Logo + tagline */}
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center flex-shrink-0">
-            <span className="font-syne font-bold text-xs text-white">C</span>
+    <footer className="bg-void border-t border-rule">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 pt-14 pb-8">
+
+        {/* Three-column row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0 items-start mb-12">
+
+          {/* Left — wordmark + tagline */}
+          <div>
+            <Link
+              href="/"
+              className="font-display font-semibold italic text-[2.5rem] text-ivory leading-none tracking-tight hover:text-fire transition-colors duration-300 block"
+            >
+              Cubico
+            </Link>
+            <p className="font-body text-[13px] text-warm-gray mt-3 leading-relaxed">
+              EdTech Agency · Karachi, Pakistan
+            </p>
           </div>
-          <div className="leading-none">
-            <div className="font-syne font-bold text-white text-sm">Cubico Technologies</div>
-            <div className="text-muted text-[0.6rem] uppercase tracking-widest mt-0.5">
-              EdTech Agency · Karachi
-            </div>
+
+          {/* Center — links */}
+          <nav className="flex flex-col md:flex-row md:items-center md:justify-center gap-3 md:gap-8">
+            {LINKS.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="font-ui font-medium text-[14px] text-warm-gray hover:text-ivory transition-colors duration-200"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right — email */}
+          <div className="md:text-right">
+            <a
+              href="mailto:info@cubico.tech"
+              className="font-ui font-medium text-[14px] text-fire hover:text-fire/70 transition-colors"
+            >
+              info@cubico.tech
+            </a>
           </div>
         </div>
 
-        {/* Links */}
-        <nav className="flex items-center gap-6">
-          {footerLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-muted hover:text-text text-sm font-dm transition-colors"
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Copyright */}
-        <p className="text-muted text-xs font-dm">
-          © {new Date().getFullYear()} Cubico Technologies. All rights reserved.
-        </p>
+        {/* Bottom bar */}
+        <div className="border-t border-rule pt-6">
+          <p className="font-body text-[11px] text-warm-gray/50 text-center tracking-[0.05em]">
+            © {new Date().getFullYear()} Cubico Technologies. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );

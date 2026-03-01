@@ -6,120 +6,116 @@ import Link from 'next/link';
 const PROJECTS = [
   {
     title: 'Al-Noor Academy — Moodle LMS',
-    category: 'LMS',
-    description:
-      'Full Moodle deployment with Arabic RTL theme, BigBlueButton live classes, and a custom student portal.',
-    tags: ['Moodle 4.x', 'Arabic RTL', 'BBB', 'Custom Plugin'],
-    gradient: 'linear-gradient(135deg, rgba(59,130,246,0.35) 0%, rgba(6,214,160,0.18) 100%)',
-    accentColor: '#3b82f6',
-    icon: '🎓',
+    category: 'LMS DEPLOYMENT',
+    description: 'Full Moodle 4.x with Arabic RTL theme, BBB live classes, and custom student portal for an Islamic school.',
+    tags: ['Moodle 4.x', 'Arabic RTL', 'BigBlueButton'],
+    // TODO: Replace with real project photography via next/image
+    gradient: 'linear-gradient(160deg, #1A1410 0%, #0E0A08 60%, #1C1510 100%)',
+    warmGlow: 'rgba(201,169,110,0.12)',
+    accentColor: '#C9A96E',
   },
   {
     title: 'Grade 5 Science — 2D Animation Series',
-    category: 'Animation',
-    description:
-      'A 12-episode SCORM-packaged animation series with Urdu voice-overs covering the solar system, ecosystems, and the human body.',
-    tags: ['2D Animation', 'SCORM', 'Urdu VO', 'H5P Quizzes'],
-    gradient: 'linear-gradient(135deg, rgba(6,214,160,0.35) 0%, rgba(59,130,246,0.18) 100%)',
-    accentColor: '#06d6a0',
-    icon: '🎬',
+    category: 'ANIMATION',
+    description: '12-episode SCORM-packaged animation series with Urdu voice-overs: solar system, ecosystems, human body.',
+    tags: ['2D Animation', 'SCORM', 'Urdu VO'],
+    gradient: 'linear-gradient(160deg, #181210 0%, #0E0A08 60%, #1A1412 100%)',
+    warmGlow: 'rgba(232,98,42,0.10)',
+    accentColor: '#E8622A',
   },
   {
     title: 'CampusCore — School ERP',
-    category: 'Apps',
-    description:
-      'Comprehensive ERP covering fees, attendance, HR, accounts, and WhatsApp-automated parent communication.',
-    tags: ['Custom ERP', 'WhatsApp API', 'JazzCash', 'Mobile App'],
-    gradient: 'linear-gradient(135deg, rgba(168,85,247,0.35) 0%, rgba(249,115,22,0.18) 100%)',
-    accentColor: '#a855f7',
-    icon: '💻',
+    category: 'DIGITAL SOLUTION',
+    description: 'Comprehensive ERP: fees, attendance, HR, accounts, and WhatsApp-automated parent communication.',
+    tags: ['Custom ERP', 'WhatsApp API', 'Mobile App'],
+    gradient: 'linear-gradient(160deg, #141418 0%, #0E0E12 60%, #141416 100%)',
+    warmGlow: 'rgba(180,140,210,0.08)',
+    accentColor: '#C9A96E',
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
-
 export default function PortfolioPreview() {
   return (
-    <section className="py-24 px-5 md:px-8 bg-surface/50 border-y border-border">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-card-bg border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-purple" />
-            Our Work
+    <section className="bg-void py-24">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+
+        {/* Section counter + label */}
+        <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center gap-4">
+            <span className="font-accent text-[14px] text-bronze tracking-[0.1em]">03</span>
+            <span className="font-ui text-[11px] text-warm-gray tracking-[0.22em] uppercase">
+              Recent Work
+            </span>
           </div>
-          <h2 className="font-syne font-extrabold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
-            Recent{' '}
-            <span className="gradient-text">Work</span>
-          </h2>
-          <p className="text-muted font-dm mt-4 max-w-md mx-auto leading-relaxed">
-            A sample of EdTech projects delivered across Pakistan.
-          </p>
+          <Link
+            href="/portfolio"
+            className="hidden md:block font-ui font-medium text-[13px] text-fire hover:underline tracking-wide"
+          >
+            View All Work →
+          </Link>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Horizontal scroll on desktop, vertical on mobile */}
+        <div className="flex flex-col md:flex-row gap-5 md:overflow-x-auto no-scrollbar md:snap-x md:snap-mandatory md:pb-4">
           {PROJECTS.map((project, i) => (
             <motion.div
               key={project.title}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-              className="group relative bg-card-bg border border-border rounded-2xl overflow-hidden cursor-pointer"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, delay: i * 0.1, ease: 'easeOut' }}
+              className="group relative flex-shrink-0 w-full md:w-[420px] md:snap-start overflow-hidden"
             >
-              {/* Thumbnail */}
+              {/* Top: image area */}
               <div
-                className="relative aspect-video flex items-center justify-center overflow-hidden"
+                className="relative w-full h-[270px] md:h-[340px] overflow-hidden"
                 style={{ background: project.gradient }}
               >
-                <span className="text-5xl opacity-60">{project.icon}</span>
-                {/* Category badge */}
-                <span
-                  className="absolute top-3 left-3 text-[10px] font-syne font-bold px-2.5 py-1 rounded-full backdrop-blur"
+                {/* TODO: Replace with real photography using next/image */}
+                {/* Warm glow overlay */}
+                <div
+                  className="absolute inset-0"
                   style={{
-                    background: `${project.accentColor}28`,
-                    border: `1px solid ${project.accentColor}50`,
-                    color: project.accentColor,
+                    background: `radial-gradient(ellipse 70% 60% at 50% 40%, ${project.warmGlow} 0%, transparent 70%)`,
                   }}
-                >
-                  {project.category}
-                </span>
+                />
+                {/* Bottom fade into card bg */}
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-card to-transparent" />
 
-                {/* Hover overlay — slides up from bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out flex items-end p-4">
-                  <Link
-                    href="/portfolio"
-                    className="flex items-center gap-1.5 font-syne font-bold text-sm text-white"
+                {/* "View Case" label — appears on hover */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-250">
+                  <span
+                    className="font-ui font-semibold text-[11px] text-ivory tracking-[0.12em] px-3 py-1.5"
+                    style={{ backgroundColor: project.accentColor }}
+                  >
+                    VIEW CASE
+                  </span>
+                </div>
+
+                {/* Category */}
+                <div className="absolute bottom-4 left-5">
+                  <span
+                    className="font-accent text-[13px] tracking-[0.14em]"
                     style={{ color: project.accentColor }}
                   >
-                    View Project →
-                  </Link>
+                    {project.category}
+                  </span>
                 </div>
               </div>
 
-              {/* Body */}
-              <div className="p-5">
-                <h3 className="font-syne font-bold text-white text-base leading-snug mb-2">
+              {/* Bottom: info */}
+              <div className="bg-card p-5 pt-4">
+                <h3 className="font-display font-semibold text-[21px] text-ivory leading-snug mb-2">
                   {project.title}
                 </h3>
-                <p className="text-muted font-dm text-sm leading-relaxed mb-4">
+                <p className="font-body text-[14px] text-warm-gray leading-relaxed mb-4">
                   {project.description}
                 </p>
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[0.68rem] font-syne font-semibold text-muted bg-background border border-border px-2 py-0.5 rounded-full"
+                      className="font-ui text-[11px] text-warm-gray/70 border border-rule px-2.5 py-0.5 tracking-[0.04em]"
                     >
                       {tag}
                     </span>
@@ -130,13 +126,13 @@ export default function PortfolioPreview() {
           ))}
         </div>
 
-        {/* View all CTA */}
-        <div className="text-center mt-10">
+        {/* Mobile CTA */}
+        <div className="mt-8 md:hidden">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 bg-card-bg border border-border hover:border-accent/40 text-text font-syne font-semibold text-sm px-7 py-3.5 rounded-xl transition-all duration-200 hover:text-white hover:-translate-y-0.5"
+            className="font-ui font-medium text-[14px] text-fire hover:underline"
           >
-            View Full Portfolio →
+            View All Work →
           </Link>
         </div>
       </div>

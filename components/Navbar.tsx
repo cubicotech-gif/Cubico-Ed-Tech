@@ -4,72 +4,69 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
+const NAV_LINKS = [
+  { href: '/portfolio', label: 'Work' },
   { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
   { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
+
+function useScrollBehavior() {
+  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    let lastY = 0;
+    const handler = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
+      setVisible(y < 80 || y < lastY);
+      lastY = y;
+    };
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
+  return { scrolled, visible };
+}
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [visible, setVisible] = useState(true);
-  const [lastY, setLastY] = useState(0);
+  const { scrolled, visible } = useScrollBehavior();
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  // Hide on scroll down, show on scroll up
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY > lastY && currentY > 80) {
-        setVisible(false);
-        setMobileOpen(false);
-      } else {
-        setVisible(true);
-      }
-      setLastY(currentY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastY]);
 
   return (
     <motion.header
       animate={{ y: visible ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 glass border-b border-border"
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      className={[
+        'fixed top-0 left-0 right-0 z-50 transition-colors duration-300',
+        scrolled
+          ? 'bg-void/92 backdrop-blur-md border-b border-rule'
+          : 'bg-transparent border-b border-transparent',
+      ].join(' ')}
     >
-      <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg bg-gradient-accent flex items-center justify-center flex-shrink-0">
-            <span className="font-syne font-bold text-sm text-white">C</span>
-          </div>
-          <div className="leading-none">
-            <div className="font-syne font-bold text-white text-base group-hover:text-accent transition-colors">
-              Cubico
-            </div>
-            <div className="text-muted text-[0.6rem] uppercase tracking-widest">
-              Technologies
-            </div>
-          </div>
+      <nav className="max-w-[1200px] mx-auto px-6 md:px-10 flex items-center justify-between h-[72px]">
+
+        {/* Wordmark — Fraunces italic */}
+        <Link
+          href="/"
+          className="font-display font-semibold italic text-[1.6rem] text-ivory leading-none tracking-tight hover:text-fire transition-colors duration-300"
+        >
+          Cubico
         </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-7">
-          {navLinks.map(({ href, label }) => (
+        {/* Desktop nav links */}
+        <ul className="hidden md:flex items-center gap-9">
+          {NAV_LINKS.map(({ href, label }) => (
             <li key={href}>
               <Link
                 href={href}
-                className={clsx(
-                  'text-sm font-dm transition-colors duration-200',
-                  pathname === href
-                    ? 'text-white'
-                    : 'text-muted hover:text-text'
-                )}
+                className={[
+                  'font-ui font-medium text-[13px] tracking-[0.03em] transition-colors duration-200',
+                  pathname === href ? 'text-ivory' : 'text-warm-gray hover:text-ivory',
+                ].join(' ')}
               >
                 {label}
               </Link>
@@ -77,75 +74,58 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Desktop CTA — fire border, sharp */}
+        <div className="hidden md:block">
           <Link
             href="/contact"
-            className="bg-accent hover:bg-accent/90 text-white font-syne font-semibold text-sm px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-accent/20"
+            data-cursor="cta"
+            className="font-ui font-semibold text-[13px] text-fire border border-fire px-5 py-2.5 transition-all duration-200 hover:bg-fire hover:text-ivory tracking-wide"
           >
-            Get In Touch
+            Start a Project
           </Link>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 p-0"
+          onClick={() => setMobileOpen((o) => !o)}
           aria-label="Toggle menu"
         >
-          <span
-            className={clsx(
-              'block w-5 h-0.5 bg-text transition-all duration-300',
-              mobileOpen && 'rotate-45 translate-y-2'
-            )}
-          />
-          <span
-            className={clsx(
-              'block w-5 h-0.5 bg-text transition-all duration-300',
-              mobileOpen && 'opacity-0'
-            )}
-          />
-          <span
-            className={clsx(
-              'block w-5 h-0.5 bg-text transition-all duration-300',
-              mobileOpen && '-rotate-45 -translate-y-2'
-            )}
-          />
+          <span className={`block h-px bg-ivory transition-all duration-300 ${mobileOpen ? 'w-6 rotate-45 translate-y-[6px]' : 'w-6'}`} />
+          <span className={`block h-px bg-ivory transition-all duration-300 ${mobileOpen ? 'w-0 opacity-0' : 'w-4'}`} />
+          <span className={`block h-px bg-ivory transition-all duration-300 ${mobileOpen ? 'w-6 -rotate-45 -translate-y-[6px]' : 'w-6'}`} />
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden border-t border-border overflow-hidden"
+            transition={{ duration: 0.24, ease: 'easeInOut' }}
+            className="md:hidden bg-void/96 backdrop-blur-md border-t border-rule overflow-hidden"
           >
-            <ul className="flex flex-col px-5 py-4 gap-3">
-              {navLinks.map(({ href, label }) => (
+            <ul className="flex flex-col px-6 py-6 gap-5">
+              {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className={clsx(
-                      'block py-1.5 text-sm font-dm transition-colors',
-                      pathname === href ? 'text-white' : 'text-muted'
-                    )}
+                    className="block font-ui font-medium text-xl text-warm-gray hover:text-ivory transition-colors py-0.5"
                   >
                     {label}
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
+              <li className="pt-3">
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full text-center bg-accent text-white font-syne font-semibold text-sm px-5 py-2.5 rounded-lg"
+                  className="block font-ui font-semibold text-[13px] text-fire border border-fire px-5 py-3.5 text-center hover:bg-fire hover:text-ivory transition-all"
                 >
-                  Get In Touch
+                  Start a Project
                 </Link>
               </li>
             </ul>

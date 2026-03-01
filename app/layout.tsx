@@ -1,9 +1,41 @@
 import type { Metadata } from 'next';
+import { Fraunces, Epilogue, Instrument_Sans, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CustomCursor from '@/components/CustomCursor';
 
-// ── Root metadata ─────────────────────────────────────────────────────────────
+// ── Brand fonts via next/font/google (self-hosted, zero layout shift) ─────────
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['300', '400', '600', '700', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const epilogue = Epilogue({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ui',
+  display: 'swap',
+});
+
+const instrumentSans = Instrument_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const bebasNeue = Bebas_Neue({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-accent',
+  display: 'swap',
+});
+
+// ── Root metadata ──────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: {
     default: 'Cubico Technologies — EdTech Agency',
@@ -12,21 +44,12 @@ export const metadata: Metadata = {
   description:
     'Karachi-based EdTech agency delivering Moodle LMS setups, educational animations, digital apps, and multilingual content in English, Urdu, and Arabic.',
   keywords: [
-    'EdTech',
-    'Moodle LMS',
-    'educational animations',
-    'school management system',
-    'e-learning',
-    'Karachi',
-    'Pakistan',
-    'Arabic',
-    'Urdu',
-    'educational content',
+    'EdTech', 'Moodle LMS', 'educational animations', 'school management system',
+    'e-learning', 'Karachi', 'Pakistan', 'Arabic', 'Urdu', 'educational content',
   ],
   openGraph: {
     title: 'Cubico Technologies — EdTech Agency',
-    description:
-      'Building the future of education technology. Moodle LMS, animations, apps, and educational content.',
+    description: 'Building the future of education technology. Moodle LMS, animations, apps, and educational content.',
     type: 'website',
     locale: 'en_US',
     siteName: 'Cubico Technologies',
@@ -39,16 +62,20 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// ── Root layout ───────────────────────────────────────────────────────────────
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// ── Root layout ────────────────────────────────────────────────────────────────
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={[
+        fraunces.variable,
+        epilogue.variable,
+        instrumentSans.variable,
+        bebasNeue.variable,
+      ].join(' ')}
+    >
       <head>
-        {/* Google Fonts — loaded at runtime so no build-time network needed */}
+        {/* Legacy Syne + DM Sans — still consumed by /services, /portfolio, /about, /contact */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
@@ -58,6 +85,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col">
+        <CustomCursor />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

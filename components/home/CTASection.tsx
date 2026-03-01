@@ -4,106 +4,96 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const CONTACT_ITEMS = [
-  { icon: '📧', label: 'info@cubico.tech' },
-  { icon: '💬', label: 'WhatsApp' },
-  { icon: '📍', label: 'Karachi, Pakistan' },
+  { icon: '📧', text: 'info@cubico.tech' },
+  { icon: '📍', text: 'Karachi, Pakistan' },
+  { icon: '💬', text: 'WhatsApp Available' },
 ];
 
 export default function CTASection() {
   return (
-    <section className="relative py-28 px-5 md:px-8 overflow-hidden">
-      {/* Deep blue radial gradient background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(59,130,246,0.12) 0%, rgba(6,214,160,0.04) 40%, transparent 70%), #0a0a0a',
-        }}
-      />
+    <section className="bg-cream py-36 md:py-44 px-6 md:px-10">
+      <div className="max-w-[700px] mx-auto text-center">
 
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 hero-grid-bg opacity-40 pointer-events-none" />
-
-      {/* Faint top/bottom borders */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        {/* Badge */}
-        <motion.div
+        {/* Eyebrow */}
+        <motion.p
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 bg-card-bg/80 border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-7 backdrop-blur"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          className="font-ui font-medium text-[11px] text-warm-gray uppercase tracking-[0.28em] mb-8"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          Limited Slots Available
-        </motion.div>
+          LIMITED PROJECT SLOTS&nbsp;&nbsp;·&nbsp;&nbsp;Q2 2026
+        </motion.p>
 
-        {/* Heading */}
+        {/* Heading — very large, ink colored */}
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-syne font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-5"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display font-bold text-[clamp(48px,7vw,96px)] text-ink leading-[0.95] tracking-tight mb-8"
         >
-          Ready to Transform Your{' '}
-          <span className="gradient-text">Institution?</span>
+          Let&apos;s Build
+          <br />
+          Something
+          <br />
+          Extraordinary.
         </motion.h2>
 
         {/* Subtext */}
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-muted font-dm text-base md:text-lg leading-relaxed max-w-lg mx-auto mb-10"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.65, delay: 0.18, ease: 'easeOut' }}
+          className="font-body text-[17px] leading-[1.7] max-w-[480px] mx-auto mb-12"
+          style={{ color: '#5A5550' }}
         >
-          We take on limited projects each quarter to ensure quality.
-          <br />
-          Let&apos;s talk about yours.
+          Tell us about your institution. We&apos;ll respond within 24 hours with
+          a clear plan and honest pricing.
         </motion.p>
 
-        {/* Pulsing CTA button */}
+        {/* CTA button — fire, sharp, pulsing */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
+          initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10"
         >
           <motion.div
-            animate={{ scale: [1, 1.03, 1] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className="inline-block"
+            style={{
+              filter: 'drop-shadow(0 8px 32px rgba(232,98,42,0.28))',
+            }}
           >
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-syne font-bold text-base px-10 py-5 rounded-2xl transition-colors duration-200"
-              style={{
-                boxShadow:
-                  '0 0 48px rgba(59,130,246,0.50), 0 8px 24px rgba(59,130,246,0.28)',
-              }}
+              data-cursor="cta"
+              className="inline-flex items-center font-ui font-semibold text-[17px] text-ivory bg-fire px-12 py-5 transition-colors duration-200 hover:bg-[#C4531F]"
             >
               Start Your Project →
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* Contact row */}
+        {/* Contact items row */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.45 }}
-          className="flex items-center justify-center flex-wrap gap-6 mt-8"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.38, ease: 'easeOut' }}
+          className="flex items-center justify-center flex-wrap gap-2 text-[14px]"
+          style={{ color: '#7A7268' }}
         >
-          {CONTACT_ITEMS.map(({ icon, label }) => (
-            <div key={label} className="flex items-center gap-1.5 text-muted text-sm font-dm">
-              <span className="text-base">{icon}</span>
-              <span>{label}</span>
-            </div>
+          {CONTACT_ITEMS.map(({ icon, text }, i) => (
+            <span key={text} className="flex items-center gap-1.5 font-body">
+              {i > 0 && <span className="text-[#D5CFC8] mx-1">·</span>}
+              <span>{icon}</span>
+              <span>{text}</span>
+            </span>
           ))}
         </motion.div>
       </div>

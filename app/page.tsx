@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import HeroSection from '@/components/home/HeroSection';
-import LogoMarquee from '@/components/home/LogoMarquee';
-import ServicesGrid from '@/components/home/ServicesGrid';
-import HowItWorks from '@/components/home/HowItWorks';
-import DemoPreview from '@/components/home/DemoPreview';
+import MarqueeSection from '@/components/home/MarqueeSection';
+import ServicesSection from '@/components/home/ServicesSection';
 import PortfolioPreview from '@/components/home/PortfolioPreview';
+import ProcessSection from '@/components/home/ProcessSection';
+import ImpactNumbers from '@/components/home/ImpactNumbers';
 import LanguagesSection from '@/components/home/LanguagesSection';
 import CTASection from '@/components/home/CTASection';
 
@@ -17,13 +17,28 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* 1 — Cinematic hero, 3-line headline, stats row */}
       <HeroSection />
-      <LogoMarquee />
-      <ServicesGrid />
-      <HowItWorks />
-      <DemoPreview />
+
+      {/* 2 — Infinite marquee of services */}
+      <MarqueeSection />
+
+      {/* 3 — Services bento, sticky left heading, 4 sharp cards */}
+      <ServicesSection />
+
+      {/* 4 — Recent work, horizontal scroll cards */}
       <PortfolioPreview />
+
+      {/* 5 — CREAM: Process steps 2×2 grid */}
+      <ProcessSection />
+
+      {/* 6 — Impact numbers, CountUp, Fraunces quote */}
+      <ImpactNumbers />
+
+      {/* 7 — Languages: English / Urdu / Arabic with RTL */}
       <LanguagesSection />
+
+      {/* 8 — CREAM: Final CTA, fire button */}
       <CTASection />
     </>
   );

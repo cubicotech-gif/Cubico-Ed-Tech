@@ -5,154 +5,133 @@ import { motion } from 'framer-motion';
 const LANGUAGES = [
   {
     code: 'en',
-    flag: '🇬🇧',
     name: 'English',
+    flag: '🇬🇧',
     dir: 'ltr' as const,
-    sample: 'Welcome to the future of education.',
-    note: 'Full LTR support across all platforms.',
-    accent: '#3b82f6',
-    glow: 'rgba(59,130,246,0.12)',
-    border: 'rgba(59,130,246,0.2)',
-    features: ['Course names', 'UI labels', 'Assessment text'],
+    headline: 'English',
+    sample: 'Welcome to the future of education',
+    note: 'Full LMS, content & support in English',
+    useFallbackFont: false,
   },
   {
     code: 'ur',
+    name: 'Urdu',
     flag: '🇵🇰',
-    name: 'اردو',
-    dir: 'ltr' as const,
+    dir: 'rtl' as const,
+    headline: 'اردو',
     sample: 'تعلیم کے مستقبل میں خوش آمدید',
-    note: 'Nastaliq-ready Urdu for all content types.',
-    accent: '#06d6a0',
-    glow: 'rgba(6,214,160,0.12)',
-    border: 'rgba(6,214,160,0.2)',
-    features: ['Voice-overs', 'Subtitles', 'UI translation'],
+    note: 'تمام خدمات اردو میں دستیاب ہیں',
+    useFallbackFont: true,
   },
   {
     code: 'ar',
+    name: 'Arabic',
     flag: '🇸🇦',
-    name: 'عربي',
     dir: 'rtl' as const,
+    headline: 'العربية',
     sample: 'مرحباً بكم في مستقبل التعليم',
-    note: 'Complete RTL layout — menus, text, and media all flip correctly.',
-    accent: '#a855f7',
-    glow: 'rgba(168,85,247,0.12)',
-    border: 'rgba(168,85,247,0.2)',
-    features: ['RTL layouts', 'Arabic content', 'Islamic branding'],
+    note: 'دعم كامل للغة العربية مع واجهة RTL',
+    useFallbackFont: true,
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
+const ARABIC_FONT = '"Noto Naskh Arabic", "Scheherazade New", "Traditional Arabic", serif';
+
+const colVariants = {
+  hidden: { opacity: 0, y: 32 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.65, delay: i * 0.14, ease: 'easeOut' },
   }),
 };
 
 export default function LanguagesSection() {
   return (
-    <section className="py-24 px-5 md:px-8 max-w-7xl mx-auto">
-      {/* Header */}
-      <div className="text-center mb-14">
-        <div className="inline-flex items-center gap-2 bg-card-bg border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-5">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-green" />
-          Multilingual
+    <section className="bg-void py-24 px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto">
+
+        {/* Section counter + label */}
+        <div className="flex items-center gap-4 mb-14">
+          <span className="font-accent text-[14px] text-bronze tracking-[0.1em]">06</span>
+          <span className="font-ui text-[11px] text-warm-gray tracking-[0.22em] uppercase">
+            We Speak Your Language
+          </span>
         </div>
-        <h2 className="font-syne font-extrabold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
-          We Speak Your Language.{' '}
-          <span className="gradient-text">Literally.</span>
-        </h2>
-        <p className="text-muted font-dm mt-4 max-w-lg mx-auto leading-relaxed">
-          Every product we build supports English, Urdu, and full Arabic RTL — natively.
-        </p>
-      </div>
 
-      {/* Language cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {LANGUAGES.map((lang, i) => (
-          <motion.div
-            key={lang.code}
-            custom={i}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            className="relative bg-card-bg rounded-2xl p-7 border border-border overflow-hidden group transition-colors duration-300 hover:bg-[#1a2030]"
-            style={{
-              boxShadow: `0 0 0 1px transparent`,
-            }}
-          >
-            {/* Glow border on hover */}
-            <div
-              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-              style={{ boxShadow: `inset 0 0 0 1px ${lang.border}, 0 0 36px ${lang.glow}` }}
-            />
-
-            {/* Corner glow blob */}
-            <div
-              className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-20 pointer-events-none"
-              style={{ background: `radial-gradient(circle, ${lang.accent} 0%, transparent 70%)` }}
-            />
-
-            {/* Flag + language name */}
-            <div className="flex items-center gap-3 mb-5">
-              <span className="text-3xl">{lang.flag}</span>
-              <div>
-                <div
-                  className="font-syne font-bold text-xl leading-none"
-                  dir={lang.dir}
-                  style={{ color: lang.accent }}
-                >
-                  {lang.name}
-                </div>
-                <div className="text-muted text-xs font-dm mt-0.5 uppercase tracking-wider">
-                  {lang.code === 'en' ? 'English' : lang.code === 'ur' ? 'Urdu' : 'Arabic'}
-                </div>
-              </div>
-            </div>
-
-            {/* Sample text */}
-            <div
-              className="bg-background/60 border border-border/60 rounded-xl px-4 py-4 mb-5"
-              dir={lang.dir}
+        {/* Three-column layout with vertical rule dividers */}
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-rule">
+          {LANGUAGES.map((lang, i) => (
+            <motion.div
+              key={lang.code}
+              custom={i}
+              variants={colVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className={[
+                'py-10',
+                i === 0 ? 'md:pr-10' : i === 1 ? 'md:px-10' : 'md:pl-10',
+              ].join(' ')}
             >
-              <p
-                className="text-white/90 leading-relaxed"
-                style={{
-                  fontFamily:
-                    lang.code === 'ar' || lang.code === 'ur'
-                      ? '"Noto Naskh Arabic", "Scheherazade New", serif'
-                      : 'inherit',
-                  fontSize: lang.code === 'en' ? '0.9rem' : '1.1rem',
-                  textAlign: lang.dir === 'rtl' ? 'right' : 'left',
-                }}
-              >
-                {lang.sample}
-              </p>
-            </div>
+              {/* Flag + code */}
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-2xl" aria-hidden>{lang.flag}</span>
+                <span className="font-ui text-[11px] text-warm-gray uppercase tracking-[0.2em]">
+                  {lang.name}
+                </span>
+              </div>
 
-            {/* Feature pills */}
-            <div className="flex flex-wrap gap-1.5 mb-4">
-              {lang.features.map((f) => (
+              {/* Language headline */}
+              <div className="mb-6" dir={lang.dir}>
                 <span
-                  key={f}
-                  className="text-[0.68rem] font-syne font-semibold px-2.5 py-1 rounded-full border"
+                  className={[
+                    'font-accent text-[clamp(36px,5vw,52px)] text-ivory leading-none block',
+                    lang.dir === 'rtl' ? 'text-right' : '',
+                  ].join(' ')}
+                  style={lang.useFallbackFont ? { fontFamily: ARABIC_FONT, fontSize: 'clamp(32px,4.5vw,46px)', fontWeight: 700 } : {}}
+                >
+                  {lang.headline}
+                </span>
+              </div>
+
+              {/* Sample text */}
+              <div
+                className={[
+                  'bg-surface/50 border border-rule px-5 py-4 mb-5',
+                  lang.dir === 'rtl' ? 'text-right' : '',
+                ].join(' ')}
+                dir={lang.dir}
+              >
+                <p
+                  className="text-ivory/85 leading-[1.7]"
                   style={{
-                    color: lang.accent,
-                    borderColor: lang.border,
-                    background: lang.glow,
+                    fontFamily: lang.useFallbackFont ? ARABIC_FONT : 'var(--font-body)',
+                    fontSize: lang.useFallbackFont ? '1.15rem' : '0.95rem',
                   }}
                 >
-                  {f}
-                </span>
-              ))}
-            </div>
+                  {lang.sample}
+                </p>
+              </div>
 
-            {/* Note */}
-            <p className="text-muted/70 text-xs font-dm leading-relaxed">{lang.note}</p>
-          </motion.div>
-        ))}
+              {/* Note */}
+              <p
+                className={[
+                  'font-body text-[13px] text-warm-gray leading-relaxed',
+                  lang.dir === 'rtl' ? 'text-right' : '',
+                ].join(' ')}
+                dir={lang.dir}
+                style={
+                  lang.useFallbackFont
+                    ? { fontFamily: ARABIC_FONT, fontSize: '0.85rem' }
+                    : {}
+                }
+              >
+                {lang.note}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
