@@ -18,11 +18,23 @@ const config: Config = {
         'accent-orange': '#f97316',
         text: '#e8eaf0',
         muted: '#6b7588',
+        // ServicesReveal palette
+        void: '#080808',
+        bronze: '#C4965A',
+        'warm-gray': '#8A837C',
+        divider: '#2A2520',
+        ivory: '#F0EBE3',
+        fire: '#E8622A',
       },
       fontFamily: {
         // Loaded via Google Fonts <link> at runtime in app/layout.tsx
         syne: ['Syne', 'sans-serif'],
         dm: ['"DM Sans"', 'sans-serif'],
+        // ServicesReveal editorial typefaces
+        bebas: ['"Bebas Neue"', 'cursive'],
+        fraunces: ['Fraunces', 'serif'],
+        instrument: ['"Instrument Sans"', 'sans-serif'],
+        epilogue: ['Epilogue', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-accent': 'linear-gradient(135deg, #3b82f6, #06d6a0)',
