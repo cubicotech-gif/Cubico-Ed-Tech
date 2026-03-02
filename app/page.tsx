@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import HeroSection       from '@/components/home/HeroSection';
-import MarqueeStrip      from '@/components/home/MarqueeStrip';
 import ServicesReveal    from '@/components/home/ServicesReveal';
 import ExperienceLab     from '@/components/home/ExperienceLab';
-import ServicesCards     from '@/components/home/ServicesCards';
 import PortfolioPreview  from '@/components/home/PortfolioPreview';
 import ProcessSection    from '@/components/home/ProcessSection';
 import ImpactNumbers     from '@/components/home/ImpactNumbers';
@@ -22,19 +20,13 @@ export default function HomePage() {
       {/* 01 — Hero ──────────────────────────────────────────────────────── */}
       <HeroSection />
 
-      {/* Marquee transition strip */}
-      <MarqueeStrip />
-
-      {/* 02 — The Living Services List (replaces original marquee section) */}
+      {/* 02 — The Living Services List */}
       <ServicesReveal />
 
-      {/* 03 — Interactive Demo Showcase ─────────────────────────────────── */}
+      {/* 03 — Interactive Demo Showcase */}
       <ExperienceLab />
 
-      {/* 04 — Services cards ────────────────────────────────────────────── */}
-      <ServicesCards />
-
-      {/* 04 — Portfolio preview ─────────────────────────────────────────── */}
+      {/* 04 — Portfolio preview */}
       <PortfolioPreview />
 
       {/* 05 — Process (cream) ───────────────────────────────────────────── */}

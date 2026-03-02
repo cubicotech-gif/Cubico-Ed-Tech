@@ -190,14 +190,18 @@ export default function HeroSection() {
           >
             Explore Our Work
           </Link>
-          <Link
-            href="/contact"
+          <button
+            onClick={() =>
+              document.getElementById('experience-lab')?.scrollIntoView({ behavior: 'smooth' })
+            }
             style={{
               fontFamily: 'var(--font-ui)',
               fontWeight: 500,
               fontSize: 15,
               color: '#F0EBE3',
-              textDecoration: 'none',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
               padding: '16px 0',
               transition: 'color 0.2s ease',
             }}
@@ -205,7 +209,7 @@ export default function HeroSection() {
             onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#F0EBE3')}
           >
             Watch Demo ▶
-          </Link>
+          </button>
         </motion.div>
 
         {/* Stats row */}

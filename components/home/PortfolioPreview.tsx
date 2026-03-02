@@ -10,24 +10,21 @@ const PROJECTS = [
     name: 'Al-Noor Academy Platform',
     description: 'Full Moodle deployment with RTL Arabic theme, custom plugins, and 1,200+ enrolled students.',
     tags: ['Moodle', 'Arabic RTL', 'Custom Theme'],
-    // TODO: replace with real project photo
-    gradient: 'linear-gradient(160deg, #1A1210 0%, #0d0a08 60%, #12100E 100%)',
+    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=70',
   },
   {
     category: '3D ANIMATION',
     name: 'Biology Series — Grade 9',
     description: '24-episode 3D animated science series in Urdu, produced for a national curriculum publisher.',
     tags: ['3D Animation', 'Urdu', 'Science'],
-    // TODO: replace with real project photo
-    gradient: 'linear-gradient(160deg, #0e0f1a 0%, #080810 60%, #12101e 100%)',
+    image: 'https://images.unsplash.com/photo-1532094349884-543559a8a9b4?w=800&q=70',
   },
   {
     category: 'SCHOOL ERP',
     name: 'Crescent School Management',
     description: 'End-to-end school ERP — admissions, fees, attendance, grading, and parent mobile app.',
     tags: ['ERP', 'Mobile App', 'React Native'],
-    // TODO: replace with real project photo
-    gradient: 'linear-gradient(160deg, #111810 0%, #0a100a 60%, #141e12 100%)',
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=70',
   },
 ];
 
@@ -113,11 +110,13 @@ export default function PortfolioPreview() {
                 <div
                   style={{
                     flex: '0 0 65%',
-                    background: project.gradient,
+                    backgroundImage: `url('${project.image}')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                     position: 'relative',
                     overflow: 'hidden',
                     filter:
-                      hovered === i ? 'brightness(1.1)' : 'brightness(1)',
+                      hovered === i ? 'brightness(1.1)' : 'brightness(0.9)',
                     transition: 'filter 0.3s ease',
                   }}
                 >

@@ -768,6 +768,7 @@ export default function ExperienceLab() {
 
   return (
     <motion.section
+      id="experience-lab"
       initial={{opacity:0}}
       whileInView={{opacity:1}}
       viewport={{once:true,margin:'-100px'}}
