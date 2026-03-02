@@ -1,75 +1,107 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/about', label: 'About' },
+const NAV_LINKS = [
+  { href: '/portfolio', label: 'Work' },
+  { href: '/services',  label: 'Services' },
+  { href: '/about',     label: 'About' },
+  { href: '/contact',   label: 'Contact' },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [visible, setVisible] = useState(true);
-  const [lastY, setLastY] = useState(0);
+  const [hidden, setHidden]     = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const lastY = useRef(0);
 
-  // Hide on scroll down, show on scroll up
   useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY > lastY && currentY > 80) {
-        setVisible(false);
+    const handle = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      if (y > lastY.current && y > 80) {
+        setHidden(true);
         setMobileOpen(false);
       } else {
-        setVisible(true);
+        setHidden(false);
       }
-      setLastY(currentY);
+      lastY.current = y;
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastY]);
+    window.addEventListener('scroll', handle, { passive: true });
+    return () => window.removeEventListener('scroll', handle);
+  }, []);
 
   return (
     <motion.header
-      animate={{ y: visible ? 0 : -100 }}
+      animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 glass border-b border-border"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        backgroundColor: scrolled ? 'rgba(8,8,8,0.92)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+        borderBottom: scrolled ? '1px solid #2A2520' : '1px solid transparent',
+        transition: 'background-color 0.4s ease, border-color 0.4s ease',
+      }}
     >
-      <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg bg-gradient-accent flex items-center justify-center flex-shrink-0">
-            <span className="font-syne font-bold text-sm text-white">C</span>
-          </div>
-          <div className="leading-none">
-            <div className="font-syne font-bold text-white text-base group-hover:text-accent transition-colors">
-              Cubico
-            </div>
-            <div className="text-muted text-[0.6rem] uppercase tracking-widest">
-              Technologies
-            </div>
-          </div>
+      <nav
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '0 5%',
+          height: 72,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        {/* Wordmark */}
+        <Link
+          href="/"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontStyle: 'italic',
+            fontWeight: 600,
+            fontSize: 24,
+            color: '#F0EBE3',
+            textDecoration: 'none',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Cubico
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-7">
-          {navLinks.map(({ href, label }) => (
+        <ul
+          className="hidden md:flex"
+          style={{
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+            gap: 40,
+            alignItems: 'center',
+          }}
+        >
+          {NAV_LINKS.map(({ href, label }) => (
             <li key={href}>
               <Link
                 href={href}
-                className={clsx(
-                  'text-sm font-dm transition-colors duration-200',
-                  pathname === href
-                    ? 'text-white'
-                    : 'text-muted hover:text-text'
-                )}
+                style={{
+                  fontFamily: 'var(--font-ui)',
+                  fontWeight: 500,
+                  fontSize: 14,
+                  color: '#7A7268',
+                  textDecoration: 'none',
+                  transition: 'color 0.2s ease',
+                }}
+                onMouseEnter={e => ((e.target as HTMLElement).style.color = '#F0EBE3')}
+                onMouseLeave={e => ((e.target as HTMLElement).style.color = '#7A7268')}
               >
                 {label}
               </Link>
@@ -78,43 +110,72 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:block">
           <Link
             href="/contact"
-            className="bg-accent hover:bg-accent/90 text-white font-syne font-semibold text-sm px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-accent/20"
+            data-cursor="cta"
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontWeight: 600,
+              fontSize: 13,
+              color: '#E8622A',
+              textDecoration: 'none',
+              border: '1px solid #E8622A',
+              padding: '10px 22px',
+              transition: 'background-color 0.2s ease, color 0.2s ease',
+              display: 'inline-block',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = '#E8622A';
+              el.style.color = '#F0EBE3';
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = 'transparent';
+              el.style.color = '#E8622A';
+            }}
           >
-            Get In Touch
+            Start a Project
           </Link>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation"
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 5,
+          }}
         >
-          <span
-            className={clsx(
-              'block w-5 h-0.5 bg-text transition-all duration-300',
-              mobileOpen && 'rotate-45 translate-y-2'
-            )}
-          />
-          <span
-            className={clsx(
-              'block w-5 h-0.5 bg-text transition-all duration-300',
-              mobileOpen && 'opacity-0'
-            )}
-          />
-          <span
-            className={clsx(
-              'block w-5 h-0.5 bg-text transition-all duration-300',
-              mobileOpen && '-rotate-45 -translate-y-2'
-            )}
-          />
+          {[0, 1, 2].map(i => (
+            <span
+              key={i}
+              style={{
+                display: 'block',
+                width: 22,
+                height: 1,
+                backgroundColor: '#F0EBE3',
+                transition: 'transform 0.25s ease, opacity 0.25s ease',
+                transform: mobileOpen
+                  ? i === 0 ? 'rotate(45deg) translate(4px, 5px)'
+                  : i === 2 ? 'rotate(-45deg) translate(4px, -5px)'
+                  : 'none'
+                  : 'none',
+                opacity: mobileOpen && i === 1 ? 0 : 1,
+              }}
+            />
+          ))}
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -122,30 +183,59 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden border-t border-border overflow-hidden"
+            style={{
+              overflow: 'hidden',
+              borderTop: '1px solid #2A2520',
+              backgroundColor: 'rgba(8,8,8,0.97)',
+            }}
           >
-            <ul className="flex flex-col px-5 py-4 gap-3">
-              {navLinks.map(({ href, label }) => (
+            <ul
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: '20px 5%',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 0,
+              }}
+            >
+              {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className={clsx(
-                      'block py-1.5 text-sm font-dm transition-colors',
-                      pathname === href ? 'text-white' : 'text-muted'
-                    )}
+                    style={{
+                      display: 'block',
+                      fontFamily: 'var(--font-ui)',
+                      fontWeight: 500,
+                      fontSize: 20,
+                      color: '#7A7268',
+                      textDecoration: 'none',
+                      padding: '14px 0',
+                      borderBottom: '1px solid #2A2520',
+                    }}
                   >
                     {label}
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
+              <li style={{ paddingTop: 20 }}>
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full text-center bg-accent text-white font-syne font-semibold text-sm px-5 py-2.5 rounded-lg"
+                  style={{
+                    display: 'block',
+                    fontFamily: 'var(--font-ui)',
+                    fontWeight: 600,
+                    fontSize: 14,
+                    color: '#F0EBE3',
+                    textDecoration: 'none',
+                    backgroundColor: '#E8622A',
+                    padding: '14px 24px',
+                    textAlign: 'center',
+                  }}
                 >
-                  Get In Touch
+                  Start a Project
                 </Link>
               </li>
             </ul>

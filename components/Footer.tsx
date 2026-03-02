@@ -1,44 +1,124 @@
 import Link from 'next/link';
 
-const footerLinks = [
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+const LINKS = [
+  { href: '/portfolio', label: 'Work' },
+  { href: '/services',  label: 'Services' },
+  { href: '/about',     label: 'About' },
+  { href: '/contact',   label: 'Contact' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-card-bg/50">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-        {/* Logo + tagline */}
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center flex-shrink-0">
-            <span className="font-syne font-bold text-xs text-white">C</span>
-          </div>
-          <div className="leading-none">
-            <div className="font-syne font-bold text-white text-sm">Cubico Technologies</div>
-            <div className="text-muted text-[0.6rem] uppercase tracking-widest mt-0.5">
-              EdTech Agency · Karachi
-            </div>
-          </div>
+    <footer style={{ backgroundColor: '#080808' }}>
+      <div style={{ height: 1, backgroundColor: '#2A2520' }} />
+
+      {/* Main 3-column grid */}
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '56px 5%',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 40,
+          alignItems: 'start',
+        }}
+        className="grid-cols-1 md:grid-cols-3"
+      >
+        {/* Left — wordmark + tagline */}
+        <div>
+          <Link
+            href="/"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontStyle: 'italic',
+              fontWeight: 600,
+              fontSize: 36,
+              color: '#F0EBE3',
+              textDecoration: 'none',
+              letterSpacing: '-0.02em',
+              display: 'block',
+            }}
+          >
+            Cubico
+          </Link>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 13,
+              color: '#7A7268',
+              marginTop: 8,
+              lineHeight: 1.6,
+            }}
+          >
+            EdTech Agency · Karachi, Pakistan
+          </p>
         </div>
 
-        {/* Links */}
-        <nav className="flex items-center gap-6">
-          {footerLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-muted hover:text-text text-sm font-dm transition-colors"
-            >
-              {label}
-            </Link>
-          ))}
+        {/* Center — nav links */}
+        <nav style={{ display: 'flex', justifyContent: 'center' }}>
+          <ul
+            style={{
+              listStyle: 'none',
+              margin: 0,
+              padding: 0,
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '10px 28px',
+            }}
+          >
+            {LINKS.map(({ href, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  style={{
+                    fontFamily: 'var(--font-ui)',
+                    fontWeight: 500,
+                    fontSize: 14,
+                    color: '#7A7268',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        {/* Copyright */}
-        <p className="text-muted text-xs font-dm">
+        {/* Right — email */}
+        <div style={{ textAlign: 'right' }}>
+          <a
+            href="mailto:info@cubico.tech"
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: 14,
+              color: '#E8622A',
+              textDecoration: 'none',
+            }}
+          >
+            info@cubico.tech
+          </a>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div
+        style={{
+          borderTop: '1px solid #2A2520',
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '18px 5%',
+        }}
+      >
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 12,
+            color: '#7A7268',
+            margin: 0,
+          }}
+        >
           © {new Date().getFullYear()} Cubico Technologies. All rights reserved.
         </p>
       </div>
