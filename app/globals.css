@@ -64,3 +64,8 @@
   }
   .marquee-track:hover { animation-play-state: paused; }
 }
+
+/* ── Utility animations (used by components) ─────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

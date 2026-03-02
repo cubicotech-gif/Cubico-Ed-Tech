@@ -1,146 +1,298 @@
 import type { Metadata } from 'next';
-import AnimatedSection from '@/components/AnimatedSection';
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact',
+  title: 'Contact — Cubico Technologies',
   description:
     "Get in touch with Cubico Technologies. Tell us about your institution and we'll respond within 24 hours.",
 };
 
-const contactDetails = [
-  {
-    icon: '📧',
-    label: 'Email',
-    value: 'info@cubico.tech',
-    href: 'mailto:info@cubico.tech',
-  },
-  {
-    icon: '📍',
-    label: 'Location',
-    value: 'Karachi, Pakistan',
-    href: null,
-  },
-  {
-    icon: '🌐',
-    label: 'Website',
-    value: 'cubico.tech',
-    href: 'https://cubico.tech',
-  },
-  {
-    icon: '💬',
-    label: 'Languages',
-    value: 'English · اردو · عربي',
-    href: null,
-  },
+const STEPS = [
+  'We review your requirements carefully',
+  'We prepare a tailored proposal',
+  'We schedule a free consultation call',
+  'We begin building your solution',
 ];
 
 export default function ContactPage() {
   return (
     <>
-      {/* ── Page hero ── */}
-      <section className="relative pt-32 pb-16 px-5 md:px-8 text-center overflow-hidden">
+      {/* ── Hero ─────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          backgroundColor: '#080808',
+          padding: '160px 5% 100px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
         <div
-          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
           style={{
+            position: 'absolute',
+            inset: 0,
             background:
-              'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(6,214,160,0.07) 0%, transparent 65%)',
+              'radial-gradient(ellipse 50% 50% at 50% 0%, rgba(232,98,42,0.06) 0%, transparent 70%)',
+            pointerEvents: 'none',
           }}
         />
-        <AnimatedSection className="relative z-10 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-card-bg border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-green" />
-            Let&apos;s Talk
+
+        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <div style={{ marginBottom: 40 }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-accent)',
+                fontSize: 14,
+                color: '#E8622A',
+                letterSpacing: '0.1em',
+              }}
+            >
+              CONTACT
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: 11,
+                color: '#7A7268',
+                letterSpacing: '0.2em',
+                marginLeft: 16,
+                textTransform: 'uppercase',
+              }}
+            >
+              LET&apos;S TALK
+            </span>
           </div>
-          <h1 className="font-syne font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
-            Get In <span className="gradient-text">Touch</span>
+
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 'clamp(48px, 7vw, 96px)',
+              color: '#F0EBE3',
+              letterSpacing: '-0.03em',
+              lineHeight: 1,
+              margin: '0 0 32px',
+              maxWidth: 760,
+            }}
+          >
+            Tell Us About Your Institution.
           </h1>
-          <p className="text-muted font-dm text-base md:text-lg leading-relaxed">
-            Tell us about your institution and what you need. We&apos;ll get back to you within 24
-            hours with a clear plan.
+
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 18,
+              color: '#7A7268',
+              lineHeight: 1.7,
+              maxWidth: 520,
+              margin: 0,
+            }}
+          >
+            We respond within 24 hours with a clear plan and honest pricing.
+            No generic proposals — every response is specific to you.
           </p>
-        </AnimatedSection>
+        </div>
       </section>
 
-      {/* ── Contact grid ── */}
-      <section className="pb-24 px-5 md:px-8 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8">
+      {/* ── Contact Grid ─────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          backgroundColor: '#080808',
+          padding: '80px 5% 120px',
+          borderTop: '1px solid #2A2520',
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: '1fr 380px',
+            gap: '80px',
+            alignItems: 'start',
+          }}
+        >
           {/* Left: form */}
-          <AnimatedSection direction="left">
-            <div className="bg-card-bg border border-border rounded-2xl p-8">
-              <h2 className="font-syne font-bold text-white text-xl mb-7">Send us a message</h2>
-              <ContactForm />
-            </div>
-          </AnimatedSection>
+          <div>
+            <p
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: 11,
+                color: '#7A7268',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                marginBottom: 32,
+              }}
+            >
+              SEND A MESSAGE
+            </p>
+            <ContactForm />
+          </div>
 
-          {/* Right: contact details */}
-          <AnimatedSection direction="right" delay={0.15}>
-            <div className="flex flex-col gap-5">
-              {/* Details card */}
-              <div className="bg-card-bg border border-border rounded-2xl p-7">
-                <h2 className="font-syne font-bold text-white text-xl mb-6">Contact Details</h2>
-                <div className="flex flex-col gap-5">
-                  {contactDetails.map(({ icon, label, value, href }) => (
-                    <div key={label} className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-border/50 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
-                        {icon}
-                      </div>
-                      <div>
-                        <div className="text-muted text-xs font-syne font-semibold uppercase tracking-wider mb-0.5">
-                          {label}
-                        </div>
-                        {href ? (
-                          <a
-                            href={href}
-                            className="text-text text-sm font-dm hover:text-accent transition-colors"
-                            dir="auto"
-                          >
-                            {value}
-                          </a>
-                        ) : (
-                          <span className="text-text text-sm font-dm" dir="auto">
-                            {value}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+          {/* Right: sidebar */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
 
-              {/* Response time note */}
-              <div className="bg-accent-green/10 border border-accent-green/25 rounded-2xl p-6 flex items-start gap-4">
-                <div className="text-2xl flex-shrink-0">⚡</div>
-                <div>
-                  <div className="font-syne font-bold text-white text-sm mb-1">Fast Response</div>
-                  <p className="text-muted text-sm font-dm leading-relaxed">
-                    We typically respond within 24 hours on business days. For urgent projects,
-                    mention it in your message.
-                  </p>
-                </div>
-              </div>
+            {/* Contact details */}
+            <div
+              style={{
+                borderTop: '2px solid #E8622A',
+                paddingTop: 28,
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: 'var(--font-ui)',
+                  fontSize: 11,
+                  color: '#7A7268',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  marginBottom: 28,
+                }}
+              >
+                CONTACT DETAILS
+              </p>
 
-              {/* What to expect */}
-              <div className="bg-card-bg border border-border rounded-2xl p-6">
-                <h3 className="font-syne font-bold text-white text-sm mb-4">What happens next?</h3>
-                <ol className="flex flex-col gap-3">
-                  {[
-                    'We review your requirements carefully',
-                    'We prepare a tailored proposal',
-                    'We schedule a free consultation call',
-                    'We begin building your solution',
-                  ].map((step, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm font-dm text-muted">
-                      <span className="w-5 h-5 rounded-full bg-accent/15 text-accent font-syne font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
-                        {i + 1}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                {[
+                  { label: 'Email', value: 'info@cubico.tech', href: 'mailto:info@cubico.tech' },
+                  { label: 'Location', value: 'Karachi, Pakistan', href: null },
+                  { label: 'Languages', value: 'English · اردو · عربي', href: null },
+                  { label: 'WhatsApp', value: 'Available', href: null },
+                ].map(({ label, value, href }) => (
+                  <div key={label}>
+                    <p
+                      style={{
+                        fontFamily: 'var(--font-ui)',
+                        fontSize: 10,
+                        color: '#7A7268',
+                        letterSpacing: '0.18em',
+                        textTransform: 'uppercase',
+                        margin: '0 0 4px',
+                      }}
+                    >
+                      {label}
+                    </p>
+                    {href ? (
+                      <a
+                        href={href}
+                        style={{
+                          fontFamily: 'var(--font-body)',
+                          fontSize: 15,
+                          color: '#C9A96E',
+                          textDecoration: 'none',
+                        }}
+                        dir="auto"
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-body)',
+                          fontSize: 15,
+                          color: '#C4BFB8',
+                        }}
+                        dir="auto"
+                      >
+                        {value}
                       </span>
-                      {step}
-                    </li>
-                  ))}
-                </ol>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-          </AnimatedSection>
+
+            {/* Response time */}
+            <div
+              style={{
+                borderTop: '1px solid #2A2520',
+                paddingTop: 28,
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: 'var(--font-ui)',
+                  fontSize: 11,
+                  color: '#7A7268',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  marginBottom: 12,
+                }}
+              >
+                RESPONSE TIME
+              </p>
+              <p
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: 15,
+                  color: '#7A7268',
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                We typically respond within{' '}
+                <span style={{ color: '#E8622A' }}>24 hours</span> on business
+                days. For urgent projects, mention it in your message.
+              </p>
+            </div>
+
+            {/* What happens next */}
+            <div
+              style={{
+                borderTop: '1px solid #2A2520',
+                paddingTop: 28,
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: 'var(--font-ui)',
+                  fontSize: 11,
+                  color: '#7A7268',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  marginBottom: 20,
+                }}
+              >
+                WHAT HAPPENS NEXT
+              </p>
+              <ol style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {STEPS.map((step, i) => (
+                  <li
+                    key={i}
+                    style={{
+                      display: 'flex',
+                      gap: 14,
+                      alignItems: 'flex-start',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: 'var(--font-accent)',
+                        fontSize: 18,
+                        color: '#C9A96E',
+                        opacity: 0.6,
+                        lineHeight: 1,
+                        flexShrink: 0,
+                        paddingTop: 2,
+                      }}
+                    >
+                      0{i + 1}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: 'var(--font-body)',
+                        fontSize: 14,
+                        color: '#7A7268',
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      {step}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
         </div>
       </section>
     </>

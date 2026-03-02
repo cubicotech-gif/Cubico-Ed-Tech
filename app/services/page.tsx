@@ -1,45 +1,38 @@
 import type { Metadata } from 'next';
-import AnimatedSection from '@/components/AnimatedSection';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Services',
+  title: 'Services — Cubico Technologies',
   description:
     'Moodle LMS setup, educational animations, digital apps, and content creation — complete EdTech solutions in English, Urdu, and Arabic.',
 };
 
-const services = [
+const SERVICES = [
   {
-    icon: '🎓',
+    number: '01',
     title: 'Moodle LMS Setup',
+    tagline: 'Your institution. Your platform.',
     description:
-      'From basic installation to full enterprise-level deployment. We handle hosting, branding, plugins, content migration, and ongoing support.',
-    accent: 'blue',
-    accentClass: {
-      icon: 'bg-accent/10 text-accent border-accent/20',
-      border: 'border-accent/20',
-    },
+      'From basic installation to full enterprise-level deployment. We handle hosting, branding, plugins, content migration, and ongoing support — so you can focus on teaching.',
     features: [
       'Cloud & on-premise hosting setup',
       'Custom branded themes (your colors, logo, layout)',
-      'Plugin integration: BigBlueButton, Zoom, H5P, Attendance, Certificates',
+      'Plugin integration: BBB, Zoom, H5P, Attendance, Certificates',
       'Multi-site setup for multi-branch institutions',
-      'Arabic / Urdu RTL support',
+      'Arabic / Urdu RTL full support',
       'Student, Teacher, Parent, Admin role management',
       'Payment gateway integration',
       'Course migration from Google Classroom, Canvas, Blackboard',
     ],
+    gradient: 'linear-gradient(135deg, #1A1208 0%, #2A1A08 50%, #1A1210 100%)',
+    accent: '#E8622A',
   },
   {
-    icon: '🎬',
+    number: '02',
     title: 'Educational Animations',
+    tagline: '2D · 3D · Motion Graphics',
     description:
-      'Professional animations for every subject and every grade level. Custom-made to match your curriculum, guidelines, and branding.',
-    accent: 'green',
-    accentClass: {
-      icon: 'bg-accent-green/10 text-accent-green border-accent-green/20',
-      border: 'border-accent-green/20',
-    },
+      'Professional animations for every subject and grade level. Custom-made to match your curriculum, board guidelines, and institutional branding — with multilingual voice-overs.',
     features: [
       '2D Character Animation',
       '3D Animation (science models, anatomy, geography)',
@@ -50,38 +43,34 @@ const services = [
       'All levels: Preschool to University',
       'Delivery in MP4, SCORM, YouTube-ready formats',
     ],
+    gradient: 'linear-gradient(135deg, #0A1210 0%, #1A2010 50%, #0A1412 100%)',
+    accent: '#C9A96E',
   },
   {
-    icon: '💻',
+    number: '03',
     title: 'Digital Solutions & Apps',
+    tagline: 'ERP · Mobile · Portals',
     description:
-      'Custom software and mobile apps for every institutional need — from student management to full school ERP systems.',
-    accent: 'purple',
-    accentClass: {
-      icon: 'bg-accent-purple/10 text-accent-purple border-accent-purple/20',
-      border: 'border-accent-purple/20',
-    },
+      'Custom software and mobile apps for every institutional need — from student management to full school ERP systems built for Pakistan\'s educational landscape.',
     features: [
       'Student Management Systems (attendance, grades, profiles)',
       'School ERP (fees, HR, accounts, inventory, library)',
       'Mobile Apps (iOS + Android) for students, teachers, parents',
       'WhatsApp & SMS automation',
-      'Fee collection with JazzCash, Easypaisa, Stripe',
+      'Fee collection: JazzCash, Easypaisa, Stripe',
       'Admission portals with application workflows',
       'Sponsor & donor management portals',
       'Custom dashboards and reporting',
     ],
+    gradient: 'linear-gradient(135deg, #100A18 0%, #180A28 50%, #100818 100%)',
+    accent: '#E8622A',
   },
   {
-    icon: '📚',
-    title: 'Educational Content Creation',
+    number: '04',
+    title: 'Content Creation',
+    tagline: 'Curriculum · E-books · SCORM',
     description:
-      'Complete curriculum development and instructional design services. We create content that makes learning stick.',
-    accent: 'orange',
-    accentClass: {
-      icon: 'bg-accent-orange/10 text-accent-orange border-accent-orange/20',
-      border: 'border-accent-orange/20',
-    },
+      'Complete curriculum development and instructional design. We create content that makes learning stick — compatible with every major board and available in three languages.',
     features: [
       'Curriculum design and lesson plans',
       'E-books and digital textbooks',
@@ -89,104 +78,355 @@ const services = [
       'SCORM-packaged e-learning modules',
       'Teacher training resources',
       'Worksheets and printable materials',
-      'Compatible with any board: Cambridge, Matric, O/A Level, Islamic curriculum',
+      'Cambridge, Matric, O/A Level, Islamic curriculum',
       'Available in English, Urdu, and Arabic',
     ],
+    gradient: 'linear-gradient(135deg, #120A08 0%, #1E1208 50%, #140A06 100%)',
+    accent: '#C9A96E',
   },
 ];
 
 export default function ServicesPage() {
   return (
     <>
-      {/* ── Page hero ── */}
-      <section className="relative pt-32 pb-16 px-5 md:px-8 text-center overflow-hidden">
+      {/* ── Hero ─────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          backgroundColor: '#080808',
+          padding: '160px 5% 100px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Background glow */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
           style={{
+            position: 'absolute',
+            inset: 0,
             background:
-              'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 65%)',
+              'radial-gradient(ellipse 60% 40% at 20% 60%, rgba(232,98,42,0.06) 0%, transparent 70%)',
+            pointerEvents: 'none',
           }}
         />
-        <AnimatedSection className="relative z-10 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-card-bg border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            What We Offer
+
+        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          {/* Section label */}
+          <div style={{ marginBottom: 40 }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-accent)',
+                fontSize: 14,
+                color: '#E8622A',
+                letterSpacing: '0.1em',
+              }}
+            >
+              SERVICES
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontSize: 11,
+                color: '#7A7268',
+                letterSpacing: '0.2em',
+                marginLeft: 16,
+                textTransform: 'uppercase',
+              }}
+            >
+              WHAT WE BUILD
+            </span>
           </div>
-          <h1 className="font-syne font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
-            Our <span className="gradient-text">Services</span>
+
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 'clamp(48px, 7vw, 96px)',
+              color: '#F0EBE3',
+              letterSpacing: '-0.03em',
+              lineHeight: 1,
+              margin: '0 0 32px',
+              maxWidth: 800,
+            }}
+          >
+            End-to-End EdTech. Built for Your Institution.
           </h1>
-          <p className="text-muted font-dm text-base md:text-lg leading-relaxed">
-            End-to-end EdTech solutions for every type of institution — conventional, Islamic, or
-            international. In English, Urdu, and Arabic.
+
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 18,
+              color: '#7A7268',
+              lineHeight: 1.7,
+              maxWidth: 560,
+              margin: 0,
+            }}
+          >
+            Four complete service lines covering every digital need — from LMS platforms
+            to animations, apps, and curriculum content. In English, Urdu, and Arabic.
           </p>
-        </AnimatedSection>
+        </div>
       </section>
 
-      {/* ── Service blocks ── */}
-      <section className="py-16 px-5 md:px-8 max-w-6xl mx-auto space-y-16">
-        {services.map((service, i) => (
-          <AnimatedSection key={service.title} delay={0.05 * i}>
+      {/* ── Service Sections ─────────────────────────────────────────────────── */}
+      {SERVICES.map((service, i) => (
+        <section
+          key={service.number}
+          style={{
+            backgroundColor: '#080808',
+            borderTop: '1px solid #2A2520',
+            padding: '0',
+          }}
+        >
+          <div
+            style={{
+              maxWidth: 1200,
+              margin: '0 auto',
+              padding: '0 5%',
+              display: 'grid',
+              gridTemplateColumns: i % 2 === 0 ? '1fr 420px' : '420px 1fr',
+              gap: 0,
+              minHeight: 520,
+            }}
+          >
+            {/* Content block */}
             <div
-              className={`bg-card-bg border ${service.accentClass.border} rounded-2xl p-8 md:p-10 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 items-start`}
+              style={{
+                padding: '72px 60px 72px 0',
+                order: i % 2 === 0 ? 1 : 2,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
             >
-              {/* Left: icon + title */}
-              <div className="flex flex-col gap-5">
-                <div
-                  className={`w-16 h-16 rounded-2xl border flex items-center justify-center text-3xl ${service.accentClass.icon}`}
+              {/* Number + title */}
+              <div style={{ marginBottom: 32 }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-accent)',
+                    fontSize: 13,
+                    color: service.accent,
+                    letterSpacing: '0.1em',
+                    display: 'block',
+                    marginBottom: 8,
+                  }}
                 >
-                  {service.icon}
-                </div>
-                <div>
-                  <h2 className="font-syne font-extrabold text-2xl md:text-3xl text-white mb-3">
-                    {service.title}
-                  </h2>
-                  <p className="text-muted font-dm leading-relaxed text-sm md:text-base">
-                    {service.description}
-                  </p>
-                </div>
+                  {service.number}
+                </span>
+                <h2
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 700,
+                    fontSize: 'clamp(28px, 3.5vw, 44px)',
+                    color: '#F0EBE3',
+                    letterSpacing: '-0.02em',
+                    lineHeight: 1.1,
+                    margin: '0 0 8px',
+                  }}
+                >
+                  {service.title}
+                </h2>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-ui)',
+                    fontSize: 12,
+                    color: '#7A7268',
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    margin: 0,
+                  }}
+                >
+                  {service.tagline}
+                </p>
+              </div>
+
+              {/* Description */}
+              <p
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: 16,
+                  color: '#7A7268',
+                  lineHeight: 1.75,
+                  marginBottom: 36,
+                }}
+              >
+                {service.description}
+              </p>
+
+              {/* Feature list */}
+              <ul
+                style={{
+                  listStyle: 'none',
+                  margin: '0 0 40px',
+                  padding: 0,
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '10px 24px',
+                }}
+              >
+                {service.features.map((f) => (
+                  <li
+                    key={f}
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 14,
+                      color: '#C4BFB8',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 8,
+                    }}
+                  >
+                    <span style={{ color: service.accent, flexShrink: 0, marginTop: 1 }}>→</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTA */}
+              <div>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-syne font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-accent/20 w-fit"
+                  data-cursor="cta"
+                  style={{
+                    fontFamily: 'var(--font-ui)',
+                    fontWeight: 600,
+                    fontSize: 15,
+                    color: '#F0EBE3',
+                    textDecoration: 'none',
+                    backgroundColor: '#E8622A',
+                    padding: '14px 36px',
+                    display: 'inline-block',
+                    letterSpacing: '0.02em',
+                  }}
                 >
                   Request a Proposal →
                 </Link>
               </div>
-
-              {/* Right: feature list */}
-              <div>
-                <h3 className="font-syne font-semibold text-muted text-xs uppercase tracking-widest mb-4">
-                  What&apos;s included
-                </h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm font-dm text-text">
-                      <span className="text-accent-green mt-0.5 flex-shrink-0">→</span>
-                      <span dir="auto">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
-          </AnimatedSection>
-        ))}
-      </section>
 
-      {/* ── CTA Strip ── */}
-      <section className="py-24 px-5 md:px-8">
-        <AnimatedSection className="max-w-3xl mx-auto bg-card-bg border border-border rounded-2xl p-10 md:p-14 text-center">
-          <h2 className="font-syne font-extrabold text-2xl md:text-3xl text-white mb-3">
-            Ready to get started?
-          </h2>
-          <p className="text-muted font-dm mb-8 leading-relaxed">
-            Tell us what your institution needs and we&apos;ll send you a clear proposal.
+            {/* Image panel */}
+            <div
+              style={{
+                order: i % 2 === 0 ? 2 : 1,
+                background: service.gradient,
+                position: 'relative',
+                overflow: 'hidden',
+                minHeight: 400,
+              }}
+            >
+              {/* Decorative number watermark */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  bottom: -20,
+                  right: -10,
+                  fontFamily: 'var(--font-accent)',
+                  fontSize: 220,
+                  color: '#F0EBE3',
+                  opacity: 0.03,
+                  lineHeight: 1,
+                  userSelect: 'none',
+                }}
+              >
+                {service.number}
+              </div>
+
+              {/* Accent line */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: 2,
+                  backgroundColor: service.accent,
+                  opacity: 0.6,
+                }}
+              />
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* ── CTA Strip (cream) ─────────────────────────────────────────────────── */}
+      <section
+        style={{
+          backgroundColor: '#F5F2ED',
+          padding: '120px 5%',
+          textAlign: 'center',
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 640,
+            margin: '0 auto',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 24,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontWeight: 500,
+              fontSize: 11,
+              color: '#7A7268',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              margin: 0,
+            }}
+          >
+            Limited Project Slots · Q2 2026
           </p>
+
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 'clamp(36px, 5vw, 72px)',
+              color: '#1A1714',
+              letterSpacing: '-0.03em',
+              lineHeight: 1,
+              margin: 0,
+            }}
+          >
+            Ready to Build Something?
+          </h2>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 16,
+              color: '#5A5550',
+              lineHeight: 1.7,
+              maxWidth: 480,
+              margin: 0,
+            }}
+          >
+            Tell us about your institution. We&apos;ll respond within 24 hours
+            with a clear plan and honest pricing.
+          </p>
+
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-syne font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-accent/25 hover:-translate-y-0.5"
+            data-cursor="cta"
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontWeight: 600,
+              fontSize: 17,
+              color: '#F0EBE3',
+              textDecoration: 'none',
+              backgroundColor: '#E8622A',
+              padding: '18px 44px',
+              display: 'inline-block',
+              marginTop: 8,
+            }}
           >
-            Request a Proposal →
+            Start Your Project →
           </Link>
-        </AnimatedSection>
+        </div>
       </section>
     </>
   );

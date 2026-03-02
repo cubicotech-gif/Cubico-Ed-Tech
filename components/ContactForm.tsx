@@ -28,11 +28,38 @@ const INITIAL_STATE: FormState = {
   message: '',
 };
 
+// ── Input / label style helpers ────────────────────────────────────────────────
+const labelStyle: React.CSSProperties = {
+  fontFamily: 'var(--font-ui)',
+  fontWeight: 600,
+  fontSize: 12,
+  color: '#7A7268',
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  display: 'block',
+  marginBottom: 8,
+};
+
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  backgroundColor: '#111111',
+  border: '1px solid #2A2520',
+  borderRadius: 0,
+  padding: '14px 16px',
+  fontFamily: 'var(--font-body)',
+  fontSize: 15,
+  color: '#F0EBE3',
+  outline: 'none',
+  transition: 'border-color 0.2s ease',
+  boxSizing: 'border-box',
+};
+
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [focused, setFocused] = useState<string | null>(null);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -44,33 +71,77 @@ export default function ContactForm() {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-
     const result = await submitContactForm(form);
-
     if (result.success) {
       setSuccess(true);
       setForm(INITIAL_STATE);
     } else {
       setError('Something went wrong. Please try again or email us directly.');
     }
-
     setSubmitting(false);
   }
 
   if (success) {
     return (
-      <div className="bg-accent-green/10 border border-accent-green/30 rounded-2xl p-10 text-center flex flex-col items-center gap-4">
-        <div className="w-16 h-16 bg-accent-green/20 rounded-full flex items-center justify-center text-3xl">
+      <div
+        style={{
+          border: '1px solid rgba(201,169,110,0.3)',
+          backgroundColor: 'rgba(201,169,110,0.05)',
+          padding: '60px 40px',
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 16,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: 'var(--font-accent)',
+            fontSize: 72,
+            color: '#C9A96E',
+            lineHeight: 1,
+          }}
+        >
           ✓
         </div>
-        <h3 className="font-syne font-bold text-white text-xl">Message Sent!</h3>
-        <p className="text-muted font-dm text-sm leading-relaxed max-w-sm">
-          Thanks for reaching out. We&apos;ll get back to you within 24 hours with a plan for your
-          institution.
+        <h3
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontWeight: 600,
+            fontSize: 24,
+            color: '#F0EBE3',
+            margin: 0,
+          }}
+        >
+          Message Received.
+        </h3>
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 15,
+            color: '#7A7268',
+            maxWidth: 380,
+            lineHeight: 1.7,
+            margin: 0,
+          }}
+        >
+          We&apos;ll review your request and respond within 24 hours with a clear plan for
+          your institution.
         </p>
         <button
           onClick={() => setSuccess(false)}
-          className="mt-2 text-sm font-syne font-semibold text-accent-green hover:text-accent-green/80 transition-colors"
+          style={{
+            fontFamily: 'var(--font-ui)',
+            fontSize: 13,
+            fontWeight: 500,
+            color: '#C9A96E',
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            marginTop: 8,
+            textDecoration: 'underline',
+          }}
         >
           Send another message
         </button>
@@ -79,11 +150,11 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }} noValidate>
       {/* Name */}
-      <div className="flex flex-col gap-1.5">
-        <label className="font-syne font-semibold text-sm text-text" htmlFor="name">
-          Your Name <span className="text-accent">*</span>
+      <div>
+        <label style={labelStyle} htmlFor="name">
+          Your Name <span style={{ color: '#E8622A' }}>*</span>
         </label>
         <input
           id="name"
@@ -92,15 +163,20 @@ export default function ContactForm() {
           required
           value={form.name}
           onChange={handleChange}
+          onFocus={() => setFocused('name')}
+          onBlur={() => setFocused(null)}
           placeholder="e.g. Ahmed Khan"
-          className="bg-background border border-border rounded-xl px-4 py-3 text-text text-sm font-dm placeholder:text-muted/60 focus:outline-none focus:border-accent transition-colors"
+          style={{
+            ...inputStyle,
+            borderColor: focused === 'name' ? '#E8622A' : '#2A2520',
+          }}
         />
       </div>
 
       {/* Email */}
-      <div className="flex flex-col gap-1.5">
-        <label className="font-syne font-semibold text-sm text-text" htmlFor="email">
-          Email Address <span className="text-accent">*</span>
+      <div>
+        <label style={labelStyle} htmlFor="email">
+          Email Address <span style={{ color: '#E8622A' }}>*</span>
         </label>
         <input
           id="email"
@@ -109,14 +185,19 @@ export default function ContactForm() {
           required
           value={form.email}
           onChange={handleChange}
+          onFocus={() => setFocused('email')}
+          onBlur={() => setFocused(null)}
           placeholder="you@institution.com"
-          className="bg-background border border-border rounded-xl px-4 py-3 text-text text-sm font-dm placeholder:text-muted/60 focus:outline-none focus:border-accent transition-colors"
+          style={{
+            ...inputStyle,
+            borderColor: focused === 'email' ? '#E8622A' : '#2A2520',
+          }}
         />
       </div>
 
       {/* Institution */}
-      <div className="flex flex-col gap-1.5">
-        <label className="font-syne font-semibold text-sm text-text" htmlFor="institution">
+      <div>
+        <label style={labelStyle} htmlFor="institution">
           Institution Name
         </label>
         <input
@@ -125,14 +206,19 @@ export default function ContactForm() {
           type="text"
           value={form.institution}
           onChange={handleChange}
+          onFocus={() => setFocused('institution')}
+          onBlur={() => setFocused(null)}
           placeholder="e.g. Karachi Grammar School"
-          className="bg-background border border-border rounded-xl px-4 py-3 text-text text-sm font-dm placeholder:text-muted/60 focus:outline-none focus:border-accent transition-colors"
+          style={{
+            ...inputStyle,
+            borderColor: focused === 'institution' ? '#E8622A' : '#2A2520',
+          }}
         />
       </div>
 
-      {/* Service dropdown */}
-      <div className="flex flex-col gap-1.5">
-        <label className="font-syne font-semibold text-sm text-text" htmlFor="service">
+      {/* Service */}
+      <div>
+        <label style={labelStyle} htmlFor="service">
           Service Interested In
         </label>
         <select
@@ -140,14 +226,22 @@ export default function ContactForm() {
           name="service"
           value={form.service}
           onChange={handleChange}
-          className="bg-background border border-border rounded-xl px-4 py-3 text-sm font-dm focus:outline-none focus:border-accent transition-colors appearance-none"
-          style={{ color: form.service ? 'var(--color-text, #e8eaf0)' : '#6b7588' }}
+          onFocus={() => setFocused('service')}
+          onBlur={() => setFocused(null)}
+          style={{
+            ...inputStyle,
+            color: form.service ? '#F0EBE3' : '#7A7268',
+            borderColor: focused === 'service' ? '#E8622A' : '#2A2520',
+            appearance: 'none',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7268' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right 16px center',
+            paddingRight: 40,
+          }}
         >
-          <option value="" disabled>
-            Select a service...
-          </option>
-          {SERVICE_OPTIONS.map((opt) => (
-            <option key={opt} value={opt} className="bg-card-bg text-text">
+          <option value="" disabled>Select a service...</option>
+          {SERVICE_OPTIONS.map(opt => (
+            <option key={opt} value={opt} style={{ backgroundColor: '#111111', color: '#F0EBE3' }}>
               {opt}
             </option>
           ))}
@@ -155,9 +249,9 @@ export default function ContactForm() {
       </div>
 
       {/* Message */}
-      <div className="flex flex-col gap-1.5">
-        <label className="font-syne font-semibold text-sm text-text" htmlFor="message">
-          Tell us about your project <span className="text-accent">*</span>
+      <div>
+        <label style={labelStyle} htmlFor="message">
+          Tell us about your project <span style={{ color: '#E8622A' }}>*</span>
         </label>
         <textarea
           id="message"
@@ -166,15 +260,30 @@ export default function ContactForm() {
           rows={5}
           value={form.message}
           onChange={handleChange}
+          onFocus={() => setFocused('message')}
+          onBlur={() => setFocused(null)}
           placeholder="Describe what you need, your timeline, and any specific requirements..."
           dir="auto"
-          className="bg-background border border-border rounded-xl px-4 py-3 text-text text-sm font-dm placeholder:text-muted/60 focus:outline-none focus:border-accent transition-colors resize-none"
+          style={{
+            ...inputStyle,
+            resize: 'none',
+            borderColor: focused === 'message' ? '#E8622A' : '#2A2520',
+          }}
         />
       </div>
 
       {/* Error */}
       {error && (
-        <p className="text-sm font-dm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3">
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 13,
+            color: '#E8622A',
+            border: '1px solid rgba(232,98,42,0.3)',
+            padding: '12px 16px',
+            margin: 0,
+          }}
+        >
           ⚠️ {error}
         </p>
       )}
@@ -183,11 +292,37 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full bg-accent hover:bg-accent/90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-syne font-bold text-sm py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-accent/25 hover:-translate-y-0.5 flex items-center justify-center gap-2"
+        data-cursor="cta"
+        style={{
+          fontFamily: 'var(--font-ui)',
+          fontWeight: 600,
+          fontSize: 15,
+          color: '#F0EBE3',
+          backgroundColor: submitting ? '#C4531F' : '#E8622A',
+          border: 'none',
+          padding: '18px 0',
+          width: '100%',
+          opacity: submitting ? 0.8 : 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 8,
+          transition: 'background-color 0.2s ease',
+        }}
       >
         {submitting ? (
           <>
-            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <span
+              style={{
+                width: 14,
+                height: 14,
+                border: '2px solid rgba(240,235,227,0.3)',
+                borderTopColor: '#F0EBE3',
+                borderRadius: '50%',
+                display: 'inline-block',
+                animation: 'spin 0.7s linear infinite',
+              }}
+            />
             Sending...
           </>
         ) : (
