@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import HeroSection from '@/components/HeroSection';
-import ServiceCard from '@/components/ServiceCard';
+import ServicesReveal from '@/components/home/ServicesReveal';
 import AnimatedSection from '@/components/AnimatedSection';
 import Link from 'next/link';
 
@@ -10,75 +10,14 @@ export const metadata: Metadata = {
     'Karachi-based EdTech agency. Moodle LMS setups, 2D/3D animations, digital solutions, and multilingual educational content.',
 };
 
-const services = [
-  {
-    icon: '🎓',
-    title: 'Moodle LMS Setup',
-    description:
-      'From basic installation to full enterprise deployment with custom branding, plugins, and RTL support for Arabic and Urdu.',
-    accent: 'blue' as const,
-  },
-  {
-    icon: '🎬',
-    title: 'Educational Animations',
-    description:
-      'Professional 2D/3D animations, whiteboard videos, and motion graphics for every subject and grade level.',
-    accent: 'green' as const,
-  },
-  {
-    icon: '💻',
-    title: 'Digital Solutions & Apps',
-    description:
-      'Custom school management systems, ERPs, and mobile apps for students, teachers, and parents.',
-    accent: 'purple' as const,
-  },
-  {
-    icon: '📚',
-    title: 'Educational Content',
-    description:
-      'Curriculum design, e-books, SCORM modules, and interactive assessments aligned to any board.',
-    accent: 'orange' as const,
-  },
-];
-
 export default function HomePage() {
   return (
     <>
       {/* ── Hero ── */}
       <HeroSection />
 
-      {/* ── Services ── */}
-      <section className="py-24 px-5 md:px-8 max-w-7xl mx-auto">
-        <AnimatedSection className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-card-bg border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            What We Do
-          </div>
-          <h2 className="font-syne font-extrabold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
-            End-to-End{' '}
-            <span className="gradient-text">EdTech Solutions</span>
-          </h2>
-          <p className="text-muted max-w-2xl mx-auto mt-4 font-dm leading-relaxed">
-            Whether you need a complete LMS, custom animations, a management system, or learning
-            content — we deliver it in English, Urdu, and Arabic.
-          </p>
-        </AnimatedSection>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {services.map((service, i) => (
-            <ServiceCard key={service.title} {...service} delay={i * 0.1} />
-          ))}
-        </div>
-
-        <AnimatedSection delay={0.4} className="mt-10 text-center">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 bg-card-bg border border-border hover:border-accent/40 text-text font-syne font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-200 hover:text-white"
-          >
-            View All Services →
-          </Link>
-        </AnimatedSection>
-      </section>
+      {/* ── Services — The Living List ── */}
+      <ServicesReveal />
 
       {/* ── Why Cubico ── */}
       <section className="py-24 px-5 md:px-8 bg-card-bg/40 border-y border-border">

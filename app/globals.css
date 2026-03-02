@@ -54,4 +54,15 @@
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 75%);
   }
+
+  /* ServicesReveal: responsive service-name typography */
+  .service-name-size {
+    font-size: clamp(28px, 7vw, 48px);
+  }
+
+  @media (min-width: 768px) {
+    .service-name-size {
+      font-size: clamp(36px, 5.5vw, 80px);
+    }
+  }
 }
