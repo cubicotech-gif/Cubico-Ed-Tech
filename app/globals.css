@@ -2,38 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Custom scrollbar ── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: #1f2733;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
-}
+/* ── Custom scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: #080808; }
+::-webkit-scrollbar-thumb  { background: #2A2520; }
+::-webkit-scrollbar-thumb:hover { background: #E8622A; }
 
-/* ── Base styles ── */
+/* ── Base styles ──────────────────────────────────────────────────────────── */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-background text-text font-dm antialiased overflow-x-hidden;
+    @apply bg-void text-ivory antialiased overflow-x-hidden;
+    font-family: var(--font-body), system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-syne;
+  /* Hide native cursor on desktop — CustomCursor replaces it */
+  @media (hover: hover) {
+    * { cursor: none !important; }
   }
 }
 
-/* ── Gradient text utility ── */
+/* ── Utility classes ──────────────────────────────────────────────────────── */
 @layer utilities {
+
+  /* Legacy gradient text (used by other pages) */
   .gradient-text {
     background: linear-gradient(135deg, #3b82f6, #06d6a0);
     -webkit-background-clip: text;
@@ -41,12 +34,14 @@
     background-clip: text;
   }
 
+  /* Legacy glass (used by other pages) */
   .glass {
     background: rgba(22, 27, 36, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
+  /* Legacy hero grid (used by old components) */
   .hero-grid-bg {
     background-image:
       linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
@@ -56,13 +51,16 @@
   }
 
   /* ServicesReveal: responsive service-name typography */
-  .service-name-size {
-    font-size: clamp(28px, 7vw, 48px);
-  }
+  .service-name-size { font-size: clamp(28px, 7vw, 48px); }
 
   @media (min-width: 768px) {
-    .service-name-size {
-      font-size: clamp(36px, 5.5vw, 80px);
-    }
+    .service-name-size { font-size: clamp(36px, 5.5vw, 80px); }
   }
+
+  /* Marquee — pure CSS, no JS */
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
 }
