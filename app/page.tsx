@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Hero             from '@/components/home/Hero';
 import Ticker           from '@/components/home/Ticker';
 import WhatWeDo         from '@/components/home/WhatWeDo';
+import Services         from '@/components/home/Services';
 import ExperienceLab    from '@/components/home/ExperienceLab';
 import RecentWork       from '@/components/home/RecentWork';
 import HowWeWork        from '@/components/home/HowWeWork';
@@ -24,10 +25,13 @@ export default function HomePage() {
       {/* 02 — Ticker Strip ───────────────────────────────────────────────── */}
       <Ticker />
 
-      {/* 03 — What We Do: Magnetic Hover List ───────────────────────────── */}
+      {/* 03 — What We Do: Before/After Split Screen ─────────────────────── */}
       <WhatWeDo />
 
-      {/* 04 — Experience Lab: Interactive Demos ─────────────────────────── */}
+      {/* 04 — Services: The Prescription Cards ──────────────────────────── */}
+      <Services />
+
+      {/* 05 — Experience Lab: Interactive Demos ─────────────────────────── */}
       <ExperienceLab />
 
       {/* 05 — Recent Work: The Evidence Wall ────────────────────────────── */}
