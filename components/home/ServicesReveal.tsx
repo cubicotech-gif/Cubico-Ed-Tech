@@ -160,7 +160,7 @@ function MockMarketing() {
     [{n:'12K',c:'#6c8eef',l:'Monthly Reach',p:58},{n:'₨180',c:'#c8c2ba',l:'Cost Per Lead',p:38},{n:'89%',c:'#e05c8a',l:'Retention Rate',p:89}],
   ];
   return (
-    <div style={{background:'#0a0a0a',border:'1px solid #1f1f1f',overflow:'hidden',display:'flex',flexDirection:'column',gap:1,background:'#1a1a1a'}}>
+    <div style={{background:'#1a1a1a',border:'1px solid #1f1f1f',overflow:'hidden',display:'flex',flexDirection:'column',gap:1}}>
       {rows.map((row,ri)=>(
         <div key={ri} style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:1,background:'#1a1a1a'}}>
           {row.map(c=>(
