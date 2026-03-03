@@ -8,7 +8,7 @@ import {
   DM_Sans,
 } from 'next/font/google';
 import CustomCursor    from '@/components/CustomCursor';
-import Navbar          from '@/components/Navbar';
+import Nav             from '@/components/layout/Nav';
 import Footer          from '@/components/Footer';
 import ScrollProgress  from '@/components/ScrollProgress';
 import './globals.css';
@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <CustomCursor />
         <ScrollProgress />
-        <Navbar />
+        <Nav />
         <main>{children}</main>
         <Footer />
       </body>

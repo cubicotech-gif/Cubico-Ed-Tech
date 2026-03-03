@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import HeroSection        from '@/components/home/HeroSection';
-import MarqueeStrip       from '@/components/home/MarqueeStrip';
-import ServicesReveal     from '@/components/home/ServicesReveal';
-import ServicesCards      from '@/components/home/ServicesCards';
-import RecentWork         from '@/components/home/RecentWork';
-import HowWeWork          from '@/components/home/HowWeWork';
-import WhoWeServe         from '@/components/home/WhoWeServe';
-import CredibilityTrust   from '@/components/home/CredibilityTrust';
-import FinalCTA           from '@/components/home/FinalCTA';
+import Hero             from '@/components/home/Hero';
+import Ticker           from '@/components/home/Ticker';
+import WhatWeDo         from '@/components/home/WhatWeDo';
+import ExperienceLab    from '@/components/home/ExperienceLab';
+import RecentWork       from '@/components/home/RecentWork';
+import HowWeWork        from '@/components/home/HowWeWork';
+import WhoWeServe       from '@/components/home/WhoWeServe';
+import CredibilityTrust from '@/components/home/CredibilityTrust';
+import FinalCTA         from '@/components/home/FinalCTA';
 
 export const metadata: Metadata = {
   title: 'Cubico Technologies — EdTech Agency',
@@ -18,17 +18,17 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* 01 — Hero ──────────────────────────────────────────────────────── */}
-      <HeroSection />
+      {/* 01 — Hero: Preloader + Dashboard ───────────────────────────────── */}
+      <Hero />
 
-      {/* Marquee transition strip */}
-      <MarqueeStrip />
+      {/* 02 — Ticker Strip ───────────────────────────────────────────────── */}
+      <Ticker />
 
-      {/* 02 — The Living Services List */}
-      <ServicesReveal />
+      {/* 03 — What We Do: Magnetic Hover List ───────────────────────────── */}
+      <WhatWeDo />
 
-      {/* 03 — Services cards */}
-      <ServicesCards />
+      {/* 04 — Experience Lab: Interactive Demos ─────────────────────────── */}
+      <ExperienceLab />
 
       {/* 05 — Recent Work: The Evidence Wall ────────────────────────────── */}
       <RecentWork />
@@ -39,7 +39,7 @@ export default function HomePage() {
       {/* 07 — Who We Serve: Your Institution, By Name ───────────────────── */}
       <WhoWeServe />
 
-      {/* 08 — Credibility & Trust: The Silence Before the Ask ───────────── */}
+      {/* 08 — Credibility & Trust ─────────────────────────────────────────── */}
       <CredibilityTrust />
 
       {/* 09 — Final CTA: The Open Door ──────────────────────────────────── */}

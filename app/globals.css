@@ -63,4 +63,76 @@
     white-space: nowrap;
   }
   .marquee-track:hover { animation-play-state: paused; }
+
+  /* ── Ticker rows (Section 03) ── */
+  .ticker-row {
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .ticker-row:hover .ticker-content { animation-play-state: paused; }
+
+  .ticker-left .ticker-content {
+    animation: ticker-left 22s linear infinite;
+    display: inline-block;
+  }
+  .ticker-right .ticker-content {
+    animation: ticker-right 30s linear infinite;
+    display: inline-block;
+  }
+
+  /* ── Hero scroll indicator ── */
+  .scroll-line-anim {
+    animation: scroll-line 1.6s ease-in-out infinite;
+  }
+
+  /* ── Float glow (hero chips) ── */
+  .float-up   { animation: float-up   3s ease-in-out infinite; }
+  .float-up-2 { animation: float-up   3s ease-in-out 1.5s infinite; }
+  .float-up-3 { animation: float-up   3s ease-in-out 0.8s infinite; }
+
+  /* ── Reduced motion overrides ── */
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-left .ticker-content,
+    .ticker-right .ticker-content,
+    .marquee-track,
+    .scroll-line-anim,
+    .float-up,
+    .float-up-2,
+    .float-up-3 {
+      animation: none !important;
+    }
+  }
+}
+
+/* ── Keyframes ────────────────────────────────────────────────────────────── */
+@keyframes ticker-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes ticker-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scroll-line {
+  0%   { transform: scaleY(0) translateY(0);   opacity: 1; }
+  50%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+  100% { transform: scaleY(1) translateY(24px); opacity: 0; }
+}
+
+@keyframes float-up {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-8px); }
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
