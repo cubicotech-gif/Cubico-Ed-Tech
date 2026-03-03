@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import HeroSection       from '@/components/home/HeroSection';
-import MarqueeStrip      from '@/components/home/MarqueeStrip';
-import ServicesReveal    from '@/components/home/ServicesReveal';
-import ServicesCards     from '@/components/home/ServicesCards';
-import PortfolioPreview  from '@/components/home/PortfolioPreview';
-import ProcessSection    from '@/components/home/ProcessSection';
-import ImpactNumbers     from '@/components/home/ImpactNumbers';
-import LanguagesSection  from '@/components/home/LanguagesSection';
-import CTASection        from '@/components/home/CTASection';
+import HeroSection        from '@/components/home/HeroSection';
+import MarqueeStrip       from '@/components/home/MarqueeStrip';
+import ServicesReveal     from '@/components/home/ServicesReveal';
+import ServicesCards      from '@/components/home/ServicesCards';
+import RecentWork         from '@/components/home/RecentWork';
+import HowWeWork          from '@/components/home/HowWeWork';
+import WhoWeServe         from '@/components/home/WhoWeServe';
+import CredibilityTrust   from '@/components/home/CredibilityTrust';
+import FinalCTA           from '@/components/home/FinalCTA';
 
 export const metadata: Metadata = {
   title: 'Cubico Technologies — EdTech Agency',
@@ -24,26 +24,26 @@ export default function HomePage() {
       {/* Marquee transition strip */}
       <MarqueeStrip />
 
-      {/* 02 — The Living Services List (replaces original marquee section) */}
+      {/* 02 — The Living Services List */}
       <ServicesReveal />
 
-      {/* 03 — Services cards ────────────────────────────────────────────── */}
+      {/* 03 — Services cards */}
       <ServicesCards />
 
-      {/* 04 — Portfolio preview ─────────────────────────────────────────── */}
-      <PortfolioPreview />
+      {/* 05 — Recent Work: The Evidence Wall ────────────────────────────── */}
+      <RecentWork />
 
-      {/* 05 — Process (cream) ───────────────────────────────────────────── */}
-      <ProcessSection />
+      {/* 06 — How We Work: Your 30 Days, Mapped ─────────────────────────── */}
+      <HowWeWork />
 
-      {/* 06 — Impact numbers ────────────────────────────────────────────── */}
-      <ImpactNumbers />
+      {/* 07 — Who We Serve: Your Institution, By Name ───────────────────── */}
+      <WhoWeServe />
 
-      {/* 07 — Languages ─────────────────────────────────────────────────── */}
-      <LanguagesSection />
+      {/* 08 — Credibility & Trust: The Silence Before the Ask ───────────── */}
+      <CredibilityTrust />
 
-      {/* 08 — CTA (cream) ───────────────────────────────────────────────── */}
-      <CTASection />
+      {/* 09 — Final CTA: The Open Door ──────────────────────────────────── */}
+      <FinalCTA />
     </>
   );
 }

@@ -1,50 +1,58 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-type CursorType = 'default' | 'view' | 'cta';
-
+/**
+ * Custom cursor — "the single detail visitors describe when they tell someone
+ * about a premium website."
+ *
+ * Default:   10px fire-orange filled dot
+ * On hover:  42px hollow ring (1px fire-orange border)
+ * Trailing:  A second ring follows 150ms behind the first
+ */
 export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [cursorType, setCursorType] = useState<CursorType>('default');
+  const [hovered, setHovered] = useState(false);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  const springX = useSpring(mouseX, { stiffness: 400, damping: 35 });
-  const springY = useSpring(mouseY, { stiffness: 400, damping: 35 });
+  // Primary cursor — snappy
+  const primaryX = useSpring(mouseX, { stiffness: 500, damping: 40 });
+  const primaryY = useSpring(mouseY, { stiffness: 500, damping: 40 });
 
-  // Lazy ref for previous scroll to detect target on move
-  const typeRef = useRef<CursorType>('default');
+  // Trailing ring — 150ms lag via lower stiffness
+  const trailX = useSpring(mouseX, { stiffness: 180, damping: 28 });
+  const trailY = useSpring(mouseY, { stiffness: 180, damping: 28 });
+
+  const hoveredRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
-    // Don't show on touch devices
-    if (window.matchMedia('(hover: none)').matches) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) return;
 
     const onMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       setVisible(true);
     };
-
     const onLeave = () => setVisible(false);
     const onEnter = () => setVisible(true);
-
     const onOver = (e: MouseEvent) => {
       const target = e.target as Element | null;
-      if (!target) return;
-      if (target.closest('[data-cursor="cta"]')) {
-        typeRef.current = 'cta';
-        setCursorType('cta');
-      } else if (target.closest('a, button, [data-cursor="view"]')) {
-        typeRef.current = 'view';
-        setCursorType('view');
+      const isInteractive = target?.closest('a, button, [role="button"], input, select, textarea');
+      if (isInteractive !== null && isInteractive !== undefined) {
+        if (!hoveredRef.current) {
+          hoveredRef.current = true;
+          setHovered(true);
+        }
       } else {
-        typeRef.current = 'default';
-        setCursorType('default');
+        if (hoveredRef.current) {
+          hoveredRef.current = false;
+          setHovered(false);
+        }
       }
     };
 
@@ -61,65 +69,71 @@ export default function CustomCursor() {
     };
   }, [mouseX, mouseY]);
 
-  // Don't render on server or touch
   if (!mounted) return null;
   if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) return null;
 
-  const size = cursorType === 'cta' ? 64 : cursorType === 'view' ? 56 : 8;
-  const label = cursorType === 'cta' ? '→' : cursorType === 'view' ? 'VIEW' : '';
-
   return (
-    <motion.div
-      className="hidden md:block"
-      style={{
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        x: springX,
-        y: springY,
-        translateX: '-50%',
-        translateY: '-50%',
-        zIndex: 9999,
-        pointerEvents: 'none',
-      }}
-    >
+    <>
+      {/* ── Primary cursor ── */}
       <motion.div
-        animate={{
-          width: size,
-          height: size,
-          opacity: visible ? 1 : 0,
-        }}
-        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+        className="hidden md:block"
         style={{
-          backgroundColor: '#E8622A',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          x: primaryX,
+          y: primaryY,
+          translateX: '-50%',
+          translateY: '-50%',
+          zIndex: 9999,
+          pointerEvents: 'none',
         }}
       >
-        <AnimatePresence mode="wait">
-          {label !== '' && (
-            <motion.span
-              key={label}
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.6 }}
-              transition={{ duration: 0.12 }}
-              style={{
-                color: '#F0EBE3',
-                fontSize: cursorType === 'cta' ? 22 : 9,
-                fontFamily: 'var(--font-ui)',
-                fontWeight: 600,
-                letterSpacing: '0.06em',
-                userSelect: 'none',
-              }}
-            >
-              {label}
-            </motion.span>
-          )}
-        </AnimatePresence>
+        <motion.div
+          animate={{
+            width: hovered ? 42 : 10,
+            height: hovered ? 42 : 10,
+            backgroundColor: hovered ? 'transparent' : '#E8622A',
+            borderWidth: hovered ? 1 : 0,
+            borderColor: '#E8622A',
+            borderStyle: 'solid',
+            opacity: visible ? 1 : 0,
+          }}
+          transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+          style={{
+            borderRadius: '50%',
+          }}
+        />
       </motion.div>
-    </motion.div>
+
+      {/* ── Trailing ring — follows 150ms behind ── */}
+      <motion.div
+        className="hidden md:block"
+        style={{
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          x: trailX,
+          y: trailY,
+          translateX: '-50%',
+          translateY: '-50%',
+          zIndex: 9998,
+          pointerEvents: 'none',
+        }}
+      >
+        <motion.div
+          animate={{
+            width: hovered ? 56 : 0,
+            height: hovered ? 56 : 0,
+            opacity: visible && hovered ? 0.3 : 0,
+          }}
+          transition={{ type: 'spring', stiffness: 200, damping: 28 }}
+          style={{
+            borderRadius: '50%',
+            border: '1px solid #E8622A',
+          }}
+        />
+      </motion.div>
+    </>
   );
 }

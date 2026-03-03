@@ -7,9 +7,10 @@ import {
   Syne,
   DM_Sans,
 } from 'next/font/google';
-import CustomCursor from '@/components/CustomCursor';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import CustomCursor    from '@/components/CustomCursor';
+import Navbar          from '@/components/Navbar';
+import Footer          from '@/components/Footer';
+import ScrollProgress  from '@/components/ScrollProgress';
 import './globals.css';
 
 // ── Editorial typefaces (new design system) ───────────────────────────────────
@@ -24,7 +25,7 @@ const fraunces = Fraunces({
 
 const epilogue = Epilogue({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-ui',
   display: 'swap',
 });
@@ -101,8 +102,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           syne.variable,
           dmSans.variable,
         ].join(' ')}
+        style={{ cursor: 'none' }}
       >
         <CustomCursor />
+        <ScrollProgress />
         <Navbar />
         <main>{children}</main>
         <Footer />
