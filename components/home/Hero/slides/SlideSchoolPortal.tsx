@@ -1,0 +1,108 @@
+'use client';
+
+import { memo } from 'react';
+
+const GRID_ITEMS = [
+  { icon: '📋', label: 'Attendance' },
+  { icon: '💳', label: 'Fee Payment' },
+  { icon: '📊', label: 'Results' },
+  { icon: '🕐', label: 'Timetable' },
+  { icon: '📚', label: 'Library' },
+  { icon: '📌', label: 'Notices' },
+];
+
+const NOTICES = [
+  'Exams begin March 15th',
+  'Parent meeting Friday 3PM',
+  'Sports day postponed',
+];
+
+// ── Laptop version ─────────────────────────────────────────────────────────────
+export const SlideSchoolPortal = memo(function SlideSchoolPortal() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#070707' }}>
+      {/* Top bar */}
+      <div style={{ height: 28, flexShrink: 0, backgroundColor: '#0a0a0a', borderBottom: '1px solid #1d1d1d', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ width: 16, height: 16, borderRadius: 2, backgroundColor: '#C9A96E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontFamily: 'var(--font-accent)', fontSize: 8, color: '#050505' }}>AN</span>
+          </div>
+          <span style={{ fontFamily: 'var(--font-ui)', fontSize: 8, color: '#F0EBE3', fontWeight: 600 }}>Al-Noor Academy Portal</span>
+        </div>
+        <div style={{ display: 'flex', gap: 5 }}>
+          {['🔔', '⚙'].map((icon, i) => (
+            <span key={i} style={{ fontSize: 8, color: '#3a3a3a' }}>{icon}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Hero banner */}
+      <div style={{ height: '26%', flexShrink: 0, background: 'linear-gradient(135deg, #0f0a07 0%, #1a0e06 50%, #0a0a0a 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 14px', position: 'relative', overflow: 'hidden' }}>
+        {/* Decorative geometric shape */}
+        <svg style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)', opacity: 0.07 }} width="60" height="60" viewBox="0 0 60 60">
+          <polygon points="30,0 60,52 0,52" stroke="#C9A96E" strokeWidth="1" fill="none" />
+          <polygon points="30,10 52,46 8,46" stroke="#C9A96E" strokeWidth="0.5" fill="none" />
+        </svg>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: '#F0EBE3', marginBottom: 3 }}>Welcome Back, Students</div>
+        <div style={{ fontFamily: 'var(--font-accent)', fontSize: 9, color: '#C9A96E', letterSpacing: '0.2em' }}>SEMESTER 2, 2025–26</div>
+      </div>
+
+      {/* Quick access grid */}
+      <div style={{ flex: 1, padding: '8px', overflow: 'hidden' }}>
+        <div style={{ fontFamily: 'var(--font-accent)', fontSize: 7, color: '#333', letterSpacing: '0.2em', marginBottom: 6 }}>QUICK ACCESS</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 4 }}>
+          {GRID_ITEMS.map((item) => (
+            <div key={item.label} style={{ backgroundColor: '#111', border: '1px solid #1d1d1d', borderRadius: 3, padding: '6px 4px', textAlign: 'center' }}>
+              <div style={{ fontSize: 12, marginBottom: 3 }}>{item.icon}</div>
+              <div style={{ fontFamily: 'var(--font-ui)', fontSize: 7, color: '#6A6460' }}>{item.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Notices */}
+        <div style={{ fontFamily: 'var(--font-accent)', fontSize: 7, color: '#333', letterSpacing: '0.2em', marginTop: 8, marginBottom: 5 }}>RECENT NOTICES</div>
+        <div style={{ display: 'flex', gap: 5, overflow: 'hidden' }}>
+          {NOTICES.map((n, i) => (
+            <div key={i} style={{ flexShrink: 0, backgroundColor: '#111', border: '1px solid #1d1d1d', borderRadius: 3, padding: '4px 7px' }}>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: 7, color: '#6A6460', whiteSpace: 'nowrap' }}>📌 {n}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+});
+
+// ── Mobile version ─────────────────────────────────────────────────────────────
+export const SlideSchoolPortalMobile = memo(function SlideSchoolPortalMobile() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#070707', padding: '10px 8px' }}>
+      {/* Logo + welcome */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
+        <div style={{ width: 20, height: 20, borderRadius: 2, backgroundColor: '#C9A96E' }} />
+        <div>
+          <div style={{ fontFamily: 'var(--font-ui)', fontSize: 8, color: '#F0EBE3', fontWeight: 600 }}>Al-Noor Academy</div>
+          <div style={{ fontFamily: 'var(--font-body)', fontSize: 7, color: '#6A6460' }}>Semester 2, 2025–26</div>
+        </div>
+      </div>
+
+      {/* Big action buttons */}
+      {[
+        { label: 'Attendance', icon: '📋', color: '#E8622A' },
+        { label: 'Results',    icon: '📊', color: '#C9A96E' },
+        { label: 'Fee Status', icon: '💳', color: '#10B981' },
+      ].map((b) => (
+        <div key={b.label} style={{ backgroundColor: '#111', border: `1px solid ${b.color}22`, borderRadius: 4, padding: '10px 12px', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 14 }}>{b.icon}</span>
+          <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, color: '#aaa', fontWeight: 600 }}>{b.label}</span>
+          <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-accent)', fontSize: 9, color: b.color }}>→</span>
+        </div>
+      ))}
+
+      {/* Notice ticker */}
+      <div style={{ marginTop: 'auto', backgroundColor: '#0d0d0d', borderTop: '1px solid #1d1d1d', padding: '5px 0' }}>
+        <div style={{ fontFamily: 'var(--font-body)', fontSize: 8, color: '#4a4a4a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>📌 Exams begin March 15th · Parent meeting Friday</div>
+      </div>
+    </div>
+  );
+});

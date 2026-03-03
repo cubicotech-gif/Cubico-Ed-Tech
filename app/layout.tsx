@@ -7,10 +7,11 @@ import {
   Syne,
   DM_Sans,
 } from 'next/font/google';
-import CustomCursor    from '@/components/CustomCursor';
-import Nav             from '@/components/layout/Nav';
-import Footer          from '@/components/Footer';
-import ScrollProgress  from '@/components/ScrollProgress';
+import { CursorDot }     from '@/components/ui/CursorDot';
+import { GrainOverlay }  from '@/components/ui/GrainOverlay';
+import HeroNav           from '@/components/home/Hero/HeroNav';
+import Footer            from '@/components/Footer';
+import ScrollProgress    from '@/components/ScrollProgress';
 import './globals.css';
 
 // ── Editorial typefaces (new design system) ───────────────────────────────────
@@ -104,9 +105,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ].join(' ')}
         style={{ cursor: 'none' }}
       >
-        <CustomCursor />
+        <CursorDot />
+        <GrainOverlay />
         <ScrollProgress />
-        <Nav />
+        <HeroNav />
         <main>{children}</main>
         <Footer />
       </body>

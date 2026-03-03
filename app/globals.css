@@ -91,6 +91,11 @@
   .float-up-2 { animation: float-up   3s ease-in-out 1.5s infinite; }
   .float-up-3 { animation: float-up   3s ease-in-out 0.8s infinite; }
 
+  /* ── Hero: stack on mobile ── */
+  @media (max-width: 768px) {
+    .hero-right-hidden { display: none; }
+  }
+
   /* ── Reduced motion overrides ── */
   @media (prefers-reduced-motion: reduce) {
     .ticker-left .ticker-content,
