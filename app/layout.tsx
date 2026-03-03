@@ -7,9 +7,10 @@ import {
   Syne,
   DM_Sans,
 } from 'next/font/google';
-import CustomCursor from '@/components/CustomCursor';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import CustomCursor   from '@/components/CustomCursor';
+import ScrollProgress from '@/components/ScrollProgress';
+import Navbar         from '@/components/Navbar';
+import Footer         from '@/components/Footer';
 import './globals.css';
 
 // ── Editorial typefaces (new design system) ───────────────────────────────────
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ].join(' ')}
       >
         <CustomCursor />
+        <ScrollProgress />
         <Navbar />
         <main>{children}</main>
         <Footer />

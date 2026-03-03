@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import HeroSection       from '@/components/home/HeroSection';
-import ServicesReveal    from '@/components/home/ServicesReveal';
-import ExperienceLab     from '@/components/home/ExperienceLab';
-import PortfolioPreview  from '@/components/home/PortfolioPreview';
-import ProcessSection    from '@/components/home/ProcessSection';
-import ImpactNumbers     from '@/components/home/ImpactNumbers';
-import LanguagesSection  from '@/components/home/LanguagesSection';
-import CTASection        from '@/components/home/CTASection';
+import HeroSection    from '@/components/home/HeroSection';
+import ServicesReveal from '@/components/home/ServicesReveal';
+import ExperienceLab  from '@/components/home/ExperienceLab';
+import RecentWork     from '@/components/home/RecentWork';
+import HowWeWork      from '@/components/home/HowWeWork';
+import WhoWeServe     from '@/components/home/WhoWeServe';
+import Credibility    from '@/components/home/Credibility';
+import FinalCTA       from '@/components/home/FinalCTA';
 
 export const metadata: Metadata = {
   title: 'Cubico Technologies — EdTech Agency',
@@ -17,29 +17,29 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* 01 — Hero ──────────────────────────────────────────────────────── */}
+      {/* 01 — Hero */}
       <HeroSection />
 
-      {/* 02 — The Living Services List */}
+      {/* 02 — What We Build */}
       <ServicesReveal />
 
-      {/* 03 — Interactive Demo Showcase */}
+      {/* 03 — Interactive Demo */}
       <ExperienceLab />
 
-      {/* 04 — Portfolio preview */}
-      <PortfolioPreview />
+      {/* 05 — Recent Work (horizontal scroll) */}
+      <RecentWork />
 
-      {/* 05 — Process (cream) ───────────────────────────────────────────── */}
-      <ProcessSection />
+      {/* 06 — How We Work (pinned steps) */}
+      <HowWeWork />
 
-      {/* 06 — Impact numbers ────────────────────────────────────────────── */}
-      <ImpactNumbers />
+      {/* 07 — Who We Serve (accordion) */}
+      <WhoWeServe />
 
-      {/* 07 — Languages ─────────────────────────────────────────────────── */}
-      <LanguagesSection />
+      {/* 08 — Credibility (numbers + testimonial) */}
+      <Credibility />
 
-      {/* 08 — CTA (cream) ───────────────────────────────────────────────── */}
-      <CTASection />
+      {/* 09 — Final CTA */}
+      <FinalCTA />
     </>
   );
 }
