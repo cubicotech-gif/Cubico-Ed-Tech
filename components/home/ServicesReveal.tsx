@@ -219,7 +219,7 @@ function ServiceCard({ card, style }: { card: CardData; style?: React.CSSPropert
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48,height:'100%',padding:'44px 48px 40px',position:'relative',zIndex:1}}>
           {/* Left */}
           <div style={{display:'flex',flexDirection:'column'}}>
-            <div style={{fontFamily:'var(--font-accent)',fontSize:13,letterSpacing:'.3em',color:'#3a3530',marginBottom:32,transition:'color .25s',color:hov?'#E8622A':'#3a3530'}}>{card.num}</div>
+            <div style={{fontFamily:'var(--font-accent)',fontSize:13,letterSpacing:'.3em',marginBottom:32,transition:'color .25s',color:hov?'#E8622A':'#3a3530'}}>{card.num}</div>
             <div style={{fontFamily:'var(--font-display)',fontWeight:700,fontSize:'clamp(20px,2.6vw,34px)',lineHeight:1.08,letterSpacing:'-.02em',color:'#F0EBE3',marginBottom:20,flex:'0 0 auto'}}>
               {card.outcome[0]}<br/>
               <span style={{fontStyle:'italic',fontWeight:300,color:'#C9A96E'}}>{card.outcome[1]}</span><br/>
