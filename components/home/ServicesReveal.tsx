@@ -180,7 +180,7 @@ function MockMarketing() {
 
 // ─── Service Card ─────────────────────────────────────────────────────────────
 interface CardData {
-  num: string; title: string;
+  num: string;
   outcome: [string, string, string]; // [prefix, ghost, fire]
   proof: string; proofLabel: string;
   features: string[];
