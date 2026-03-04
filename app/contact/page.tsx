@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 };
 
 const contactDetails = [
-  { label: 'Email',     value: 'info@cubico.tech',         href: 'mailto:info@cubico.tech' },
-  { label: 'Location',  value: 'Karachi, Pakistan',         href: null },
-  { label: 'Website',   value: 'cubico.tech',               href: 'https://cubico.tech' },
-  { label: 'Languages', value: 'English · اردو · عربي',     href: null },
+  { label: 'Email',     value: 'info@cubico.tech',     href: 'mailto:info@cubico.tech' },
+  { label: 'Location',  value: 'Karachi, Pakistan',     href: null },
+  { label: 'Website',   value: 'cubico.tech',           href: 'https://cubico.tech' },
+  { label: 'Languages', value: 'English · اردو · عربي', href: null },
 ];
 
 const nextSteps = [
@@ -88,7 +88,6 @@ export default function ContactPage() {
             gap: 40,
             alignItems: 'start',
           }}
-          className="grid-cols-1 lg:grid-cols-[3fr_2fr]"
         >
           {/* Left: form */}
           <AnimatedSection direction="left">
@@ -126,28 +125,21 @@ export default function ContactPage() {
                     <div key={label}>
                       <div style={{
                         fontFamily: 'var(--font-ui)', fontWeight: 500, fontSize: 10,
-                        color: '#6A6460', letterSpacing: '0.18em', textTransform: 'uppercase',
-                        marginBottom: 4,
+                        color: '#6A6460', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 4,
                       }}>
                         {label}
                       </div>
                       {href ? (
                         <a
                           href={href}
-                          style={{
-                            fontFamily: 'var(--font-body)', fontSize: 14, color: '#9A9490',
-                            textDecoration: 'none', transition: 'color 0.2s ease',
-                          }}
-                          onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#E8622A')}
-                          onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#9A9490')}
+                          className="link-muted-fire"
+                          style={{ fontFamily: 'var(--font-body)', fontSize: 14 }}
                           dir="auto"
                         >
                           {value}
                         </a>
                       ) : (
-                        <span style={{
-                          fontFamily: 'var(--font-body)', fontSize: 14, color: '#9A9490',
-                        }} dir="auto">
+                        <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: '#9A9490' }} dir="auto">
                           {value}
                         </span>
                       )}
@@ -158,8 +150,8 @@ export default function ContactPage() {
 
               {/* Response time */}
               <div style={{
-                backgroundColor: '#191919', border: '1px solid #2A2520', padding: '28px 32px',
-                borderLeft: '3px solid #E8622A',
+                backgroundColor: '#191919', border: '1px solid #2A2520',
+                borderLeft: '3px solid #E8622A', padding: '28px 32px',
               }}>
                 <div style={{
                   fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 13,
@@ -182,8 +174,7 @@ export default function ContactPage() {
               }}>
                 <h3 style={{
                   fontFamily: 'var(--font-ui)', fontWeight: 500, fontSize: 10,
-                  color: '#6A6460', letterSpacing: '0.18em', textTransform: 'uppercase',
-                  margin: '0 0 20px',
+                  color: '#6A6460', letterSpacing: '0.18em', textTransform: 'uppercase', margin: '0 0 20px',
                 }}>
                   What happens next?
                 </h3>

@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 };
 
 const stats = [
-  { value: '50+', label: 'Projects Delivered' },
-  { value: '3',   label: 'Languages Supported' },
-  { value: '5+',  label: 'Years Experience' },
+  { value: '50+',  label: 'Projects Delivered' },
+  { value: '3',    label: 'Languages Supported' },
+  { value: '5+',   label: 'Years Experience' },
   { value: '100%', label: 'Custom Solutions' },
 ];
 
@@ -107,7 +107,6 @@ export default function AboutPage() {
             gap: 80,
             alignItems: 'start',
           }}
-          className="grid-cols-1 md:grid-cols-2"
         >
           {/* Left: text */}
           <AnimatedSection direction="left">
@@ -133,14 +132,12 @@ export default function AboutPage() {
             </div>
             <Link
               href="/contact"
+              className="btn-fire"
               style={{
                 fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 13,
-                color: '#F0EBE3', textDecoration: 'none', backgroundColor: '#E8622A',
-                padding: '14px 32px', display: 'inline-block', marginTop: 36,
-                letterSpacing: '0.02em', transition: 'background-color 0.2s ease',
+                padding: '14px 32px', marginTop: 36,
+                letterSpacing: '0.02em',
               }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#C4531F')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#E8622A')}
             >
               Start a Conversation →
             </Link>
@@ -169,8 +166,7 @@ export default function AboutPage() {
                   </div>
                   <div style={{
                     fontFamily: 'var(--font-body)', fontSize: 12,
-                    color: '#7A7268', textTransform: 'uppercase',
-                    letterSpacing: '0.14em',
+                    color: '#7A7268', textTransform: 'uppercase', letterSpacing: '0.14em',
                   }}>
                     {label}
                   </div>
@@ -181,7 +177,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Values section ── */}
+      {/* ── Values ── */}
       <section style={{ backgroundColor: '#080808', padding: '80px 5% 100px', borderTop: '1px solid #2A2520' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <AnimatedSection style={{ marginBottom: 56 }}>
@@ -207,22 +203,13 @@ export default function AboutPage() {
                   backgroundColor: '#191919', border: '1px solid #2A2520',
                   padding: '36px 28px', height: '100%', display: 'flex', flexDirection: 'column', gap: 16,
                 }}>
-                  <div style={{
-                    fontFamily: 'var(--font-accent)', fontSize: 40,
-                    color: '#C9A96E', opacity: 0.5, lineHeight: 1,
-                  }}>
+                  <div style={{ fontFamily: 'var(--font-accent)', fontSize: 40, color: '#C9A96E', opacity: 0.5, lineHeight: 1 }}>
                     {number}
                   </div>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18,
-                    color: '#F0EBE3', margin: 0, lineHeight: 1.2,
-                  }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: '#F0EBE3', margin: 0, lineHeight: 1.2 }}>
                     {title}
                   </h3>
-                  <p style={{
-                    fontFamily: 'var(--font-body)', fontSize: 14,
-                    color: '#7A7268', lineHeight: 1.75, margin: 0,
-                  }}>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: '#7A7268', lineHeight: 1.75, margin: 0 }}>
                     {description}
                   </p>
                 </div>
@@ -258,23 +245,10 @@ export default function AboutPage() {
           </p>
           <Link
             href="/contact"
-            data-cursor="cta"
+            className="btn-fire-shadow"
             style={{
               fontFamily: 'var(--font-ui)', fontWeight: 700, fontSize: 15,
-              color: '#F0EBE3', textDecoration: 'none', backgroundColor: '#E8622A',
-              padding: '18px 48px', display: 'inline-block',
-              transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
-              boxShadow: '0 4px 24px rgba(232,98,42,0.25)',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#C4531F';
-              el.style.boxShadow = '0 8px 36px rgba(232,98,42,0.38)';
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#E8622A';
-              el.style.boxShadow = '0 4px 24px rgba(232,98,42,0.25)';
+              padding: '18px 48px',
             }}
           >
             Start a Conversation →

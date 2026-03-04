@@ -26,6 +26,43 @@
   }
 }
 
+/* ── Reusable hover patterns (CSS-only, safe in Server Components) ─────────── */
+
+/* Fire orange button — used in Server Component pages */
+.btn-fire {
+  background-color: #E8622A;
+  color: #F0EBE3;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-fire:hover {
+  background-color: #C4531F;
+}
+.btn-fire-shadow {
+  box-shadow: 0 4px 24px rgba(232,98,42,0.25);
+}
+.btn-fire-shadow:hover {
+  background-color: #C4531F;
+  box-shadow: 0 8px 36px rgba(232,98,42,0.38);
+}
+
+/* Muted text link that goes fire on hover */
+.link-muted-fire {
+  color: #9A9490;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.link-muted-fire:hover { color: #E8622A; }
+
+/* Dark card with hover border brightening */
+.card-editorial {
+  background-color: #191919;
+  border: 1px solid #2A2520;
+  transition: border-color 0.25s ease;
+}
+.card-editorial:hover { border-color: #3A3530; }
+
 /* ── Utilities ────────────────────────────────────────────────────────────── */
 @layer utilities {
 

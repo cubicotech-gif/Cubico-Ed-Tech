@@ -99,42 +99,24 @@ export default function ServicesPage() {
         />
         <AnimatedSection style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
           <div style={{ marginBottom: 32 }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-ui)',
-                fontWeight: 500,
-                fontSize: 11,
-                color: '#E8622A',
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-              }}
-            >
+            <span style={{
+              fontFamily: 'var(--font-ui)', fontWeight: 500, fontSize: 11, color: '#E8622A',
+              letterSpacing: '0.22em', textTransform: 'uppercase',
+            }}>
               Services — What We Offer
             </span>
           </div>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              fontSize: 'clamp(44px, 6vw, 80px)',
-              color: '#F0EBE3',
-              lineHeight: 1.04,
-              letterSpacing: '-0.025em',
-              margin: '0 0 24px',
-            }}
-          >
+          <h1 style={{
+            fontFamily: 'var(--font-display)', fontWeight: 700,
+            fontSize: 'clamp(44px, 6vw, 80px)', color: '#F0EBE3',
+            lineHeight: 1.04, letterSpacing: '-0.025em', margin: '0 0 24px',
+          }}>
             End-to-End EdTech.
           </h1>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 17,
-              color: '#7A7268',
-              lineHeight: 1.75,
-              maxWidth: 520,
-              margin: 0,
-            }}
-          >
+          <p style={{
+            fontFamily: 'var(--font-body)', fontSize: 17, color: '#7A7268',
+            lineHeight: 1.75, maxWidth: 520, margin: 0,
+          }}>
             Complete solutions for every type of institution — conventional, Islamic, or
             international. In English, Urdu, and Arabic.
           </p>
@@ -149,16 +131,7 @@ export default function ServicesPage() {
           borderTop: '1px solid #2A2520',
         }}
       >
-        <div
-          style={{
-            maxWidth: 1100,
-            margin: '0 auto',
-            paddingTop: 80,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 1,
-          }}
-        >
+        <div style={{ maxWidth: 1100, margin: '0 auto', paddingTop: 80, display: 'flex', flexDirection: 'column', gap: 1 }}>
           {services.map((service, i) => (
             <AnimatedSection key={service.title} delay={0.05 * i}>
               <div
@@ -171,103 +144,57 @@ export default function ServicesPage() {
                   gap: 60,
                   alignItems: 'start',
                 }}
-                className="flex-col md:grid"
               >
-                {/* Left: number + title + description + CTA */}
+                {/* Left */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-accent)',
-                      fontSize: 64,
-                      color: '#C9A96E',
-                      opacity: 0.45,
-                      lineHeight: 1,
-                    }}
-                  >
+                  <div style={{
+                    fontFamily: 'var(--font-accent)', fontSize: 64,
+                    color: '#C9A96E', opacity: 0.45, lineHeight: 1,
+                  }}>
                     {service.number}
                   </div>
-                  <h2
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontWeight: 700,
-                      fontSize: 26,
-                      color: '#F0EBE3',
-                      margin: 0,
-                      lineHeight: 1.15,
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
+                  <h2 style={{
+                    fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26,
+                    color: '#F0EBE3', margin: 0, lineHeight: 1.15, letterSpacing: '-0.01em',
+                  }}>
                     {service.title}
                   </h2>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: 15,
-                      color: '#7A7268',
-                      lineHeight: 1.75,
-                      margin: 0,
-                    }}
-                  >
+                  <p style={{
+                    fontFamily: 'var(--font-body)', fontSize: 15, color: '#7A7268',
+                    lineHeight: 1.75, margin: 0,
+                  }}>
                     {service.description}
                   </p>
                   <Link
                     href="/contact"
+                    className="btn-fire"
                     style={{
-                      fontFamily: 'var(--font-ui)',
-                      fontWeight: 600,
-                      fontSize: 13,
-                      color: '#F0EBE3',
-                      textDecoration: 'none',
-                      backgroundColor: '#E8622A',
-                      padding: '13px 28px',
-                      display: 'inline-block',
-                      letterSpacing: '0.02em',
-                      transition: 'background-color 0.2s ease',
-                      alignSelf: 'flex-start',
+                      fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 13,
+                      padding: '13px 28px', letterSpacing: '0.02em', alignSelf: 'flex-start',
                     }}
-                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#C4531F')}
-                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#E8622A')}
                   >
                     Request a Proposal →
                   </Link>
                 </div>
 
-                {/* Right: feature list */}
+                {/* Right */}
                 <div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-ui)',
-                      fontWeight: 500,
-                      fontSize: 10,
-                      color: '#6A6460',
-                      letterSpacing: '0.2em',
-                      textTransform: 'uppercase',
-                      marginBottom: 20,
-                    }}
-                  >
+                  <div style={{
+                    fontFamily: 'var(--font-ui)', fontWeight: 500, fontSize: 10,
+                    color: '#6A6460', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 20,
+                  }}>
                     What&apos;s included
                   </div>
-                  <ul
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 1fr',
-                      gap: '10px 40px',
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                    }}
-                  >
+                  <ul style={{
+                    display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 40px',
+                    listStyle: 'none', padding: 0, margin: 0,
+                  }}>
                     {service.features.map(feature => (
                       <li
                         key={feature}
                         style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: 10,
-                          fontFamily: 'var(--font-body)',
-                          fontSize: 14,
-                          color: '#9A9490',
-                          lineHeight: 1.6,
+                          display: 'flex', alignItems: 'flex-start', gap: 10,
+                          fontFamily: 'var(--font-body)', fontSize: 14, color: '#9A9490', lineHeight: 1.6,
                         }}
                         dir="auto"
                       >
@@ -294,55 +221,25 @@ export default function ServicesPage() {
           }}
         />
         <AnimatedSection style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              fontSize: 'clamp(36px, 4.5vw, 60px)',
-              color: '#1A1714',
-              letterSpacing: '-0.025em',
-              lineHeight: 1.05,
-              margin: '0 0 20px',
-            }}
-          >
+          <h2 style={{
+            fontFamily: 'var(--font-display)', fontWeight: 700,
+            fontSize: 'clamp(36px, 4.5vw, 60px)', color: '#1A1714',
+            letterSpacing: '-0.025em', lineHeight: 1.05, margin: '0 0 20px',
+          }}>
             Ready to get started?
           </h2>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 17,
-              color: '#5A5250',
-              lineHeight: 1.7,
-              margin: '0 0 40px',
-            }}
-          >
+          <p style={{
+            fontFamily: 'var(--font-body)', fontSize: 17, color: '#5A5250',
+            lineHeight: 1.7, margin: '0 0 40px',
+          }}>
             Tell us what your institution needs and we&apos;ll send you a clear proposal within 24 hours.
           </p>
           <Link
             href="/contact"
-            data-cursor="cta"
+            className="btn-fire-shadow"
             style={{
-              fontFamily: 'var(--font-ui)',
-              fontWeight: 700,
-              fontSize: 15,
-              color: '#F0EBE3',
-              textDecoration: 'none',
-              backgroundColor: '#E8622A',
+              fontFamily: 'var(--font-ui)', fontWeight: 700, fontSize: 15,
               padding: '18px 48px',
-              display: 'inline-block',
-              letterSpacing: '0.02em',
-              transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
-              boxShadow: '0 4px 24px rgba(232,98,42,0.25)',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#C4531F';
-              el.style.boxShadow = '0 8px 36px rgba(232,98,42,0.38)';
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#E8622A';
-              el.style.boxShadow = '0 4px 24px rgba(232,98,42,0.25)';
             }}
           >
             Request a Proposal →

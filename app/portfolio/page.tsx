@@ -32,42 +32,24 @@ export default function PortfolioPage() {
         />
         <AnimatedSection style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
           <div style={{ marginBottom: 32 }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-ui)',
-                fontWeight: 500,
-                fontSize: 11,
-                color: '#E8622A',
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-              }}
-            >
+            <span style={{
+              fontFamily: 'var(--font-ui)', fontWeight: 500, fontSize: 11, color: '#E8622A',
+              letterSpacing: '0.22em', textTransform: 'uppercase',
+            }}>
               Portfolio — Our Work
             </span>
           </div>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              fontSize: 'clamp(44px, 6vw, 80px)',
-              color: '#F0EBE3',
-              lineHeight: 1.04,
-              letterSpacing: '-0.025em',
-              margin: '0 0 24px',
-            }}
-          >
+          <h1 style={{
+            fontFamily: 'var(--font-display)', fontWeight: 700,
+            fontSize: 'clamp(44px, 6vw, 80px)', color: '#F0EBE3',
+            lineHeight: 1.04, letterSpacing: '-0.025em', margin: '0 0 24px',
+          }}>
             Selected Work.
           </h1>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 17,
-              color: '#7A7268',
-              lineHeight: 1.75,
-              maxWidth: 520,
-              margin: 0,
-            }}
-          >
+          <p style={{
+            fontFamily: 'var(--font-body)', fontSize: 17, color: '#7A7268',
+            lineHeight: 1.75, maxWidth: 520, margin: 0,
+          }}>
             LMS deployments, animations, management systems, and learning content —
             built for institutions in English, Urdu, and Arabic.
           </p>
