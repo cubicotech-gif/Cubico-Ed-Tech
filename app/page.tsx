@@ -28,11 +28,11 @@ export default function HomePage() {
       {/* 03 — What We Do: Before/After Split Screen ─────────────────────── */}
       <WhatWeDo />
 
-      {/* 04 — Services: The Prescription Cards ──────────────────────────── */}
-      <Services />
-
-      {/* 05 — Experience Lab: Interactive Demos ─────────────────────────── */}
+      {/* 04 — Experience Lab: Live Interactive Systems ───────────────────── */}
       <ExperienceLab />
+
+      {/* 05 — Services: The Prescription Cards ──────────────────────────── */}
+      <Services />
 
       {/* 05 — Recent Work: The Evidence Wall ────────────────────────────── */}
       <RecentWork />
