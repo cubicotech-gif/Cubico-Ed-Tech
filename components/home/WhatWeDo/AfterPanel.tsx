@@ -28,7 +28,7 @@ export function AfterPanel({ title, proofStat, proofLabel, springPosition, child
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
-        background: '#050505',
+        background: 'var(--bg-dark)',
         willChange: 'clip-path',
       }}
     >
@@ -39,8 +39,8 @@ export function AfterPanel({ title, proofStat, proofLabel, springPosition, child
           alignItems: 'center',
           gap: 6,
           padding: '6px 12px',
-          background: '#0a0a0a',
-          borderBottom: '1px solid #1d1d1d',
+          background: 'var(--dark-card)',
+          borderBottom: '1px solid var(--dark-line)',
           flexShrink: 0,
         }}
       >
@@ -90,8 +90,8 @@ export function AfterPanel({ title, proofStat, proofLabel, springPosition, child
       <div
         style={{
           padding: '6px 12px',
-          background: '#0a0a0a',
-          borderTop: '1px solid #1d1d1d',
+          background: 'var(--dark-card)',
+          borderTop: '1px solid var(--dark-line)',
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
@@ -101,7 +101,7 @@ export function AfterPanel({ title, proofStat, proofLabel, springPosition, child
         <span
           style={{
             fontSize: 9,
-            color: '#555',
+            color: 'var(--dark-text-muted)',
             fontFamily: 'var(--font-ui)',
             fontStyle: 'italic',
           }}
@@ -109,10 +109,10 @@ export function AfterPanel({ title, proofStat, proofLabel, springPosition, child
           {title}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
-          <span style={{ fontSize: 11, fontWeight: 700, color: '#E8622A', fontFamily: 'var(--font-display)' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--blue)', fontFamily: 'var(--font-display)' }}>
             {proofStat}
           </span>
-          <span style={{ fontSize: 8, color: '#555', fontFamily: 'var(--font-ui)' }}>
+          <span style={{ fontSize: 8, color: 'var(--dark-text-muted)', fontFamily: 'var(--font-ui)' }}>
             {proofLabel}
           </span>
         </div>

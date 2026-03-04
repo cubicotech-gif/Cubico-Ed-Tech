@@ -2,31 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Custom scrollbar ─────────────────────────────────────────────────────── */
-::-webkit-scrollbar        { width: 4px; }
-::-webkit-scrollbar-track  { background: #080808; }
-::-webkit-scrollbar-thumb  { background: #2A2520; }
-::-webkit-scrollbar-thumb:hover { background: #E8622A; }
+/* ── Design tokens — Precision White ─────────────────────────────────────── */
+:root {
+  /* ── BACKGROUNDS ─────────────────────────────── */
+  --bg-base:          #FFFFFF;
+  --bg-subtle:        #F7F8FC;
+  --bg-muted:         #EFF1F8;
+  --bg-dark:          #0A0F1E;
+
+  /* ── ELECTRIC BLUE — primary accent ──────────── */
+  --blue:             #1A6BFF;
+  --blue-dark:        #0052E0;
+  --blue-lo:          rgba(26, 107, 255, 0.08);
+  --blue-mid:         rgba(26, 107, 255, 0.15);
+  --blue-glow:        rgba(26, 107, 255, 0.30);
+
+  /* ── GOLD — secondary accent ─────────────────── */
+  --gold:             #E8A020;
+  --gold-lo:          rgba(232, 160, 32, 0.10);
+  --gold-mid:         rgba(232, 160, 32, 0.20);
+
+  /* ── TEXT ────────────────────────────────────── */
+  --text-primary:     #0A0F1E;
+  --text-body:        #3D4461;
+  --text-muted:       #8A91A8;
+  --text-dim:         #C2C6D8;
+
+  /* ── BORDERS ─────────────────────────────────── */
+  --line:             #E4E8F0;
+  --line2:            #D0D5E8;
+
+  /* ── SUCCESS ─────────────────────────────────── */
+  --green:            #0DB87A;
+  --green-lo:         rgba(13, 184, 122, 0.10);
+
+  /* ── TYPOGRAPHY ──────────────────────────────── */
+  --font-display:     var(--font-dm-serif),      'Georgia', serif;
+  --font-ui:          var(--font-dm-sans),        system-ui, sans-serif;
+  --font-stamp:       var(--font-space-grotesk),  monospace;
+  --font-editorial:   var(--font-instrument-serif), 'Georgia', serif;
+  --font-body:        var(--font-dm-sans),        system-ui, sans-serif;
+
+  /* ── DARK SECTION OVERRIDES ──────────────────── */
+  --dark-text-primary:   #F0F4FF;
+  --dark-text-body:      #A8B4D0;
+  --dark-text-muted:     #5A6480;
+  --dark-line:           #1E2640;
+  --dark-line2:          #2A3354;
+  --dark-card:           #0F1628;
+  --dark-panel:          #131C35;
+}
 
 /* ── Base styles ──────────────────────────────────────────────────────────── */
-@layer base {
-  html { scroll-behavior: smooth; }
+html {
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  background: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
 
-  body {
-    @apply bg-void text-ivory antialiased overflow-x-hidden;
-    font-family: var(--font-body), system-ui, sans-serif;
-  }
+body {
+  overflow-x: hidden;
+}
 
-  /* Hide native cursor on desktop — CustomCursor replaces it */
-  @media (hover: hover) {
-    * { cursor: none !important; }
-  }
+/* ── Custom scrollbar — light theme ──────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: var(--bg-subtle); }
+::-webkit-scrollbar-thumb  { background: var(--line2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Input placeholder ────────────────────────────────────────────────────── */
+input::placeholder,
+textarea::placeholder { color: var(--text-dim); }
+
+/* ── Focus ring ───────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Hide native cursor on desktop — CustomCursor replaces it */
+@media (hover: hover) {
+  * { cursor: none !important; }
+}
+
+/* ── Button classes ───────────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--blue);
+  color: #FFFFFF;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 13px 28px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.btn-primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 12px 28px;
+  border: 1.5px solid var(--line2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.btn-ghost {
+  background: none;
+  border: none;
+  color: var(--blue);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  border-bottom: 1px solid rgba(26,107,255,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--blue); }
+
+.btn-ghost-dark {
+  color: var(--dark-text-body);
+  border-bottom-color: var(--dark-line2);
+}
+.btn-ghost-dark:hover {
+  color: var(--dark-text-primary);
+  border-bottom-color: var(--dark-text-primary);
 }
 
 /* ── Utility classes ──────────────────────────────────────────────────────── */
 @layer utilities {
 
-  /* Legacy gradient text (used by other pages) */
   .gradient-text {
     background: linear-gradient(135deg, #3b82f6, #06d6a0);
     -webkit-background-clip: text;
@@ -34,14 +160,12 @@
     background-clip: text;
   }
 
-  /* Legacy glass (used by other pages) */
   .glass {
     background: rgba(22, 27, 36, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
-  /* Legacy hero grid (used by old components) */
   .hero-grid-bg {
     background-image:
       linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
@@ -50,21 +174,18 @@
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 75%);
   }
 
-  /* ServicesReveal: responsive service-name typography */
   .service-name-size { font-size: clamp(28px, 7vw, 48px); }
 
   @media (min-width: 768px) {
     .service-name-size { font-size: clamp(36px, 5.5vw, 80px); }
   }
 
-  /* Marquee — pure CSS, no JS */
   .marquee-track {
     animation: marquee 30s linear infinite;
     white-space: nowrap;
   }
   .marquee-track:hover { animation-play-state: paused; }
 
-  /* ── Ticker rows (Section 03) ── */
   .ticker-row {
     display: flex;
     white-space: nowrap;
@@ -81,22 +202,18 @@
     display: inline-block;
   }
 
-  /* ── Hero scroll indicator ── */
   .scroll-line-anim {
     animation: scroll-line 1.6s ease-in-out infinite;
   }
 
-  /* ── Float glow (hero chips) ── */
   .float-up   { animation: float-up   3s ease-in-out infinite; }
   .float-up-2 { animation: float-up   3s ease-in-out 1.5s infinite; }
   .float-up-3 { animation: float-up   3s ease-in-out 0.8s infinite; }
 
-  /* ── Hero: stack on mobile ── */
   @media (max-width: 768px) {
     .hero-right-hidden { display: none; }
   }
 
-  /* ── Reduced motion overrides ── */
   @media (prefers-reduced-motion: reduce) {
     .ticker-left .ticker-content,
     .ticker-right .ticker-content,
@@ -127,8 +244,8 @@
 }
 
 @keyframes scroll-line {
-  0%   { transform: scaleY(0) translateY(0);   opacity: 1; }
-  50%  { transform: scaleY(1) translateY(0);   opacity: 1; }
+  0%   { transform: scaleY(0) translateY(0);    opacity: 1; }
+  50%  { transform: scaleY(1) translateY(0);    opacity: 1; }
   100% { transform: scaleY(1) translateY(24px); opacity: 0; }
 }
 
@@ -143,8 +260,8 @@
 }
 
 @keyframes pulse-green {
-  0%,100% { box-shadow: 0 0 6px rgba(16,185,129,0.55); opacity: 1; }
-  50%     { box-shadow: 0 0 14px rgba(16,185,129,0.9); opacity: 0.7; }
+  0%,100% { box-shadow: 0 0 6px rgba(13,184,122,0.55); opacity: 1; }
+  50%     { box-shadow: 0 0 14px rgba(13,184,122,0.9); opacity: 0.7; }
 }
 
 /* ── Services section ─────────────────────────────────────────────────────── */

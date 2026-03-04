@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 export function SectionLine() {
   return (
     <motion.div
-      className="absolute top-0 left-0 h-[2px] w-full origin-left bg-[#E8622A]"
+      className="absolute top-0 left-0 h-[2px] w-full origin-left bg-[var(--blue)]"
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true }}

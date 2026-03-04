@@ -15,7 +15,7 @@ export function ServiceTabs({ slides, activeId, onChange }: ServiceTabsProps) {
       style={{
         display: 'flex',
         gap: 0,
-        borderBottom: '1px solid #1d1d1d',
+        borderBottom: '1px solid var(--line)',
         overflowX: 'auto',
         scrollbarWidth: 'none',
         msOverflowStyle: 'none',
@@ -56,7 +56,7 @@ export function ServiceTabs({ slides, activeId, onChange }: ServiceTabsProps) {
                   left: 0,
                   right: 0,
                   height: 2,
-                  background: '#E8622A',
+                  background: 'var(--blue)',
                   borderRadius: '0 0 2px 2px',
                 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -68,7 +68,7 @@ export function ServiceTabs({ slides, activeId, onChange }: ServiceTabsProps) {
               style={{
                 fontSize: 11,
                 fontWeight: isActive ? 700 : 500,
-                color: isActive ? '#fff' : '#555',
+                color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
                 fontFamily: 'var(--font-ui)',
                 letterSpacing: '0.02em',
                 transition: 'color 0.2s',
@@ -81,7 +81,7 @@ export function ServiceTabs({ slides, activeId, onChange }: ServiceTabsProps) {
             <span
               style={{
                 fontSize: 8,
-                color: isActive ? '#E8622A' : '#333',
+                color: isActive ? 'var(--blue)' : 'var(--text-dim)',
                 fontFamily: 'var(--font-ui)',
                 transition: 'color 0.2s',
               }}

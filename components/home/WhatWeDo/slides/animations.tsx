@@ -101,7 +101,7 @@ const AnimationsAfter = React.memo(function AnimationsAfter() {
           width: 28, height: 28,
         }}>
           <svg width="28" height="28" viewBox="0 0 28 28">
-            <circle cx="14" cy="14" r="12" fill="#C9A96E" />
+            <circle cx="14" cy="14" r="12" fill="var(--gold)" />
             <circle cx="19" cy="10" r="10" fill="#0d1b2a" />
           </svg>
         </div>
@@ -110,16 +110,16 @@ const AnimationsAfter = React.memo(function AnimationsAfter() {
         <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '90%' }}>
           <svg viewBox="0 0 240 80" width="100%" style={{ display: 'block' }}>
             {/* Main dome */}
-            <ellipse cx="120" cy="45" rx="28" ry="22" fill="#C9A96E" opacity="0.9" />
-            <rect x="92" y="45" width="56" height="35" fill="#C9A96E" opacity="0.9" />
+            <ellipse cx="120" cy="45" rx="28" ry="22" fill="var(--gold)" opacity="0.9" />
+            <rect x="92" y="45" width="56" height="35" fill="var(--gold)" opacity="0.9" />
             {/* Minaret left */}
             <rect x="55" y="30" width="10" height="50" fill="#8b7355" />
             <ellipse cx="60" cy="30" rx="6" ry="8" fill="#A0845C" />
-            <line x1="60" y1="20" x2="60" y2="14" stroke="#C9A96E" strokeWidth="1.5" />
+            <line x1="60" y1="20" x2="60" y2="14" stroke="var(--gold)" strokeWidth="1.5" />
             {/* Minaret right */}
             <rect x="175" y="30" width="10" height="50" fill="#8b7355" />
             <ellipse cx="180" cy="30" rx="6" ry="8" fill="#A0845C" />
-            <line x1="180" y1="20" x2="180" y2="14" stroke="#C9A96E" strokeWidth="1.5" />
+            <line x1="180" y1="20" x2="180" y2="14" stroke="var(--gold)" strokeWidth="1.5" />
             {/* Side wings */}
             <rect x="30" y="48" width="62" height="32" fill="#7a6340" />
             <rect x="148" y="48" width="62" height="32" fill="#7a6340" />
@@ -142,9 +142,9 @@ const AnimationsAfter = React.memo(function AnimationsAfter() {
           position: 'absolute', top: '50%', left: '50%',
           transform: 'translate(-50%,-50%)',
           width: 32, height: 32, borderRadius: '50%',
-          background: 'rgba(232,98,42,0.85)',
+          background: 'rgba(26,107,255,0.85)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 0 20px rgba(232,98,42,0.5)',
+          boxShadow: '0 0 20px rgba(26,107,255,0.5)',
         }}>
           <svg width="12" height="12" viewBox="0 0 12 12">
             <polygon points="3,1 11,6 3,11" fill="#fff" />
@@ -157,7 +157,7 @@ const AnimationsAfter = React.memo(function AnimationsAfter() {
           background: 'rgba(0,0,0,0.6)', borderRadius: 3, padding: '2px 6px',
           display: 'flex', alignItems: 'center', gap: 4,
         }}>
-          <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#E8622A', boxShadow: '0 0 5px #E8622A' }} />
+          <div style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--blue)', boxShadow: '0 0 5px var(--blue)' }} />
           <span style={{ fontSize: 8, color: '#fff', fontFamily: 'var(--font-ui)' }}>Islamic History • Scene 03</span>
         </div>
       </div>
@@ -167,12 +167,12 @@ const AnimationsAfter = React.memo(function AnimationsAfter() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
           <span style={{ fontSize: 8, color: '#666' }}>00:24</span>
           <div style={{ flex: 1, height: 3, background: '#222', borderRadius: 2, position: 'relative' }}>
-            <div style={{ width: '40%', height: '100%', background: '#E8622A', borderRadius: 2 }} />
+            <div style={{ width: '40%', height: '100%', background: 'var(--blue)', borderRadius: 2 }} />
             <div style={{
               position: 'absolute', top: '50%', left: '40%',
               transform: 'translate(-50%,-50%)',
               width: 8, height: 8, borderRadius: '50%',
-              background: '#E8622A', border: '1.5px solid #fff',
+              background: 'var(--blue)', border: '1.5px solid #fff',
             }} />
           </div>
           <span style={{ fontSize: 8, color: '#666' }}>01:02</span>
@@ -181,11 +181,11 @@ const AnimationsAfter = React.memo(function AnimationsAfter() {
           {['Intro', 'Scene 1', 'Scene 2', '★ Scene 3', 'Scene 4', 'Outro'].map((t, i) => (
             <div key={i} style={{
               flex: 1, height: 18, borderRadius: 2,
-              background: i === 3 ? 'rgba(232,98,42,0.3)' : '#1a1a1a',
-              border: `1px solid ${i === 3 ? '#E8622A' : '#2a2a2a'}`,
+              background: i === 3 ? 'rgba(26,107,255,0.3)' : '#1a1a1a',
+              border: `1px solid ${i === 3 ? 'var(--blue)' : '#2a2a2a'}`,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
-              <span style={{ fontSize: 7, color: i === 3 ? '#E8622A' : '#555' }}>{t}</span>
+              <span style={{ fontSize: 7, color: i === 3 ? 'var(--blue)' : '#555' }}>{t}</span>
             </div>
           ))}
         </div>

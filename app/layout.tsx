@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import {
-  Fraunces,
-  Epilogue,
-  Instrument_Sans,
-  Bebas_Neue,
-  Syne,
   DM_Sans,
+  DM_Serif_Display,
+  Space_Grotesk,
+  Instrument_Serif,
 } from 'next/font/google';
 import { CursorDot }     from '@/components/ui/CursorDot';
 import { GrainOverlay }  from '@/components/ui/GrainOverlay';
@@ -14,50 +12,35 @@ import Footer            from '@/components/Footer';
 import ScrollProgress    from '@/components/ScrollProgress';
 import './globals.css';
 
-// ── Editorial typefaces (new design system) ───────────────────────────────────
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  weight: ['300', '400', '600', '700', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const epilogue = Epilogue({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-ui',
-  display: 'swap',
-});
-
-const instrumentSans = Instrument_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-body',
-  display: 'swap',
-});
-
-const bebasNeue = Bebas_Neue({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-accent',
-  display: 'swap',
-});
-
-// ── Legacy typefaces (used by other pages / components) ───────────────────────
-
-const syne = Syne({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-syne',
-  display: 'swap',
-});
+// ── Precision White design system typefaces ───────────────────────────────────
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-dm',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+});
+
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-dm-serif',
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-instrument-serif',
   display: 'swap',
 });
 
@@ -93,18 +76,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={[
-          fraunces.variable,
-          epilogue.variable,
-          instrumentSans.variable,
-          bebasNeue.variable,
-          syne.variable,
-          dmSans.variable,
-        ].join(' ')}
-        style={{ cursor: 'none' }}
-      >
+    <html
+      lang="en"
+      className={[
+        dmSans.variable,
+        dmSerifDisplay.variable,
+        spaceGrotesk.variable,
+        instrumentSerif.variable,
+      ].join(' ')}
+    >
+      <body style={{ cursor: 'none' }}>
         <CursorDot />
         <GrainOverlay />
         <ScrollProgress />

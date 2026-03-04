@@ -9,10 +9,10 @@ type CursorMode = 'default' | 'large' | 'text';
  * Custom cursor — "the single detail visitors describe when they tell
  * someone about a premium website."
  *
- * Default:         10px filled fire dot — no lag, instant
- * data-cursor="large":  52px hollow ring + fireLo fill
+ * Default:         10px filled blue dot — no lag, instant
+ * data-cursor="large":  52px hollow ring + blueLo fill
  * data-cursor="text":   elongated pill, rotated — for text links
- * On any interactive: 38px hollow ring (1px fire border)
+ * On any interactive: 38px hollow ring (1px blue border)
  * Trailing:         second ring, 150ms lag
  */
 export default function CustomCursor() {
@@ -98,7 +98,7 @@ export default function CustomCursor() {
             opacity: visible && mode === 'default' ? 1 : 0,
           }}
           transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-          style={{ backgroundColor: '#E8622A', borderRadius: '50%' }}
+          style={{ backgroundColor: 'var(--blue)', borderRadius: '50%' }}
         />
       </motion.div>
 
@@ -119,11 +119,11 @@ export default function CustomCursor() {
             opacity: visible && mode !== 'default' ? 1 : 0,
             rotate: mode === 'text' ? -15 : 0,
             borderRadius: mode === 'text' ? '20px' : '50%',
-            backgroundColor: mode === 'large' ? 'rgba(232,98,42,0.10)' : 'transparent',
+            backgroundColor: mode === 'large' ? 'var(--blue-lo)' : 'transparent',
           }}
           transition={{ type: 'spring', stiffness: 380, damping: 28 }}
           style={{
-            border: '1px solid #E8622A',
+            border: '1px solid var(--blue)',
             borderRadius: '50%',
           }}
         />
@@ -146,7 +146,7 @@ export default function CustomCursor() {
             opacity: visible && mode !== 'default' ? 0.25 : 0,
           }}
           transition={{ type: 'spring', stiffness: 180, damping: 28 }}
-          style={{ border: '1px solid #E8622A', borderRadius: '50%' }}
+          style={{ border: '1px solid var(--blue)', borderRadius: '50%' }}
         />
       </motion.div>
     </>

@@ -57,25 +57,25 @@ export function PhoneScreen({ activeSlide }: PhoneScreenProps) {
         >
           {/* Status bar */}
           <div style={{ height: 18, padding: '0 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 10, backgroundColor: 'rgba(0,0,0,0.85)' }}>
-            <span style={{ fontFamily: 'var(--font-accent)', fontSize: 8, color: '#F0EBE3' }}>9:41</span>
+            <span style={{ fontFamily: 'var(--font-stamp)', fontSize: 8, color: 'var(--dark-text-primary)' }}>9:41</span>
             {/* Signal / wifi / battery icons */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
               {/* Signal bars */}
               <svg width="10" height="8" viewBox="0 0 10 8">
-                <rect x="0" y="5" width="2" height="3" fill="#F0EBE3" opacity="0.7" rx="0.5" />
-                <rect x="3" y="3" width="2" height="5" fill="#F0EBE3" opacity="0.7" rx="0.5" />
-                <rect x="6" y="1" width="2" height="7" fill="#F0EBE3" opacity="0.7" rx="0.5" />
+                <rect x="0" y="5" width="2" height="3" fill="var(--dark-text-primary)" opacity="0.7" rx="0.5" />
+                <rect x="3" y="3" width="2" height="5" fill="var(--dark-text-primary)" opacity="0.7" rx="0.5" />
+                <rect x="6" y="1" width="2" height="7" fill="var(--dark-text-primary)" opacity="0.7" rx="0.5" />
               </svg>
               {/* WiFi */}
               <svg width="9" height="7" viewBox="0 0 9 7">
-                <path d="M4.5 5.5 A0.5 0.5 0 0 1 5 6 A0.5 0.5 0 0 1 4 6 A0.5 0.5 0 0 1 4.5 5.5Z" fill="#F0EBE3" opacity="0.7" />
-                <path d="M2.5 3.5 Q4.5 2 6.5 3.5" stroke="#F0EBE3" strokeWidth="0.8" fill="none" opacity="0.7" />
-                <path d="M1 1.5 Q4.5 -0.5 8 1.5" stroke="#F0EBE3" strokeWidth="0.8" fill="none" opacity="0.5" />
+                <path d="M4.5 5.5 A0.5 0.5 0 0 1 5 6 A0.5 0.5 0 0 1 4 6 A0.5 0.5 0 0 1 4.5 5.5Z" fill="var(--dark-text-primary)" opacity="0.7" />
+                <path d="M2.5 3.5 Q4.5 2 6.5 3.5" stroke="var(--dark-text-primary)" strokeWidth="0.8" fill="none" opacity="0.7" />
+                <path d="M1 1.5 Q4.5 -0.5 8 1.5" stroke="var(--dark-text-primary)" strokeWidth="0.8" fill="none" opacity="0.5" />
               </svg>
               {/* Battery */}
-              <div style={{ width: 11, height: 6, border: '0.5px solid rgba(240,235,227,0.5)', borderRadius: 1, position: 'relative' }}>
-                <div style={{ position: 'absolute', inset: 1, right: 2, backgroundColor: '#F0EBE3', borderRadius: 0.5, opacity: 0.7 }} />
-                <div style={{ position: 'absolute', right: -2, top: 1.5, width: 1.5, height: 3, backgroundColor: 'rgba(240,235,227,0.5)', borderRadius: '0 1px 1px 0' }} />
+              <div style={{ width: 11, height: 6, border: '0.5px solid rgba(240,244,255,0.5)', borderRadius: 1, position: 'relative' }}>
+                <div style={{ position: 'absolute', inset: 1, right: 2, backgroundColor: 'var(--dark-text-primary)', borderRadius: 0.5, opacity: 0.7 }} />
+                <div style={{ position: 'absolute', right: -2, top: 1.5, width: 1.5, height: 3, backgroundColor: 'rgba(240,244,255,0.5)', borderRadius: '0 1px 1px 0' }} />
               </div>
             </div>
           </div>

@@ -20,8 +20,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        backgroundColor: '#030303',
-        borderTop: '1px solid #161616',
+        backgroundColor: 'var(--bg-dark)',
+        borderTop: '1px solid var(--dark-line)',
       }}
     >
       <div
@@ -41,9 +41,9 @@ export default function Footer() {
           style={{
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
-            fontWeight: 700,
+            fontWeight: 400,
             fontSize: 44,
-            color: '#181818',
+            color: 'var(--dark-line2)',
             textDecoration: 'none',
             letterSpacing: '-0.02em',
             lineHeight: 1,
@@ -74,7 +74,7 @@ export default function Footer() {
                 {i > 0 && (
                   <span
                     aria-hidden="true"
-                    style={{ color: '#1f1f1f', fontSize: 12, margin: '0 16px' }}
+                    style={{ color: 'var(--dark-line2)', fontSize: 12, margin: '0 16px' }}
                   >
                     ·
                   </span>
@@ -88,17 +88,17 @@ export default function Footer() {
                     fontWeight: 500,
                     fontSize: 12,
                     letterSpacing: '0.15em',
-                    color: isWhatsApp ? '#E8622A' : '#3a3a3a',
+                    color: isWhatsApp ? 'var(--blue)' : 'var(--dark-text-muted)',
                     textDecoration: 'none',
                     transition: 'color 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
                     if (!isWhatsApp)
-                      (e.currentTarget as HTMLElement).style.color = '#888';
+                      (e.currentTarget as HTMLElement).style.color = 'var(--dark-text-body)';
                   }}
                   onMouseLeave={(e) => {
                     if (!isWhatsApp)
-                      (e.currentTarget as HTMLElement).style.color = '#3a3a3a';
+                      (e.currentTarget as HTMLElement).style.color = 'var(--dark-text-muted)';
                   }}
                 >
                   {label}
@@ -115,7 +115,7 @@ export default function Footer() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            borderTop: '1px solid #111',
+            borderTop: '1px solid var(--dark-line)',
             paddingTop: 24,
             flexWrap: 'wrap',
             gap: 12,
@@ -123,9 +123,9 @@ export default function Footer() {
         >
           <span
             style={{
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-ui)',
               fontSize: 11,
-              color: '#252525',
+              color: 'var(--dark-text-muted)',
             }}
           >
             &copy; {new Date().getFullYear()} Cubico Technologies. All rights
@@ -133,9 +133,9 @@ export default function Footer() {
           </span>
           <span
             style={{
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-ui)',
               fontSize: 11,
-              color: '#252525',
+              color: 'var(--dark-text-muted)',
             }}
           >
             Karachi, Pakistan&nbsp;&nbsp;·&nbsp;&nbsp;EdTech

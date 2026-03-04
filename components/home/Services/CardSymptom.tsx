@@ -70,11 +70,11 @@ export function CardSymptom({ symptom, isHovered }: CardSymptomProps) {
       {/* Symptom headline */}
       <p
         style={{
-          fontFamily: 'var(--font-display)',
-          fontWeight: 700,
+          fontFamily: 'var(--font-editorial)',
+          fontWeight: 400,
           fontStyle: 'italic',
           fontSize: 'clamp(16px, 1.8vw, 22px)',
-          color: 'rgba(240,235,227,0.85)',
+          color: 'var(--text-primary)',
           lineHeight: 1.3,
           letterSpacing: '-0.02em',
           margin: '0 0 12px 0',
@@ -86,10 +86,10 @@ export function CardSymptom({ symptom, isHovered }: CardSymptomProps) {
       {/* Symptom detail — 2-line clamp */}
       <p
         style={{
-          fontFamily: 'var(--font-body)',
+          fontFamily: 'var(--font-ui)',
           fontWeight: 400,
           fontSize: 13,
-          color: '#6A6460',
+          color: 'var(--text-muted)',
           lineHeight: 1.7,
           margin: '0 0 14px 0',
           display: '-webkit-box',

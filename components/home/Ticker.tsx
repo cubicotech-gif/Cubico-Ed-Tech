@@ -44,9 +44,9 @@ export default function Ticker() {
       aria-hidden="true"
       style={{
         width: '100%',
-        backgroundColor: '#090909',
-        borderTop: '1px solid #161616',
-        borderBottom: '1px solid #161616',
+        backgroundColor: 'var(--bg-subtle)',
+        borderTop: '1px solid var(--line)',
+        borderBottom: '1px solid var(--line)',
         overflow: 'hidden',
         userSelect: 'none',
       }}
@@ -57,16 +57,16 @@ export default function Ticker() {
           height: 34,
           display: 'flex',
           alignItems: 'center',
-          borderBottom: '1px solid #141414',
+          borderBottom: '1px solid var(--line)',
           overflow: 'hidden',
         }}
       >
-        <div className="ticker-row ticker-left" style={{ color: '#E8622A' }}>
-          <span className="ticker-content" style={{ fontFamily: 'var(--font-accent)', fontSize: 11, letterSpacing: '0.25em' }}>
+        <div className="ticker-row ticker-left" style={{ color: 'var(--blue)' }}>
+          <span className="ticker-content" style={{ fontFamily: 'var(--font-stamp)', fontSize: 11, letterSpacing: '0.25em' }}>
             {topTrack}
           </span>
           {/* duplicate for seamless loop */}
-          <span className="ticker-content" aria-hidden="true" style={{ fontFamily: 'var(--font-accent)', fontSize: 11, letterSpacing: '0.25em' }}>
+          <span className="ticker-content" aria-hidden="true" style={{ fontFamily: 'var(--font-stamp)', fontSize: 11, letterSpacing: '0.25em' }}>
             {topTrack}
           </span>
         </div>
@@ -81,11 +81,11 @@ export default function Ticker() {
           overflow: 'hidden',
         }}
       >
-        <div className="ticker-row ticker-right" style={{ color: '#C9A96E' }}>
-          <span className="ticker-content" style={{ fontFamily: 'var(--font-accent)', fontSize: 11, letterSpacing: '0.25em' }}>
+        <div className="ticker-row ticker-right" style={{ color: 'var(--gold)' }}>
+          <span className="ticker-content" style={{ fontFamily: 'var(--font-stamp)', fontSize: 11, letterSpacing: '0.25em' }}>
             {bottomTrack}
           </span>
-          <span className="ticker-content" aria-hidden="true" style={{ fontFamily: 'var(--font-accent)', fontSize: 11, letterSpacing: '0.25em' }}>
+          <span className="ticker-content" aria-hidden="true" style={{ fontFamily: 'var(--font-stamp)', fontSize: 11, letterSpacing: '0.25em' }}>
             {bottomTrack}
           </span>
         </div>

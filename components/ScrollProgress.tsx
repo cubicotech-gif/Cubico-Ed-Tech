@@ -24,7 +24,7 @@ export default function ScrollProgress() {
         top: 0,
         width: 2,
         height: '100vh',
-        backgroundColor: '#111',
+        backgroundColor: 'var(--line)',
         zIndex: 9000,
         pointerEvents: 'none',
         transformOrigin: 'top',
@@ -35,7 +35,7 @@ export default function ScrollProgress() {
         style={{
           width: '100%',
           height: '100%',
-          backgroundColor: '#E8622A',
+          backgroundColor: 'var(--blue)',
           transformOrigin: 'top',
           scaleY,
           opacity: 0.7,

@@ -29,12 +29,12 @@ export function DragHandle({ onMouseDown, onTouchStart }: DragHandleProps) {
       data-cursor="device"
     >
       {/* Vertical fire line */}
-      <div style={{ position: 'absolute', top: 0, bottom: 0, left: '50%', transform: 'translateX(-50%)', width: 1.5, background: 'linear-gradient(to bottom, transparent 0%, #E8622A 15%, #E8622A 85%, transparent 100%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: 0, bottom: 0, left: '50%', transform: 'translateX(-50%)', width: 1.5, background: 'linear-gradient(to bottom, transparent 0%, var(--blue) 15%, var(--blue) 85%, transparent 100%)', pointerEvents: 'none' }} />
 
       {/* Top arrow */}
       <div style={{
         position: 'absolute', top: '50%', transform: 'translateY(calc(-50% - 26px))',
-        color: '#E8622A', fontSize: 9, fontWeight: 700, lineHeight: 1, pointerEvents: 'none',
+        color: 'var(--blue)', fontSize: 9, fontWeight: 700, lineHeight: 1, pointerEvents: 'none',
       }}>
         ▲
       </div>
@@ -49,18 +49,18 @@ export function DragHandle({ onMouseDown, onTouchStart }: DragHandleProps) {
           width: 40,
           height: 40,
           borderRadius: '50%',
-          background: '#E8622A',
+          background: 'var(--blue)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 0 24px rgba(232,98,42,0.6), 0 0 8px rgba(232,98,42,0.4)',
+          boxShadow: '0 0 24px rgba(26,107,255,0.6), 0 0 8px rgba(26,107,255,0.4)',
           zIndex: 11,
         }}
         animate={{
           boxShadow: [
-            '0 0 18px rgba(232,98,42,0.5), 0 0 6px rgba(232,98,42,0.3)',
-            '0 0 32px rgba(232,98,42,0.85), 0 0 12px rgba(232,98,42,0.55)',
-            '0 0 18px rgba(232,98,42,0.5), 0 0 6px rgba(232,98,42,0.3)',
+            '0 0 18px rgba(26,107,255,0.5), 0 0 6px rgba(26,107,255,0.3)',
+            '0 0 32px rgba(26,107,255,0.85), 0 0 12px rgba(26,107,255,0.55)',
+            '0 0 18px rgba(26,107,255,0.5), 0 0 6px rgba(26,107,255,0.3)',
           ],
         }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
@@ -75,7 +75,7 @@ export function DragHandle({ onMouseDown, onTouchStart }: DragHandleProps) {
       {/* Bottom arrow */}
       <div style={{
         position: 'absolute', top: '50%', transform: 'translateY(calc(-50% + 26px))',
-        color: '#E8622A', fontSize: 9, fontWeight: 700, lineHeight: 1, pointerEvents: 'none',
+        color: 'var(--blue)', fontSize: 9, fontWeight: 700, lineHeight: 1, pointerEvents: 'none',
       }}>
         ▼
       </div>

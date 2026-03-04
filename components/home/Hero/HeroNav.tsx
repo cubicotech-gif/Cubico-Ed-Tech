@@ -27,7 +27,7 @@ function NavLink({ label, href }: { label: string; href: string }) {
         fontFamily: 'var(--font-ui)',
         fontWeight: 600,
         fontSize: 11,
-        color: hovered ? '#F0EBE3' : '#6A6460',
+        color: hovered ? 'var(--dark-text-primary)' : 'var(--dark-text-muted)',
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
         textDecoration: 'none',
@@ -47,7 +47,7 @@ function NavLink({ label, href }: { label: string; href: string }) {
           left: 0,
           right: 0,
           height: 1,
-          backgroundColor: '#E8622A',
+          backgroundColor: 'var(--blue)',
           transformOrigin: 'left',
           display: 'block',
         }}
@@ -69,10 +69,10 @@ export default function HeroNav() {
         right: 0,
         height: 72,
         zIndex: 50,
-        backgroundColor: 'rgba(5,5,5,0.75)',
+        backgroundColor: 'rgba(10,15,30,0.85)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid #1d1d1d',
+        borderBottom: '1px solid var(--dark-line)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -82,12 +82,12 @@ export default function HeroNav() {
       {/* Logo */}
       <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
         {/* Fire square */}
-        <div style={{ width: 8, height: 8, backgroundColor: '#E8622A', borderRadius: 2, flexShrink: 0 }} />
+        <div style={{ width: 8, height: 8, backgroundColor: 'var(--blue)', borderRadius: 2, flexShrink: 0 }} />
         <div>
-          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: '#F0EBE3', letterSpacing: '-0.02em', lineHeight: 1 }}>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: 'var(--dark-text-primary)', letterSpacing: '-0.02em', lineHeight: 1 }}>
             Cubico
           </div>
-          <div style={{ fontFamily: 'var(--font-accent)', fontSize: 9, color: '#6A6460', letterSpacing: '0.4em' }}>
+          <div style={{ fontFamily: 'var(--font-stamp)', fontSize: 9, color: 'var(--dark-text-muted)', letterSpacing: '0.4em' }}>
             EDTECH AGENCY
           </div>
         </div>
@@ -104,9 +104,9 @@ export default function HeroNav() {
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
         {/* Language toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 11, color: '#E8622A' }}>EN</span>
-          <span style={{ width: 1, height: 16, backgroundColor: '#272727', display: 'inline-block' }} />
-          <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 11, color: '#6A6460' }}>عر</span>
+          <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 11, color: 'var(--blue)' }}>EN</span>
+          <span style={{ width: 1, height: 16, backgroundColor: 'var(--dark-line2)', display: 'inline-block' }} />
+          <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 11, color: 'var(--dark-text-muted)' }}>عر</span>
         </div>
 
         {/* CTA */}
@@ -130,7 +130,7 @@ function CTAButton() {
         fontWeight: 800,
         fontSize: 12,
         color: '#fff',
-        backgroundColor: hovered ? '#CF5020' : '#E8622A',
+        backgroundColor: hovered ? 'var(--blue-dark)' : 'var(--blue)',
         borderRadius: 2,
         padding: '11px 24px',
         textDecoration: 'none',

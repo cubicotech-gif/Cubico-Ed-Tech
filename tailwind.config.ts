@@ -9,18 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Editorial palette (new design system) ────────────────────────────
-        void:        '#080808', // pure warm black — site background
-        surface:     '#111111',
-        card:        '#191919', // card backgrounds
-        cream:       '#F5F2ED', // light section bg
-        ivory:       '#F0EBE3', // primary text on dark
-        'warm-gray': '#7A7268', // muted text on dark
-        ink:         '#1A1714', // text on light sections
-        fire:        '#E8622A', // burnt orange — main accent
-        bronze:      '#C9A96E', // aged gold — secondary accent
-        rule:        '#2A2520', // divider lines
-        // ── Legacy palette (used by other pages / components) ─────────────────
+        // ── Precision White design system ─────────────────────────────────────
+        'bg-base':   '#FFFFFF',
+        'bg-subtle': '#F7F8FC',
+        'bg-muted':  '#EFF1F8',
+        'bg-dark':   '#0A0F1E',
+        blue:        '#1A6BFF',
+        'blue-dark': '#0052E0',
+        gold:        '#E8A020',
+        'text-primary': '#0A0F1E',
+        'text-body':    '#3D4461',
+        'text-muted':   '#8A91A8',
+        'text-dim':     '#C2C6D8',
+        line:        '#E4E8F0',
+        line2:       '#D0D5E8',
+        green:       '#0DB87A',
+        // ── Legacy palette (used by other pages) ──────────────────────────────
         background:      '#0a0a0a',
         'card-bg':       '#161b24',
         border:          '#1f2733',
@@ -30,21 +34,14 @@ const config: Config = {
         'accent-orange': '#f97316',
         text:            '#e8eaf0',
         muted:           '#6b7588',
-        divider:         '#2A2520',
       },
       fontFamily: {
         // ── CSS-var fonts from next/font/google ───────────────────────────────
-        display:   ['var(--font-display)', 'Georgia', 'serif'],
-        ui:        ['var(--font-ui)',       'system-ui', 'sans-serif'],
-        body:      ['var(--font-body)',     'system-ui', 'sans-serif'],
-        accent:    ['var(--font-accent)',   'cursive'],
-        // ── Legacy aliases (still work on other pages) ─────────────────────────
-        syne:      ['var(--font-syne)',    'sans-serif'],
-        dm:        ['var(--font-dm)',      'sans-serif'],
-        bebas:     ['var(--font-accent)',  'cursive'],
-        fraunces:  ['var(--font-display)', 'serif'],
-        instrument:['var(--font-body)',    'sans-serif'],
-        epilogue:  ['var(--font-ui)',      'sans-serif'],
+        display:   ['var(--font-dm-serif)',        'Georgia', 'serif'],
+        ui:        ['var(--font-dm-sans)',          'system-ui', 'sans-serif'],
+        body:      ['var(--font-dm-sans)',          'system-ui', 'sans-serif'],
+        stamp:     ['var(--font-space-grotesk)',    'monospace'],
+        editorial: ['var(--font-instrument-serif)', 'Georgia', 'serif'],
       },
       backgroundImage: {
         'gradient-accent': 'linear-gradient(135deg, #3b82f6, #06d6a0)',

@@ -15,7 +15,7 @@ export default function Hero() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        backgroundColor: '#050505',
+        backgroundColor: 'var(--bg-dark)',
         overflow: 'hidden',
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
@@ -42,7 +42,7 @@ export default function Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to right, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.5) 50%, transparent 80%)',
+          background: 'linear-gradient(to right, rgba(10,15,30,0.95) 0%, rgba(10,15,30,0.5) 50%, transparent 80%)',
           zIndex: 1,
           pointerEvents: 'none',
         }}

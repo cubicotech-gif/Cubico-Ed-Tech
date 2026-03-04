@@ -43,10 +43,10 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        backgroundColor: scrolled ? 'rgba(8,8,8,0.92)' : 'transparent',
+        backgroundColor: scrolled ? 'rgba(255,255,255,0.92)' : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid #2A2520' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid var(--line)' : '1px solid transparent',
         transition: 'background-color 0.4s ease, border-color 0.4s ease',
       }}
     >
@@ -67,9 +67,9 @@ export default function Navbar() {
           style={{
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
-            fontWeight: 600,
+            fontWeight: 400,
             fontSize: 24,
-            color: '#F0EBE3',
+            color: scrolled ? 'var(--text-primary)' : '#F0EBE3',
             textDecoration: 'none',
             letterSpacing: '-0.02em',
           }}
@@ -96,12 +96,12 @@ export default function Navbar() {
                   fontFamily: 'var(--font-ui)',
                   fontWeight: 500,
                   fontSize: 14,
-                  color: '#7A7268',
+                  color: 'var(--text-body)',
                   textDecoration: 'none',
                   transition: 'color 0.2s ease',
                 }}
-                onMouseEnter={e => ((e.target as HTMLElement).style.color = '#F0EBE3')}
-                onMouseLeave={e => ((e.target as HTMLElement).style.color = '#7A7268')}
+                onMouseEnter={e => ((e.target as HTMLElement).style.color = 'var(--blue)')}
+                onMouseLeave={e => ((e.target as HTMLElement).style.color = 'var(--text-body)')}
               >
                 {label}
               </Link>
@@ -118,22 +118,22 @@ export default function Navbar() {
               fontFamily: 'var(--font-ui)',
               fontWeight: 600,
               fontSize: 13,
-              color: '#E8622A',
+              color: 'var(--blue)',
               textDecoration: 'none',
-              border: '1px solid #E8622A',
+              border: '1px solid var(--blue)',
               padding: '10px 22px',
               transition: 'background-color 0.2s ease, color 0.2s ease',
               display: 'inline-block',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#E8622A';
-              el.style.color = '#F0EBE3';
+              el.style.backgroundColor = 'var(--blue)';
+              el.style.color = '#ffffff';
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement;
               el.style.backgroundColor = 'transparent';
-              el.style.color = '#E8622A';
+              el.style.color = 'var(--blue)';
             }}
           >
             Start a Project
@@ -161,7 +161,7 @@ export default function Navbar() {
                 display: 'block',
                 width: 22,
                 height: 1,
-                backgroundColor: '#F0EBE3',
+                backgroundColor: scrolled ? 'var(--text-primary)' : '#F0EBE3',
                 transition: 'transform 0.25s ease, opacity 0.25s ease',
                 transform: mobileOpen
                   ? i === 0 ? 'rotate(45deg) translate(4px, 5px)'
@@ -185,8 +185,8 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
             style={{
               overflow: 'hidden',
-              borderTop: '1px solid #2A2520',
-              backgroundColor: 'rgba(8,8,8,0.97)',
+              borderTop: '1px solid var(--line)',
+              backgroundColor: 'rgba(255,255,255,0.97)',
             }}
           >
             <ul
@@ -209,10 +209,10 @@ export default function Navbar() {
                       fontFamily: 'var(--font-ui)',
                       fontWeight: 500,
                       fontSize: 20,
-                      color: '#7A7268',
+                      color: 'var(--text-body)',
                       textDecoration: 'none',
                       padding: '14px 0',
-                      borderBottom: '1px solid #2A2520',
+                      borderBottom: '1px solid var(--line)',
                     }}
                   >
                     {label}
@@ -228,9 +228,9 @@ export default function Navbar() {
                     fontFamily: 'var(--font-ui)',
                     fontWeight: 600,
                     fontSize: 14,
-                    color: '#F0EBE3',
+                    color: '#ffffff',
                     textDecoration: 'none',
-                    backgroundColor: '#E8622A',
+                    backgroundColor: 'var(--blue)',
                     padding: '14px 24px',
                     textAlign: 'center',
                   }}

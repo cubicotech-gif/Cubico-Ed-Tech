@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 // ── CursorMode ────────────────────────────────────────────────────────────────
-// default — 8px fire dot + 40px ring (1px fire border)
+// default — 8px blue dot + 40px ring (1px blue border)
 // large   — ring expands to 52px
-// device  — ring becomes bronze, 60px (crosshair variant for device mockup)
+// device  — ring becomes gold, 60px (crosshair variant for device mockup)
 
 type CursorMode = 'default' | 'large' | 'device';
 
@@ -60,7 +60,7 @@ export function CursorDot() {
   if (!mounted) return null;
 
   const ringSize = mode === 'device' ? 60 : mode === 'large' ? 52 : 40;
-  const ringColor = mode === 'device' ? '#C9A96E' : '#E8622A';
+  const ringColor = mode === 'device' ? 'var(--gold)' : 'var(--blue)';
 
   return (
     <>
@@ -77,7 +77,7 @@ export function CursorDot() {
           width: 8,
           height: 8,
           borderRadius: '50%',
-          backgroundColor: '#E8622A',
+          backgroundColor: 'var(--blue)',
           zIndex: 9999,
           pointerEvents: 'none',
         }}

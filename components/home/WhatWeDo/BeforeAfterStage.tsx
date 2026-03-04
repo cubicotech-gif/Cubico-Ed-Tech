@@ -29,7 +29,7 @@ function DesktopStage({ slide }: BeforeAfterStageProps) {
         height: 360,
         borderRadius: 10,
         overflow: 'hidden',
-        border: '1px solid #1d1d1d',
+        border: '1px solid var(--line2)',
         cursor: 'col-resize',
         userSelect: 'none',
         WebkitUserSelect: 'none',
@@ -78,7 +78,7 @@ function MobileStage({ slide }: BeforeAfterStageProps) {
         aspectRatio: '4/3',
         borderRadius: 8,
         overflow: 'hidden',
-        border: '1px solid #1d1d1d',
+        border: '1px solid var(--line2)',
       }}
     >
       {/* Toggle */}
@@ -110,7 +110,7 @@ function MobileStage({ slide }: BeforeAfterStageProps) {
               fontFamily: 'var(--font-ui)',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
-              background: (side === 'after') === showAfter ? '#E8622A' : 'transparent',
+              background: (side === 'after') === showAfter ? 'var(--blue)' : 'transparent',
               color: (side === 'after') === showAfter ? '#fff' : '#666',
               transition: 'background 0.2s, color 0.2s',
             }}
@@ -130,12 +130,12 @@ function MobileStage({ slide }: BeforeAfterStageProps) {
           style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}
         >
           {showAfter ? (
-            <div style={{ position: 'absolute', inset: 0, background: '#050505', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '5px 10px', background: '#0a0a0a', borderBottom: '1px solid #1d1d1d', flexShrink: 0 }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'var(--bg-dark)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '5px 10px', background: 'var(--dark-card)', borderBottom: '1px solid var(--dark-line)', flexShrink: 0 }}>
                 <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 4px #4ade80' }} />
                 <span style={{ fontSize: 8, color: '#4ade80', fontFamily: 'var(--font-ui)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>With Cubico</span>
-                <span style={{ marginLeft: 'auto', fontSize: 10, color: '#E8622A', fontWeight: 700, fontFamily: 'var(--font-display)' }}>{slide.proofStat}</span>
-                <span style={{ fontSize: 7, color: '#555' }}>{slide.proofLabel}</span>
+                <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--blue)', fontWeight: 700, fontFamily: 'var(--font-display)' }}>{slide.proofStat}</span>
+                <span style={{ fontSize: 7, color: 'var(--dark-text-muted)' }}>{slide.proofLabel}</span>
               </div>
               <div style={{ flex: 1, overflow: 'hidden' }}>{slide.afterContent}</div>
             </div>

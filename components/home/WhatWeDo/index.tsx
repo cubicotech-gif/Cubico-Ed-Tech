@@ -32,7 +32,7 @@ export default function WhatWeDo() {
     <section
       style={{
         position: 'relative',
-        background: '#050505',
+        background: 'var(--bg-base)',
         padding: '80px 0',
         overflow: 'hidden',
       }}
@@ -60,7 +60,7 @@ export default function WhatWeDo() {
           position: 'absolute', top: '30%', left: '50%',
           transform: 'translateX(-50%)',
           width: 600, height: 300,
-          background: 'radial-gradient(ellipse at 50% 50%, rgba(232,98,42,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(26,107,255,0.06) 0%, transparent 70%)',
           pointerEvents: 'none', zIndex: 0,
         }}
       />
@@ -69,7 +69,7 @@ export default function WhatWeDo() {
       <div
         style={{
           position: 'absolute', top: 0, left: 0, right: 0,
-          height: 1, background: '#1d1d1d',
+          height: 1, background: 'var(--line)',
         }}
       />
 
@@ -86,7 +86,7 @@ export default function WhatWeDo() {
             style={{
               fontSize: 10,
               fontWeight: 600,
-              color: '#E8622A',
+              color: 'var(--gold)',
               fontFamily: 'var(--font-ui)',
               textTransform: 'uppercase',
               letterSpacing: '0.12em',
@@ -99,15 +99,15 @@ export default function WhatWeDo() {
             style={{
               fontSize: 'clamp(28px, 4vw, 48px)',
               fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              color: '#fff',
+              fontWeight: 400,
+              color: 'var(--text-primary)',
               lineHeight: 1.1,
               margin: 0,
             }}
           >
             See the transformation.
             <br />
-            <span style={{ color: '#555', fontStyle: 'italic', fontWeight: 300 }}>
+            <span style={{ color: 'var(--text-muted)', fontStyle: 'italic', fontWeight: 400, fontFamily: 'var(--font-editorial)' }}>
               Drag to reveal.
             </span>
           </h2>
@@ -115,8 +115,8 @@ export default function WhatWeDo() {
             style={{
               marginTop: 12,
               fontSize: 14,
-              color: '#555',
-              fontFamily: 'var(--font-body)',
+              color: 'var(--text-muted)',
+              fontFamily: 'var(--font-ui)',
               maxWidth: 500,
             }}
           >
@@ -127,8 +127,8 @@ export default function WhatWeDo() {
         {/* Tabs + Stage container */}
         <div
           style={{
-            background: '#0a0a0a',
-            border: '1px solid #1d1d1d',
+            background: 'var(--bg-subtle)',
+            border: '1px solid var(--line)',
             borderRadius: 10,
             overflow: 'hidden',
           }}

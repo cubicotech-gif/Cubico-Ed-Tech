@@ -40,11 +40,11 @@ export function DifferentiatorBar() {
     <div
       style={{
         marginTop: 32,
-        borderTop: '2px solid #E8622A',
+        borderTop: '2px solid var(--blue)',
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
         gap: 0,
-        background: '#0a0a0a',
+        background: 'var(--bg-subtle)',
         borderRadius: '0 0 8px 8px',
         overflow: 'hidden',
       }}
@@ -54,14 +54,14 @@ export function DifferentiatorBar() {
           key={i}
           style={{
             padding: '20px 20px',
-            borderRight: i < 3 ? '1px solid #1d1d1d' : 'none',
+            borderRight: i < 3 ? '1px solid var(--line)' : 'none',
           }}
         >
           <div
             style={{
               fontSize: 11,
               fontWeight: 700,
-              color: '#fff',
+              color: 'var(--text-primary)',
               fontFamily: 'var(--font-ui)',
               marginBottom: 10,
               letterSpacing: '0.01em',
@@ -75,8 +75,8 @@ export function DifferentiatorBar() {
                 key={j}
                 style={{
                   fontSize: 9,
-                  color: '#666',
-                  fontFamily: 'var(--font-body)',
+                  color: 'var(--text-muted)',
+                  fontFamily: 'var(--font-ui)',
                   lineHeight: 1.5,
                 }}
               >

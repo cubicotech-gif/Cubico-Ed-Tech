@@ -77,8 +77,8 @@ const LMSBefore = React.memo(function LMSBefore() {
 // ── After: Moodle LMS dashboard ────────────────────────────────────────────────
 const LMSAfter = React.memo(function LMSAfter() {
   const courses = [
-    { name: 'Islamic Studies', students: 142, progress: 78, color: '#E8622A' },
-    { name: 'Mathematics',     students: 98,  progress: 61, color: '#C9A96E' },
+    { name: 'Islamic Studies', students: 142, progress: 78, color: 'var(--blue)' },
+    { name: 'Mathematics',     students: 98,  progress: 61, color: 'var(--gold)' },
     { name: 'English Language',students: 175, progress: 90, color: '#4ade80' },
   ];
   return (
