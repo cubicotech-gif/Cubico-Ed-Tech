@@ -51,25 +51,15 @@ export default function PortfolioPreview() {
         <div style={{ marginBottom: 60 }}>
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
-              fontSize: 14,
-              color: '#C9A96E',
-              letterSpacing: '0.1em',
-            }}
-          >
-            03
-          </span>
-          <span
-            style={{
               fontFamily: 'var(--font-ui)',
+              fontWeight: 500,
               fontSize: 11,
-              color: '#7A7268',
-              letterSpacing: '0.2em',
-              marginLeft: 16,
+              color: '#E8622A',
+              letterSpacing: '0.22em',
               textTransform: 'uppercase',
             }}
           >
-            RECENT WORK
+            03 — RECENT WORK
           </span>
         </div>
 

@@ -54,7 +54,7 @@ export default function ImpactNumbers() {
           position: 'absolute',
           inset: 0,
           background:
-            'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,98,42,0.05) 0%, transparent 70%)',
+            'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,98,42,0.09) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -106,11 +106,11 @@ export default function ImpactNumbers() {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 13,
+                  fontSize: 12,
                   color: '#7A7268',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.14em',
-                  marginTop: 12,
+                  letterSpacing: '0.16em',
+                  marginTop: 14,
                 }}
               >
                 {stat.label}
@@ -128,12 +128,13 @@ export default function ImpactNumbers() {
           style={{
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
-            fontSize: 'clamp(18px, 2.5vw, 24px)',
+            fontSize: 'clamp(19px, 2.5vw, 26px)',
             color: '#C9A96E',
             textAlign: 'center',
-            maxWidth: 680,
-            margin: '64px auto 0',
-            lineHeight: 1.6,
+            maxWidth: 700,
+            margin: '72px auto 0',
+            lineHeight: 1.65,
+            letterSpacing: '-0.005em',
           }}
         >
           &ldquo;We don&rsquo;t use templates. Every solution is built for your institution.&rdquo;

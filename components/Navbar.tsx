@@ -96,12 +96,13 @@ export default function Navbar() {
                   fontFamily: 'var(--font-ui)',
                   fontWeight: 500,
                   fontSize: 14,
-                  color: '#7A7268',
+                  color: '#8C8680',
                   textDecoration: 'none',
-                  transition: 'color 0.2s ease',
+                  transition: 'color 0.22s ease',
+                  letterSpacing: '0.01em',
                 }}
                 onMouseEnter={e => ((e.target as HTMLElement).style.color = '#F0EBE3')}
-                onMouseLeave={e => ((e.target as HTMLElement).style.color = '#7A7268')}
+                onMouseLeave={e => ((e.target as HTMLElement).style.color = '#8C8680')}
               >
                 {label}
               </Link>
@@ -209,7 +210,7 @@ export default function Navbar() {
                       fontFamily: 'var(--font-ui)',
                       fontWeight: 500,
                       fontSize: 20,
-                      color: '#7A7268',
+                      color: '#8C8680',
                       textDecoration: 'none',
                       padding: '14px 0',
                       borderBottom: '1px solid #2A2520',

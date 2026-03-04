@@ -41,32 +41,65 @@ const stepVariant = {
 
 export default function ProcessSection() {
   return (
-    <section style={{ backgroundColor: '#F5F2ED', padding: '100px 0' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
+    <section
+      style={{
+        backgroundColor: '#F5F2ED',
+        padding: '100px 0',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Top gradient bridge — dark void bleeds into cream */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 72,
+          background: 'linear-gradient(to bottom, #080808 0%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }}
+      />
+      {/* Bottom gradient bridge — cream bleeds back into dark void */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 72,
+          background: 'linear-gradient(to top, #080808 0%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }}
+      />
 
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '0 5%',
+          position: 'relative',
+          zIndex: 3,
+        }}
+      >
         {/* Section label */}
-        <div style={{ marginBottom: 60 }}>
-          <span
-            style={{
-              fontFamily: 'var(--font-accent)',
-              fontSize: 14,
-              color: '#C9A96E',
-              letterSpacing: '0.1em',
-            }}
-          >
-            04
-          </span>
+        <div style={{ marginBottom: 52 }}>
           <span
             style={{
               fontFamily: 'var(--font-ui)',
+              fontWeight: 500,
               fontSize: 11,
-              color: '#1A1714',
-              letterSpacing: '0.2em',
-              marginLeft: 16,
+              color: '#C9A96E',
+              letterSpacing: '0.22em',
               textTransform: 'uppercase',
             }}
           >
-            HOW WE WORK
+            04 — HOW WE WORK
           </span>
         </div>
 
@@ -79,11 +112,11 @@ export default function ProcessSection() {
           style={{
             fontFamily: 'var(--font-display)',
             fontWeight: 700,
-            fontSize: 'clamp(32px, 4.5vw, 52px)',
+            fontSize: 'clamp(34px, 4.5vw, 56px)',
             color: '#1A1714',
-            letterSpacing: '-0.02em',
+            letterSpacing: '-0.025em',
             marginBottom: 64,
-            lineHeight: 1.1,
+            lineHeight: 1.08,
           }}
         >
           From Brief to Launch.
@@ -106,21 +139,20 @@ export default function ProcessSection() {
               key={step.number}
               variants={stepVariant}
               style={{
-                padding: '40px 36px',
-                borderBottom: '1px solid #D5CFC8',
-                borderRight: i % 2 === 0 ? '1px solid #D5CFC8' : 'none',
+                padding: '44px 36px',
+                borderBottom: '1px solid #D0C9C1',
+                borderRight: i % 2 === 0 ? '1px solid #D0C9C1' : 'none',
               }}
-              className={i % 2 === 0 ? 'border-r-rule' : ''}
             >
               {/* Decorative number */}
               <div
                 style={{
                   fontFamily: 'var(--font-accent)',
-                  fontSize: 72,
+                  fontSize: 76,
                   color: '#C9A96E',
-                  opacity: 0.4,
+                  opacity: 0.5,
                   lineHeight: 1,
-                  marginBottom: 12,
+                  marginBottom: 14,
                 }}
               >
                 {step.number}
@@ -128,11 +160,12 @@ export default function ProcessSection() {
               <h3
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontWeight: 600,
-                  fontSize: 22,
+                  fontWeight: 700,
+                  fontSize: 23,
                   color: '#1A1714',
-                  margin: '0 0 12px',
+                  margin: '0 0 14px',
                   lineHeight: 1.2,
+                  letterSpacing: '-0.01em',
                 }}
               >
                 {step.title}
@@ -141,9 +174,9 @@ export default function ProcessSection() {
                 style={{
                   fontFamily: 'var(--font-body)',
                   fontSize: 15,
-                  color: '#5A5550',
+                  color: '#4A4440',
                   margin: 0,
-                  lineHeight: 1.75,
+                  lineHeight: 1.8,
                 }}
               >
                 {step.description}

@@ -14,8 +14,8 @@ import {
 
 const C = {
   void: '#080808',
-  bronze: '#C4965A',
-  warmGray: '#8A837C',
+  bronze: '#C9A96E',
+  warmGray: '#8A8278',
   rule: '#2A2520',
   ivory: '#F0EBE3',
   fire: '#E8622A',
@@ -205,10 +205,11 @@ export default function ServicesReveal() {
         >
           <span
             style={{
-              fontFamily: "'Bebas Neue', cursive",
-              fontSize: 13,
-              color: C.bronze,
-              letterSpacing: '0.2em',
+              fontFamily: 'var(--font-ui)',
+              fontWeight: 500,
+              fontSize: 11,
+              color: C.fire,
+              letterSpacing: '0.22em',
               textTransform: 'uppercase',
             }}
           >

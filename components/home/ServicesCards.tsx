@@ -72,25 +72,15 @@ export default function ServicesCards() {
         <div>
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
-              fontSize: 14,
-              color: '#C9A96E',
-              letterSpacing: '0.1em',
-            }}
-          >
-            02
-          </span>
-          <span
-            style={{
               fontFamily: 'var(--font-ui)',
+              fontWeight: 500,
               fontSize: 11,
-              color: '#7A7268',
-              letterSpacing: '0.2em',
-              marginLeft: 16,
+              color: '#E8622A',
+              letterSpacing: '0.22em',
               textTransform: 'uppercase',
             }}
           >
-            WHAT WE BUILD
+            02 — WHAT WE BUILD
           </span>
         </div>
 
@@ -125,9 +115,9 @@ export default function ServicesCards() {
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: 16,
-                color: '#7A7268',
+                color: '#9A9490',
                 marginTop: 20,
-                lineHeight: 1.7,
+                lineHeight: 1.75,
                 maxWidth: 400,
               }}
             >
