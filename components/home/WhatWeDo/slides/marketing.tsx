@@ -90,9 +90,9 @@ const MarketingAfter = React.memo(function MarketingAfter() {
       {/* KPI row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', borderBottom: '1px solid #1a1a1a' }}>
         {[
-          { label: 'Inquiries', val: '312', delta: '+28%', color: '#E8622A' },
+          { label: 'Inquiries', val: '312', delta: '+28%', color: 'var(--blue)' },
           { label: 'Open Rate', val: '68%', delta: '+14%', color: '#4ade80' },
-          { label: 'Enrolled', val: '94', delta: '+41%', color: '#C9A96E' },
+          { label: 'Enrolled', val: '94', delta: '+41%', color: 'var(--gold)' },
         ].map((kpi, i) => (
           <div key={i} style={{
             padding: '8px 6px',
@@ -115,7 +115,7 @@ const MarketingAfter = React.memo(function MarketingAfter() {
               <div style={{
                 width: '100%', borderRadius: '2px 2px 0 0',
                 height: `${(val / 100) * 50}px`,
-                background: i === 5 ? '#E8622A' : 'rgba(232,98,42,0.25)',
+                background: i === 5 ? 'var(--blue)' : 'rgba(26,107,255,0.25)',
                 transition: 'height 0.3s ease',
               }} />
               <span style={{ fontSize: 6, color: '#444' }}>{days[i]}</span>
@@ -126,8 +126,8 @@ const MarketingAfter = React.memo(function MarketingAfter() {
         {/* Channel breakdown */}
         <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 4 }}>
           {[
-            { channel: 'Email Newsletter', reach: 180, pct: 58, color: '#E8622A' },
-            { channel: 'SMS Alerts', reach: 94, pct: 30, color: '#C9A96E' },
+            { channel: 'Email Newsletter', reach: 180, pct: 58, color: 'var(--blue)' },
+            { channel: 'SMS Alerts', reach: 94, pct: 30, color: 'var(--gold)' },
             { channel: 'Website Form', reach: 38, pct: 12, color: '#4ade80' },
           ].map((ch, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>

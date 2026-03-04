@@ -60,7 +60,7 @@ export default function WhoWeServe() {
   return (
     <section
       style={{
-        backgroundColor: '#080808',
+        backgroundColor: 'var(--bg-subtle)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -77,7 +77,7 @@ export default function WhoWeServe() {
           left: 0,
           right: 0,
           height: 2,
-          backgroundColor: '#E8622A',
+          backgroundColor: 'var(--blue)',
           transformOrigin: 'left',
           zIndex: 10,
         }}
@@ -111,9 +111,9 @@ export default function WhoWeServe() {
       >
         <span
           style={{
-            fontFamily: 'var(--font-accent)',
+            fontFamily: 'var(--font-stamp)',
             fontSize: 11,
-            color: '#E8622A',
+            color: 'var(--blue)',
             letterSpacing: '0.4em',
           }}
         >
@@ -123,7 +123,7 @@ export default function WhoWeServe() {
           style={{
             fontFamily: 'var(--font-ui)',
             fontSize: 11,
-            color: '#555',
+            color: 'var(--text-muted)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
           }}
@@ -140,9 +140,9 @@ export default function WhoWeServe() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         style={{
           fontFamily: 'var(--font-display)',
-          fontWeight: 700,
+          fontWeight: 400,
           fontSize: 'clamp(28px, 4vw, 52px)',
-          color: '#F0EBE3',
+          color: 'var(--text-primary)',
           letterSpacing: '-0.02em',
           margin: '24px 5% 56px',
           maxWidth: 700,
@@ -153,13 +153,13 @@ export default function WhoWeServe() {
       </motion.h2>
 
       {/* ── Accordion rows ── */}
-      <div style={{ borderTop: '1px solid #1d1d1d' }}>
+      <div style={{ borderTop: '1px solid var(--line)' }}>
         {ROWS.map((row, i) => {
           const isOpen = open === i;
           return (
             <div
               key={row.num}
-              style={{ borderBottom: '1px solid #1d1d1d' }}
+              style={{ borderBottom: '1px solid var(--line)' }}
             >
               {/* Collapsed row header */}
               <button
@@ -192,9 +192,9 @@ export default function WhoWeServe() {
                 >
                   <span
                     style={{
-                      fontFamily: 'var(--font-accent)',
+                      fontFamily: 'var(--font-stamp)',
                       fontSize: 14,
-                      color: '#333',
+                      color: 'var(--text-muted)',
                       letterSpacing: '0.1em',
                       flexShrink: 0,
                     }}
@@ -204,9 +204,9 @@ export default function WhoWeServe() {
                   <h3
                     style={{
                       fontFamily: 'var(--font-display)',
-                      fontWeight: 700,
+                      fontWeight: 400,
                       fontSize: 'clamp(20px, 3vw, 32px)',
-                      color: isOpen ? '#F0EBE3' : '#888',
+                      color: isOpen ? 'var(--text-primary)' : 'var(--text-body)',
                       margin: 0,
                       lineHeight: 1.2,
                       transition: 'color 0.3s ease',
@@ -223,7 +223,7 @@ export default function WhoWeServe() {
                   style={{
                     fontFamily: 'var(--font-ui)',
                     fontSize: 20,
-                    color: isOpen ? '#E8622A' : '#444',
+                    color: isOpen ? 'var(--blue)' : 'var(--text-muted)',
                     flexShrink: 0,
                     display: 'inline-block',
                     marginLeft: 24,
@@ -277,9 +277,9 @@ export default function WhoWeServe() {
                           style={{
                             fontFamily: 'var(--font-display)',
                             fontStyle: 'italic',
-                            fontWeight: 600,
+                            fontWeight: 400,
                             fontSize: 'clamp(18px, 2vw, 24px)',
-                            color: '#C9A96E',
+                            color: 'var(--gold)',
                             margin: '0 0 8px',
                             lineHeight: 1.5,
                           }}
@@ -294,7 +294,7 @@ export default function WhoWeServe() {
                           style={{
                             fontFamily: 'var(--font-ui)',
                             fontSize: 11,
-                            color: '#555',
+                            color: 'var(--text-muted)',
                             letterSpacing: '0.2em',
                             textTransform: 'uppercase',
                             margin: '0 0 20px',
@@ -327,7 +327,7 @@ export default function WhoWeServe() {
                             >
                               <span
                                 style={{
-                                  color: '#E8622A',
+                                  color: 'var(--blue)',
                                   fontSize: 12,
                                   flexShrink: 0,
                                   marginTop: 2,
@@ -340,7 +340,7 @@ export default function WhoWeServe() {
                                   fontFamily: 'var(--font-ui)',
                                   fontWeight: 500,
                                   fontSize: 14,
-                                  color: '#F0EBE3',
+                                  color: 'var(--text-primary)',
                                   lineHeight: 1.5,
                                 }}
                               >
@@ -362,8 +362,8 @@ export default function WhoWeServe() {
       {/* Bottom tagline */}
       <div
         style={{
-          borderTop: '1px solid #1d1d1d',
-          backgroundColor: '#060606',
+          borderTop: '1px solid var(--line)',
+          backgroundColor: 'var(--bg-base)',
           padding: '40px 5%',
           textAlign: 'center',
         }}
@@ -373,7 +373,7 @@ export default function WhoWeServe() {
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
             fontSize: 20,
-            color: '#444',
+            color: 'var(--text-muted)',
             margin: 0,
           }}
         >

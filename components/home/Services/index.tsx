@@ -17,11 +17,11 @@ export default function Services() {
   return (
     <section
       style={{
-        background: '#090909',
+        background: 'var(--bg-base)',
         padding: '130px 0',
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid #1d1d1d',
+        borderTop: '1px solid var(--line)',
       }}
     >
       {/* Grain overlay */}
@@ -60,7 +60,7 @@ export default function Services() {
           width: 500,
           height: 500,
           background:
-            'radial-gradient(circle, rgba(232,98,42,0.05) 0%, transparent 65%)',
+            'radial-gradient(circle, rgba(26,107,255,0.08) 0%, transparent 65%)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -94,7 +94,7 @@ export default function Services() {
           left: 0,
           right: 0,
           height: 2,
-          background: '#E8622A',
+          background: 'var(--blue)',
           transformOrigin: 'left',
           zIndex: 1,
         }}
@@ -135,12 +135,12 @@ export default function Services() {
                 marginBottom: 20,
               }}
             >
-              <div style={{ width: 28, height: 1, background: '#E8622A', flexShrink: 0 }} />
+              <div style={{ width: 28, height: 1, background: 'var(--blue)', flexShrink: 0 }} />
               <span
                 style={{
                   fontFamily: 'var(--font-stamp)',
                   fontSize: 11,
-                  color: '#C9A96E',
+                  color: 'var(--gold)',
                   letterSpacing: '0.4em',
                 }}
               >
@@ -159,24 +159,27 @@ export default function Services() {
               {[
                 {
                   text: 'We know what\u2019s',
-                  weight: 300,
+                  weight: 400,
                   style: 'italic' as const,
-                  color: '#6A6460',
+                  fontFamily: 'var(--font-editorial)',
+                  color: 'var(--text-muted)',
                   delay: 0,
                 },
                 {
                   text: 'broken.',
-                  weight: 900,
+                  weight: 400,
                   style: 'normal' as const,
-                  color: '#E8622A',
+                  fontFamily: 'var(--font-display)',
+                  color: 'var(--blue)',
                   delay: 0.12,
                   letterSpacing: '-0.04em',
                 },
                 {
                   text: 'Here\u2019s the fix.',
-                  weight: 900,
+                  weight: 400,
                   style: 'italic' as const,
-                  color: '#F0EBE3',
+                  fontFamily: 'var(--font-display)',
+                  color: 'var(--text-primary)',
                   delay: 0.24,
                 },
               ].map((line, i) => (
@@ -192,7 +195,7 @@ export default function Services() {
                     }}
                     style={{
                       display: 'block',
-                      fontFamily: 'var(--font-display)',
+                      fontFamily: line.fontFamily,
                       fontWeight: line.weight,
                       fontStyle: line.style,
                       color: line.color,
@@ -216,10 +219,10 @@ export default function Services() {
           >
             <p
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-ui)',
                 fontWeight: 400,
                 fontSize: 14,
-                color: '#6A6460',
+                color: 'var(--text-muted)',
                 lineHeight: 1.8,
                 margin: '0 0 16px 0',
               }}
@@ -237,10 +240,10 @@ export default function Services() {
               <span
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontWeight: 900,
+                  fontWeight: 400,
                   fontStyle: 'italic',
                   fontSize: 32,
-                  color: 'rgba(232,98,42,0.25)',
+                  color: 'var(--blue-mid)',
                   letterSpacing: '-0.04em',
                   cursor: 'default',
                   userSelect: 'none',
@@ -256,8 +259,8 @@ export default function Services() {
                     position: 'absolute',
                     bottom: 'calc(100% + 8px)',
                     right: 0,
-                    background: '#111',
-                    border: '1px solid #1d1d1d',
+                    background: 'var(--bg-subtle)',
+                    border: '1px solid var(--line)',
                     borderRadius: 2,
                     padding: '4px 10px',
                     whiteSpace: 'nowrap',
@@ -270,7 +273,7 @@ export default function Services() {
                       fontFamily: 'var(--font-ui)',
                       fontWeight: 400,
                       fontSize: 11,
-                      color: '#6A6460',
+                      color: 'var(--text-muted)',
                     }}
                   >
                     Rx — Latin for &ldquo;take this remedy&rdquo;
@@ -288,8 +291,8 @@ export default function Services() {
             style={{
               display: 'grid',
               gap: 1,
-              background: '#1d1d1d',
-              border: '1px solid #1d1d1d',
+              background: 'var(--line)',
+              border: '1px solid var(--line)',
             }}
           >
             {SERVICES.map((service, i) => (

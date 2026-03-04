@@ -88,7 +88,7 @@ export default function RecentWork() {
             top: 0,
             height: '100vh',
             overflow: 'hidden',
-            backgroundColor: '#080808',
+            backgroundColor: 'var(--bg-subtle)',
           }}
         >
           {/* Section entry line — draws left→right on scroll-in */}
@@ -99,7 +99,7 @@ export default function RecentWork() {
               left: 0,
               right: 0,
               height: 2,
-              backgroundColor: '#E8622A',
+              backgroundColor: 'var(--blue)',
               scaleX: entryScaleX,
               transformOrigin: 'left',
               zIndex: 30,
@@ -115,7 +115,7 @@ export default function RecentWork() {
               height: 2,
               width: progressWidth,
               background:
-                'linear-gradient(to right, rgba(232,98,42,0.3), rgba(232,98,42,0.7))',
+                'linear-gradient(to right, var(--blue-lo), var(--blue-mid))',
               zIndex: 29,
             }}
           />
@@ -144,22 +144,22 @@ export default function RecentWork() {
               top: 0,
               width: 68,
               height: '100%',
-              backgroundColor: '#080808',
+              backgroundColor: 'var(--bg-subtle)',
               zIndex: 25,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'space-between',
               padding: '52px 0',
-              borderRight: '1px solid #1d1d1d',
+              borderRight: '1px solid var(--line)',
             }}
           >
             {/* Section number */}
             <span
               style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-stamp)',
                 fontSize: 11,
-                color: '#E8622A',
+                color: 'var(--blue)',
                 letterSpacing: '0.4em',
                 writingMode: 'vertical-rl',
                 transform: 'rotate(180deg)',
@@ -171,9 +171,9 @@ export default function RecentWork() {
             {/* Vertical WORK texture */}
             <span
               style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-stamp)',
                 fontSize: 68,
-                color: '#181818',
+                color: 'var(--line2)',
                 letterSpacing: '0.06em',
                 writingMode: 'vertical-rl',
                 transform: 'rotate(180deg)',
@@ -187,9 +187,9 @@ export default function RecentWork() {
             {/* Panel counter */}
             <span
               style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-stamp)',
                 fontSize: 11,
-                color: '#555',
+                color: 'var(--text-muted)',
                 letterSpacing: '0.12em',
               }}
             >
@@ -248,13 +248,13 @@ export default function RecentWork() {
                     }}
                   />
 
-                  {/* Right-side gradient bleed into black panel */}
+                  {/* Right-side gradient bleed into panel */}
                   <div
                     style={{
                       position: 'absolute',
                       inset: 0,
                       background:
-                        'linear-gradient(to right, transparent 55%, rgba(0,0,0,0.9) 100%)',
+                        'linear-gradient(to right, transparent 55%, rgba(245,242,237,0.9) 100%)',
                       pointerEvents: 'none',
                     }}
                   />
@@ -277,22 +277,22 @@ export default function RecentWork() {
                       y1="0"
                       x2="0"
                       y2="800"
-                      stroke="#E8622A"
+                      stroke="var(--blue)"
                       strokeWidth="1.5"
                       style={{
                         filter:
-                          'drop-shadow(0 0 6px rgba(232,98,42,0.9)) drop-shadow(0 0 2px #E8622A)',
+                          'drop-shadow(0 0 6px rgba(26,107,255,0.9)) drop-shadow(0 0 2px var(--blue))',
                       }}
                     />
                   </svg>
                 </div>
 
-                {/* Right 45% — pure void black */}
+                {/* Right 45% — light panel */}
                 <div
                   style={{
                     flex: 1,
                     height: '100%',
-                    backgroundColor: '#000000',
+                    backgroundColor: 'var(--bg-base)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
@@ -302,10 +302,10 @@ export default function RecentWork() {
                   {/* Zone 1: Category stamp */}
                   <p
                     style={{
-                      fontFamily: 'var(--font-accent)',
+                      fontFamily: 'var(--font-stamp)',
                       fontSize: 11,
                       letterSpacing: '0.4em',
-                      color: '#E8622A',
+                      color: 'var(--blue)',
                       margin: '0 0 44px',
                     }}
                   >
@@ -316,9 +316,9 @@ export default function RecentWork() {
                   <h2
                     style={{
                       fontFamily: 'var(--font-display)',
-                      fontWeight: 900,
+                      fontWeight: 400,
                       fontSize: 'clamp(36px, 3.8vw, 64px)',
-                      color: '#F0EBE3',
+                      color: 'var(--text-primary)',
                       lineHeight: 1.1,
                       margin: '0 0 44px',
                       whiteSpace: 'pre-line',
@@ -346,9 +346,9 @@ export default function RecentWork() {
                         >
                           <div
                             style={{
-                              fontFamily: 'var(--font-accent)',
-                              fontSize: 36,
-                              color: '#E8622A',
+                              fontFamily: 'var(--font-stamp)',
+                              fontSize: 32,
+                              color: 'var(--blue)',
                               lineHeight: 1,
                             }}
                           >
@@ -358,7 +358,7 @@ export default function RecentWork() {
                             style={{
                               fontFamily: 'var(--font-ui)',
                               fontSize: 10,
-                              color: '#555',
+                              color: 'var(--text-muted)',
                               letterSpacing: '0.12em',
                               textTransform: 'uppercase',
                               marginTop: 6,
@@ -372,7 +372,7 @@ export default function RecentWork() {
                             style={{
                               width: 1,
                               height: 28,
-                              backgroundColor: '#2a2a2a',
+                              backgroundColor: 'var(--line)',
                             }}
                           />
                         )}
@@ -394,7 +394,7 @@ export default function RecentWork() {
                         fontFamily: 'var(--font-ui)',
                         fontWeight: 500,
                         fontSize: 13,
-                        color: '#444',
+                        color: 'var(--text-muted)',
                       }}
                     >
                       {project.name}
@@ -405,7 +405,7 @@ export default function RecentWork() {
                         fontFamily: 'var(--font-ui)',
                         fontWeight: 600,
                         fontSize: 13,
-                        color: '#E8622A',
+                        color: 'var(--blue)',
                         textDecoration: 'none',
                         opacity: hoveredPanel === i ? 1 : 0,
                         transform:
@@ -431,17 +431,17 @@ export default function RecentWork() {
       {/* ── After the pinned track ── */}
       <div
         style={{
-          backgroundColor: '#080808',
+          backgroundColor: 'var(--bg-subtle)',
           padding: '28px 0',
           textAlign: 'center',
-          borderTop: '1px solid #1d1d1d',
+          borderTop: '1px solid var(--line)',
         }}
       >
         <span
           style={{
             fontFamily: 'var(--font-ui)',
             fontSize: 12,
-            color: '#444',
+            color: 'var(--text-muted)',
           }}
         >
           Showing 3 of 50+ completed projects
@@ -451,7 +451,7 @@ export default function RecentWork() {
           style={{
             fontFamily: 'var(--font-ui)',
             fontSize: 12,
-            color: '#E8622A',
+            color: 'var(--blue)',
             textDecoration: 'none',
             marginLeft: 16,
           }}

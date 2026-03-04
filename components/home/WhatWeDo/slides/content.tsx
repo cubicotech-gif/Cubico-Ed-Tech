@@ -71,12 +71,12 @@ const ContentAfter = React.memo(function ContentAfter() {
       {/* Top bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderBottom: '1px solid #1a1a1a', background: '#0d0d0d' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{ width: 14, height: 14, background: '#E8622A', borderRadius: 2 }} />
+          <div style={{ width: 14, height: 14, background: 'var(--blue)', borderRadius: 2 }} />
           <span style={{ fontSize: 9, fontWeight: 700, color: '#fff' }}>Biology · Grade 9</span>
         </div>
         <div style={{ display: 'flex', gap: 4 }}>
           <div style={{ background: '#161616', border: '1px solid #2a2a2a', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: '#666' }}>EN · اردو</div>
-          <div style={{ background: 'rgba(232,98,42,0.2)', border: '1px solid rgba(232,98,42,0.4)', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: '#E8622A' }}>▶ Play</div>
+          <div style={{ background: 'rgba(26,107,255,0.2)', border: '1px solid rgba(26,107,255,0.4)', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: 'var(--blue)' }}>▶ Play</div>
         </div>
       </div>
 
@@ -92,12 +92,12 @@ const ContentAfter = React.memo(function ContentAfter() {
           ].map((ch, i) => (
             <div key={i} style={{
               padding: '5px 4px', borderRadius: 4, display: 'flex', alignItems: 'center', gap: 3,
-              background: ch.active ? 'rgba(232,98,42,0.15)' : 'transparent',
-              border: ch.active ? '1px solid rgba(232,98,42,0.3)' : '1px solid transparent',
+              background: ch.active ? 'rgba(26,107,255,0.15)' : 'transparent',
+              border: ch.active ? '1px solid rgba(26,107,255,0.3)' : '1px solid transparent',
             }}>
               <div style={{
                 width: 12, height: 12, borderRadius: '50%', flexShrink: 0,
-                background: ch.done ? '#4ade80' : ch.active ? '#E8622A' : '#2a2a2a',
+                background: ch.done ? '#4ade80' : ch.active ? 'var(--blue)' : '#2a2a2a',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 {ch.done && <span style={{ fontSize: 6, color: '#000' }}>✓</span>}
@@ -117,17 +117,17 @@ const ContentAfter = React.memo(function ContentAfter() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <svg viewBox="0 0 80 80" width="80" height="80">
                 {/* Stomach */}
-                <ellipse cx="40" cy="38" rx="14" ry="12" fill="none" stroke="#E8622A" strokeWidth="1" />
-                <ellipse cx="40" cy="38" rx="14" ry="12" fill="rgba(232,98,42,0.1)" />
+                <ellipse cx="40" cy="38" rx="14" ry="12" fill="none" stroke="var(--blue)" strokeWidth="1" />
+                <ellipse cx="40" cy="38" rx="14" ry="12" fill="rgba(26,107,255,0.1)" />
                 {/* Intestines */}
-                <path d="M 35 50 Q 25 55 28 62 Q 31 69 40 68 Q 49 69 52 62 Q 55 55 45 50" fill="none" stroke="#C9A96E" strokeWidth="1" />
+                <path d="M 35 50 Q 25 55 28 62 Q 31 69 40 68 Q 49 69 52 62 Q 55 55 45 50" fill="none" stroke="var(--gold)" strokeWidth="1" />
                 {/* Esophagus */}
                 <line x1="40" y1="20" x2="40" y2="26" stroke="#4ade80" strokeWidth="1.5" />
                 {/* Labels */}
-                <text x="46" y="32" fontSize="5" fill="#E8622A">Stomach</text>
-                <text x="10" y="62" fontSize="5" fill="#C9A96E">Intestine</text>
+                <text x="46" y="32" fontSize="5" fill="var(--blue)">Stomach</text>
+                <text x="10" y="62" fontSize="5" fill="var(--gold)">Intestine</text>
                 {/* Pulsing dot */}
-                <circle cx="40" cy="38" r="3" fill="#E8622A" opacity="0.8" />
+                <circle cx="40" cy="38" r="3" fill="var(--blue)" opacity="0.8" />
               </svg>
             </div>
             <div style={{ fontSize: 7, color: '#666', textAlign: 'center', marginTop: 4 }}>
@@ -139,16 +139,16 @@ const ContentAfter = React.memo(function ContentAfter() {
           <div style={{ background: '#111', border: '1px solid #1d1d1d', borderRadius: 5, padding: '6px 8px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
               <span style={{ fontSize: 7, color: '#555' }}>Chapter Progress</span>
-              <span style={{ fontSize: 7, color: '#E8622A' }}>67%</span>
+              <span style={{ fontSize: 7, color: 'var(--blue)' }}>67%</span>
             </div>
             <div style={{ height: 3, background: '#1d1d1d', borderRadius: 2 }}>
-              <div style={{ width: '67%', height: '100%', background: 'linear-gradient(to right, #E8622A, #C9A96E)', borderRadius: 2 }} />
+              <div style={{ width: '67%', height: '100%', background: 'linear-gradient(to right, var(--blue), var(--gold))', borderRadius: 2 }} />
             </div>
           </div>
 
           {/* Language toggle */}
           <div style={{ display: 'flex', gap: 4 }}>
-            <div style={{ flex: 1, background: 'rgba(232,98,42,0.15)', border: '1px solid rgba(232,98,42,0.3)', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: '#E8622A' }}>
+            <div style={{ flex: 1, background: 'rgba(26,107,255,0.15)', border: '1px solid rgba(26,107,255,0.3)', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: 'var(--blue)' }}>
               English
             </div>
             <div style={{ flex: 1, background: '#111', border: '1px solid #1d1d1d', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: '#555' }}>

@@ -41,13 +41,15 @@ const PrescriptionCard = React.memo(function PrescriptionCard({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       style={{
-        background: isHovered || isExpanded ? '#0d0d0d' : '#0a0a0a',
+        background: 'var(--bg-base)',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         minHeight: 420,
-        transition: 'background 300ms ease',
+        transition: 'background 300ms ease, box-shadow 300ms ease',
+        boxShadow: isHovered || isExpanded ? '0 4px 24px rgba(26,107,255,0.08)' : 'none',
+        borderLeft: isHovered || isExpanded ? '3px solid var(--blue)' : '3px solid transparent',
       }}
     >
       {/* Top notch — prescription pad tear-off aesthetic */}
@@ -59,7 +61,7 @@ const PrescriptionCard = React.memo(function PrescriptionCard({
           transform: 'translateX(-50%)',
           width: 40,
           height: 4,
-          background: '#161616',
+          background: 'var(--bg-subtle)',
           borderRadius: '0 0 4px 4px',
           zIndex: 2,
         }}
@@ -73,7 +75,7 @@ const PrescriptionCard = React.memo(function PrescriptionCard({
           right: 20,
           fontFamily: 'var(--font-stamp)',
           fontSize: 48,
-          color: isHovered ? '#252525' : '#1a1a1a',
+          color: 'var(--text-dim)',
           lineHeight: 1,
           userSelect: 'none',
           pointerEvents: 'none',
@@ -95,7 +97,7 @@ const PrescriptionCard = React.memo(function PrescriptionCard({
           left: 0,
           width: 2,
           height: '100%',
-          background: 'linear-gradient(to bottom, #E8622A, #C9A96E)',
+          background: 'linear-gradient(to right, var(--blue), var(--gold))',
           transformOrigin: 'top',
           zIndex: 3,
         }}

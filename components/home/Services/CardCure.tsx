@@ -15,7 +15,7 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
   return (
     <div
       style={{
-        background: '#0a0a0a',
+        background: 'var(--bg-base)',
         padding: '20px 28px 24px 28px',
         flex: 1,
         display: 'flex',
@@ -39,8 +39,8 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
               fontFamily: 'var(--font-stamp)',
               fontSize: 9,
               letterSpacing: '0.3em',
-              color: '#C9A96E',
-              background: 'rgba(201,169,110,0.10)',
+              color: 'var(--gold)',
+              background: 'var(--gold-lo)',
               border: '1px solid rgba(201,169,110,0.15)',
               padding: '3px 8px',
               borderRadius: 2,
@@ -55,9 +55,9 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
           <h3
             style={{
               fontFamily: 'var(--font-display)',
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: 'clamp(18px, 2vw, 26px)',
-              color: '#F0EBE3',
+              color: 'var(--text-primary)',
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
               margin: '0 0 4px 0',
@@ -68,10 +68,10 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
 
           <p
             style={{
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-ui)',
               fontWeight: 400,
               fontSize: 13,
-              color: '#C5BFB7',
+              color: 'var(--text-body)',
               lineHeight: 1.6,
               margin: 0,
             }}
@@ -86,7 +86,7 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
             style={{
               fontFamily: 'var(--font-stamp)',
               fontSize: 'clamp(36px, 4vw, 52px)',
-              color: '#E8622A',
+              color: 'var(--blue)',
               lineHeight: 1,
               display: 'block',
             }}
@@ -99,7 +99,7 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
               fontWeight: 700,
               fontSize: 8,
               letterSpacing: '0.15em',
-              color: '#6A6460',
+              color: 'var(--text-muted)',
               textTransform: 'uppercase',
               display: 'block',
               marginTop: 2,
@@ -136,17 +136,17 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
                 width: 4,
                 height: 4,
                 borderRadius: '50%',
-                background: '#E8622A',
+                background: 'var(--blue)',
                 flexShrink: 0,
                 marginTop: 6,
               }}
             />
             <span
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-ui)',
                 fontWeight: 400,
                 fontSize: 12.5,
-                color: '#C5BFB7',
+                color: 'var(--text-body)',
                 lineHeight: 1.5,
               }}
             >
@@ -163,7 +163,7 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
           alignItems: 'center',
           justifyContent: 'space-between',
           paddingTop: 16,
-          borderTop: '1px solid #1d1d1d',
+          borderTop: '1px solid var(--line)',
           marginTop: 'auto',
           gap: 12,
           flexWrap: 'wrap',
@@ -181,8 +181,8 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 padding: '3px 8px',
-                border: `1px solid ${isHovered ? '#2a2a2a' : '#272727'}`,
-                color: isHovered ? '#6A6460' : '#2A2A2A',
+                border: `1px solid ${isHovered ? 'var(--line2)' : 'var(--line)'}`,
+                color: isHovered ? 'var(--text-muted)' : 'var(--text-dim)',
                 borderRadius: 2,
                 transition: 'color 0.3s, border-color 0.3s',
               }}
@@ -211,7 +211,7 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
               fontFamily: 'var(--font-ui)',
               fontWeight: 600,
               fontSize: 11,
-              color: '#E8622A',
+              color: 'var(--blue)',
               transition: 'color 0.2s',
             }}
           >
@@ -227,7 +227,7 @@ export function CardCure({ cure, tags, isExpanded, isHovered, onToggle }: CardCu
           >
             <path
               d="M2 4 L6 8 L10 4"
-              stroke="#E8622A"
+              stroke="var(--blue)"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"

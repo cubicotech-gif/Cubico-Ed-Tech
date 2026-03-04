@@ -71,11 +71,11 @@ const ERPAfter = React.memo(function ERPAfter() {
         ].map((item, i) => (
           <div key={i} style={{
             width: 24, height: 24, borderRadius: 5, display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: item.active ? 'rgba(232,98,42,0.2)' : 'transparent',
-            border: item.active ? '1px solid rgba(232,98,42,0.4)' : 'none',
+            background: item.active ? 'rgba(26,107,255,0.2)' : 'transparent',
+            border: item.active ? '1px solid rgba(26,107,255,0.4)' : 'none',
             fontSize: 10,
           }}>
-            <span style={{ color: item.active ? '#E8622A' : '#444' }}>{item.icon}</span>
+            <span style={{ color: item.active ? 'var(--blue)' : '#444' }}>{item.icon}</span>
           </div>
         ))}
       </div>
@@ -112,11 +112,11 @@ const ERPAfter = React.memo(function ERPAfter() {
           <svg viewBox="0 0 100 60" width="100%" height="40" preserveAspectRatio="none">
             <defs>
               <linearGradient id="fee-grad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#E8622A" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#E8622A" stopOpacity="0" />
+                <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="var(--blue)" stopOpacity="0" />
               </linearGradient>
             </defs>
-            <polyline points={svgPoints} fill="none" stroke="#E8622A" strokeWidth="1.5" strokeLinejoin="round" />
+            <polyline points={svgPoints} fill="none" stroke="var(--blue)" strokeWidth="1.5" strokeLinejoin="round" />
             <polygon points={`0,100 ${svgPoints} 100,100`} fill="url(#fee-grad)" />
           </svg>
         </div>

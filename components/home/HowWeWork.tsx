@@ -106,7 +106,7 @@ export default function HowWeWork() {
           top: 0,
           height: '100vh',
           overflow: 'hidden',
-          backgroundColor: '#000000',
+          backgroundColor: 'var(--bg-base)',
         }}
       >
         {/* Section entry line */}
@@ -117,7 +117,7 @@ export default function HowWeWork() {
             left: 0,
             right: 0,
             height: 2,
-            backgroundColor: '#E8622A',
+            backgroundColor: 'var(--blue)',
             scaleX: entryScaleX,
             transformOrigin: 'left',
             zIndex: 30,
@@ -140,7 +140,7 @@ export default function HowWeWork() {
           }}
         />
 
-        {/* ── Vertical orange progress line on left ── */}
+        {/* ── Vertical blue progress line on left ── */}
         <div
           style={{
             position: 'absolute',
@@ -148,7 +148,7 @@ export default function HowWeWork() {
             top: 0,
             bottom: 0,
             width: 2,
-            backgroundColor: '#111',
+            backgroundColor: 'var(--line)',
             zIndex: 20,
           }}
         >
@@ -156,7 +156,7 @@ export default function HowWeWork() {
             style={{
               width: '100%',
               height: lineHeight,
-              backgroundColor: '#E8622A',
+              backgroundColor: 'var(--blue)',
               transformOrigin: 'top',
             }}
           />
@@ -187,9 +187,9 @@ export default function HowWeWork() {
                   right: '-5%',
                   top: '50%',
                   transform: 'translateY(-50%)',
-                  fontFamily: 'var(--font-accent)',
+                  fontFamily: 'var(--font-stamp)',
                   fontSize: 'clamp(160px, 22vw, 320px)',
-                  color: '#0f0f0f',
+                  color: 'var(--line)',
                   lineHeight: 1,
                   userSelect: 'none',
                   pointerEvents: 'none',
@@ -213,7 +213,7 @@ export default function HowWeWork() {
                   style={{
                     width: 56,
                     height: 56,
-                    border: '1px solid #E8622A',
+                    border: '1px solid var(--blue)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -222,9 +222,9 @@ export default function HowWeWork() {
                 >
                   <span
                     style={{
-                      fontFamily: 'var(--font-accent)',
+                      fontFamily: 'var(--font-stamp)',
                       fontSize: 22,
-                      color: '#E8622A',
+                      color: 'var(--blue)',
                       lineHeight: 1,
                     }}
                   >
@@ -236,10 +236,10 @@ export default function HowWeWork() {
                 <h2
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontWeight: 700,
+                    fontWeight: 400,
                     fontStyle: 'normal',
                     fontSize: 'clamp(44px, 5.5vw, 72px)',
-                    color: '#F0EBE3',
+                    color: 'var(--text-primary)',
                     margin: 0,
                     lineHeight: 1,
                     letterSpacing: '-0.02em',
@@ -253,10 +253,10 @@ export default function HowWeWork() {
               <div style={{ flex: 1 }}>
                 <p
                   style={{
-                    fontFamily: 'var(--font-body)',
+                    fontFamily: 'var(--font-ui)',
                     fontSize: 15,
                     lineHeight: 1.8,
-                    color: '#7A7268',
+                    color: 'var(--text-body)',
                     margin: '0 0 40px',
                     maxWidth: 520,
                   }}
@@ -287,7 +287,7 @@ export default function HowWeWork() {
                     >
                       <span
                         style={{
-                          color: '#E8622A',
+                          color: 'var(--blue)',
                           fontSize: 14,
                           lineHeight: 1,
                           flexShrink: 0,
@@ -300,7 +300,7 @@ export default function HowWeWork() {
                           fontFamily: 'var(--font-ui)',
                           fontWeight: 600,
                           fontSize: 13,
-                          color: '#F0EBE3',
+                          color: 'var(--text-primary)',
                           letterSpacing: '0.02em',
                         }}
                       >
@@ -325,7 +325,7 @@ export default function HowWeWork() {
                         width: si === activeStep ? 24 : 6,
                         height: 2,
                         backgroundColor:
-                          si === activeStep ? '#E8622A' : '#2a2a2a',
+                          si === activeStep ? 'var(--blue)' : 'var(--line2)',
                         transition: 'width 0.3s ease, background-color 0.3s ease',
                       }}
                     />
@@ -335,7 +335,7 @@ export default function HowWeWork() {
             </motion.div>
           )}
 
-          {/* ── Guarantee panel — full-bleed fire orange ── */}
+          {/* ── Guarantee panel — full-bleed blue ── */}
           {showGuarantee && (
             <motion.div
               key="guarantee"
@@ -346,7 +346,7 @@ export default function HowWeWork() {
               style={{
                 position: 'absolute',
                 inset: 0,
-                backgroundColor: '#E8622A',
+                backgroundColor: 'var(--blue)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -355,7 +355,7 @@ export default function HowWeWork() {
                 textAlign: 'center',
               }}
             >
-              {/* Grain on orange panel */}
+              {/* Grain on blue panel */}
               <div
                 aria-hidden="true"
                 style={{
@@ -374,7 +374,7 @@ export default function HowWeWork() {
                   fontFamily: 'var(--font-ui)',
                   fontWeight: 700,
                   fontSize: 11,
-                  color: 'rgba(0,0,0,0.5)',
+                  color: 'rgba(255,255,255,0.5)',
                   letterSpacing: '0.3em',
                   textTransform: 'uppercase',
                   margin: '0 0 32px',
@@ -386,10 +386,10 @@ export default function HowWeWork() {
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontWeight: 700,
+                  fontWeight: 400,
                   fontStyle: 'italic',
                   fontSize: 'clamp(28px, 4.5vw, 56px)',
-                  color: '#000000',
+                  color: '#ffffff',
                   lineHeight: 1.3,
                   margin: '0 0 28px',
                   maxWidth: 820,
@@ -404,7 +404,7 @@ export default function HowWeWork() {
                 style={{
                   fontFamily: 'var(--font-ui)',
                   fontSize: 13,
-                  color: 'rgba(0,0,0,0.6)',
+                  color: 'rgba(255,255,255,0.6)',
                   margin: 0,
                 }}
               >

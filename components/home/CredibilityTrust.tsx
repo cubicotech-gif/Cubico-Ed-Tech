@@ -83,7 +83,7 @@ const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function CredibilityTrust() {
   return (
-    <section style={{ backgroundColor: '#080808', position: 'relative' }}>
+    <section style={{ backgroundColor: 'var(--bg-subtle)', position: 'relative' }}>
       {/* Section entry line */}
       <motion.div
         initial={{ scaleX: 0 }}
@@ -96,7 +96,7 @@ export default function CredibilityTrust() {
           left: 0,
           right: 0,
           height: 2,
-          backgroundColor: '#E8622A',
+          backgroundColor: 'var(--blue)',
           transformOrigin: 'left',
           zIndex: 10,
         }}
@@ -120,7 +120,7 @@ export default function CredibilityTrust() {
       {/* ── A: The Numbers ── */}
       <div
         style={{
-          backgroundColor: '#000000',
+          backgroundColor: 'var(--bg-base)',
           padding: '120px 5%',
           position: 'relative',
         }}
@@ -138,9 +138,9 @@ export default function CredibilityTrust() {
         >
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-stamp)',
               fontSize: 11,
-              color: '#E8622A',
+              color: 'var(--blue)',
               letterSpacing: '0.4em',
             }}
           >
@@ -150,7 +150,7 @@ export default function CredibilityTrust() {
             style={{
               fontFamily: 'var(--font-ui)',
               fontSize: 11,
-              color: '#555',
+              color: 'var(--text-muted)',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
             }}
@@ -184,14 +184,14 @@ export default function CredibilityTrust() {
                 textAlign: 'center',
                 padding: '40px 20px',
                 borderRight:
-                  i < STATS.length - 1 ? '1px solid #111' : 'none',
+                  i < STATS.length - 1 ? '1px solid var(--line)' : 'none',
               }}
             >
               <div
                 style={{
-                  fontFamily: 'var(--font-accent)',
-                  fontSize: 'clamp(80px, 10vw, 120px)',
-                  color: '#F0EBE3',
+                  fontFamily: 'var(--font-stamp)',
+                  fontSize: 'clamp(72px, 9vw, 108px)',
+                  color: 'var(--text-primary)',
                   lineHeight: 1,
                 }}
               >
@@ -202,7 +202,7 @@ export default function CredibilityTrust() {
                   fontFamily: 'var(--font-ui)',
                   fontWeight: 700,
                   fontSize: 10,
-                  color: '#555',
+                  color: 'var(--text-muted)',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   marginTop: 12,
@@ -212,9 +212,9 @@ export default function CredibilityTrust() {
               </div>
               <div
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-ui)',
                   fontSize: 11,
-                  color: '#333',
+                  color: 'var(--text-muted)',
                   marginTop: 4,
                   letterSpacing: '0.06em',
                 }}
@@ -229,7 +229,7 @@ export default function CredibilityTrust() {
       {/* ── B: The Testimonial ── */}
       <div
         style={{
-          backgroundColor: '#080808',
+          backgroundColor: 'var(--bg-subtle)',
           padding: '100px 5%',
           position: 'relative',
         }}
@@ -242,7 +242,7 @@ export default function CredibilityTrust() {
           style={{
             maxWidth: 1000,
             margin: '0 auto',
-            borderLeft: '3px solid #E8622A',
+            borderLeft: '3px solid var(--blue)',
             paddingLeft: 64,
             position: 'relative',
           }}
@@ -253,7 +253,7 @@ export default function CredibilityTrust() {
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 120,
-              color: '#1a1a1a',
+              color: 'var(--line2)',
               lineHeight: 1,
               position: 'absolute',
               top: -32,
@@ -270,7 +270,7 @@ export default function CredibilityTrust() {
               fontStyle: 'italic',
               fontWeight: 400,
               fontSize: 'clamp(18px, 2.2vw, 26px)',
-              color: '#F0EBE3',
+              color: 'var(--text-primary)',
               lineHeight: 1.6,
               margin: '0 0 48px',
               maxWidth: 820,
@@ -284,7 +284,7 @@ export default function CredibilityTrust() {
             <em
               style={{
                 fontStyle: 'normal',
-                color: '#C9A96E',
+                color: 'var(--gold)',
               }}
             >
               Every other agency we approached quoted 4 to 6 months.
@@ -307,7 +307,7 @@ export default function CredibilityTrust() {
                 height: 44,
                 borderRadius: '50%',
                 background:
-                  'linear-gradient(135deg, #C9A96E 0%, #E8622A 100%)',
+                  'linear-gradient(135deg, var(--gold) 0%, var(--blue) 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -319,7 +319,7 @@ export default function CredibilityTrust() {
                   fontFamily: 'var(--font-ui)',
                   fontWeight: 700,
                   fontSize: 14,
-                  color: '#000',
+                  color: '#fff',
                   letterSpacing: '0.05em',
                 }}
               >
@@ -333,7 +333,7 @@ export default function CredibilityTrust() {
                   fontFamily: 'var(--font-ui)',
                   fontWeight: 700,
                   fontSize: 12,
-                  color: '#F0EBE3',
+                  color: 'var(--text-primary)',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
                 }}
@@ -344,7 +344,7 @@ export default function CredibilityTrust() {
                 style={{
                   fontFamily: 'var(--font-ui)',
                   fontSize: 12,
-                  color: '#555',
+                  color: 'var(--text-muted)',
                   letterSpacing: '0.1em',
                   marginTop: 4,
                 }}
@@ -359,8 +359,8 @@ export default function CredibilityTrust() {
       {/* ── C: Institution Name Marquee ── */}
       <div
         style={{
-          backgroundColor: '#060606',
-          borderTop: '1px solid #1a1a1a',
+          backgroundColor: 'var(--bg-base)',
+          borderTop: '1px solid var(--line)',
           padding: '28px 0',
           overflow: 'hidden',
           position: 'relative',
@@ -376,7 +376,7 @@ export default function CredibilityTrust() {
             bottom: 0,
             width: 120,
             background:
-              'linear-gradient(to right, #060606, transparent)',
+              'linear-gradient(to right, var(--bg-base), transparent)',
             zIndex: 5,
             pointerEvents: 'none',
           }}
@@ -390,7 +390,7 @@ export default function CredibilityTrust() {
             bottom: 0,
             width: 120,
             background:
-              'linear-gradient(to left, #060606, transparent)',
+              'linear-gradient(to left, var(--bg-base), transparent)',
             zIndex: 5,
             pointerEvents: 'none',
           }}
@@ -408,9 +408,9 @@ export default function CredibilityTrust() {
               <span key={idx} style={{ display: 'flex', alignItems: 'center' }}>
                 <span
                   style={{
-                    fontFamily: 'var(--font-accent)',
+                    fontFamily: 'var(--font-stamp)',
                     fontSize: 13,
-                    color: '#2a2a2a',
+                    color: 'var(--line2)',
                     letterSpacing: '0.2em',
                     whiteSpace: 'nowrap',
                     padding: '0 24px',
@@ -422,7 +422,7 @@ export default function CredibilityTrust() {
                 {/* Diamond separator */}
                 <span
                   style={{
-                    color: '#E8622A',
+                    color: 'var(--blue)',
                     fontSize: 8,
                     opacity: 0.5,
                     flexShrink: 0,

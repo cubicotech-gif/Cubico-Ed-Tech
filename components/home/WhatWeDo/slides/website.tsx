@@ -98,7 +98,7 @@ const WebsiteAfter = React.memo(function WebsiteAfter() {
           <div key={i} style={{
             position: 'absolute', top: s.top, right: s.right,
             width: s.w, height: s.h,
-            border: '1px solid #E8622A', borderRadius: 4,
+            border: '1px solid var(--blue)', borderRadius: 4,
             transform: `rotate(${s.rot}deg)`, opacity: s.op,
           }} />
         ))}
@@ -106,12 +106,12 @@ const WebsiteAfter = React.memo(function WebsiteAfter() {
         {/* Nav */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <div style={{ width: 20, height: 20, background: '#E8622A', borderRadius: 3 }} />
+            <div style={{ width: 20, height: 20, background: 'var(--blue)', borderRadius: 3 }} />
             <span style={{ fontSize: 9, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)', letterSpacing: 1 }}>AL NOOR</span>
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
             {['Academics', 'Admissions', 'Portal'].map((item, i) => (
-              <span key={i} style={{ fontSize: 8, color: i === 2 ? '#E8622A' : '#888' }}>{item}</span>
+              <span key={i} style={{ fontSize: 8, color: i === 2 ? 'var(--blue)' : '#888' }}>{item}</span>
             ))}
           </div>
         </div>
@@ -119,13 +119,13 @@ const WebsiteAfter = React.memo(function WebsiteAfter() {
         {/* Headline */}
         <div style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 6 }}>
           Shaping Tomorrow&apos;s<br />
-          <span style={{ color: '#E8622A' }}>Leaders</span> Today
+          <span style={{ color: 'var(--blue)' }}>Leaders</span> Today
         </div>
         <div style={{ fontSize: 8, color: '#555', marginBottom: 10 }}>Excellence in education since 1987</div>
 
         {/* CTA buttons */}
         <div style={{ display: 'flex', gap: 6 }}>
-          <div style={{ background: '#E8622A', borderRadius: 4, padding: '4px 10px', fontSize: 8, color: '#fff', fontWeight: 600 }}>
+          <div style={{ background: 'var(--blue)', borderRadius: 4, padding: '4px 10px', fontSize: 8, color: '#fff', fontWeight: 600 }}>
             Apply Now
           </div>
           <div style={{ border: '1px solid #333', borderRadius: 4, padding: '4px 10px', fontSize: 8, color: '#888' }}>
@@ -145,7 +145,7 @@ const WebsiteAfter = React.memo(function WebsiteAfter() {
             padding: '8px 6px', textAlign: 'center',
             borderRight: i < 2 ? '1px solid #1d1d1d' : 'none',
           }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#E8622A', fontFamily: 'var(--font-display)' }}>{s.n}</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--blue)', fontFamily: 'var(--font-display)' }}>{s.n}</div>
             <div style={{ fontSize: 7, color: '#555', marginTop: 1 }}>{s.label}</div>
           </div>
         ))}

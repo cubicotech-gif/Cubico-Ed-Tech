@@ -7,7 +7,7 @@ export function RxDivider() {
     <div
       style={{
         height: 36,
-        background: '#050505',
+        background: 'var(--bg-subtle)',
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
@@ -15,7 +15,7 @@ export function RxDivider() {
         flexShrink: 0,
       }}
     >
-      {/* The gradient fire line */}
+      {/* The gradient line */}
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
@@ -28,7 +28,7 @@ export function RxDivider() {
           right: 0,
           height: 1,
           background:
-            'linear-gradient(to right, transparent 0%, rgba(232,98,42,0.3) 10%, #E8622A 30%, #E8622A 70%, rgba(232,98,42,0.3) 90%, transparent 100%)',
+            'linear-gradient(to right, transparent 0%, var(--blue-lo) 10%, var(--blue) 30%, var(--blue) 70%, var(--blue-lo) 90%, transparent 100%)',
           transformOrigin: 'left',
           marginTop: -0.5,
         }}
@@ -41,7 +41,7 @@ export function RxDivider() {
           left: 28,
           top: '50%',
           transform: 'translateY(-50%)',
-          background: '#050505',
+          background: 'var(--bg-subtle)',
           padding: '0 10px 0 0',
           zIndex: 1,
         }}
@@ -49,10 +49,10 @@ export function RxDivider() {
         <span
           style={{
             fontFamily: 'var(--font-display)',
-            fontWeight: 900,
+            fontWeight: 400,
             fontStyle: 'italic',
             fontSize: 18,
-            color: '#E8622A',
+            color: 'var(--blue)',
             letterSpacing: '-0.02em',
             lineHeight: 1,
           }}
@@ -66,7 +66,7 @@ export function RxDivider() {
         style={{
           position: 'absolute',
           right: 28,
-          background: '#050505',
+          background: 'var(--bg-subtle)',
           paddingLeft: 10,
           zIndex: 1,
         }}
@@ -76,7 +76,7 @@ export function RxDivider() {
             fontFamily: 'var(--font-stamp)',
             fontSize: 8,
             letterSpacing: '0.2em',
-            color: 'rgba(232,98,42,0.35)',
+            color: 'var(--blue-mid)',
           }}
         >
           PRESCRIBED BY CUBICO TECHNOLOGIES
