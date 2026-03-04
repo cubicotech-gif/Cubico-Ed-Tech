@@ -69,7 +69,7 @@ export default function Navbar() {
             fontStyle: 'italic',
             fontWeight: 400,
             fontSize: 24,
-            color: scrolled ? 'var(--text-primary)' : '#F0EBE3',
+            color: scrolled ? 'var(--text-primary)' : 'var(--dark-text-primary)',
             textDecoration: 'none',
             letterSpacing: '-0.02em',
           }}
@@ -161,7 +161,7 @@ export default function Navbar() {
                 display: 'block',
                 width: 22,
                 height: 1,
-                backgroundColor: scrolled ? 'var(--text-primary)' : '#F0EBE3',
+                backgroundColor: scrolled ? 'var(--text-primary)' : 'var(--dark-text-primary)',
                 transition: 'transform 0.25s ease, opacity 0.25s ease',
                 transform: mobileOpen
                   ? i === 0 ? 'rotate(45deg) translate(4px, 5px)'

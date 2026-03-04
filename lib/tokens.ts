@@ -5,23 +5,23 @@
  */
 export const tokens = {
   colors: {
-    void:      '#050505',   // deepest background
-    ink:       '#090909',   // section backgrounds
-    panel:     '#111111',   // card panels
-    card:      '#161616',   // elevated cards
-    line:      '#1d1d1d',   // primary borders
-    line2:     '#272727',   // secondary borders
-    fire:      '#E8622A',   // primary accent
-    fireLo:    'rgba(232,98,42,0.10)',
-    fireMid:   'rgba(232,98,42,0.22)',
-    fireGlow:  'rgba(232,98,42,0.38)',
-    bronze:    '#C9A96E',   // secondary accent
-    bronzeLo:  'rgba(201,169,110,0.10)',
-    ivory:     '#F0EBE3',   // primary text
-    soft:      '#C5BFB7',   // secondary text
-    muted:     '#6A6460',   // tertiary text
-    dim:       '#2A2A2A',   // ghost elements
-    green:     '#10B981',   // online/active signal
+    void:      'var(--bg-base)',      // white base background
+    ink:       'var(--bg-subtle)',    // off-white section backgrounds
+    panel:     'var(--bg-base)',      // card panels
+    card:      'var(--bg-muted)',     // elevated cards
+    line:      'var(--line)',         // primary borders
+    line2:     'var(--line2)',        // secondary borders
+    fire:      'var(--blue)',         // primary accent (electric blue)
+    fireLo:    'var(--blue-lo)',
+    fireMid:   'var(--blue-mid)',
+    fireGlow:  'rgba(26,107,255,0.38)',
+    bronze:    'var(--gold)',         // secondary accent
+    bronzeLo:  'var(--gold-lo)',
+    ivory:     'var(--text-primary)', // primary text
+    soft:      'var(--text-body)',    // secondary text
+    muted:     'var(--text-muted)',   // tertiary text
+    dim:       'var(--text-dim)',     // ghost elements
+    green:     'var(--green)',        // online/active signal
   },
   ease: {
     out:      [0.16, 1, 0.3, 1] as const,

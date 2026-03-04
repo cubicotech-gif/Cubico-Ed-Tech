@@ -36,7 +36,7 @@ export default function HeroSection() {
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        backgroundColor: '#080808',
+        backgroundColor: 'var(--bg-dark)',
         overflow: 'hidden',
       }}
     >
@@ -64,14 +64,14 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Warm orange radial glow */}
+      {/* Blue radial glow */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
           background:
-            'radial-gradient(ellipse 60% 50% at 30% 60%, rgba(232,98,42,0.12) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 50% at 30% 60%, rgba(26,107,255,0.12) 0%, transparent 70%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -97,9 +97,9 @@ export default function HeroSection() {
         >
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-stamp)',
               fontSize: 13,
-              color: '#E8622A',
+              color: 'var(--blue)',
               letterSpacing: '0.25em',
             }}
           >
@@ -123,12 +123,12 @@ export default function HeroSection() {
               <motion.h1
                 variants={lineUp}
                 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 700,
+                  fontFamily: italic ? 'var(--font-editorial)' : 'var(--font-display)',
+                  fontWeight: 400,
                   fontStyle: italic ? 'italic' : 'normal',
                   fontSize: 'clamp(56px, 8vw, 120px)',
                   lineHeight: 1.05,
-                  color: italic ? '#E8622A' : '#F0EBE3',
+                  color: italic ? 'var(--blue)' : 'var(--dark-text-primary)',
                   margin: 0,
                   letterSpacing: '-0.02em',
                 }}
@@ -145,9 +145,9 @@ export default function HeroSection() {
           initial="hidden"
           animate="visible"
           style={{
-            fontFamily: 'var(--font-body)',
+            fontFamily: 'var(--font-ui)',
             fontSize: 18,
-            color: '#7A7268',
+            color: 'var(--dark-text-muted)',
             maxWidth: 480,
             marginTop: 32,
             lineHeight: 1.7,
@@ -177,16 +177,16 @@ export default function HeroSection() {
               fontFamily: 'var(--font-ui)',
               fontWeight: 600,
               fontSize: 15,
-              color: '#F0EBE3',
+              color: '#ffffff',
               textDecoration: 'none',
-              backgroundColor: '#E8622A',
+              backgroundColor: 'var(--blue)',
               padding: '16px 36px',
               borderRadius: 0,
               display: 'inline-block',
               transition: 'background-color 0.2s ease',
             }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#C4531F')}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#E8622A')}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#155BE8')}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = 'var(--blue)')}
           >
             Explore Our Work
           </Link>
@@ -196,13 +196,13 @@ export default function HeroSection() {
               fontFamily: 'var(--font-ui)',
               fontWeight: 500,
               fontSize: 15,
-              color: '#F0EBE3',
+              color: 'var(--dark-text-primary)',
               textDecoration: 'none',
               padding: '16px 0',
               transition: 'color 0.2s ease',
             }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#E8622A')}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#F0EBE3')}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = 'var(--blue)')}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'var(--dark-text-primary)')}
           >
             Watch Demo ▶
           </Link>
@@ -218,7 +218,7 @@ export default function HeroSection() {
             gap: '48px',
             marginTop: 80,
             flexWrap: 'wrap',
-            borderTop: '1px solid #2A2520',
+            borderTop: '1px solid var(--dark-line)',
             paddingTop: 40,
           }}
         >
@@ -231,9 +231,9 @@ export default function HeroSection() {
             <div key={label}>
               <div
                 style={{
-                  fontFamily: 'var(--font-accent)',
-                  fontSize: 56,
-                  color: '#F0EBE3',
+                  fontFamily: 'var(--font-stamp)',
+                  fontSize: 50,
+                  color: 'var(--dark-text-primary)',
                   lineHeight: 1,
                 }}
               >
@@ -241,9 +241,9 @@ export default function HeroSection() {
               </div>
               <div
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-ui)',
                   fontSize: 11,
-                  color: '#7A7268',
+                  color: 'var(--dark-text-muted)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.12em',
                   marginTop: 4,
@@ -266,7 +266,7 @@ export default function HeroSection() {
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 2,
-          color: '#E8622A',
+          color: 'var(--blue)',
           fontSize: 22,
           pointerEvents: 'none',
         }}

@@ -59,9 +59,9 @@ const ERPAfter = React.memo(function ERPAfter() {
   const svgPoints = points.map((v, i) => `${(i / (points.length - 1)) * 100},${100 - (v / maxVal) * 85}`).join(' ');
 
   return (
-    <div style={{ height: '100%', display: 'flex', background: '#0a0a0a' }}>
+    <div style={{ height: '100%', display: 'flex', background: 'var(--bg-dark)' }}>
       {/* Icon sidebar */}
-      <div style={{ width: 36, background: '#0f0f0f', borderRight: '1px solid #1a1a1a', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 12, gap: 14 }}>
+      <div style={{ width: 36, background: 'var(--dark-panel)', borderRight: '1px solid var(--dark-line)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 12, gap: 14 }}>
         {[
           { icon: '⊞', active: false },
           { icon: '💰', active: true },
@@ -85,7 +85,7 @@ const ERPAfter = React.memo(function ERPAfter() {
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontSize: 10, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>Fee Collection</span>
-          <div style={{ background: '#161616', border: '1px solid #2a2a2a', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: '#666' }}>
+          <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-line2)', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: '#666' }}>
             March 2025
           </div>
         </div>
@@ -96,10 +96,10 @@ const ERPAfter = React.memo(function ERPAfter() {
             { label: 'Collected', val: '₨ 2.4M', pct: 84, color: '#4ade80' },
             { label: 'Pending', val: '₨ 0.45M', pct: 16, color: '#f87171' },
           ].map((kpi, i) => (
-            <div key={i} style={{ background: '#161616', border: '1px solid #2a2a2a', borderRadius: 5, padding: '7px 8px' }}>
+            <div key={i} style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-line2)', borderRadius: 5, padding: '7px 8px' }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>{kpi.val}</div>
               <div style={{ fontSize: 7, color: '#555', marginTop: 1, marginBottom: 5 }}>{kpi.label}</div>
-              <div style={{ height: 3, background: '#2a2a2a', borderRadius: 2 }}>
+              <div style={{ height: 3, background: 'var(--dark-line2)', borderRadius: 2 }}>
                 <div style={{ width: `${kpi.pct}%`, height: '100%', background: kpi.color, borderRadius: 2 }} />
               </div>
             </div>
@@ -107,7 +107,7 @@ const ERPAfter = React.memo(function ERPAfter() {
         </div>
 
         {/* Sparkline chart */}
-        <div style={{ background: '#111', border: '1px solid #1d1d1d', borderRadius: 5, padding: '8px' }}>
+        <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-line)', borderRadius: 5, padding: '8px' }}>
           <div style={{ fontSize: 8, color: '#555', marginBottom: 5 }}>Monthly trend</div>
           <svg viewBox="0 0 100 60" width="100%" height="40" preserveAspectRatio="none">
             <defs>
@@ -129,8 +129,8 @@ const ERPAfter = React.memo(function ERPAfter() {
             { name: 'Sara K.', class: '10-B', amount: '₨ 5,200', status: 'paid' },
             { name: 'Usman T.', class: '8-C', amount: '₨ 4,500', status: 'late' },
           ].map((p, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0', borderBottom: '1px solid #1a1a1a' }}>
-              <div style={{ width: 18, height: 18, borderRadius: '50%', background: '#1d1d1d', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0', borderBottom: '1px solid var(--dark-line)' }}>
+              <div style={{ width: 18, height: 18, borderRadius: '50%', background: 'var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <span style={{ fontSize: 7, color: '#666' }}>{p.name[0]}</span>
               </div>
               <div style={{ flex: 1 }}>

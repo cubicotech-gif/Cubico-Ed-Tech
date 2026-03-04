@@ -74,9 +74,9 @@ const MarketingAfter = React.memo(function MarketingAfter() {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#080808', overflow: 'hidden' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-dark)', overflow: 'hidden' }}>
       {/* Header */}
-      <div style={{ padding: '10px 12px', borderBottom: '1px solid #1a1a1a', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ padding: '10px 12px', borderBottom: '1px solid var(--dark-line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <div style={{ fontSize: 10, fontWeight: 700, color: '#fff', fontFamily: 'var(--font-display)' }}>Admissions Campaign</div>
           <div style={{ fontSize: 7, color: '#555', marginTop: 1 }}>2024–25 Intake · Live</div>
@@ -88,7 +88,7 @@ const MarketingAfter = React.memo(function MarketingAfter() {
       </div>
 
       {/* KPI row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', borderBottom: '1px solid #1a1a1a' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', borderBottom: '1px solid var(--dark-line)' }}>
         {[
           { label: 'Inquiries', val: '312', delta: '+28%', color: 'var(--blue)' },
           { label: 'Open Rate', val: '68%', delta: '+14%', color: '#4ade80' },
@@ -96,7 +96,7 @@ const MarketingAfter = React.memo(function MarketingAfter() {
         ].map((kpi, i) => (
           <div key={i} style={{
             padding: '8px 6px',
-            borderRight: i < 2 ? '1px solid #1a1a1a' : 'none',
+            borderRight: i < 2 ? '1px solid var(--dark-line)' : 'none',
             textAlign: 'center',
           }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: kpi.color, fontFamily: 'var(--font-display)' }}>{kpi.val}</div>
@@ -133,7 +133,7 @@ const MarketingAfter = React.memo(function MarketingAfter() {
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <div style={{ width: 5, height: 5, borderRadius: '50%', flexShrink: 0, background: ch.color }} />
               <span style={{ fontSize: 7, color: '#666', flex: 1 }}>{ch.channel}</span>
-              <div style={{ width: 50, height: 3, background: '#1d1d1d', borderRadius: 2, overflow: 'hidden' }}>
+              <div style={{ width: 50, height: 3, background: 'var(--dark-line)', borderRadius: 2, overflow: 'hidden' }}>
                 <div style={{ width: `${ch.pct}%`, height: '100%', background: ch.color, borderRadius: 2 }} />
               </div>
               <span style={{ fontSize: 7, color: '#444', width: 20, textAlign: 'right' }}>{ch.reach}</span>

@@ -22,7 +22,7 @@ export const SlideSchoolPortal = memo(function SlideSchoolPortal() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#070707' }}>
       {/* Top bar */}
-      <div style={{ height: 28, flexShrink: 0, backgroundColor: '#0a0a0a', borderBottom: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
+      <div style={{ height: 28, flexShrink: 0, backgroundColor: 'var(--dark-card)', borderBottom: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ width: 16, height: 16, borderRadius: 2, backgroundColor: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ fontFamily: 'var(--font-stamp)', fontSize: 8, color: 'var(--bg-dark)' }}>AN</span>
@@ -100,7 +100,7 @@ export const SlideSchoolPortalMobile = memo(function SlideSchoolPortalMobile() {
       ))}
 
       {/* Notice ticker */}
-      <div style={{ marginTop: 'auto', backgroundColor: '#0d0d0d', borderTop: '1px solid var(--dark-line)', padding: '5px 0' }}>
+      <div style={{ marginTop: 'auto', backgroundColor: 'var(--dark-panel)', borderTop: '1px solid var(--dark-line)', padding: '5px 0' }}>
         <div style={{ fontFamily: 'var(--font-ui)', fontSize: 8, color: '#4a4a4a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>📌 Exams begin March 15th · Parent meeting Friday</div>
       </div>
     </div>

@@ -107,10 +107,10 @@ export function CarouselProgress({ activeSlide, setActiveSlide, progressPct }: C
           exit={{ opacity: 0, y: -4 }}
           transition={{ duration: 0.2 }}
           style={{
-            fontFamily: 'var(--font-accent)',
+            fontFamily: 'var(--font-stamp)',
             fontSize: 9,
             letterSpacing: '0.3em',
-            color: '#3a3a3a',
+            color: 'var(--dark-text-muted)',
             marginTop: 10,
           }}
         >

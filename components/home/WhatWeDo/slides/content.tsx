@@ -67,15 +67,15 @@ const ContentBefore = React.memo(function ContentBefore() {
 // ── After: Interactive content platform ────────────────────────────────────────
 const ContentAfter = React.memo(function ContentAfter() {
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#080808', overflow: 'hidden' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-dark)', overflow: 'hidden' }}>
       {/* Top bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderBottom: '1px solid #1a1a1a', background: '#0d0d0d' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderBottom: '1px solid var(--dark-line)', background: 'var(--dark-panel)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ width: 14, height: 14, background: 'var(--blue)', borderRadius: 2 }} />
           <span style={{ fontSize: 9, fontWeight: 700, color: '#fff' }}>Biology · Grade 9</span>
         </div>
         <div style={{ display: 'flex', gap: 4 }}>
-          <div style={{ background: '#161616', border: '1px solid #2a2a2a', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: '#666' }}>EN · اردو</div>
+          <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-line2)', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: '#666' }}>EN · اردو</div>
           <div style={{ background: 'rgba(26,107,255,0.2)', border: '1px solid rgba(26,107,255,0.4)', borderRadius: 3, padding: '2px 6px', fontSize: 7, color: 'var(--blue)' }}>▶ Play</div>
         </div>
       </div>
@@ -83,7 +83,7 @@ const ContentAfter = React.memo(function ContentAfter() {
       {/* Main content area */}
       <div style={{ flex: 1, display: 'flex', gap: 0, overflow: 'hidden' }}>
         {/* Left: Chapter nav */}
-        <div style={{ width: 55, borderRight: '1px solid #1a1a1a', padding: '8px 6px', display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <div style={{ width: 55, borderRight: '1px solid var(--dark-line)', padding: '8px 6px', display: 'flex', flexDirection: 'column', gap: 3 }}>
           {[
             { n: '01', title: 'Intro', done: true },
             { n: '02', title: 'Organs', done: true },
@@ -111,7 +111,7 @@ const ContentAfter = React.memo(function ContentAfter() {
         {/* Right: Content */}
         <div style={{ flex: 1, padding: '10px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           {/* Animated diagram placeholder */}
-          <div style={{ background: '#111', border: '1px solid #1d1d1d', borderRadius: 6, padding: '10px', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-line)', borderRadius: 6, padding: '10px', position: 'relative', overflow: 'hidden' }}>
             <div style={{ fontSize: 8, color: '#555', marginBottom: 6 }}>Interactive Diagram</div>
             {/* Body outline */}
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -136,12 +136,12 @@ const ContentAfter = React.memo(function ContentAfter() {
           </div>
 
           {/* Progress */}
-          <div style={{ background: '#111', border: '1px solid #1d1d1d', borderRadius: 5, padding: '6px 8px' }}>
+          <div style={{ background: 'var(--dark-card)', border: '1px solid var(--dark-line)', borderRadius: 5, padding: '6px 8px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
               <span style={{ fontSize: 7, color: '#555' }}>Chapter Progress</span>
               <span style={{ fontSize: 7, color: 'var(--blue)' }}>67%</span>
             </div>
-            <div style={{ height: 3, background: '#1d1d1d', borderRadius: 2 }}>
+            <div style={{ height: 3, background: 'var(--dark-line)', borderRadius: 2 }}>
               <div style={{ width: '67%', height: '100%', background: 'linear-gradient(to right, var(--blue), var(--gold))', borderRadius: 2 }} />
             </div>
           </div>
@@ -151,10 +151,10 @@ const ContentAfter = React.memo(function ContentAfter() {
             <div style={{ flex: 1, background: 'rgba(26,107,255,0.15)', border: '1px solid rgba(26,107,255,0.3)', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: 'var(--blue)' }}>
               English
             </div>
-            <div style={{ flex: 1, background: '#111', border: '1px solid #1d1d1d', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: '#555' }}>
+            <div style={{ flex: 1, background: 'var(--dark-card)', border: '1px solid var(--dark-line)', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: '#555' }}>
               اردو
             </div>
-            <div style={{ flex: 1, background: '#111', border: '1px solid #1d1d1d', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: '#555' }}>
+            <div style={{ flex: 1, background: 'var(--dark-card)', border: '1px solid var(--dark-line)', borderRadius: 4, padding: '4px', textAlign: 'center', fontSize: 7, color: '#555' }}>
               عربي
             </div>
           </div>

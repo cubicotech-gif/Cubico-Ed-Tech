@@ -79,7 +79,7 @@ const AnimationsBefore = React.memo(function AnimationsBefore() {
 // ── After: Animation Studio preview ───────────────────────────────────────────
 const AnimationsAfter = React.memo(function AnimationsAfter() {
   return (
-    <div style={{ padding: '0', height: '100%', display: 'flex', flexDirection: 'column', background: '#0a0a0a' }}>
+    <div style={{ padding: '0', height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-dark)' }}>
       {/* Preview window */}
       <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: 'linear-gradient(160deg, #0d1b2a 0%, #1a0a2e 100%)' }}>
         {/* Sky gradient */}
@@ -163,10 +163,10 @@ const AnimationsAfter = React.memo(function AnimationsAfter() {
       </div>
 
       {/* Timeline strip */}
-      <div style={{ background: '#111', borderTop: '1px solid #2a2a2a', padding: '8px 12px' }}>
+      <div style={{ background: 'var(--dark-card)', borderTop: '1px solid var(--dark-line2)', padding: '8px 12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
           <span style={{ fontSize: 8, color: '#666' }}>00:24</span>
-          <div style={{ flex: 1, height: 3, background: '#222', borderRadius: 2, position: 'relative' }}>
+          <div style={{ flex: 1, height: 3, background: 'var(--dark-line)', borderRadius: 2, position: 'relative' }}>
             <div style={{ width: '40%', height: '100%', background: 'var(--blue)', borderRadius: 2 }} />
             <div style={{
               position: 'absolute', top: '50%', left: '40%',

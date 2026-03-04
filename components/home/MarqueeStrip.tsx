@@ -10,9 +10,9 @@ export default function MarqueeStrip() {
   return (
     <div
       style={{
-        backgroundColor: '#080808',
-        borderTop:    '1px solid #2A2520',
-        borderBottom: '1px solid #2A2520',
+        backgroundColor: 'var(--bg-subtle)',
+        borderTop:    '1px solid var(--line)',
+        borderBottom: '1px solid var(--line)',
         overflow: 'hidden',
         padding: '18px 0',
       }}
@@ -21,9 +21,9 @@ export default function MarqueeStrip() {
         className="marquee-track"
         style={{
           display: 'inline-block',
-          fontFamily: 'var(--font-accent)',
+          fontFamily: 'var(--font-stamp)',
           fontSize: 14,
-          color: '#7A7268',
+          color: 'var(--text-muted)',
           letterSpacing: '0.12em',
           whiteSpace: 'nowrap',
         }}

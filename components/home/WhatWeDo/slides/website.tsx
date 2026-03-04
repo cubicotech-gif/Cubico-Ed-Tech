@@ -76,20 +76,20 @@ const WebsiteBefore = React.memo(function WebsiteBefore() {
 // ── After: Premium school website ─────────────────────────────────────────────
 const WebsiteAfter = React.memo(function WebsiteAfter() {
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#050505', overflow: 'hidden' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--bg-dark)', overflow: 'hidden' }}>
       {/* Browser chrome */}
-      <div style={{ background: '#1a1a1a', borderBottom: '1px solid #2a2a2a', padding: '5px 8px', display: 'flex', alignItems: 'center', gap: 6 }}>
+      <div style={{ background: 'var(--dark-card)', borderBottom: '1px solid var(--dark-line2)', padding: '5px 8px', display: 'flex', alignItems: 'center', gap: 6 }}>
         <div style={{ display: 'flex', gap: 3 }}>
           {['#ff5f57','#ffbd2e','#28c840'].map((c,i) => <div key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: c }} />)}
         </div>
-        <div style={{ flex: 1, background: '#111', borderRadius: 10, padding: '2px 8px', fontSize: 8, color: '#666', border: '1px solid #2a2a2a', fontFamily: 'monospace', display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div style={{ flex: 1, background: 'var(--dark-panel)', borderRadius: 10, padding: '2px 8px', fontSize: 8, color: '#666', border: '1px solid var(--dark-line2)', fontFamily: 'monospace', display: 'flex', alignItems: 'center', gap: 4 }}>
           <span style={{ color: '#4ade80', fontSize: 7 }}>🔒</span>
           alnoor.edu.pk
         </div>
       </div>
 
       {/* Hero section */}
-      <div style={{ position: 'relative', background: 'linear-gradient(135deg, #050505 0%, #0f0f1a 100%)', padding: '14px 12px', borderBottom: '1px solid #1d1d1d', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', background: 'linear-gradient(135deg, var(--bg-dark) 0%, var(--dark-card) 100%)', padding: '14px 12px', borderBottom: '1px solid var(--dark-line)', overflow: 'hidden' }}>
         {/* Geometric shapes */}
         {[
           { w: 60, h: 60, top: -10, right: -10, rot: 15, op: 0.08 },
@@ -128,14 +128,14 @@ const WebsiteAfter = React.memo(function WebsiteAfter() {
           <div style={{ background: 'var(--blue)', borderRadius: 4, padding: '4px 10px', fontSize: 8, color: '#fff', fontWeight: 600 }}>
             Apply Now
           </div>
-          <div style={{ border: '1px solid #333', borderRadius: 4, padding: '4px 10px', fontSize: 8, color: '#888' }}>
+          <div style={{ border: '1px solid var(--dark-line2)', borderRadius: 4, padding: '4px 10px', fontSize: 8, color: '#888' }}>
             Learn More →
           </div>
         </div>
       </div>
 
       {/* Stats strip */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', borderBottom: '1px solid #1d1d1d' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', borderBottom: '1px solid var(--dark-line)' }}>
         {[
           { n: '1,400+', label: 'Students' },
           { n: '97%',    label: 'Pass Rate' },
@@ -143,7 +143,7 @@ const WebsiteAfter = React.memo(function WebsiteAfter() {
         ].map((s, i) => (
           <div key={i} style={{
             padding: '8px 6px', textAlign: 'center',
-            borderRight: i < 2 ? '1px solid #1d1d1d' : 'none',
+            borderRight: i < 2 ? '1px solid var(--dark-line)' : 'none',
           }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--blue)', fontFamily: 'var(--font-display)' }}>{s.n}</div>
             <div style={{ fontSize: 7, color: '#555', marginTop: 1 }}>{s.label}</div>
@@ -159,7 +159,7 @@ const WebsiteAfter = React.memo(function WebsiteAfter() {
           { icon: '📅', label: 'Events' },
         ].map((item, i) => (
           <div key={i} style={{
-            background: '#111', border: '1px solid #1d1d1d', borderRadius: 5,
+            background: 'var(--dark-card)', border: '1px solid var(--dark-line)', borderRadius: 5,
             padding: '8px 6px', textAlign: 'center',
           }}>
             <div style={{ fontSize: 14, marginBottom: 3 }}>{item.icon}</div>

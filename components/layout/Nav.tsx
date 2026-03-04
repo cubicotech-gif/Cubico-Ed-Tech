@@ -107,7 +107,7 @@ export default function Nav() {
           </span>
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-stamp)',
               fontSize: 9,
               letterSpacing: '0.35em',
               color: C.muted,

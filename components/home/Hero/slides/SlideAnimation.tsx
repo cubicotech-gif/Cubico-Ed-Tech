@@ -13,7 +13,7 @@ export const SlideAnimation = memo(function SlideAnimation() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#030308' }}>
       {/* Top bar */}
-      <div style={{ height: 28, flexShrink: 0, backgroundColor: '#060610', borderBottom: '1px solid #1a1a2e', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
+      <div style={{ height: 28, flexShrink: 0, backgroundColor: '#060610', borderBottom: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
         <span style={{ fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700, color: 'var(--dark-text-primary)' }}>Cubico Animation Studio</span>
         {/* Playback controls */}
         <div style={{ display: 'flex', gap: 8 }}>
@@ -26,7 +26,7 @@ export const SlideAnimation = memo(function SlideAnimation() {
       {/* Main split */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Preview window */}
-        <div style={{ flex: '0 0 65%', position: 'relative', backgroundColor: '#000', borderRight: '1px solid #1a1a2e', overflow: 'hidden' }}>
+        <div style={{ flex: '0 0 65%', position: 'relative', backgroundColor: '#000', borderRight: '1px solid var(--dark-line)', overflow: 'hidden' }}>
           {/* Sky background */}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, #030318 0%, #050a20 40%, #0a0508 100%)' }}>
             {/* Stars */}
@@ -67,7 +67,7 @@ export const SlideAnimation = memo(function SlideAnimation() {
         </div>
 
         {/* Asset panel */}
-        <div style={{ flex: '0 0 35%', backgroundColor: '#0a0a0a', padding: '8px 0', overflow: 'hidden' }}>
+        <div style={{ flex: '0 0 35%', backgroundColor: 'var(--dark-card)', padding: '8px 0', overflow: 'hidden' }}>
           <div style={{ fontFamily: 'var(--font-stamp)', fontSize: 7, color: '#333', letterSpacing: '0.25em', padding: '0 8px 6px' }}>ASSETS</div>
           {SCENES.map((scene) => (
             <div key={scene.num} style={{ borderLeft: `2px solid ${scene.active ? 'var(--blue)' : 'transparent'}`, backgroundColor: scene.active ? '#141414' : 'transparent', marginBottom: 2 }}>
@@ -83,9 +83,9 @@ export const SlideAnimation = memo(function SlideAnimation() {
       </div>
 
       {/* Timeline bar */}
-      <div style={{ height: 24, flexShrink: 0, backgroundColor: '#060606', borderTop: '1px solid #1a1a2e', display: 'flex', alignItems: 'center', gap: 8, padding: '0 8px' }}>
+      <div style={{ height: 24, flexShrink: 0, backgroundColor: 'var(--bg-dark)', borderTop: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', gap: 8, padding: '0 8px' }}>
         <span style={{ fontFamily: 'var(--font-stamp)', fontSize: 7, color: '#3a3a3a' }}>00:00</span>
-        <div style={{ flex: 1, height: 3, backgroundColor: '#1a1a1a', borderRadius: 2, position: 'relative' }}>
+        <div style={{ flex: 1, height: 3, backgroundColor: 'var(--dark-line)', borderRadius: 2, position: 'relative' }}>
           <div style={{ width: '45%', height: '100%', backgroundColor: 'var(--blue)', borderRadius: 2 }} />
           <div style={{ position: 'absolute', left: '45%', top: '50%', transform: 'translate(-50%, -50%)', width: 7, height: 7, borderRadius: '50%', backgroundColor: 'var(--blue)', border: '1px solid var(--bg-dark)' }} />
         </div>
@@ -114,7 +114,7 @@ export const SlideAnimationMobile = memo(function SlideAnimationMobile() {
       </div>
 
       {/* Episode info + controls */}
-      <div style={{ backgroundColor: '#0a0a0a', borderTop: '1px solid #1a1a2e', padding: '8px 10px' }}>
+      <div style={{ backgroundColor: 'var(--dark-card)', borderTop: '1px solid var(--dark-line)', padding: '8px 10px' }}>
         <div style={{ fontFamily: 'var(--font-stamp)', fontSize: 8, color: 'var(--gold)', letterSpacing: '0.12em', marginBottom: 4 }}>EP. 3 · PROPHET IBRAHIM SERIES</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontSize: 10, color: '#3a3a3a' }}>⏮</span>

@@ -13,12 +13,12 @@ import {
 // ── Design tokens ─────────────────────────────────────────────────────────────
 
 const C = {
-  void: '#080808',
-  bronze: '#C4965A',
-  warmGray: '#8A837C',
-  rule: '#2A2520',
-  ivory: '#F0EBE3',
-  fire: '#E8622A',
+  void: 'var(--bg-base)',
+  bronze: 'var(--gold)',
+  warmGray: 'var(--text-body)',
+  rule: 'var(--line)',
+  ivory: 'var(--text-primary)',
+  fire: 'var(--blue)',
 } as const;
 
 // ── Data ──────────────────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@ function FloatingImage({ activeRow, mouseX, mouseY }: FloatingImageProps) {
               borderRadius: 0,
               overflow: 'hidden',
               boxShadow:
-                '0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(232,98,42,0.2)',
+                '0 24px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(26,107,255,0.2)',
             }}
           >
             {/* TODO: replace with next/image photo when assets are ready */}
@@ -143,8 +143,8 @@ function FloatingImage({ activeRow, mouseX, mouseY }: FloatingImageProps) {
             >
               <span
                 style={{
-                  fontFamily: "'Bebas Neue', cursive",
-                  color: C.warmGray,
+                  fontFamily: 'var(--font-ui)',
+                  color: 'var(--text-body)',
                   fontSize: 14,
                   letterSpacing: '0.1em',
                   textAlign: 'center',
@@ -205,7 +205,7 @@ export default function ServicesReveal() {
         >
           <span
             style={{
-              fontFamily: "'Bebas Neue', cursive",
+              fontFamily: 'var(--font-stamp)',
               fontSize: 13,
               color: C.bronze,
               letterSpacing: '0.2em',
@@ -216,7 +216,7 @@ export default function ServicesReveal() {
           </span>
           <span
             style={{
-              fontFamily: "'Instrument Sans', sans-serif",
+              fontFamily: 'var(--font-ui)',
               fontSize: 13,
               color: C.warmGray,
             }}
@@ -257,7 +257,7 @@ export default function ServicesReveal() {
                         : 1,
                     backgroundColor:
                       hoveredRow === i
-                        ? 'rgba(232,98,42,0.03)'
+                        ? 'var(--blue-lo)'
                         : 'transparent',
                     transition:
                       'opacity 0.3s ease, background-color 0.3s ease',
@@ -280,8 +280,8 @@ export default function ServicesReveal() {
                     <span
                       className="service-name-size"
                       style={{
-                        fontFamily: "'Fraunces', serif",
-                        fontWeight: 700,
+                        fontFamily: 'var(--font-display)',
+                        fontWeight: 400,
                         color: hoveredRow === i ? C.fire : C.ivory,
                         transition: 'color 0.3s ease',
                         lineHeight: 1.05,
@@ -297,7 +297,7 @@ export default function ServicesReveal() {
                     >
                       <span
                         style={{
-                          fontFamily: "'Bebas Neue', cursive",
+                          fontFamily: 'var(--font-stamp)',
                           fontSize: 18,
                           color:
                             hoveredRow === i ? C.ivory : C.warmGray,
@@ -308,7 +308,7 @@ export default function ServicesReveal() {
                       </span>
                       <span
                         style={{
-                          fontFamily: "'Bebas Neue', cursive",
+                          fontFamily: 'var(--font-stamp)',
                           fontSize: 18,
                           color:
                             hoveredRow === i ? C.ivory : C.warmGray,
@@ -342,7 +342,7 @@ export default function ServicesReveal() {
                       >
                         <span
                           style={{
-                            fontFamily: "'Bebas Neue', cursive",
+                            fontFamily: 'var(--font-stamp)',
                             color: C.warmGray,
                             fontSize: 9,
                             textAlign: 'center',
@@ -384,7 +384,7 @@ export default function ServicesReveal() {
         >
           <span
             style={{
-              fontFamily: "'Instrument Sans', sans-serif",
+              fontFamily: 'var(--font-ui)',
               fontSize: 13,
               color: C.warmGray,
             }}
@@ -395,7 +395,7 @@ export default function ServicesReveal() {
             href="/services"
             className="hover:underline"
             style={{
-              fontFamily: "'Epilogue', sans-serif",
+              fontFamily: 'var(--font-ui)',
               fontWeight: 500,
               fontSize: 14,
               color: C.fire,

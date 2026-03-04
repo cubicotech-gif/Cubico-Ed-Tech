@@ -28,7 +28,7 @@ export const SlideLMS = memo(function SlideLMS() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#070707' }}>
       {/* Top bar */}
-      <div style={{ height: 28, flexShrink: 0, backgroundColor: '#0a0a0a', borderBottom: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
+      <div style={{ height: 28, flexShrink: 0, backgroundColor: 'var(--dark-card)', borderBottom: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
         <span style={{ fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700, color: 'var(--dark-text-primary)' }}>Cubico LMS</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -40,7 +40,7 @@ export const SlideLMS = memo(function SlideLMS() {
       {/* Body */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Sidebar */}
-        <div style={{ width: '22%', flexShrink: 0, backgroundColor: '#0d0d0d', borderRight: '1px solid var(--dark-line)', padding: '10px 0' }}>
+        <div style={{ width: '22%', flexShrink: 0, backgroundColor: 'var(--dark-panel)', borderRight: '1px solid var(--dark-line)', padding: '10px 0' }}>
           {SIDEBAR.map((item) => (
             <div key={item.label} style={{ padding: '5px 8px', display: 'flex', alignItems: 'center', gap: 5, borderLeft: `2px solid ${item.active ? 'var(--blue)' : 'transparent'}`, marginBottom: 2 }}>
               <div style={{ width: 6, height: 6, borderRadius: 1, backgroundColor: item.active ? 'var(--blue)' : '#2a2a2a', flexShrink: 0 }} />

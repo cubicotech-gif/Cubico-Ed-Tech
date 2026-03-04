@@ -22,7 +22,7 @@ export const SlideERP = memo(function SlideERP() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#070707' }}>
       {/* Top bar */}
-      <div style={{ height: 28, flexShrink: 0, backgroundColor: '#0a0a0a', borderBottom: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
+      <div style={{ height: 28, flexShrink: 0, backgroundColor: 'var(--dark-card)', borderBottom: '1px solid var(--dark-line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700, color: 'var(--dark-text-primary)' }}>Cubico ERP</span>
           <span style={{ fontFamily: 'var(--font-ui)', fontSize: 7, color: '#3a3a3a' }}>·</span>
@@ -39,7 +39,7 @@ export const SlideERP = memo(function SlideERP() {
       {/* Body */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Icon-only sidebar */}
-        <div style={{ width: 32, flexShrink: 0, backgroundColor: '#0d0d0d', borderRight: '1px solid var(--dark-line)', padding: '8px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+        <div style={{ width: 32, flexShrink: 0, backgroundColor: 'var(--dark-panel)', borderRight: '1px solid var(--dark-line)', padding: '8px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
           {[
             { icon: '⊞', active: true },
             { icon: '👥', active: false },
