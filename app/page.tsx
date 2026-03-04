@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Hero             from '@/components/home/Hero';
-import Ticker           from '@/components/home/Ticker';
 import WhatWeDo         from '@/components/home/WhatWeDo';
 import Services         from '@/components/home/Services';
 import ExperienceLab    from '@/components/home/ExperienceLab';
@@ -22,10 +21,7 @@ export default function HomePage() {
       {/* 01 — Hero: Preloader + Dashboard ───────────────────────────────── */}
       <Hero />
 
-      {/* 02 — Ticker Strip ───────────────────────────────────────────────── */}
-      <Ticker />
-
-      {/* 03 — What We Do: Before/After Split Screen ─────────────────────── */}
+      {/* 02 — What We Do: Before/After Split Screen ────────────────────── */}
       <WhatWeDo />
 
       {/* 04 — Experience Lab: Live Interactive Systems ───────────────────── */}

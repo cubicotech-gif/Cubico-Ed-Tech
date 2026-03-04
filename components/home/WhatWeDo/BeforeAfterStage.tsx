@@ -26,14 +26,15 @@ function DesktopStage({ slide }: BeforeAfterStageProps) {
       style={{
         position: 'relative',
         width: '100%',
-        height: 360,
-        borderRadius: 10,
+        height: 440,
+        borderRadius: '10px 10px 0 0',
         overflow: 'hidden',
-        border: '1px solid var(--line2)',
+        border: '1px solid var(--line)',
+        borderBottom: 'none',
         cursor: 'col-resize',
         userSelect: 'none',
         WebkitUserSelect: 'none',
-        boxShadow: '0 0 40px rgba(0,0,0,0.5)',
+        boxShadow: '0 4px 40px rgba(26,107,255,0.06), 0 1px 0 var(--line)',
       }}
     >
       {/* Before layer */}
@@ -76,9 +77,10 @@ function MobileStage({ slide }: BeforeAfterStageProps) {
         position: 'relative',
         width: '100%',
         aspectRatio: '4/3',
-        borderRadius: 8,
+        borderRadius: '8px 8px 0 0',
         overflow: 'hidden',
-        border: '1px solid var(--line2)',
+        border: '1px solid var(--line)',
+        borderBottom: 'none',
       }}
     >
       {/* Toggle */}
