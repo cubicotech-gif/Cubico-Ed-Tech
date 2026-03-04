@@ -37,16 +37,16 @@ const colVariant = {
 
 export default function LanguagesSection() {
   return (
-    <section style={{ backgroundColor: '#080808', padding: '100px 0' }}>
+    <section style={{ backgroundColor: 'var(--bg-base)', padding: '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
 
         {/* Section label */}
         <div style={{ marginBottom: 64 }}>
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-stamp)',
               fontSize: 14,
-              color: '#C9A96E',
+              color: 'var(--gold)',
               letterSpacing: '0.1em',
             }}
           >
@@ -56,7 +56,7 @@ export default function LanguagesSection() {
             style={{
               fontFamily: 'var(--font-ui)',
               fontSize: 11,
-              color: '#7A7268',
+              color: 'var(--text-muted)',
               letterSpacing: '0.2em',
               marginLeft: 16,
               textTransform: 'uppercase',
@@ -86,7 +86,7 @@ export default function LanguagesSection() {
               style={{
                 padding: '40px 36px',
                 borderRight:
-                  i < LANGUAGES.length - 1 ? '1px solid #2A2520' : 'none',
+                  i < LANGUAGES.length - 1 ? '1px solid var(--line)' : 'none',
                 textAlign: l.dir === 'rtl' ? 'right' : 'left',
               }}
             >
@@ -95,7 +95,7 @@ export default function LanguagesSection() {
                 style={{
                   fontFamily: 'var(--font-ui)',
                   fontSize: 11,
-                  color: '#7A7268',
+                  color: 'var(--text-muted)',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   marginBottom: 20,
@@ -109,9 +109,9 @@ export default function LanguagesSection() {
               {/* Language name */}
               <div
                 style={{
-                  fontFamily: l.dir === 'ltr' ? 'var(--font-accent)' : 'inherit',
+                  fontFamily: l.dir === 'ltr' ? 'var(--font-stamp)' : 'inherit',
                   fontSize: 48,
-                  color: '#F0EBE3',
+                  color: 'var(--text-primary)',
                   lineHeight: 1,
                   marginBottom: 24,
                   fontWeight: l.dir === 'rtl' ? 700 : 400,
@@ -123,9 +123,9 @@ export default function LanguagesSection() {
               {/* Sample text */}
               <p
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-ui)',
                   fontSize: 16,
-                  color: '#7A7268',
+                  color: 'var(--text-body)',
                   lineHeight: 1.7,
                   marginBottom: 16,
                 }}
@@ -136,11 +136,11 @@ export default function LanguagesSection() {
               {/* Note */}
               <p
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-ui)',
                   fontSize: 13,
-                  color: '#7A7268',
+                  color: 'var(--text-body)',
                   lineHeight: 1.6,
-                  borderTop: '1px solid #2A2520',
+                  borderTop: '1px solid var(--line)',
                   paddingTop: 16,
                   marginTop: 16,
                 }}

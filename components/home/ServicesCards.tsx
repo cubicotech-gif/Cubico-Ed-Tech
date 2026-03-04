@@ -57,7 +57,7 @@ export default function ServicesCards() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section style={{ backgroundColor: '#080808', padding: '100px 0' }}>
+    <section style={{ backgroundColor: 'var(--bg-subtle)', padding: '100px 0' }}>
       <div
         style={{
           maxWidth: 1200,
@@ -72,9 +72,9 @@ export default function ServicesCards() {
         <div>
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-stamp)',
               fontSize: 14,
-              color: '#C9A96E',
+              color: 'var(--gold)',
               letterSpacing: '0.1em',
             }}
           >
@@ -84,7 +84,7 @@ export default function ServicesCards() {
             style={{
               fontFamily: 'var(--font-ui)',
               fontSize: 11,
-              color: '#7A7268',
+              color: 'var(--text-muted)',
               letterSpacing: '0.2em',
               marginLeft: 16,
               textTransform: 'uppercase',
@@ -109,23 +109,23 @@ export default function ServicesCards() {
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
-                fontWeight: 700,
+                fontWeight: 400,
                 fontSize: 'clamp(32px, 4vw, 52px)',
-                color: '#F0EBE3',
+                color: 'var(--text-primary)',
                 lineHeight: 1.15,
                 letterSpacing: '-0.02em',
                 margin: 0,
               }}
             >
               Complete Solutions.{' '}
-              <span style={{ fontStyle: 'italic', color: '#C9A96E' }}>Any Institution.</span>{' '}
+              <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Any Institution.</span>{' '}
               Any Language.
             </h2>
             <p
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-ui)',
                 fontSize: 16,
-                color: '#7A7268',
+                color: 'var(--text-body)',
                 marginTop: 20,
                 lineHeight: 1.7,
                 maxWidth: 400,
@@ -151,8 +151,8 @@ export default function ServicesCards() {
                 onMouseEnter={() => setHoveredCard(i)}
                 onMouseLeave={() => setHoveredCard(null)}
                 style={{
-                  backgroundColor: '#191919',
-                  borderTop: `1px solid ${hoveredCard === i ? '#E8622A' : '#2A2520'}`,
+                  backgroundColor: 'var(--bg-base)',
+                  borderTop: `1px solid ${hoveredCard === i ? 'var(--blue)' : 'var(--line)'}`,
                   marginBottom: 2,
                   display: 'flex',
                   transition: 'border-color 0.3s ease',
@@ -163,9 +163,9 @@ export default function ServicesCards() {
                 <div style={{ flex: '1 1 60%', padding: '36px 32px' }}>
                   <span
                     style={{
-                      fontFamily: 'var(--font-accent)',
+                      fontFamily: 'var(--font-stamp)',
                       fontSize: 80,
-                      color: '#2A2520',
+                      color: 'var(--line)',
                       lineHeight: 1,
                       display: 'block',
                       marginBottom: 4,
@@ -176,9 +176,9 @@ export default function ServicesCards() {
                   <h3
                     style={{
                       fontFamily: 'var(--font-display)',
-                      fontWeight: 600,
+                      fontWeight: 400,
                       fontSize: 22,
-                      color: '#F0EBE3',
+                      color: 'var(--text-primary)',
                       margin: '0 0 12px',
                       lineHeight: 1.2,
                     }}
@@ -187,9 +187,9 @@ export default function ServicesCards() {
                   </h3>
                   <p
                     style={{
-                      fontFamily: 'var(--font-body)',
+                      fontFamily: 'var(--font-ui)',
                       fontSize: 15,
-                      color: '#7A7268',
+                      color: 'var(--text-body)',
                       lineHeight: 1.7,
                       margin: '0 0 20px',
                     }}
@@ -210,8 +210,8 @@ export default function ServicesCards() {
                         style={{
                           fontFamily: 'var(--font-ui)',
                           fontSize: 11,
-                          color: '#7A7268',
-                          border: '1px solid #2A2520',
+                          color: 'var(--text-muted)',
+                          border: '1px solid var(--line)',
                           padding: '3px 10px',
                         }}
                       >
@@ -225,7 +225,7 @@ export default function ServicesCards() {
                       fontFamily: 'var(--font-ui)',
                       fontWeight: 500,
                       fontSize: 14,
-                      color: '#E8622A',
+                      color: 'var(--blue)',
                       textDecoration: 'none',
                     }}
                     onMouseEnter={e =>

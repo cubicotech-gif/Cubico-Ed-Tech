@@ -64,7 +64,7 @@ export default function FinalCTA() {
       ref={sectionRef}
       onMouseMove={onMouseMove}
       style={{
-        backgroundColor: '#020202',
+        backgroundColor: 'var(--bg-dark)',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -88,19 +88,19 @@ export default function FinalCTA() {
           left: 0,
           right: 0,
           height: 2,
-          backgroundColor: '#E8622A',
+          backgroundColor: 'var(--blue)',
           transformOrigin: 'left',
           zIndex: 10,
         }}
       />
 
-      {/* Mouse-tracking warm radial gradient */}
+      {/* Mouse-tracking radial gradient */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
-          background: `radial-gradient(500px circle at ${gradientPos.x}% ${gradientPos.y}%, rgba(232,98,42,0.04) 0%, transparent 70%)`,
+          background: `radial-gradient(500px circle at ${gradientPos.x}% ${gradientPos.y}%, rgba(26,107,255,0.08) 0%, transparent 70%)`,
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -135,9 +135,9 @@ export default function FinalCTA() {
       >
         <span
           style={{
-            fontFamily: 'var(--font-accent)',
+            fontFamily: 'var(--font-stamp)',
             fontSize: 11,
-            color: '#E8622A',
+            color: 'var(--blue)',
             letterSpacing: '0.4em',
           }}
         >
@@ -147,7 +147,7 @@ export default function FinalCTA() {
           style={{
             fontFamily: 'var(--font-ui)',
             fontSize: 11,
-            color: '#555',
+            color: 'var(--dark-text-muted)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
           }}
@@ -180,7 +180,7 @@ export default function FinalCTA() {
               position: 'absolute',
               inset: -3,
               borderRadius: '50%',
-              backgroundColor: 'rgba(16,185,129,0.3)',
+              backgroundColor: 'rgba(13,184,122,0.3)',
             }}
           />
           <div
@@ -188,7 +188,7 @@ export default function FinalCTA() {
               width: 8,
               height: 8,
               borderRadius: '50%',
-              backgroundColor: '#10B981',
+              backgroundColor: 'var(--green)',
               position: 'relative',
             }}
           />
@@ -197,7 +197,7 @@ export default function FinalCTA() {
           style={{
             fontFamily: 'var(--font-ui)',
             fontSize: 12,
-            color: '#555',
+            color: 'var(--dark-text-muted)',
             letterSpacing: '0.05em',
           }}
         >
@@ -223,10 +223,10 @@ export default function FinalCTA() {
           style={{
             display: 'block',
             fontFamily: 'var(--font-display)',
-            fontWeight: 900,
+            fontWeight: 400,
             fontStyle: 'normal',
             fontSize: 'clamp(56px, 8vw, 110px)',
-            color: '#F0EBE3',
+            color: 'var(--dark-text-primary)',
             letterSpacing: '-0.03em',
           }}
         >
@@ -236,11 +236,11 @@ export default function FinalCTA() {
           variants={lineVariant}
           style={{
             display: 'block',
-            fontFamily: 'var(--font-display)',
-            fontWeight: 300,
+            fontFamily: 'var(--font-editorial)',
+            fontWeight: 400,
             fontStyle: 'italic',
             fontSize: 'clamp(56px, 8vw, 110px)',
-            color: '#C9A96E',
+            color: 'var(--gold)',
             letterSpacing: '-0.03em',
           }}
         >
@@ -251,10 +251,10 @@ export default function FinalCTA() {
           style={{
             display: 'block',
             fontFamily: 'var(--font-display)',
-            fontWeight: 900,
+            fontWeight: 400,
             fontStyle: 'normal',
             fontSize: 'clamp(56px, 8vw, 110px)',
-            color: '#E8622A',
+            color: 'var(--blue)',
             letterSpacing: '-0.03em',
           }}
         >
@@ -269,9 +269,9 @@ export default function FinalCTA() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
         style={{
-          fontFamily: 'var(--font-body)',
+          fontFamily: 'var(--font-ui)',
           fontSize: 15,
-          color: '#6a6460',
+          color: 'var(--dark-text-muted)',
           lineHeight: 1.7,
           maxWidth: 480,
           margin: '0 auto 40px',
@@ -303,7 +303,7 @@ export default function FinalCTA() {
             letterSpacing: '0.04em',
             color: '#ffffff',
             textDecoration: 'none',
-            backgroundColor: '#E8622A',
+            backgroundColor: 'var(--blue)',
             display: 'inline-flex',
             alignItems: 'center',
             gap: 8,
@@ -312,8 +312,8 @@ export default function FinalCTA() {
             justifyContent: 'center',
             transition: 'box-shadow 0.2s ease',
             boxShadow: btnHovered
-              ? '0 0 40px 0 rgba(232,98,42,0.35)'
-              : '0 0 0 0 rgba(232,98,42,0.4)',
+              ? '0 0 40px 0 rgba(26,107,255,0.35)'
+              : '0 0 0 0 rgba(26,107,255,0.4)',
           }}
         >
           Start Your Project
@@ -343,10 +343,10 @@ export default function FinalCTA() {
         }}
       >
         <SecondaryLink href="/contact">Book a free 30-min call</SecondaryLink>
-        <span style={{ color: '#2a2a2a', fontSize: 12 }}>·</span>
+        <span style={{ color: 'var(--dark-line2)', fontSize: 12 }}>·</span>
         <SecondaryLink
           href="https://wa.me/923000000000"
-          style={{ color: '#888' }}
+          style={{ color: 'var(--dark-text-muted)' }}
         >
           Message us on WhatsApp
         </SecondaryLink>
@@ -375,7 +375,7 @@ function SecondaryLink({
       style={{
         fontFamily: 'var(--font-ui)',
         fontSize: 13,
-        color: '#555',
+        color: 'var(--dark-text-muted)',
         textDecoration: 'none',
         position: 'relative',
         ...extraStyle,

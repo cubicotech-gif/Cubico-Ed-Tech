@@ -52,7 +52,7 @@ export const SlideAnimation = memo(function SlideAnimation() {
 
             {/* Crescent moon */}
             <svg style={{ position: 'absolute', top: '12%', right: '20%' }} width="18" height="18" viewBox="0 0 18 18">
-              <path d="M9 2 A7 7 0 0 1 9 16 A5 5 0 0 0 9 2Z" fill="#C9A96E" opacity="0.7" />
+              <path d="M9 2 A7 7 0 0 1 9 16 A5 5 0 0 0 9 2Z" fill="var(--gold)" opacity="0.7" />
             </svg>
 
             {/* Caption overlay */}

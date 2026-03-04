@@ -40,8 +40,8 @@ export const SlideSchoolPortal = memo(function SlideSchoolPortal() {
       <div style={{ height: '26%', flexShrink: 0, background: 'linear-gradient(135deg, #07091a 0%, #0d1128 50%, #0a0a14 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 14px', position: 'relative', overflow: 'hidden' }}>
         {/* Decorative geometric shape */}
         <svg style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)', opacity: 0.07 }} width="60" height="60" viewBox="0 0 60 60">
-          <polygon points="30,0 60,52 0,52" stroke="#C9A96E" strokeWidth="1" fill="none" />
-          <polygon points="30,10 52,46 8,46" stroke="#C9A96E" strokeWidth="0.5" fill="none" />
+          <polygon points="30,0 60,52 0,52" stroke="var(--gold)" strokeWidth="1" fill="none" />
+          <polygon points="30,10 52,46 8,46" stroke="var(--gold)" strokeWidth="0.5" fill="none" />
         </svg>
         <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--dark-text-primary)', marginBottom: 3 }}>Welcome Back, Students</div>
         <div style={{ fontFamily: 'var(--font-stamp)', fontSize: 9, color: 'var(--gold)', letterSpacing: '0.2em' }}>SEMESTER 2, 2025–26</div>
@@ -88,20 +88,20 @@ export const SlideSchoolPortalMobile = memo(function SlideSchoolPortalMobile() {
 
       {/* Big action buttons */}
       {[
-        { label: 'Attendance', icon: '📋', color: '#E8622A' },
-        { label: 'Results',    icon: '📊', color: '#C9A96E' },
-        { label: 'Fee Status', icon: '💳', color: '#10B981' },
+        { label: 'Attendance', icon: '📋', color: 'var(--blue)' },
+        { label: 'Results',    icon: '📊', color: 'var(--gold)' },
+        { label: 'Fee Status', icon: '💳', color: 'var(--green)' },
       ].map((b) => (
-        <div key={b.label} style={{ backgroundColor: '#111', border: `1px solid ${b.color}22`, borderRadius: 4, padding: '10px 12px', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div key={b.label} style={{ backgroundColor: '#111', border: `1px solid rgba(26,107,255,0.13)`, borderRadius: 4, padding: '10px 12px', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 14 }}>{b.icon}</span>
           <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, color: '#aaa', fontWeight: 600 }}>{b.label}</span>
-          <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-accent)', fontSize: 9, color: b.color }}>→</span>
+          <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-stamp)', fontSize: 9, color: b.color }}>→</span>
         </div>
       ))}
 
       {/* Notice ticker */}
       <div style={{ marginTop: 'auto', backgroundColor: '#0d0d0d', borderTop: '1px solid var(--dark-line)', padding: '5px 0' }}>
-        <div style={{ fontFamily: 'var(--font-body)', fontSize: 8, color: '#4a4a4a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>📌 Exams begin March 15th · Parent meeting Friday</div>
+        <div style={{ fontFamily: 'var(--font-ui)', fontSize: 8, color: '#4a4a4a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>📌 Exams begin March 15th · Parent meeting Friday</div>
       </div>
     </div>
   );

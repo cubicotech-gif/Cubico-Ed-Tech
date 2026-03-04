@@ -244,7 +244,7 @@ export function HeroLeft() {
             >
               {s.n}
             </span>
-            <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 700, fontSize: 8, color: '#6A6460', letterSpacing: '0.2em', textTransform: 'uppercase', display: 'block', marginTop: 4 }}>
+            <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 700, fontSize: 8, color: 'var(--dark-text-muted)', letterSpacing: '0.2em', textTransform: 'uppercase', display: 'block', marginTop: 4 }}>
               {s.label}
             </span>
           </motion.div>

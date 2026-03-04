@@ -17,7 +17,7 @@ export default function CTASection() {
   return (
     <section
       style={{
-        backgroundColor: '#F5F2ED',
+        backgroundColor: 'var(--bg-subtle)',
         padding: '160px 5%',
         textAlign: 'center',
       }}
@@ -43,7 +43,7 @@ export default function CTASection() {
             fontFamily: 'var(--font-ui)',
             fontWeight: 500,
             fontSize: 12,
-            color: '#7A7268',
+            color: 'var(--text-muted)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             margin: 0,
@@ -57,9 +57,9 @@ export default function CTASection() {
           variants={fadeUp}
           style={{
             fontFamily: 'var(--font-display)',
-            fontWeight: 700,
+            fontWeight: 400,
             fontSize: 'clamp(48px, 6vw, 96px)',
-            color: '#1A1714',
+            color: 'var(--text-primary)',
             lineHeight: 1,
             letterSpacing: '-0.03em',
             margin: 0,
@@ -72,9 +72,9 @@ export default function CTASection() {
         <motion.p
           variants={fadeUp}
           style={{
-            fontFamily: 'var(--font-body)',
+            fontFamily: 'var(--font-ui)',
             fontSize: 17,
-            color: '#5A5550',
+            color: 'var(--text-body)',
             lineHeight: 1.7,
             maxWidth: 560,
             margin: 0,
@@ -93,9 +93,9 @@ export default function CTASection() {
               fontFamily: 'var(--font-ui)',
               fontWeight: 600,
               fontSize: 18,
-              color: '#F0EBE3',
+              color: '#ffffff',
               textDecoration: 'none',
-              backgroundColor: '#E8622A',
+              backgroundColor: 'var(--blue)',
               padding: '20px 48px',
               borderRadius: 0,
               display: 'inline-block',
@@ -104,7 +104,7 @@ export default function CTASection() {
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement;
               el.style.transform = 'scale(1.03)';
-              el.style.boxShadow = '0 8px 32px rgba(232,98,42,0.3)';
+              el.style.boxShadow = '0 8px 32px rgba(26,107,255,0.3)';
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement;
@@ -135,9 +135,9 @@ export default function CTASection() {
             <span
               key={item}
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-ui)',
                 fontSize: 14,
-                color: '#7A7268',
+                color: 'var(--text-muted)',
               }}
             >
               {item}

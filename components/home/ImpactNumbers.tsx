@@ -41,7 +41,7 @@ export default function ImpactNumbers() {
   return (
     <section
       style={{
-        backgroundColor: '#080808',
+        backgroundColor: 'var(--bg-subtle)',
         padding: '120px 0',
         position: 'relative',
         overflow: 'hidden',
@@ -54,7 +54,7 @@ export default function ImpactNumbers() {
           position: 'absolute',
           inset: 0,
           background:
-            'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,98,42,0.05) 0%, transparent 70%)',
+            'radial-gradient(ellipse 80% 60% at 50% 50%, var(--blue-lo) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -86,7 +86,7 @@ export default function ImpactNumbers() {
                 textAlign: 'center',
                 padding: '32px 40px',
                 borderRight:
-                  i < STATS.length - 1 ? '1px solid #2A2520' : 'none',
+                  i < STATS.length - 1 ? '1px solid var(--line)' : 'none',
               }}
             >
               <motion.div
@@ -95,9 +95,9 @@ export default function ImpactNumbers() {
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.7, ease: 'easeOut', delay: i * 0.1 }}
                 style={{
-                  fontFamily: 'var(--font-accent)',
-                  fontSize: 'clamp(80px, 12vw, 160px)',
-                  color: '#F0EBE3',
+                  fontFamily: 'var(--font-stamp)',
+                  fontSize: 'clamp(72px, 10.8vw, 144px)',
+                  color: 'var(--text-primary)',
                   lineHeight: 1,
                 }}
               >
@@ -105,9 +105,9 @@ export default function ImpactNumbers() {
               </motion.div>
               <p
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-ui)',
                   fontSize: 13,
-                  color: '#7A7268',
+                  color: 'var(--text-body)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.14em',
                   marginTop: 12,
@@ -129,7 +129,7 @@ export default function ImpactNumbers() {
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
             fontSize: 'clamp(18px, 2.5vw, 24px)',
-            color: '#C9A96E',
+            color: 'var(--gold)',
             textAlign: 'center',
             maxWidth: 680,
             margin: '64px auto 0',

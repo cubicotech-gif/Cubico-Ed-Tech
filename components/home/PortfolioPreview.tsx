@@ -44,16 +44,16 @@ export default function PortfolioPreview() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section style={{ backgroundColor: '#080808', padding: '100px 0' }}>
+    <section style={{ backgroundColor: 'var(--bg-subtle)', padding: '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
 
         {/* Section label */}
         <div style={{ marginBottom: 60 }}>
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-stamp)',
               fontSize: 14,
-              color: '#C9A96E',
+              color: 'var(--gold)',
               letterSpacing: '0.1em',
             }}
           >
@@ -63,7 +63,7 @@ export default function PortfolioPreview() {
             style={{
               fontFamily: 'var(--font-ui)',
               fontSize: 11,
-              color: '#7A7268',
+              color: 'var(--text-muted)',
               letterSpacing: '0.2em',
               marginLeft: 16,
               textTransform: 'uppercase',
@@ -100,7 +100,7 @@ export default function PortfolioPreview() {
                 style={{
                   width: 420,
                   height: 520,
-                  backgroundColor: '#191919',
+                  backgroundColor: 'var(--bg-muted)',
                   flexShrink: 0,
                   display: 'flex',
                   flexDirection: 'column',
@@ -137,7 +137,7 @@ export default function PortfolioPreview() {
                       position: 'absolute',
                       top: 16,
                       right: 16,
-                      backgroundColor: '#E8622A',
+                      backgroundColor: 'var(--blue)',
                       padding: '6px 14px',
                       opacity: hovered === i ? 1 : 0,
                       transform: hovered === i ? 'translateY(0)' : 'translateY(-6px)',
@@ -149,7 +149,7 @@ export default function PortfolioPreview() {
                         fontFamily: 'var(--font-ui)',
                         fontSize: 11,
                         fontWeight: 600,
-                        color: '#F0EBE3',
+                        color: '#ffffff',
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
                       }}
@@ -167,15 +167,15 @@ export default function PortfolioPreview() {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    backgroundColor: '#111111',
+                    backgroundColor: 'var(--bg-base)',
                   }}
                 >
                   <div>
                     <span
                       style={{
-                        fontFamily: 'var(--font-accent)',
+                        fontFamily: 'var(--font-stamp)',
                         fontSize: 13,
-                        color: '#E8622A',
+                        color: 'var(--blue)',
                         letterSpacing: '0.08em',
                         display: 'block',
                         marginBottom: 6,
@@ -186,9 +186,9 @@ export default function PortfolioPreview() {
                     <h3
                       style={{
                         fontFamily: 'var(--font-display)',
-                        fontWeight: 600,
+                        fontWeight: 400,
                         fontSize: 20,
-                        color: '#F0EBE3',
+                        color: 'var(--text-primary)',
                         margin: '0 0 8px',
                         lineHeight: 1.2,
                       }}
@@ -197,9 +197,9 @@ export default function PortfolioPreview() {
                     </h3>
                     <p
                       style={{
-                        fontFamily: 'var(--font-body)',
+                        fontFamily: 'var(--font-ui)',
                         fontSize: 13,
-                        color: '#7A7268',
+                        color: 'var(--text-body)',
                         margin: 0,
                         lineHeight: 1.6,
                       }}
@@ -216,8 +216,8 @@ export default function PortfolioPreview() {
                         style={{
                           fontFamily: 'var(--font-ui)',
                           fontSize: 11,
-                          color: '#7A7268',
-                          border: '1px solid #2A2520',
+                          color: 'var(--text-muted)',
+                          border: '1px solid var(--line)',
                           padding: '3px 10px',
                         }}
                       >
@@ -239,7 +239,7 @@ export default function PortfolioPreview() {
               fontFamily: 'var(--font-ui)',
               fontWeight: 500,
               fontSize: 14,
-              color: '#E8622A',
+              color: 'var(--blue)',
               textDecoration: 'none',
             }}
             onMouseEnter={e =>

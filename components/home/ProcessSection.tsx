@@ -41,16 +41,16 @@ const stepVariant = {
 
 export default function ProcessSection() {
   return (
-    <section style={{ backgroundColor: '#F5F2ED', padding: '100px 0' }}>
+    <section style={{ backgroundColor: 'var(--bg-subtle)', padding: '100px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
 
         {/* Section label */}
         <div style={{ marginBottom: 60 }}>
           <span
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-stamp)',
               fontSize: 14,
-              color: '#C9A96E',
+              color: 'var(--gold)',
               letterSpacing: '0.1em',
             }}
           >
@@ -60,7 +60,7 @@ export default function ProcessSection() {
             style={{
               fontFamily: 'var(--font-ui)',
               fontSize: 11,
-              color: '#1A1714',
+              color: 'var(--text-primary)',
               letterSpacing: '0.2em',
               marginLeft: 16,
               textTransform: 'uppercase',
@@ -78,9 +78,9 @@ export default function ProcessSection() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           style={{
             fontFamily: 'var(--font-display)',
-            fontWeight: 700,
+            fontWeight: 400,
             fontSize: 'clamp(32px, 4.5vw, 52px)',
-            color: '#1A1714',
+            color: 'var(--text-primary)',
             letterSpacing: '-0.02em',
             marginBottom: 64,
             lineHeight: 1.1,
@@ -107,17 +107,17 @@ export default function ProcessSection() {
               variants={stepVariant}
               style={{
                 padding: '40px 36px',
-                borderBottom: '1px solid #D5CFC8',
-                borderRight: i % 2 === 0 ? '1px solid #D5CFC8' : 'none',
+                borderBottom: '1px solid var(--line)',
+                borderRight: i % 2 === 0 ? '1px solid var(--line)' : 'none',
               }}
               className={i % 2 === 0 ? 'border-r-rule' : ''}
             >
               {/* Decorative number */}
               <div
                 style={{
-                  fontFamily: 'var(--font-accent)',
+                  fontFamily: 'var(--font-stamp)',
                   fontSize: 72,
-                  color: '#C9A96E',
+                  color: 'var(--gold)',
                   opacity: 0.4,
                   lineHeight: 1,
                   marginBottom: 12,
@@ -128,9 +128,9 @@ export default function ProcessSection() {
               <h3
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontWeight: 600,
+                  fontWeight: 400,
                   fontSize: 22,
-                  color: '#1A1714',
+                  color: 'var(--text-primary)',
                   margin: '0 0 12px',
                   lineHeight: 1.2,
                 }}
@@ -139,9 +139,9 @@ export default function ProcessSection() {
               </h3>
               <p
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-ui)',
                   fontSize: 15,
-                  color: '#5A5550',
+                  color: 'var(--text-body)',
                   margin: 0,
                   lineHeight: 1.75,
                 }}
