@@ -12,32 +12,79 @@ export default function PortfolioPage() {
   return (
     <>
       {/* ── Page hero ── */}
-      <section className="relative pt-32 pb-16 px-5 md:px-8 text-center overflow-hidden">
+      <section
+        style={{
+          backgroundColor: '#080808',
+          padding: '160px 5% 100px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
         <div
-          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
           style={{
+            position: 'absolute',
+            inset: 0,
             background:
-              'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(6,214,160,0.08) 0%, transparent 65%)',
+              'radial-gradient(ellipse 60% 50% at 70% 40%, rgba(232,98,42,0.07) 0%, transparent 70%)',
+            pointerEvents: 'none',
           }}
         />
-        <AnimatedSection className="relative z-10 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-card-bg border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-green" />
-            Our Work
+        <AnimatedSection style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+          <div style={{ marginBottom: 32 }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontWeight: 500,
+                fontSize: 11,
+                color: '#E8622A',
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+              }}
+            >
+              Portfolio — Our Work
+            </span>
           </div>
-          <h1 className="font-syne font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
-            <span className="gradient-text">Portfolio</span>
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 'clamp(44px, 6vw, 80px)',
+              color: '#F0EBE3',
+              lineHeight: 1.04,
+              letterSpacing: '-0.025em',
+              margin: '0 0 24px',
+            }}
+          >
+            Selected Work.
           </h1>
-          <p className="text-muted font-dm text-base md:text-lg leading-relaxed">
-            A selection of EdTech projects we&apos;ve delivered — LMS deployments, animations,
-            management systems, and learning content.
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 17,
+              color: '#7A7268',
+              lineHeight: 1.75,
+              maxWidth: 520,
+              margin: 0,
+            }}
+          >
+            LMS deployments, animations, management systems, and learning content —
+            built for institutions in English, Urdu, and Arabic.
           </p>
         </AnimatedSection>
       </section>
 
-      {/* ── Portfolio grid with filters ── */}
-      <section className="pb-24 px-5 md:px-8 max-w-7xl mx-auto">
-        <PortfolioGrid />
+      {/* ── Portfolio grid ── */}
+      <section
+        style={{
+          backgroundColor: '#080808',
+          padding: '0 5% 120px',
+          borderTop: '1px solid #2A2520',
+        }}
+      >
+        <div style={{ maxWidth: 1100, margin: '0 auto', paddingTop: 60 }}>
+          <PortfolioGrid />
+        </div>
       </section>
     </>
   );

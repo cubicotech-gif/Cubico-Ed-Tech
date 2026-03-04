@@ -10,15 +10,10 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    icon: '🎓',
+    number: '01',
     title: 'Moodle LMS Setup',
     description:
       'From basic installation to full enterprise-level deployment. We handle hosting, branding, plugins, content migration, and ongoing support.',
-    accent: 'blue',
-    accentClass: {
-      icon: 'bg-accent/10 text-accent border-accent/20',
-      border: 'border-accent/20',
-    },
     features: [
       'Cloud & on-premise hosting setup',
       'Custom branded themes (your colors, logo, layout)',
@@ -31,15 +26,10 @@ const services = [
     ],
   },
   {
-    icon: '🎬',
+    number: '02',
     title: 'Educational Animations',
     description:
       'Professional animations for every subject and every grade level. Custom-made to match your curriculum, guidelines, and branding.',
-    accent: 'green',
-    accentClass: {
-      icon: 'bg-accent-green/10 text-accent-green border-accent-green/20',
-      border: 'border-accent-green/20',
-    },
     features: [
       '2D Character Animation',
       '3D Animation (science models, anatomy, geography)',
@@ -52,15 +42,10 @@ const services = [
     ],
   },
   {
-    icon: '💻',
+    number: '03',
     title: 'Digital Solutions & Apps',
     description:
       'Custom software and mobile apps for every institutional need — from student management to full school ERP systems.',
-    accent: 'purple',
-    accentClass: {
-      icon: 'bg-accent-purple/10 text-accent-purple border-accent-purple/20',
-      border: 'border-accent-purple/20',
-    },
     features: [
       'Student Management Systems (attendance, grades, profiles)',
       'School ERP (fees, HR, accounts, inventory, library)',
@@ -73,15 +58,10 @@ const services = [
     ],
   },
   {
-    icon: '📚',
+    number: '04',
     title: 'Educational Content Creation',
     description:
       'Complete curriculum development and instructional design services. We create content that makes learning stick.',
-    accent: 'orange',
-    accentClass: {
-      icon: 'bg-accent-orange/10 text-accent-orange border-accent-orange/20',
-      border: 'border-accent-orange/20',
-    },
     features: [
       'Curriculum design and lesson plans',
       'E-books and digital textbooks',
@@ -99,90 +79,271 @@ export default function ServicesPage() {
   return (
     <>
       {/* ── Page hero ── */}
-      <section className="relative pt-32 pb-16 px-5 md:px-8 text-center overflow-hidden">
+      <section
+        style={{
+          backgroundColor: '#080808',
+          padding: '160px 5% 100px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
         <div
-          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
           style={{
+            position: 'absolute',
+            inset: 0,
             background:
-              'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 65%)',
+              'radial-gradient(ellipse 60% 50% at 30% 60%, rgba(232,98,42,0.08) 0%, transparent 70%)',
+            pointerEvents: 'none',
           }}
         />
-        <AnimatedSection className="relative z-10 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-card-bg border border-border text-muted text-xs font-syne font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            What We Offer
+        <AnimatedSection style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+          <div style={{ marginBottom: 32 }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-ui)',
+                fontWeight: 500,
+                fontSize: 11,
+                color: '#E8622A',
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+              }}
+            >
+              Services — What We Offer
+            </span>
           </div>
-          <h1 className="font-syne font-extrabold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
-            Our <span className="gradient-text">Services</span>
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 'clamp(44px, 6vw, 80px)',
+              color: '#F0EBE3',
+              lineHeight: 1.04,
+              letterSpacing: '-0.025em',
+              margin: '0 0 24px',
+            }}
+          >
+            End-to-End EdTech.
           </h1>
-          <p className="text-muted font-dm text-base md:text-lg leading-relaxed">
-            End-to-end EdTech solutions for every type of institution — conventional, Islamic, or
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 17,
+              color: '#7A7268',
+              lineHeight: 1.75,
+              maxWidth: 520,
+              margin: 0,
+            }}
+          >
+            Complete solutions for every type of institution — conventional, Islamic, or
             international. In English, Urdu, and Arabic.
           </p>
         </AnimatedSection>
       </section>
 
       {/* ── Service blocks ── */}
-      <section className="py-16 px-5 md:px-8 max-w-6xl mx-auto space-y-16">
-        {services.map((service, i) => (
-          <AnimatedSection key={service.title} delay={0.05 * i}>
-            <div
-              className={`bg-card-bg border ${service.accentClass.border} rounded-2xl p-8 md:p-10 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 items-start`}
-            >
-              {/* Left: icon + title */}
-              <div className="flex flex-col gap-5">
-                <div
-                  className={`w-16 h-16 rounded-2xl border flex items-center justify-center text-3xl ${service.accentClass.icon}`}
-                >
-                  {service.icon}
-                </div>
-                <div>
-                  <h2 className="font-syne font-extrabold text-2xl md:text-3xl text-white mb-3">
+      <section
+        style={{
+          backgroundColor: '#080808',
+          padding: '0 5% 80px',
+          borderTop: '1px solid #2A2520',
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: '0 auto',
+            paddingTop: 80,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+          }}
+        >
+          {services.map((service, i) => (
+            <AnimatedSection key={service.title} delay={0.05 * i}>
+              <div
+                style={{
+                  backgroundColor: '#191919',
+                  border: '1px solid #2A2520',
+                  padding: '52px 48px',
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 2fr',
+                  gap: 60,
+                  alignItems: 'start',
+                }}
+                className="flex-col md:grid"
+              >
+                {/* Left: number + title + description + CTA */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-accent)',
+                      fontSize: 64,
+                      color: '#C9A96E',
+                      opacity: 0.45,
+                      lineHeight: 1,
+                    }}
+                  >
+                    {service.number}
+                  </div>
+                  <h2
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontWeight: 700,
+                      fontSize: 26,
+                      color: '#F0EBE3',
+                      margin: 0,
+                      lineHeight: 1.15,
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
                     {service.title}
                   </h2>
-                  <p className="text-muted font-dm leading-relaxed text-sm md:text-base">
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 15,
+                      color: '#7A7268',
+                      lineHeight: 1.75,
+                      margin: 0,
+                    }}
+                  >
                     {service.description}
                   </p>
+                  <Link
+                    href="/contact"
+                    style={{
+                      fontFamily: 'var(--font-ui)',
+                      fontWeight: 600,
+                      fontSize: 13,
+                      color: '#F0EBE3',
+                      textDecoration: 'none',
+                      backgroundColor: '#E8622A',
+                      padding: '13px 28px',
+                      display: 'inline-block',
+                      letterSpacing: '0.02em',
+                      transition: 'background-color 0.2s ease',
+                      alignSelf: 'flex-start',
+                    }}
+                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#C4531F')}
+                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = '#E8622A')}
+                  >
+                    Request a Proposal →
+                  </Link>
                 </div>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-syne font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-accent/20 w-fit"
-                >
-                  Request a Proposal →
-                </Link>
-              </div>
 
-              {/* Right: feature list */}
-              <div>
-                <h3 className="font-syne font-semibold text-muted text-xs uppercase tracking-widest mb-4">
-                  What&apos;s included
-                </h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm font-dm text-text">
-                      <span className="text-accent-green mt-0.5 flex-shrink-0">→</span>
-                      <span dir="auto">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Right: feature list */}
+                <div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-ui)',
+                      fontWeight: 500,
+                      fontSize: 10,
+                      color: '#6A6460',
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      marginBottom: 20,
+                    }}
+                  >
+                    What&apos;s included
+                  </div>
+                  <ul
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: '10px 40px',
+                      listStyle: 'none',
+                      padding: 0,
+                      margin: 0,
+                    }}
+                  >
+                    {service.features.map(feature => (
+                      <li
+                        key={feature}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: 10,
+                          fontFamily: 'var(--font-body)',
+                          fontSize: 14,
+                          color: '#9A9490',
+                          lineHeight: 1.6,
+                        }}
+                        dir="auto"
+                      >
+                        <span style={{ color: '#E8622A', flexShrink: 0, marginTop: 1 }}>→</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          </AnimatedSection>
-        ))}
+            </AnimatedSection>
+          ))}
+        </div>
       </section>
 
-      {/* ── CTA Strip ── */}
-      <section className="py-24 px-5 md:px-8">
-        <AnimatedSection className="max-w-3xl mx-auto bg-card-bg border border-border rounded-2xl p-10 md:p-14 text-center">
-          <h2 className="font-syne font-extrabold text-2xl md:text-3xl text-white mb-3">
+      {/* ── CTA strip ── */}
+      <section style={{ backgroundColor: '#F5F2ED', padding: '120px 5%', position: 'relative', overflow: 'hidden' }}>
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: 0, left: 0, right: 0, height: 60,
+            background: 'linear-gradient(to bottom, #080808 0%, transparent 100%)',
+            pointerEvents: 'none',
+          }}
+        />
+        <AnimatedSection style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: 'clamp(36px, 4.5vw, 60px)',
+              color: '#1A1714',
+              letterSpacing: '-0.025em',
+              lineHeight: 1.05,
+              margin: '0 0 20px',
+            }}
+          >
             Ready to get started?
           </h2>
-          <p className="text-muted font-dm mb-8 leading-relaxed">
-            Tell us what your institution needs and we&apos;ll send you a clear proposal.
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 17,
+              color: '#5A5250',
+              lineHeight: 1.7,
+              margin: '0 0 40px',
+            }}
+          >
+            Tell us what your institution needs and we&apos;ll send you a clear proposal within 24 hours.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-syne font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-accent/25 hover:-translate-y-0.5"
+            data-cursor="cta"
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontWeight: 700,
+              fontSize: 15,
+              color: '#F0EBE3',
+              textDecoration: 'none',
+              backgroundColor: '#E8622A',
+              padding: '18px 48px',
+              display: 'inline-block',
+              letterSpacing: '0.02em',
+              transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
+              boxShadow: '0 4px 24px rgba(232,98,42,0.25)',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = '#C4531F';
+              el.style.boxShadow = '0 8px 36px rgba(232,98,42,0.38)';
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.backgroundColor = '#E8622A';
+              el.style.boxShadow = '0 4px 24px rgba(232,98,42,0.25)';
+            }}
           >
             Request a Proposal →
           </Link>

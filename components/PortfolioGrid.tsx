@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PortfolioCard from '@/components/PortfolioCard';
 import { fetchPortfolioProjects, type PortfolioProject } from '@/lib/supabase';
 
-// ── Placeholder cards shown when Supabase returns no data ──────────────────
 const PLACEHOLDER_PROJECTS: PortfolioProject[] = [
   {
     id: '1',
@@ -82,7 +81,6 @@ export default function PortfolioGrid() {
     async function load() {
       try {
         const data = await fetchPortfolioProjects();
-        // Fall back to placeholders if Supabase returns nothing
         setProjects(data.length > 0 ? data : PLACEHOLDER_PROJECTS);
       } catch {
         setError('Could not load projects. Showing sample work.');
@@ -97,47 +95,90 @@ export default function PortfolioGrid() {
   const filtered =
     activeFilter === 'All'
       ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      : projects.filter(p => p.category === activeFilter);
 
   return (
     <div>
       {/* Filter buttons */}
-      <div className="flex flex-wrap gap-2 mb-10">
-        {CATEGORIES.map((cat) => (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 48 }}>
+        {CATEGORIES.map(cat => (
           <button
             key={cat}
             onClick={() => setActiveFilter(cat)}
-            className={`font-syne font-semibold text-sm px-5 py-2 rounded-full border transition-all duration-200 ${
-              activeFilter === cat
-                ? 'bg-accent border-accent text-white'
-                : 'bg-card-bg border-border text-muted hover:text-text hover:border-border/60'
-            }`}
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontWeight: 600,
+              fontSize: 11,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              padding: '9px 20px',
+              border: '1px solid',
+              borderColor: activeFilter === cat ? '#E8622A' : '#2A2520',
+              backgroundColor: activeFilter === cat ? '#E8622A' : 'transparent',
+              color: activeFilter === cat ? '#F0EBE3' : '#7A7268',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              if (activeFilter !== cat) {
+                const el = e.currentTarget;
+                el.style.borderColor = '#3A3530';
+                el.style.color = '#F0EBE3';
+              }
+            }}
+            onMouseLeave={e => {
+              if (activeFilter !== cat) {
+                const el = e.currentTarget;
+                el.style.borderColor = '#2A2520';
+                el.style.color = '#7A7268';
+              }
+            }}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* Error note (non-blocking) */}
+      {/* Error note */}
       {error && (
-        <p className="text-muted text-sm font-dm mb-6 bg-card-bg border border-border rounded-lg px-4 py-3">
-          ⚠️ {error}
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 13,
+            color: '#7A7268',
+            backgroundColor: '#191919',
+            border: '1px solid #2A2520',
+            padding: '12px 16px',
+            marginBottom: 24,
+          }}
+        >
+          {error}
         </p>
       )}
 
-      {/* Loading state */}
+      {/* Loading skeleton */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 24,
+          }}
+        >
           {Array.from({ length: 6 }).map((_, i) => (
             <div
               key={i}
-              className="bg-card-bg border border-border rounded-2xl overflow-hidden animate-pulse"
+              style={{
+                backgroundColor: '#191919',
+                border: '1px solid #2A2520',
+                overflow: 'hidden',
+              }}
             >
-              <div className="aspect-video bg-border/40" />
-              <div className="p-5 flex flex-col gap-3">
-                <div className="h-4 bg-border/60 rounded w-3/4" />
-                <div className="h-3 bg-border/40 rounded w-full" />
-                <div className="h-3 bg-border/40 rounded w-5/6" />
+              <div style={{ aspectRatio: '16/9', backgroundColor: '#111111' }} />
+              <div style={{ padding: '24px 24px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <div style={{ height: 16, backgroundColor: '#2A2520', width: '75%' }} />
+                <div style={{ height: 12, backgroundColor: '#2A2520', width: '100%' }} />
+                <div style={{ height: 12, backgroundColor: '#2A2520', width: '85%' }} />
               </div>
             </div>
           ))}
@@ -146,16 +187,20 @@ export default function PortfolioGrid() {
         <AnimatePresence mode="popLayout">
           <motion.div
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: 24,
+            }}
           >
             {filtered.map((project, i) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.3, delay: i * 0.04 }}
               >
                 <PortfolioCard
                   title={project.title}
@@ -171,9 +216,16 @@ export default function PortfolioGrid() {
       )}
 
       {!loading && filtered.length === 0 && (
-        <div className="text-center py-20 text-muted font-dm">
-          <div className="text-4xl mb-3">🔍</div>
-          <p>No projects in this category yet.</p>
+        <div
+          style={{
+            textAlign: 'center',
+            padding: '80px 0',
+            fontFamily: 'var(--font-body)',
+            fontSize: 15,
+            color: '#7A7268',
+          }}
+        >
+          No projects in this category yet.
         </div>
       )}
     </div>

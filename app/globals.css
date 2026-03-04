@@ -15,6 +15,9 @@
   body {
     @apply bg-void text-ivory antialiased overflow-x-hidden;
     font-family: var(--font-body), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   /* Hide native cursor on desktop — CustomCursor replaces it */
@@ -23,34 +26,10 @@
   }
 }
 
-/* ── Utility classes ──────────────────────────────────────────────────────── */
+/* ── Utilities ────────────────────────────────────────────────────────────── */
 @layer utilities {
 
-  /* Legacy gradient text (used by other pages) */
-  .gradient-text {
-    background: linear-gradient(135deg, #3b82f6, #06d6a0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Legacy glass (used by other pages) */
-  .glass {
-    background: rgba(22, 27, 36, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-
-  /* Legacy hero grid (used by old components) */
-  .hero-grid-bg {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 75%);
-  }
-
-  /* ServicesReveal: responsive service-name typography */
+  /* ServicesReveal — responsive service name typography */
   .service-name-size { font-size: clamp(28px, 7vw, 48px); }
 
   @media (min-width: 768px) {

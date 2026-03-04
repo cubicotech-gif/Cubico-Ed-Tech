@@ -4,15 +4,13 @@ import {
   Epilogue,
   Instrument_Sans,
   Bebas_Neue,
-  Syne,
-  DM_Sans,
 } from 'next/font/google';
 import CustomCursor from '@/components/CustomCursor';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
 
-// ── Editorial typefaces (new design system) ───────────────────────────────────
+// ── Typefaces ─────────────────────────────────────────────────────────────────
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -40,22 +38,6 @@ const bebasNeue = Bebas_Neue({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-accent',
-  display: 'swap',
-});
-
-// ── Legacy typefaces (used by other pages / components) ───────────────────────
-
-const syne = Syne({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-syne',
-  display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-dm',
   display: 'swap',
 });
 
@@ -98,8 +80,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           epilogue.variable,
           instrumentSans.variable,
           bebasNeue.variable,
-          syne.variable,
-          dmSans.variable,
         ].join(' ')}
       >
         <CustomCursor />

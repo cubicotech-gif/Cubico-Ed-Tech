@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import clsx from 'clsx';
 
 interface PortfolioCardProps {
   title: string;
@@ -10,15 +9,7 @@ interface PortfolioCardProps {
   description: string;
   tags: string[];
   image_url?: string | null;
-  delay?: number;
 }
-
-const categoryColors: Record<string, string> = {
-  LMS: 'bg-accent/15 text-accent',
-  Animation: 'bg-accent-green/15 text-accent-green',
-  Apps: 'bg-accent-purple/15 text-accent-purple',
-  Content: 'bg-accent-orange/15 text-accent-orange',
-};
 
 export default function PortfolioCard({
   title,
@@ -26,21 +17,34 @@ export default function PortfolioCard({
   description,
   tags,
   image_url,
-  delay = 0,
 }: PortfolioCardProps) {
-  const categoryStyle = categoryColors[category] ?? 'bg-muted/20 text-muted';
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay }}
-      whileHover={{ scale: 1.02 }}
-      className="bg-card-bg border border-border rounded-2xl overflow-hidden group transition-all duration-300 hover:border-border/80 hover:shadow-xl hover:shadow-black/30 flex flex-col"
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        backgroundColor: '#191919',
+        border: '1px solid #2A2520',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'border-color 0.25s ease',
+      }}
+      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = '#3A3530')}
+      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = '#2A2520')}
     >
       {/* Thumbnail */}
-      <div className="relative w-full aspect-video bg-background overflow-hidden">
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '16/9',
+          backgroundColor: '#111111',
+          overflow: 'hidden',
+        }}
+      >
         {image_url ? (
           <Image
             src={image_url}
@@ -50,20 +54,44 @@ export default function PortfolioCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          /* Placeholder with gradient when no image */
-          <div className="absolute inset-0 bg-gradient-to-br from-card-bg via-background to-card-bg flex items-center justify-center">
-            <div className="text-muted/30 font-syne font-bold text-5xl select-none">C</div>
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent-green/5" />
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, #1A1714 0%, #111111 60%, #1A1210 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'var(--font-accent)',
+                fontSize: 72,
+                color: '#2A2520',
+                lineHeight: 1,
+                userSelect: 'none',
+              }}
+            >
+              C
+            </span>
           </div>
         )}
 
         {/* Category badge */}
-        <div className="absolute top-3 left-3">
+        <div style={{ position: 'absolute', top: 14, left: 14 }}>
           <span
-            className={clsx(
-              'text-xs font-syne font-semibold px-3 py-1 rounded-full',
-              categoryStyle
-            )}
+            style={{
+              fontFamily: 'var(--font-ui)',
+              fontWeight: 600,
+              fontSize: 10,
+              color: '#E8622A',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              backgroundColor: 'rgba(8,8,8,0.75)',
+              padding: '4px 10px',
+              backdropFilter: 'blur(4px)',
+            }}
           >
             {category}
           </span>
@@ -71,17 +99,64 @@ export default function PortfolioCard({
       </div>
 
       {/* Body */}
-      <div className="p-5 flex flex-col gap-3 flex-1">
-        <h3 className="font-syne font-bold text-white text-base leading-snug">{title}</h3>
-        <p className="text-muted text-sm leading-relaxed font-dm line-clamp-2">{description}</p>
+      <div
+        style={{
+          padding: '24px 24px 20px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 10,
+          flex: 1,
+        }}
+      >
+        <h3
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontWeight: 600,
+            fontSize: 17,
+            color: '#F0EBE3',
+            lineHeight: 1.25,
+            margin: 0,
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 13,
+            color: '#7A7268',
+            lineHeight: 1.7,
+            margin: 0,
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
+          {description}
+        </p>
 
-        {/* Tags */}
         {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
-            {tags.map((tag) => (
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 6,
+              marginTop: 'auto',
+              paddingTop: 12,
+            }}
+          >
+            {tags.map(tag => (
               <span
                 key={tag}
-                className="text-[0.7rem] font-dm text-muted bg-border/60 px-2 py-0.5 rounded-md"
+                style={{
+                  fontFamily: 'var(--font-ui)',
+                  fontSize: 10,
+                  color: '#6A6460',
+                  border: '1px solid #2A2520',
+                  padding: '3px 8px',
+                  letterSpacing: '0.04em',
+                }}
               >
                 {tag}
               </span>
