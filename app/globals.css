@@ -5,18 +5,8 @@
 /* ── Custom scrollbar ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 4px; }
 ::-webkit-scrollbar-track  { background: #080808; }
-::-webkit-scrollbar-thumb  { background: #3A3530; border-radius: 2px; }
+::-webkit-scrollbar-thumb  { background: #2A2520; }
 ::-webkit-scrollbar-thumb:hover { background: #E8622A; }
-
-/* ── Text selection — psychological warmth ────────────────────────────────── */
-::selection {
-  background-color: rgba(232, 98, 42, 0.28);
-  color: #F0EBE3;
-}
-::-moz-selection {
-  background-color: rgba(232, 98, 42, 0.28);
-  color: #F0EBE3;
-}
 
 /* ── Base styles ──────────────────────────────────────────────────────────── */
 @layer base {
@@ -25,9 +15,6 @@
   body {
     @apply bg-void text-ivory antialiased overflow-x-hidden;
     font-family: var(--font-body), system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
   }
 
   /* Hide native cursor on desktop — CustomCursor replaces it */
@@ -72,7 +59,7 @@
 
   /* Marquee — pure CSS, no JS */
   .marquee-track {
-    animation: marquee 42s linear infinite;
+    animation: marquee 30s linear infinite;
     white-space: nowrap;
   }
   .marquee-track:hover { animation-play-state: paused; }

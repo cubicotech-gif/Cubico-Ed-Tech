@@ -50,7 +50,7 @@ const config: Config = {
         'gradient-accent': 'linear-gradient(135deg, #3b82f6, #06d6a0)',
       },
       animation: {
-        marquee:   'marquee 42s linear infinite',
+        marquee:   'marquee 30s linear infinite',
         'fade-in': 'fadeIn 0.5s ease forwards',
       },
       keyframes: {

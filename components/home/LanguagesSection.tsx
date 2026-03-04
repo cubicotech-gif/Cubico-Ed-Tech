@@ -44,15 +44,25 @@ export default function LanguagesSection() {
         <div style={{ marginBottom: 64 }}>
           <span
             style={{
+              fontFamily: 'var(--font-accent)',
+              fontSize: 14,
+              color: '#C9A96E',
+              letterSpacing: '0.1em',
+            }}
+          >
+            06
+          </span>
+          <span
+            style={{
               fontFamily: 'var(--font-ui)',
-              fontWeight: 500,
               fontSize: 11,
-              color: '#E8622A',
-              letterSpacing: '0.22em',
+              color: '#7A7268',
+              letterSpacing: '0.2em',
+              marginLeft: 16,
               textTransform: 'uppercase',
             }}
           >
-            06 — WE SPEAK YOUR LANGUAGE
+            WE SPEAK YOUR LANGUAGE
           </span>
         </div>
 
@@ -84,10 +94,9 @@ export default function LanguagesSection() {
               <div
                 style={{
                   fontFamily: 'var(--font-ui)',
-                  fontWeight: 500,
-                  fontSize: 10,
-                  color: '#6A6460',
-                  letterSpacing: '0.24em',
+                  fontSize: 11,
+                  color: '#7A7268',
+                  letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   marginBottom: 20,
                   direction: 'ltr',
@@ -116,8 +125,8 @@ export default function LanguagesSection() {
                 style={{
                   fontFamily: 'var(--font-body)',
                   fontSize: 16,
-                  color: '#8A8278',
-                  lineHeight: 1.75,
+                  color: '#7A7268',
+                  lineHeight: 1.7,
                   marginBottom: 16,
                 }}
               >
