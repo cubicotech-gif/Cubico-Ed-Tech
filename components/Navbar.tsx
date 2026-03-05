@@ -8,17 +8,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 const WA_LINK =
   "https://wa.me/923001234567?text=Hi%20Cubico!%20I'm%20interested%20in%20learning%20about%20your%20EdTech%20solutions%20for%20our%20institution.";
 
-const NAV_LINKS = [
-  { href: '/#solutions', label: 'Solutions' },
-  { href: '/#process',   label: 'Process'   },
-  { href: '/#results',   label: 'Results'   },
-  { href: '/about',      label: 'About'     },
+type NavLink = { href: string; label: string; dropdown?: { href: string; label: string }[] };
+const NAV_LINKS: NavLink[] = [
+  {
+    href: '#',
+    label: 'Solutions',
+    dropdown: [
+      { href: '/solutions/manage', label: 'Cubico Manage™' },
+      { href: '/solutions/teach',  label: 'Cubico Teach™'  },
+      { href: '/solutions/learn',  label: 'Cubico Learn™'  },
+      { href: '/solutions/scale',  label: 'Cubico Scale™'  },
+    ],
+  },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/about',        label: 'About'        },
+  { href: '/blog',         label: 'Blog'         },
+  { href: '/contact',      label: 'Contact'      },
 ];
 
 export default function Navbar() {
-  const [hidden, setHidden]       = useState(false);
-  const [scrolled, setScrolled]   = useState(false);
+  const [hidden, setHidden]         = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [dropOpen, setDropOpen]     = useState(false);
   const lastY = useRef(0);
 
   useEffect(() => {
@@ -88,25 +100,105 @@ export default function Navbar() {
         {/* Desktop links */}
         <ul
           className="hidden md:flex"
-          style={{ listStyle: 'none', margin: 0, padding: 0, gap: 40, alignItems: 'center' }}
+          style={{ listStyle: 'none', margin: 0, padding: 0, gap: 36, alignItems: 'center' }}
         >
-          {NAV_LINKS.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                style={{
-                  fontFamily: 'var(--font-ui)',
-                  fontWeight: 500,
-                  fontSize: 14,
-                  color: '#64748B',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s ease',
-                }}
-                onMouseEnter={e => ((e.target as HTMLElement).style.color = '#E2E8F0')}
-                onMouseLeave={e => ((e.target as HTMLElement).style.color = '#64748B')}
-              >
-                {label}
-              </Link>
+          {NAV_LINKS.map(({ href, label, dropdown }) => (
+            <li key={label} style={{ position: 'relative' }}>
+              {dropdown ? (
+                <div
+                  onMouseEnter={() => setDropOpen(true)}
+                  onMouseLeave={() => setDropOpen(false)}
+                  style={{ position: 'relative' }}
+                >
+                  <button
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontFamily: 'var(--font-ui)',
+                      fontWeight: 500,
+                      fontSize: 14,
+                      color: dropOpen ? '#E2E8F0' : '#64748B',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 4,
+                      padding: 0,
+                    }}
+                  >
+                    {label}
+                    <span style={{ fontSize: 10, transition: 'transform 0.2s', transform: dropOpen ? 'rotate(180deg)' : 'none' }}>▾</span>
+                  </button>
+                  <AnimatePresence>
+                    {dropOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.18 }}
+                        style={{
+                          position: 'absolute',
+                          top: '100%',
+                          left: '50%',
+                          transform: 'translateX(-50%)',
+                          marginTop: 12,
+                          background: '#0C1528',
+                          border: '1px solid rgba(255,255,255,0.08)',
+                          borderRadius: 12,
+                          padding: '8px 0',
+                          minWidth: 200,
+                          boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                          zIndex: 200,
+                        }}
+                      >
+                        {dropdown.map(item => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            style={{
+                              display: 'block',
+                              fontFamily: 'var(--font-ui)',
+                              fontWeight: 500,
+                              fontSize: 13,
+                              color: '#94A3B8',
+                              textDecoration: 'none',
+                              padding: '10px 20px',
+                              transition: 'color 0.15s, background 0.15s',
+                            }}
+                            onMouseEnter={e => {
+                              (e.currentTarget as HTMLElement).style.color = '#E2E8F0';
+                              (e.currentTarget as HTMLElement).style.background = 'rgba(79,70,229,0.08)';
+                            }}
+                            onMouseLeave={e => {
+                              (e.currentTarget as HTMLElement).style.color = '#94A3B8';
+                              (e.currentTarget as HTMLElement).style.background = 'transparent';
+                            }}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  href={href}
+                  style={{
+                    fontFamily: 'var(--font-ui)',
+                    fontWeight: 500,
+                    fontSize: 14,
+                    color: '#64748B',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseEnter={e => ((e.target as HTMLElement).style.color = '#E2E8F0')}
+                  onMouseLeave={e => ((e.target as HTMLElement).style.color = '#64748B')}
+                >
+                  {label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -198,24 +290,57 @@ export default function Navbar() {
                 gap: 0,
               }}
             >
-              {NAV_LINKS.map(({ href, label }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    onClick={() => setMobileOpen(false)}
-                    style={{
-                      display: 'block',
-                      fontFamily: 'var(--font-ui)',
-                      fontWeight: 500,
-                      fontSize: 20,
-                      color: '#64748B',
-                      textDecoration: 'none',
-                      padding: '14px 0',
-                      borderBottom: '1px solid rgba(255,255,255,0.06)',
-                    }}
-                  >
-                    {label}
-                  </Link>
+              {NAV_LINKS.map(({ href, label, dropdown }) => (
+                <li key={label}>
+                  {dropdown ? (
+                    <>
+                      <span style={{
+                        display: 'block',
+                        fontFamily: 'var(--font-ui)',
+                        fontWeight: 600,
+                        fontSize: 11,
+                        color: '#818CF8',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.1em',
+                        padding: '14px 0 6px',
+                      }}>Solutions</span>
+                      {dropdown.map(item => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setMobileOpen(false)}
+                          style={{
+                            display: 'block',
+                            fontFamily: 'var(--font-ui)',
+                            fontWeight: 500,
+                            fontSize: 17,
+                            color: '#64748B',
+                            textDecoration: 'none',
+                            padding: '10px 0',
+                            borderBottom: '1px solid rgba(255,255,255,0.04)',
+                            paddingLeft: 12,
+                          }}
+                        >{item.label}</Link>
+                      ))}
+                    </>
+                  ) : (
+                    <Link
+                      href={href}
+                      onClick={() => setMobileOpen(false)}
+                      style={{
+                        display: 'block',
+                        fontFamily: 'var(--font-ui)',
+                        fontWeight: 500,
+                        fontSize: 20,
+                        color: '#64748B',
+                        textDecoration: 'none',
+                        padding: '14px 0',
+                        borderBottom: '1px solid rgba(255,255,255,0.06)',
+                      }}
+                    >
+                      {label}
+                    </Link>
+                  )}
                 </li>
               ))}
               <li style={{ paddingTop: 20 }}>
