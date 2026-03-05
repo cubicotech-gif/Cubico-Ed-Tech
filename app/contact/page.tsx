@@ -2,11 +2,10 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import type { Metadata } from "next";
 
-const pageTitle = "Contact Cubico Technologies | Free EdTech Consultation";
-const pageDescription =
-  "Get in touch with Cubico Technologies. Free consultation for educational institutions. WhatsApp, email, or contact form. Based in Karachi, serving worldwide.";
+// Metadata is declared in the nearest server-side layout.
+// Title: "Contact Cubico Technologies | Free EdTech Consultation"
+// Description: "Get in touch with Cubico Technologies. Free consultation for educational institutions. WhatsApp, email, or contact form. Based in Karachi, serving worldwide."
 
 const WHATSAPP_URL =
   "https://wa.me/923001234567?text=Hi%20Cubico!%20I'd%20like%20to%20chat%20about%20your%20EdTech%20solutions.";
