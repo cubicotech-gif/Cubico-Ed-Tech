@@ -88,7 +88,7 @@ export default function TestimonialsSection() {
                 opacity: 0.3, fontFamily: 'Georgia, serif',
                 position: 'absolute', top: 20, right: 28,
               }}>
-                "
+                &ldquo;
               </div>
 
               {/* Quote text */}
@@ -97,7 +97,7 @@ export default function TestimonialsSection() {
                 color: '#94A3B8', lineHeight: 1.75, margin: 0,
                 fontStyle: 'italic',
               }}>
-                "{t.quote}"
+                &ldquo;{t.quote}&rdquo;
               </p>
 
               {/* Attribution */}
