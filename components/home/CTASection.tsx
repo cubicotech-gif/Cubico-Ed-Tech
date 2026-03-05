@@ -1,150 +1,109 @@
 'use client';
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-};
+const WA_LINK =
+  "https://wa.me/923001234567?text=Hi%20Cubico!%20I'd%20like%20to%20discuss%20how%20you%20can%20help%20transform%20our%20educational%20institution.";
 
 export default function CTASection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
   return (
     <section
       style={{
-        backgroundColor: '#F5F2ED',
-        padding: '160px 5%',
-        textAlign: 'center',
+        backgroundColor: '#0C1528',
+        padding: '120px 0',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        style={{
-          maxWidth: 700,
-          margin: '0 auto',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 24,
-        }}
-      >
-        {/* Eyebrow */}
-        <motion.p
-          variants={fadeUp}
-          style={{
-            fontFamily: 'var(--font-ui)',
-            fontWeight: 500,
-            fontSize: 12,
-            color: '#7A7268',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            margin: 0,
-          }}
-        >
-          LIMITED PROJECT SLOTS · Q2 2026
-        </motion.p>
+      {/* Background glow */}
+      <div style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 600, height: 600, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(79,70,229,0.15) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
 
-        {/* Headline */}
+      <div
+        ref={ref}
+        style={{ maxWidth: 720, margin: '0 auto', padding: '0 5%', textAlign: 'center' as const, position: 'relative' }}
+      >
         <motion.h2
-          variants={fadeUp}
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
           style={{
             fontFamily: 'var(--font-display)',
-            fontWeight: 700,
-            fontSize: 'clamp(48px, 6vw, 96px)',
-            color: '#1A1714',
-            lineHeight: 1,
-            letterSpacing: '-0.03em',
-            margin: 0,
+            fontSize: 'clamp(36px, 5vw, 64px)',
+            fontWeight: 700, color: '#E2E8F0',
+            margin: '0 0 20px', lineHeight: 1.1,
+            letterSpacing: '-0.025em',
           }}
         >
-          Let&rsquo;s Build Something Extraordinary.
+          Ready to build an institution<br />
+          <span style={{
+            background: 'linear-gradient(135deg, #818CF8, #7C3AED)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          }}>
+            ready for anything?
+          </span>
         </motion.h2>
 
-        {/* Subtext */}
         <motion.p
-          variants={fadeUp}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1 }}
           style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 17,
-            color: '#5A5550',
-            lineHeight: 1.7,
-            maxWidth: 560,
-            margin: 0,
+            fontFamily: 'var(--font-body)', fontSize: 18,
+            color: '#64748B', lineHeight: 1.7,
+            margin: '0 0 48px',
           }}
         >
-          Tell us about your institution. We&rsquo;ll respond within 24 hours with a
-          clear plan and honest pricing.
+          No sales pitch — just a conversation about where you are and where you want to be.
         </motion.p>
 
-        {/* CTA button */}
-        <motion.div variants={fadeUp} style={{ marginTop: 8 }}>
-          <Link
-            href="/contact"
-            data-cursor="cta"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 16 }}
+        >
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
-              fontFamily: 'var(--font-ui)',
-              fontWeight: 600,
-              fontSize: 18,
-              color: '#F0EBE3',
-              textDecoration: 'none',
-              backgroundColor: '#E8622A',
-              padding: '20px 48px',
-              borderRadius: 0,
-              display: 'inline-block',
+              display: 'inline-flex', alignItems: 'center', gap: 10,
+              background: 'linear-gradient(135deg, #4F46E5, #7C3AED)',
+              color: '#fff', fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 17,
+              padding: '18px 40px', borderRadius: 10, textDecoration: 'none',
+              boxShadow: '0 0 50px rgba(79,70,229,0.5)',
               transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             }}
             onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.transform = 'scale(1.03)';
-              el.style.boxShadow = '0 8px 32px rgba(232,98,42,0.3)';
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 0 70px rgba(79,70,229,0.7)';
             }}
             onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.transform = 'scale(1)';
-              el.style.boxShadow = 'none';
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 0 50px rgba(79,70,229,0.5)';
             }}
           >
-            Start Your Project →
-          </Link>
-        </motion.div>
+            💬 Start a Conversation on WhatsApp
+          </a>
 
-        {/* Contact details */}
-        <motion.div
-          variants={fadeUp}
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '8px 28px',
-            justifyContent: 'center',
-            marginTop: 8,
-          }}
-        >
-          {[
-            '📧 info@cubico.tech',
-            '📍 Karachi, Pakistan',
-            '💬 WhatsApp Available',
-          ].map(item => (
-            <span
-              key={item}
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 14,
-                color: '#7A7268',
-              }}
-            >
-              {item}
-            </span>
-          ))}
+          <p style={{
+            fontFamily: 'var(--font-body)', fontSize: 13,
+            color: '#4B5563', margin: 0,
+          }}>
+            Typically respond within 2 hours
+          </p>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

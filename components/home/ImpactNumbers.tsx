@@ -1,143 +1,122 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-// ── CountUp ───────────────────────────────────────────────────────────────────
-function CountUp({
-  to,
-  suffix = '',
-  prefix = '',
-  duration = 2.5,
-}: {
-  to: number;
-  suffix?: string;
-  prefix?: string;
-  duration?: number;
-}) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => `${prefix}${Math.round(v)}${suffix}`);
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true });
-
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(count, to, { duration, ease: 'easeOut' });
-    return () => controls.stop();
-  }, [inView, to, duration, count]);
-
-  return <motion.span ref={ref}>{rounded}</motion.span>;
-}
-
-// ── Stats data ────────────────────────────────────────────────────────────────
 const STATS = [
-  { to: 50, suffix: '+', label: 'Projects Delivered' },
-  { to: 3,  suffix: '',  label: 'Languages Supported' },
-  { to: 100,suffix: '%', label: 'Custom Built' },
+  {
+    label: 'Admin Efficiency',
+    number: '80%',
+    description: 'less time on manual processes when institutions switch to Cubico\'s unified management platform.',
+    color: '#4F46E5',
+  },
+  {
+    label: 'Student Engagement',
+    number: '3×',
+    description: 'more engagement when static textbooks become animated, gamified learning experiences.',
+    color: '#7C3AED',
+  },
+  {
+    label: 'Parent Connection',
+    number: '100%',
+    description: 'real-time visibility into attendance, grades, and progress.',
+    color: '#06D6A0',
+  },
+  {
+    label: 'Time to Launch',
+    number: '4wk',
+    description: 'from kickoff to fully operational system.',
+    color: '#818CF8',
+  },
 ];
 
-// ── Component ─────────────────────────────────────────────────────────────────
-export default function ImpactNumbers() {
+function StatCard({ stat, index }: { stat: typeof STATS[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
   return (
-    <section
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
       style={{
-        backgroundColor: '#080808',
-        padding: '120px 0',
+        backgroundColor: '#0C1528',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderRadius: 16,
+        padding: '36px 32px',
         position: 'relative',
         overflow: 'hidden',
+        transition: 'border-color 0.3s ease',
       }}
+      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = `${stat.color}55`)}
+      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)')}
     >
-      {/* Subtle background glow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,98,42,0.05) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
+      {/* Top glow line */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 2,
+        background: `linear-gradient(90deg, transparent, ${stat.color}, transparent)`,
+        opacity: 0.6,
+      }} />
 
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 5%',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        {/* Stats row */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: 0,
-          }}
-        >
-          {STATS.map((stat, i) => (
-            <div
-              key={stat.label}
-              style={{
-                flex: '1 1 200px',
-                textAlign: 'center',
-                padding: '32px 40px',
-                borderRight:
-                  i < STATS.length - 1 ? '1px solid #2A2520' : 'none',
-              }}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: i * 0.1 }}
-                style={{
-                  fontFamily: 'var(--font-accent)',
-                  fontSize: 'clamp(80px, 12vw, 160px)',
-                  color: '#F0EBE3',
-                  lineHeight: 1,
-                }}
-              >
-                <CountUp to={stat.to} suffix={stat.suffix} />
-              </motion.div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 13,
-                  color: '#7A7268',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.14em',
-                  marginTop: 12,
-                }}
-              >
-                {stat.label}
-              </p>
-            </div>
-          ))}
+      <div style={{
+        fontFamily: 'var(--font-ui)', fontSize: 11, fontWeight: 600,
+        color: stat.color, textTransform: 'uppercase' as const, letterSpacing: '0.1em',
+        marginBottom: 12,
+      }}>
+        {stat.label}
+      </div>
+      <div style={{
+        fontFamily: 'var(--font-display)', fontSize: 'clamp(52px, 6vw, 72px)',
+        fontWeight: 700, color: '#E2E8F0', lineHeight: 1, marginBottom: 16,
+        background: `linear-gradient(135deg, #E2E8F0, ${stat.color})`,
+        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+      }}>
+        {stat.number}
+      </div>
+      <p style={{
+        fontFamily: 'var(--font-body)', fontSize: 15, color: '#64748B',
+        lineHeight: 1.65, margin: 0,
+      }}>
+        {stat.description}
+      </p>
+    </motion.div>
+  );
+}
+
+export default function ImpactNumbers() {
+  return (
+    <section id="results" style={{ backgroundColor: '#060A15', padding: '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
+        {/* Header */}
+        <div style={{ marginBottom: 64 }}>
+          <p style={{
+            fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
+            color: '#818CF8', letterSpacing: '0.12em', textTransform: 'uppercase' as const,
+            margin: '0 0 16px',
+          }}>
+            IMPACT
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(32px, 4vw, 52px)',
+            fontWeight: 700, color: '#E2E8F0',
+            margin: 0, letterSpacing: '-0.02em',
+          }}>
+            Real numbers. Real transformation.
+          </h2>
         </div>
 
-        {/* Pull quote */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontStyle: 'italic',
-            fontSize: 'clamp(18px, 2.5vw, 24px)',
-            color: '#C9A96E',
-            textAlign: 'center',
-            maxWidth: 680,
-            margin: '64px auto 0',
-            lineHeight: 1.6,
-          }}
-        >
-          &ldquo;We don&rsquo;t use templates. Every solution is built for your institution.&rdquo;
-        </motion.p>
+        {/* Stats grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: 24,
+        }}>
+          {STATS.map((stat, i) => (
+            <StatCard key={stat.label} stat={stat} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );
