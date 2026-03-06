@@ -74,13 +74,6 @@
     background-size: 32px 32px;
   }
 
-  /* ServicesReveal: responsive service-name typography */
-  .service-name-size { font-size: clamp(28px, 7vw, 48px); }
-
-  @media (min-width: 768px) {
-    .service-name-size { font-size: clamp(36px, 5.5vw, 80px); }
-  }
-
   /* Marquee — pure CSS, no JS */
   .marquee-track {
     animation: marquee 30s linear infinite;
@@ -113,4 +106,192 @@
   @media (max-width: 900px) {
     .hero-two-col { grid-template-columns: 1fr; }
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  PARALLAX HERO SECTION                                                     */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Geometric grid for background layer */
+.hero-geo-grid {
+  background-image:
+    linear-gradient(rgba(6,214,160,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6,214,160,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 80%);
+}
+
+/* Main two-col parallax grid */
+.hero-parallax-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .hero-parallax-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Floating trust chips — glassmorphism */
+.hero-trust-chip {
+  background: rgba(12,21,40,0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(6,214,160,0.15);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(6,214,160,0.7);
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  animation: hero-chip-float 6s ease-in-out infinite;
+}
+.hero-trust-chip:nth-child(2) { animation-delay: -2s; }
+.hero-trust-chip:nth-child(3) { animation-delay: -4s; }
+
+@keyframes hero-chip-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Hide trust chips on mobile — they overlap content */
+@media (max-width: 900px) {
+  .hero-trust-chip { display: none; }
+}
+
+/* Glowing node pulse */
+.hero-node-pulse {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(6,214,160,0.3);
+  animation: hero-pulse-ring 3s ease-out infinite;
+}
+@keyframes hero-pulse-ring {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Headline highlight — vibrant gradient text */
+.hero-highlight-text {
+  background: linear-gradient(135deg, #06D6A0 0%, #34D399 40%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+/* CTA — brightest element with outer glow */
+.hero-cta-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #06D6A0, #059669);
+  color: #0A1628;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow:
+    0 0 30px rgba(6,214,160,0.5),
+    0 0 60px rgba(6,214,160,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 10;
+}
+.hero-cta-glow:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 44px rgba(6,214,160,0.7),
+    0 0 80px rgba(6,214,160,0.3);
+}
+
+/* Ghost CTA */
+.hero-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #94A3B8;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 15px;
+  padding: 14px 20px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-cta-ghost:hover {
+  color: #E2E8F0;
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* Pillar cards row */
+.hero-pillar-row {
+  display: flex;
+  gap: 12px;
+}
+@media (max-width: 640px) {
+  .hero-pillar-row {
+    flex-direction: column;
+  }
+}
+
+/* Parallax scene container */
+.hero-scene {
+  min-height: 420px;
+}
+
+/* Character positioning */
+.hero-characters-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-character {
+  position: absolute;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+}
+.hero-teacher {
+  width: 120px;
+  height: 160px;
+  bottom: 8%;
+  left: -4%;
+  z-index: 4;
+}
+.hero-student {
+  width: 100px;
+  height: 140px;
+  bottom: 6%;
+  right: -2%;
+  z-index: 4;
+}
+
+/* Dashboard glassmorphism */
+.hero-dashboard {
+  background: rgba(12,21,40,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 0 60px rgba(6,214,160,0.1),
+    0 24px 48px rgba(0,0,0,0.5);
+}
+.hero-dash-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(10,16,32,0.9);
 }
