@@ -289,3 +289,45 @@
   border-radius: 4px;
   margin: 0 auto 8px;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  IMPACT BENTO GRID                                                          */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+.impact-bento-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+/* Wide card spans full first column across both rows */
+.impact-wide {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+/* Narrow cards fill columns 2-3 */
+.impact-narrow {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+@media (max-width: 900px) {
+  .impact-bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .impact-wide {
+    grid-column: 1 / span 2;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .impact-bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .impact-wide {
+    grid-column: 1;
+  }
+}
