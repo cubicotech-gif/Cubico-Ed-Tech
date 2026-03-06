@@ -1081,48 +1081,27 @@ export default function HeroSection() {
               {/* Dashboard surface — base Z: 0 (no overflow:hidden so children can pop) */}
               <div className="hero-dash-surface">
 
-                {/* Layer 1 — Classroom silhouette background at 9% opacity */}
+                {/* Layer 1 — Classroom photo background at 10% opacity */}
                 <div style={{
                   position: "absolute", inset: 0, borderRadius: 16,
                   overflow: "hidden", pointerEvents: "none",
                 }}>
-                  <svg
-                    viewBox="0 0 400 240"
-                    preserveAspectRatio="xMidYMid slice"
-                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.09 }}
-                  >
-                    <defs>
-                      <linearGradient id="clsBoard" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%"   stopColor="#1A4A3A" />
-                        <stop offset="100%" stopColor="#0D2E22" />
-                      </linearGradient>
-                    </defs>
-                    <rect width="400" height="240" fill="#060A15" />
-                    {/* Chalkboard frame */}
-                    <rect x="38" y="18" width="226" height="134" rx="4" fill="none"
-                          stroke="#E2E8F0" strokeWidth="2" opacity="0.6" />
-                    <rect x="46" y="26" width="210" height="118" rx="2" fill="url(#clsBoard)" />
-                    {/* Board writing lines */}
-                    <line x1="66" y1="56"  x2="236" y2="56"  stroke="#E2E8F0" strokeWidth="1.2" opacity="0.42" />
-                    <line x1="66" y1="76"  x2="200" y2="76"  stroke="#E2E8F0" strokeWidth="1.2" opacity="0.38" />
-                    <line x1="66" y1="96"  x2="218" y2="96"  stroke="#E2E8F0" strokeWidth="1.2" opacity="0.35" />
-                    <line x1="66" y1="116" x2="185" y2="116" stroke="#E2E8F0" strokeWidth="1.2" opacity="0.30" />
-                    {/* Teacher podium */}
-                    <rect x="128" y="158" width="96" height="10" rx="2" fill="#E2E8F0" opacity="0.45" />
-                    <rect x="152" y="168" width="48" height="28" rx="1.5" fill="#E2E8F0" opacity="0.28" />
-                    {/* Student desk rows */}
-                    {[55, 125, 195, 265, 325].map((x, i) => (
-                      <g key={i}>
-                        <rect x={x} y="196" width="48" height="6" rx="1.5" fill="#E2E8F0" opacity="0.28" />
-                        <circle cx={x + 24} cy="188" r="5.5" fill="#E2E8F0" opacity="0.32" />
-                      </g>
-                    ))}
-                    {/* Classroom window (right) */}
-                    <rect x="308" y="26" width="70" height="92" rx="3"
-                          stroke="#E2E8F0" strokeWidth="1.2" fill="rgba(255,255,255,0.05)" opacity="0.5" />
-                    <line x1="343" y1="26" x2="343" y2="118" stroke="#E2E8F0" strokeWidth="1" opacity="0.38" />
-                    <line x1="308" y1="72" x2="378" y2="72" stroke="#E2E8F0" strokeWidth="1" opacity="0.38" />
-                  </svg>
+                  {/* Real classroom photo — desaturated, 10% */}
+                  <img
+                    src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=640&h=300&fit=crop&q=60"
+                    alt=""
+                    style={{
+                      position: "absolute", inset: 0, width: "100%", height: "100%",
+                      objectFit: "cover",
+                      opacity: 0.10,
+                      filter: "saturate(0) brightness(0.75)",
+                    }}
+                  />
+                  {/* Dark gradient overlay so dashboard text stays readable */}
+                  <div style={{
+                    position: "absolute", inset: 0,
+                    background: "linear-gradient(180deg,rgba(6,10,21,0.45) 0%,rgba(6,10,21,0.2) 50%,rgba(6,10,21,0.65) 100%)",
+                  }} />
                 </div>
 
                 {/* Window bar — Z: 8px */}

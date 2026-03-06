@@ -192,51 +192,14 @@ function StudentSnapshot() {
         zIndex: 3,
       }}
     >
-      <svg viewBox="0 0 74 92" fill="none" style={{ width: '100%', height: '100%' }}>
-        <defs>
-          <radialGradient id="snapBg" cx="50%" cy="50%" r="70%">
-            <stop offset="0%"   stopColor="#1E1040" />
-            <stop offset="100%" stopColor="#0C0820" />
-          </radialGradient>
-          <radialGradient id="snapSkin" cx="45%" cy="35%" r="65%">
-            <stop offset="0%"   stopColor="#F8D0A0" />
-            <stop offset="60%"  stopColor="#E8A87C" />
-            <stop offset="100%" stopColor="#C47848" />
-          </radialGradient>
-        </defs>
-        {/* Background wash */}
-        <rect width="74" height="92" fill="url(#snapBg)" />
-        {/* Radial glow behind head */}
-        <ellipse cx="37" cy="42" rx="26" ry="28" fill="rgba(124,58,237,0.18)" />
-        {/* Body / hoodie */}
-        <path d="M14 76 Q14 62 22 60 Q30 58 37 60 Q44 58 52 60 Q60 62 60 76 L60 92 L14 92 Z"
-              fill="#3B0F8A" />
-        {/* Neck */}
-        <rect x="32" y="56" width="10" height="8" rx="2" fill="url(#snapSkin)" />
-        {/* Head */}
-        <circle cx="37" cy="44" r="16" fill="url(#snapSkin)" />
-        {/* Hair — wavy top */}
-        <path d="M21 38 Q22 26 37 24 Q52 26 53 38 Q50 30 37 29 Q24 30 21 38 Z" fill="#1A0F40" />
-        {/* Left ear */}
-        <ellipse cx="21" cy="44" rx="3" ry="4" fill="url(#snapSkin)" />
-        {/* Right ear */}
-        <ellipse cx="53" cy="44" rx="3" ry="4" fill="url(#snapSkin)" />
-        {/* Big smile */}
-        <path d="M29 50 Q37 58 45 50" stroke="#C2805A" strokeWidth="2" fill="none" strokeLinecap="round" />
-        {/* Teeth */}
-        <path d="M30 51 Q37 56 44 51" fill="rgba(255,255,255,0.8)" />
-        {/* Left eye closed (laughing crescent) */}
-        <path d="M29 42 Q32 38 35 42" stroke="#1A0F40" strokeWidth="2" fill="none" strokeLinecap="round" />
-        {/* Right eye closed */}
-        <path d="M39 42 Q42 38 45 42" stroke="#1A0F40" strokeWidth="2" fill="none" strokeLinecap="round" />
-        {/* Cheek blush left */}
-        <ellipse cx="25" cy="48" rx="4" ry="2.5" fill="rgba(235,100,80,0.22)" />
-        {/* Cheek blush right */}
-        <ellipse cx="49" cy="48" rx="4" ry="2.5" fill="rgba(235,100,80,0.22)" />
-        {/* Sparkle top-left */}
-        <text x="8" y="18" fontSize="12" fill="rgba(255,220,50,0.85)">✦</text>
-        <text x="54" y="16" fontSize="8"  fill="rgba(255,220,50,0.65)">✦</text>
-      </svg>
+      {/* Real photo — laughing student */}
+      <img
+        src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=148&h=184&fit=crop&crop=face&q=75"
+        alt="engaged student"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'saturate(1.1) brightness(0.88)' }}
+      />
+      {/* Purple tint overlay for on-brand look */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(60,10,140,0.22)', mixBlendMode: 'multiply' }} />
       {/* Caption strip */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
@@ -265,42 +228,20 @@ function ParentAvatar() {
         zIndex: 3,
       }}
     >
-      <svg viewBox="0 0 52 52" fill="none" style={{ width: '100%', height: '100%' }}>
-        <defs>
-          <radialGradient id="avBg" cx="50%" cy="50%" r="70%">
-            <stop offset="0%"   stopColor="#064E3B" />
-            <stop offset="100%" stopColor="#022C22" />
-          </radialGradient>
-          <radialGradient id="avSkin" cx="42%" cy="32%" r="65%">
-            <stop offset="0%"   stopColor="#F5C89A" />
-            <stop offset="60%"  stopColor="#E0A070" />
-            <stop offset="100%" stopColor="#B87048" />
-          </radialGradient>
-        </defs>
-        <circle cx="26" cy="26" r="26" fill="url(#avBg)" />
-        {/* Body */}
-        <path d="M8 44 Q8 36 16 34 Q21 32 26 34 Q31 32 36 34 Q44 36 44 44 L44 52 L8 52 Z"
-              fill="#065F46" />
-        {/* Neck */}
-        <rect x="23" y="30" width="6" height="6" rx="2" fill="url(#avSkin)" />
-        {/* Head */}
-        <circle cx="26" cy="23" r="11" fill="url(#avSkin)" />
-        {/* Hair */}
-        <path d="M15 20 Q15 11 26 10 Q37 11 37 20 Q35 13 26 13 Q17 13 15 20 Z" fill="#3D1F0A" />
-        {/* Side hair locks */}
-        <path d="M15 20 Q13 24 14 28" stroke="#3D1F0A" strokeWidth="3" strokeLinecap="round" fill="none" />
-        <path d="M37 20 Q39 24 38 28" stroke="#3D1F0A" strokeWidth="3" strokeLinecap="round" fill="none" />
-        {/* Warm smile */}
-        <path d="M22 27 Q26 31 30 27" stroke="#C2805A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        {/* Eyes */}
-        <circle cx="23" cy="23" r="1.8" fill="#3A1E08" />
-        <circle cx="29" cy="23" r="1.8" fill="#3A1E08" />
-        <circle cx="23.6" cy="22.3" r="0.7" fill="rgba(255,255,255,0.85)" />
-        <circle cx="29.6" cy="22.3" r="0.7" fill="rgba(255,255,255,0.85)" />
-        {/* Emerald notification dot */}
-        <circle cx="44" cy="8" r="5.5" fill="#06D6A0" />
-        <text x="41.5" y="11.5" fontSize="6" fill="#022C22" fontWeight="bold">✓</text>
-      </svg>
+      {/* Real photo — smiling parent */}
+      <img
+        src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=104&h=104&fit=crop&crop=face&q=75"
+        alt="smiling parent"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'saturate(0.95) brightness(0.9)' }}
+      />
+      {/* Emerald notification dot — rendered on top of the photo */}
+      <div style={{
+        position: 'absolute', top: 2, right: 2,
+        width: 14, height: 14, borderRadius: '50%',
+        background: '#06D6A0', border: '2px solid #060A15',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: 7, color: '#022C22', fontWeight: 700,
+      }}>✓</div>
     </motion.div>
   );
 }
