@@ -95,7 +95,7 @@ const PILLAR_CARDS: PillarCard[] = [
 /*  PIXAR-STYLE CUBICO MASCOT — "Future Explorer"                             */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
-function CubicoMascot() {
+function CubicoMascot({ gx = 0, gy = 0 }: { gx?: number; gy?: number }) {
   return (
     <svg viewBox="0 0 220 380" fill="none" style={{ width: "100%", height: "100%" }}>
       <defs>
@@ -406,18 +406,18 @@ function CubicoMascot() {
       {/* Whites */}
       <ellipse cx="83"  cy="96" rx="13" ry="12" fill="white" />
       <ellipse cx="137" cy="96" rx="13" ry="12" fill="white" />
-      {/* Iris */}
-      <circle cx="86"  cy="94" r="8.5" fill="url(#mEye)" />
-      <circle cx="134" cy="94" r="8.5" fill="url(#mEye)" />
+      {/* Iris — follows cursor via gx/gy (max ±3px horizontal, ±2px vertical) */}
+      <circle cx={86  + gx} cy={94 + gy} r="8.5" fill="url(#mEye)" />
+      <circle cx={134 + gx} cy={94 + gy} r="8.5" fill="url(#mEye)" />
       {/* Pupil */}
-      <circle cx="87"  cy="94" r="5" fill="#180A02" />
-      <circle cx="135" cy="94" r="5" fill="#180A02" />
+      <circle cx={87  + gx} cy={94 + gy} r="5" fill="#180A02" />
+      <circle cx={135 + gx} cy={94 + gy} r="5" fill="#180A02" />
       {/* Main sparkle (Pixar big white dot) */}
-      <circle cx="90"  cy="91" r="3"   fill="rgba(255,255,255,0.95)" />
-      <circle cx="138" cy="91" r="3"   fill="rgba(255,255,255,0.95)" />
+      <circle cx={90  + gx} cy={91 + gy} r="3"   fill="rgba(255,255,255,0.95)" />
+      <circle cx={138 + gx} cy={91 + gy} r="3"   fill="rgba(255,255,255,0.95)" />
       {/* Secondary sparkle */}
-      <circle cx="83"  cy="97" r="1.2" fill="rgba(255,255,255,0.55)" />
-      <circle cx="131" cy="97" r="1.2" fill="rgba(255,255,255,0.55)" />
+      <circle cx={83  + gx} cy={97 + gy} r="1.2" fill="rgba(255,255,255,0.55)" />
+      <circle cx={131 + gx} cy={97 + gy} r="1.2" fill="rgba(255,255,255,0.55)" />
       {/* Top eyelashes */}
       <path d="M70 88 Q76 80 83 83" stroke="#1A0F40" strokeWidth="2"   fill="none" strokeLinecap="round" />
       <path d="M124 83 Q131 80 140 88" stroke="#1A0F40" strokeWidth="2" fill="none" strokeLinecap="round" />
@@ -730,10 +730,19 @@ export default function HeroSection() {
   const mascotRotX = useTransform(springY, [-0.5, 0.5], [5, -5]);
   const mascotRotY = useTransform(springX, [-0.5, 0.5], [-8,  8]);
 
+  const [gaze, setGaze] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     const handle = (e: MouseEvent) => {
-      mouseX.set(e.clientX / window.innerWidth  - 0.5);
-      mouseY.set(e.clientY / window.innerHeight - 0.5);
+      const nx = e.clientX / window.innerWidth  - 0.5;
+      const ny = e.clientY / window.innerHeight - 0.5;
+      mouseX.set(nx);
+      mouseY.set(ny);
+      /* Clamp to ±3px horizontal / ±2px vertical — keeps pupils inside eye whites */
+      setGaze({
+        x: Math.max(-3, Math.min(3, nx * 6)),
+        y: Math.max(-2, Math.min(2, ny * 4)),
+      });
     };
     window.addEventListener("mousemove", handle);
     return () => window.removeEventListener("mousemove", handle);
@@ -811,6 +820,52 @@ export default function HeroSection() {
           <circle r="0.35" fill="rgba(6,214,160,0.6)" filter="url(#pulseGlow)">
             <animateMotion dur="3.2s" repeatCount="indefinite" begin="4.0s"
               path="M45,20 L78,35" />
+          </circle>
+
+          {/* ── Data Currents — nodes feed into dashboard (brushed gold) ── */}
+          <defs>
+            <linearGradient id="dcGold1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stopColor="rgba(200,168,75,0.0)" />
+              <stop offset="65%"  stopColor="rgba(200,168,75,0.5)" />
+              <stop offset="100%" stopColor="rgba(6,214,160,0.7)"  />
+            </linearGradient>
+            <linearGradient id="dcGold2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stopColor="rgba(200,168,75,0.0)" />
+              <stop offset="60%"  stopColor="rgba(200,168,75,0.45)" />
+              <stop offset="100%" stopColor="rgba(6,214,160,0.65)"  />
+            </linearGradient>
+            <linearGradient id="dcGold3" x1="100%" y1="0%" x2="0%" y2="0%">
+              <stop offset="0%"   stopColor="rgba(200,168,75,0.0)" />
+              <stop offset="60%"  stopColor="rgba(200,168,75,0.45)" />
+              <stop offset="100%" stopColor="rgba(6,214,160,0.65)"  />
+            </linearGradient>
+          </defs>
+          {/* PK → dashboard entry */}
+          <path d="M15,30 Q36,44 58,48"
+                stroke="url(#dcGold1)" strokeWidth="0.22" fill="none" strokeDasharray="1.2 0.8" />
+          {/* SA → dashboard entry */}
+          <path d="M45,20 Q52,34 58,48"
+                stroke="url(#dcGold2)" strokeWidth="0.22" fill="none" strokeDasharray="1.2 0.8" />
+          {/* CA → dashboard entry */}
+          <path d="M78,35 Q68,42 58,48"
+                stroke="url(#dcGold3)" strokeWidth="0.22" fill="none" strokeDasharray="1.2 0.8" />
+          {/* Gold pulse dots traveling toward dashboard */}
+          <circle r="0.5" fill="#C8A84B" filter="url(#pulseGlow)">
+            <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.0s"
+              path="M15,30 Q36,44 58,48" />
+          </circle>
+          <circle r="0.5" fill="#C8A84B" filter="url(#pulseGlow)">
+            <animateMotion dur="1.8s" repeatCount="indefinite" begin="1.5s"
+              path="M45,20 Q52,34 58,48" />
+          </circle>
+          <circle r="0.5" fill="#C8A84B" filter="url(#pulseGlow)">
+            <animateMotion dur="2.4s" repeatCount="indefinite" begin="2.0s"
+              path="M78,35 Q68,42 58,48" />
+          </circle>
+          {/* Glowing convergence point at dashboard entry */}
+          <circle cx="58" cy="48" r="1.2" fill="rgba(200,168,75,0.55)" filter="url(#pulseGlow)">
+            <animate attributeName="r"   values="1.2;2.2;1.2" dur="2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.55;0.9;0.55" dur="2s" repeatCount="indefinite" />
           </circle>
         </svg>
 
@@ -1009,7 +1064,7 @@ export default function HeroSection() {
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <CubicoMascot />
+                <CubicoMascot gx={gaze.x} gy={gaze.y} />
               </motion.div>
             </motion.div>
 
@@ -1025,6 +1080,50 @@ export default function HeroSection() {
             >
               {/* Dashboard surface — base Z: 0 (no overflow:hidden so children can pop) */}
               <div className="hero-dash-surface">
+
+                {/* Layer 1 — Classroom silhouette background at 9% opacity */}
+                <div style={{
+                  position: "absolute", inset: 0, borderRadius: 16,
+                  overflow: "hidden", pointerEvents: "none",
+                }}>
+                  <svg
+                    viewBox="0 0 400 240"
+                    preserveAspectRatio="xMidYMid slice"
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.09 }}
+                  >
+                    <defs>
+                      <linearGradient id="clsBoard" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%"   stopColor="#1A4A3A" />
+                        <stop offset="100%" stopColor="#0D2E22" />
+                      </linearGradient>
+                    </defs>
+                    <rect width="400" height="240" fill="#060A15" />
+                    {/* Chalkboard frame */}
+                    <rect x="38" y="18" width="226" height="134" rx="4" fill="none"
+                          stroke="#E2E8F0" strokeWidth="2" opacity="0.6" />
+                    <rect x="46" y="26" width="210" height="118" rx="2" fill="url(#clsBoard)" />
+                    {/* Board writing lines */}
+                    <line x1="66" y1="56"  x2="236" y2="56"  stroke="#E2E8F0" strokeWidth="1.2" opacity="0.42" />
+                    <line x1="66" y1="76"  x2="200" y2="76"  stroke="#E2E8F0" strokeWidth="1.2" opacity="0.38" />
+                    <line x1="66" y1="96"  x2="218" y2="96"  stroke="#E2E8F0" strokeWidth="1.2" opacity="0.35" />
+                    <line x1="66" y1="116" x2="185" y2="116" stroke="#E2E8F0" strokeWidth="1.2" opacity="0.30" />
+                    {/* Teacher podium */}
+                    <rect x="128" y="158" width="96" height="10" rx="2" fill="#E2E8F0" opacity="0.45" />
+                    <rect x="152" y="168" width="48" height="28" rx="1.5" fill="#E2E8F0" opacity="0.28" />
+                    {/* Student desk rows */}
+                    {[55, 125, 195, 265, 325].map((x, i) => (
+                      <g key={i}>
+                        <rect x={x} y="196" width="48" height="6" rx="1.5" fill="#E2E8F0" opacity="0.28" />
+                        <circle cx={x + 24} cy="188" r="5.5" fill="#E2E8F0" opacity="0.32" />
+                      </g>
+                    ))}
+                    {/* Classroom window (right) */}
+                    <rect x="308" y="26" width="70" height="92" rx="3"
+                          stroke="#E2E8F0" strokeWidth="1.2" fill="rgba(255,255,255,0.05)" opacity="0.5" />
+                    <line x1="343" y1="26" x2="343" y2="118" stroke="#E2E8F0" strokeWidth="1" opacity="0.38" />
+                    <line x1="308" y1="72" x2="378" y2="72" stroke="#E2E8F0" strokeWidth="1" opacity="0.38" />
+                  </svg>
+                </div>
 
                 {/* Window bar — Z: 8px */}
                 <div className="hero-dash-bar"
