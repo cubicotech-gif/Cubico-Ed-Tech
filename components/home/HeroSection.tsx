@@ -42,9 +42,18 @@ const TRUST_CHIPS = [
 
 /* ── Dashboard stats ────────────────────────────────────────────────────── */
 const STATS = [
-  { label: "Students",       value: "1,247", change: "+12%",  color: "#4F46E5" },
-  { label: "Attendance",     value: "94.2%", change: "+3.1%", color: "#06D6A0" },
-  { label: "Parents Online", value: "89%",   change: "+18%",  color: "#7C3AED" },
+  {
+    label: "Students",       value: "1,247", change: "+12%",  color: "#4F46E5",
+    target: 1247,  fmt: (v: number) => Math.round(v).toLocaleString(),
+  },
+  {
+    label: "Attendance",     value: "94.2%", change: "+3.1%", color: "#06D6A0",
+    target: 94.2,  fmt: (v: number) => v.toFixed(1) + "%",
+  },
+  {
+    label: "Parents Online", value: "89%",   change: "+18%",  color: "#7C3AED",
+    target: 89,    fmt: (v: number) => Math.round(v) + "%",
+  },
 ];
 const CHART_BARS = [65, 80, 55, 90, 75, 45, 85];
 const CHART_DAYS = ["M", "T", "W", "T", "F", "S", "S"];
@@ -529,6 +538,165 @@ function PillarCardUI({ card }: { card: PillarCard }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
+/*  Rolling counter hook                                                       */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+function useCountUp(target: number, duration = 1500, delay = 0) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    let tid: ReturnType<typeof setTimeout>;
+    let rid: number;
+    tid = setTimeout(() => {
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // ease-out-cubic
+        setVal(eased * target);
+        if (p < 1) rid = requestAnimationFrame(tick);
+        else setVal(target);
+      };
+      rid = requestAnimationFrame(tick);
+    }, delay);
+    return () => { clearTimeout(tid); cancelAnimationFrame(rid); };
+  }, [target, duration, delay]);
+  return val;
+}
+
+/* Animated stat card with rolling counter */
+function StatCard({ s, delay }: { s: typeof STATS[0]; delay: number }) {
+  const count = useCountUp(s.target, 1500, delay);
+  return (
+    <div style={{
+      backgroundColor: "rgba(16,30,50,0.8)", borderRadius: 10,
+      padding: "12px 10px", border: "1px solid rgba(255,255,255,0.05)",
+    }}>
+      <div style={{
+        fontFamily: "var(--font-ui)", fontSize: 9, color: "#64748B",
+        textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: 4,
+      }}>{s.label}</div>
+      <div style={{
+        fontFamily: "var(--font-ui)", fontSize: 20, fontWeight: 700,
+        color: "#E2E8F0", lineHeight: 1,
+      }}>{s.fmt(count)}</div>
+      <div style={{
+        fontFamily: "var(--font-ui)", fontSize: 10, color: s.color, marginTop: 3,
+      }}>{s.change}</div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/*  Parent Portal Phone Mockup                                                 */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+function ParentPortalPhone() {
+  return (
+    <div className="hero-phone">
+      {/* Dynamic island */}
+      <div className="hero-phone-island" />
+
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 10 }}>
+        <div style={{
+          width: 22, height: 22, borderRadius: 6,
+          background: "linear-gradient(135deg,#06D6A0,#059669)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 11,
+        }}>🏫</div>
+        <div>
+          <div style={{
+            fontFamily: "var(--font-ui)", fontSize: 8.5, fontWeight: 700, color: "#E2E8F0",
+          }}>Parent Portal</div>
+          <div style={{ fontFamily: "var(--font-ui)", fontSize: 7, color: "#34D399" }}>
+            Live updates
+          </div>
+        </div>
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 3 }}>
+          <div style={{
+            width: 5, height: 5, borderRadius: "50%",
+            background: "#06D6A0",
+            boxShadow: "0 0 6px rgba(6,214,160,0.8)",
+          }} />
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div style={{ height: 1, background: "rgba(255,255,255,0.06)", marginBottom: 8 }} />
+
+      {/* Notification 1 */}
+      <div style={{
+        background: "rgba(6,214,160,0.08)",
+        border: "1px solid rgba(6,214,160,0.18)",
+        borderRadius: 8, padding: "7px 8px", marginBottom: 6,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 3 }}>
+          <span style={{ fontSize: 10 }}>✅</span>
+          <div style={{
+            fontFamily: "var(--font-ui)", fontSize: 8, fontWeight: 700, color: "#E2E8F0",
+          }}>Grade 5-B · Attendance</div>
+        </div>
+        <div style={{ fontFamily: "var(--font-ui)", fontSize: 7, color: "#94A3B8" }}>
+          All 28 students marked · Just now
+        </div>
+      </div>
+
+      {/* Notification 2 */}
+      <div style={{
+        background: "rgba(124,58,237,0.08)",
+        border: "1px solid rgba(124,58,237,0.18)",
+        borderRadius: 8, padding: "7px 8px", marginBottom: 8,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 3 }}>
+          <span style={{ fontSize: 10 }}>🎬</span>
+          <div style={{
+            fontFamily: "var(--font-ui)", fontSize: 8, fontWeight: 700, color: "#E2E8F0",
+          }}>Arabic Grammar · Ch. 4</div>
+        </div>
+        <div style={{ fontFamily: "var(--font-ui)", fontSize: 7, color: "#94A3B8" }}>
+          New animated lesson ready
+        </div>
+      </div>
+
+      {/* Progress bar */}
+      <div style={{ marginBottom: 8 }}>
+        <div style={{
+          display: "flex", justifyContent: "space-between",
+          fontFamily: "var(--font-ui)", fontSize: 7, color: "#64748B", marginBottom: 4,
+        }}>
+          <span>Weekly Progress</span><span style={{ color: "#34D399" }}>78%</span>
+        </div>
+        <div style={{
+          height: 3, background: "rgba(255,255,255,0.06)", borderRadius: 2,
+        }}>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "78%" }}
+            transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
+            style={{
+              height: "100%", borderRadius: 2,
+              background: "linear-gradient(90deg,#06D6A0,#059669)",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Bottom tab bar */}
+      <div style={{
+        display: "flex", justifyContent: "space-around",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        paddingTop: 6,
+      }}>
+        {["🏠", "📊", "💬"].map((icon, i) => (
+          <div key={i} style={{
+            fontSize: 10, opacity: i === 0 ? 1 : 0.4,
+          }}>{icon}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
 /*  Main Hero Section                                                          */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -549,18 +717,18 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  /* ── Layer speeds — FOREGROUND fast, DASHBOARD medium, BACKGROUND slow ── */
-  const bgY   = useTransform(scrollYProgress, [0, 1], [0,  55]);   /* slowest */
-  const dashY = useTransform(scrollYProgress, [0, 1], [0,  95]);   /* medium  */
-  const fgY   = useTransform(scrollYProgress, [0, 1], [0, 160]);   /* fastest — mascot + CTA */
+  /* ── Layer speeds ── */
+  const bgY   = useTransform(scrollYProgress, [0, 1], [0,  55]);   /* background */
+  const dashY = useTransform(scrollYProgress, [0, 1], [0,  95]);   /* 2.5D stage */
+  const fgY   = useTransform(scrollYProgress, [0, 1], [0, 160]);   /* mascot + CTA */
 
-  /* Mascot mouse-follow (strong tilt — it's close) */
-  const mascotRotX = useTransform(springY, [-0.5, 0.5], [6,  -6]);
-  const mascotRotY = useTransform(springX, [-0.5, 0.5], [-9,  9]);
+  /* ── 2.5D dashboard tilt — base 22°X / -8°Y + mouse ±4° ── */
+  const dashRotX2D = useTransform(slowY, [-0.5, 0.5], [18, 26]); /* centred at 22 */
+  const dashRotY2D = useTransform(slowX, [-0.5, 0.5], [-5, -11]); /* centred at -8 */
 
-  /* Dashboard mouse-follow (gentler tilt — it's farther back) */
-  const dashRotX = useTransform(slowY, [-0.5, 0.5], [3, -3]);
-  const dashRotY = useTransform(slowX, [-0.5, 0.5], [-4, 4]);
+  /* Mascot mouse-follow */
+  const mascotRotX = useTransform(springY, [-0.5, 0.5], [5, -5]);
+  const mascotRotY = useTransform(springX, [-0.5, 0.5], [-8,  8]);
 
   useEffect(() => {
     const handle = (e: MouseEvent) => {
@@ -823,43 +991,44 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* ── Right Column: Parallax Scene ── */}
+          {/* ── Right Column: 2.5D Command Center ── */}
           <div
             className="hero-scene hidden md:block"
-            style={{ position: "relative", perspective: 1100 }}
+            style={{ position: "relative", perspective: "1500px" }}
           >
-            {/* LAYER 1 — FOREGROUND: Mascot (fastest parallax) */}
+            {/* FOREGROUND: Mascot — outside preserve-3d so it pops crisp */}
             <motion.div
-              style={{
-                position: "absolute",
-                zIndex: 4,
-                y: fgY,
-                rotateX: mascotRotX,
-                rotateY: mascotRotY,
-              }}
               className="hero-mascot-layer"
+              style={{
+                position: "absolute", zIndex: 10,
+                y: fgY, rotateX: mascotRotX, rotateY: mascotRotY,
+              }}
             >
               <motion.div
+                className="hero-mascot"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="hero-mascot"
               >
                 <CubicoMascot />
               </motion.div>
             </motion.div>
 
-            {/* LAYER 2 — MIDDLE: Dashboard (medium parallax) */}
+            {/* 2.5D STAGE — tilted command center with preserve-3d */}
             <motion.div
               style={{
                 position: "relative", zIndex: 2,
                 y: dashY,
-                rotateX: dashRotX, rotateY: dashRotY,
-                transformStyle: "preserve-3d",
+                rotateX: dashRotX2D,
+                rotateY: dashRotY2D,
+                transformStyle: "preserve-3d" as const,
               }}
             >
-              <div className="hero-dashboard">
-                {/* Window bar */}
-                <div className="hero-dash-bar">
+              {/* Dashboard surface — base Z: 0 (no overflow:hidden so children can pop) */}
+              <div className="hero-dash-surface">
+
+                {/* Window bar — Z: 8px */}
+                <div className="hero-dash-bar"
+                     style={{ transform: "translateZ(8px)", position: "relative" }}>
                   <div style={{ display: "flex", gap: 6 }}>
                     {["#FF5F57", "#FFBD2E", "#28C840"].map((c, i) => (
                       <div key={i} style={{
@@ -870,47 +1039,62 @@ export default function HeroSection() {
                   <span style={{ fontFamily: "var(--font-ui)", fontSize: 12, color: "#4B5563" }}>
                     Cubico Campus
                   </span>
-                  <div style={{ width: 48 }} />
+                  {/* Data-current endpoint: LMS Live badge */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2.8, duration: 0.5 }}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 4,
+                      background: "rgba(6,214,160,0.08)",
+                      border: "1px solid rgba(6,214,160,0.2)",
+                      borderRadius: 20, padding: "2px 8px",
+                    }}
+                  >
+                    <motion.div
+                      animate={{ opacity: [1, 0.3, 1], scale: [1, 1.5, 1] }}
+                      transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                      style={{
+                        width: 5, height: 5, borderRadius: "50%",
+                        background: "#06D6A0",
+                        boxShadow: "0 0 6px rgba(6,214,160,0.8)",
+                      }}
+                    />
+                    <span style={{
+                      fontFamily: "var(--font-ui)", fontSize: 9,
+                      color: "rgba(6,214,160,0.8)", whiteSpace: "nowrap" as const,
+                    }}>LMS · PK · SA · CA</span>
+                  </motion.div>
                 </div>
 
-                {/* Stat row */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, padding: 14 }}>
-                  {STATS.map((s) => (
-                    <div key={s.label} style={{
-                      backgroundColor: "rgba(16,30,50,0.8)", borderRadius: 10,
-                      padding: "12px 10px", border: "1px solid rgba(255,255,255,0.05)",
-                    }}>
-                      <div style={{
-                        fontFamily: "var(--font-ui)", fontSize: 9, color: "#64748B",
-                        textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4,
-                      }}>{s.label}</div>
-                      <div style={{
-                        fontFamily: "var(--font-ui)", fontSize: 20, fontWeight: 700,
-                        color: "#E2E8F0", lineHeight: 1,
-                      }}>{s.value}</div>
-                      <div style={{
-                        fontFamily: "var(--font-ui)", fontSize: 10, color: s.color, marginTop: 3,
-                      }}>{s.change}</div>
-                    </div>
+                {/* Stat cards — Z: 50px (float above surface) */}
+                <div style={{
+                  display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
+                  gap: 8, padding: "14px 14px 6px",
+                  transform: "translateZ(50px)", position: "relative",
+                }}>
+                  {STATS.map((s, i) => (
+                    <StatCard key={s.label} s={s} delay={800 + i * 120} />
                   ))}
                 </div>
 
-                {/* Chart */}
-                <div style={{ padding: "0 14px 14px" }}>
+                {/* Chart — Z: 25px */}
+                <div style={{ padding: "6px 14px 10px",
+                              transform: "translateZ(25px)", position: "relative" }}>
                   <div style={{
                     fontFamily: "var(--font-ui)", fontSize: 10, color: "#64748B",
-                    marginBottom: 10, fontWeight: 500,
+                    marginBottom: 8, fontWeight: 500,
                   }}>Weekly Engagement</div>
-                  <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 60 }}>
+                  <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 52 }}>
                     {CHART_BARS.map((h, i) => (
                       <div key={i} style={{
                         flex: 1, display: "flex", flexDirection: "column",
-                        alignItems: "center", gap: 4,
+                        alignItems: "center", gap: 3,
                       }}>
                         <motion.div
                           initial={{ height: 0 }}
-                          animate={{ height: Math.round((h / 100) * 48) }}
-                          transition={{ delay: 0.8 + i * 0.08, duration: 0.5 }}
+                          animate={{ height: Math.round((h / 100) * 42) }}
+                          transition={{ delay: 0.9 + i * 0.08, duration: 0.5 }}
                           style={{
                             width: "100%", borderRadius: "3px 3px 0 0",
                             background: i === 3
@@ -918,7 +1102,7 @@ export default function HeroSection() {
                               : "rgba(6,214,160,0.2)",
                           }}
                         />
-                        <div style={{ fontFamily: "var(--font-ui)", fontSize: 8, color: "#4B5563" }}>
+                        <div style={{ fontFamily: "var(--font-ui)", fontSize: 7, color: "#4B5563" }}>
                           {CHART_DAYS[i]}
                         </div>
                       </div>
@@ -926,17 +1110,26 @@ export default function HeroSection() {
                   </div>
                 </div>
 
-                {/* Notifications */}
-                <div style={{ padding: "0 14px 14px", display: "flex", gap: 6 }}>
+                {/* Notification chips — Z: 90px (highest chip layer) */}
+                <div style={{
+                  padding: "0 14px 14px", display: "flex", gap: 6,
+                  transform: "translateZ(90px)", position: "relative",
+                }}>
                   {[
-                    { icon: "✅", title: "Attendance Synced", sub: "Grade 5-B · Just now" },
-                    { icon: "🎬", title: "New Lesson Ready",  sub: "Arabic Grammar Ch.4" },
+                    { icon: "✅", title: "Attendance Synced", sub: "Grade 5-B · Just now",
+                      accent: "rgba(6,214,160,0.10)", border: "rgba(6,214,160,0.20)" },
+                    { icon: "🎬", title: "New Lesson Ready",  sub: "Arabic Ch.4",
+                      accent: "rgba(124,58,237,0.10)", border: "rgba(124,58,237,0.20)" },
                   ].map((n) => (
                     <div key={n.title} style={{
-                      flex: 1, backgroundColor: "rgba(10,16,32,0.8)",
-                      border: "1px solid rgba(255,255,255,0.05)",
+                      flex: 1,
+                      background: n.accent,
+                      backdropFilter: "blur(10px)",
+                      WebkitBackdropFilter: "blur(10px)",
+                      border: `1px solid ${n.border}`,
                       borderRadius: 8, padding: "8px 10px",
                       display: "flex", alignItems: "center", gap: 6,
+                      boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
                     }}>
                       <span style={{ fontSize: 14 }}>{n.icon}</span>
                       <div>
@@ -954,11 +1147,31 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Dashboard ambient glow */}
+              {/* ── Floating Parent Portal Phone — Z: 130px ── */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: -30, right: -22,
+                  transform: "translateZ(130px)",
+                  zIndex: 5,
+                }}
+                animate={{ y: [0, -9, 0] }}
+                transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+              >
+                <ParentPortalPhone />
+                {/* Phone glow */}
+                <div style={{
+                  position: "absolute", inset: -12, borderRadius: 32, zIndex: -1,
+                  background: "radial-gradient(ellipse at center, rgba(6,214,160,0.2) 0%, transparent 70%)",
+                  filter: "blur(16px)",
+                }} />
+              </motion.div>
+
+              {/* Ambient glow under stage */}
               <div style={{
                 position: "absolute", inset: -24, borderRadius: 32, zIndex: -1,
                 background: "radial-gradient(ellipse at center, rgba(6,214,160,0.14) 0%, rgba(79,70,229,0.07) 50%, transparent 70%)",
-                filter: "blur(28px)",
+                filter: "blur(30px)",
               }} />
             </motion.div>
           </div>
