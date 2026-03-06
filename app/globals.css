@@ -224,6 +224,18 @@
   }
 }
 
+/* ── Fracture hero — left content responsive collapse ─────────────────── */
+.hero-left-content {
+  max-width: 46%;
+  min-width: 320px;
+}
+@media (max-width: 768px) {
+  .hero-left-content {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
 /* Parallax scene container */
 .hero-scene {
   min-height: 540px; /* extra height for 2.5D tilt + phone overflow */
