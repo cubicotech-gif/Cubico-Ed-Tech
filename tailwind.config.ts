@@ -9,18 +9,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Editorial palette (new design system) ────────────────────────────
-        void:        '#080808', // pure warm black — site background
-        surface:     '#111111',
-        card:        '#191919', // card backgrounds
-        cream:       '#F5F2ED', // light section bg
-        ivory:       '#F0EBE3', // primary text on dark
-        'warm-gray': '#7A7268', // muted text on dark
-        ink:         '#1A1714', // text on light sections
-        fire:        '#E8622A', // burnt orange — main accent
-        bronze:      '#C9A96E', // aged gold — secondary accent
-        rule:        '#2A2520', // divider lines
-        // ── Legacy palette (used by other pages / components) ─────────────────
+        // ── New Cubico palette (dark navy enterprise) ─────────────────────────
+        void:        '#060A15', // deep space navy — site background
+        surface:     '#0C1528', // surface backgrounds
+        card:        '#101E32', // card backgrounds
+        navy:        '#060A15',
+        'navy-surface': '#0C1528',
+        'navy-card': '#101E32',
+        'navy-border': '#1A2E4A',
+        indigo:      '#4F46E5', // primary accent
+        'indigo-light': '#818CF8', // soft indigo labels
+        'indigo-dark':  '#3730A3',
+        purple:      '#7C3AED', // secondary accent
+        teal:        '#06D6A0', // emerald teal
+        'main-text': '#E2E8F0', // primary text
+        muted:       '#64748B', // muted text
+        // ── Legacy palette (kept for other pages) ─────────────────────────────
+        cream:       '#F5F2ED',
+        ivory:       '#F0EBE3',
+        'warm-gray': '#7A7268',
+        ink:         '#1A1714',
+        fire:        '#E8622A',
+        bronze:      '#C9A96E',
+        rule:        '#2A2520',
         background:      '#0a0a0a',
         'card-bg':       '#161b24',
         border:          '#1f2733',
@@ -29,7 +40,6 @@ const config: Config = {
         'accent-purple': '#a855f7',
         'accent-orange': '#f97316',
         text:            '#e8eaf0',
-        muted:           '#6b7588',
         divider:         '#2A2520',
       },
       fontFamily: {
@@ -50,8 +60,10 @@ const config: Config = {
         'gradient-accent': 'linear-gradient(135deg, #3b82f6, #06d6a0)',
       },
       animation: {
-        marquee:   'marquee 30s linear infinite',
-        'fade-in': 'fadeIn 0.5s ease forwards',
+        marquee:        'marquee 30s linear infinite',
+        'marquee-slow': 'marquee 50s linear infinite',
+        'fade-in':      'fadeIn 0.5s ease forwards',
+        'pulse-glow':   'pulseGlow 3s ease-in-out infinite',
       },
       keyframes: {
         marquee: {
@@ -61,6 +73,10 @@ const config: Config = {
         fadeIn: {
           from: { opacity: '0', transform: 'translateY(20px)' },
           to:   { opacity: '1', transform: 'translateY(0)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(79,70,229,0.3)' },
+          '50%':      { boxShadow: '0 0 40px rgba(79,70,229,0.6)' },
         },
       },
     },

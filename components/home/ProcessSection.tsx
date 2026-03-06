@@ -1,156 +1,109 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 const STEPS = [
   {
-    number: '01',
-    title: 'Discovery & Brief',
-    description:
-      'We start by deeply understanding your institution — your goals, your students, and your technical constraints. No assumptions, just honest discovery.',
+    num: '01',
+    icon: '📞',
+    title: 'Discovery',
+    description: 'Free consultation. We learn your challenges, goals, and vision. No pitch — just listening.',
   },
   {
-    number: '02',
-    title: 'Design & Architecture',
-    description:
-      'We map the solution architecture and design the experience — wireframes, visual language, and a clear technical blueprint before a single line of code.',
+    num: '02',
+    icon: '📋',
+    title: 'Roadmap',
+    description: 'Custom plan with clear scope, timelines, and deliverables you can share with your team.',
   },
   {
-    number: '03',
-    title: 'Build & Test',
-    description:
-      'Development in focused sprints with weekly check-ins. Full QA across devices and browsers. Multilingual testing for Arabic, Urdu, and English content.',
+    num: '03',
+    icon: '⚡',
+    title: 'Build & Train',
+    description: 'Dedicated team develops, deploys, and trains your staff until everyone is confident.',
   },
   {
-    number: '04',
-    title: 'Launch & Support',
-    description:
-      'Smooth handover with staff training, documentation, and ongoing support. We stay with you after go-live — not just until delivery.',
+    num: '04',
+    icon: '🛡️',
+    title: 'Grow',
+    description: '24/7 support. One month free. Content updates. We grow with your institution.',
   },
 ];
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const stepVariant = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-};
-
 export default function ProcessSection() {
-  return (
-    <section style={{ backgroundColor: '#F5F2ED', padding: '100px 0' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
 
-        {/* Section label */}
-        <div style={{ marginBottom: 60 }}>
-          <span
-            style={{
-              fontFamily: 'var(--font-accent)',
-              fontSize: 14,
-              color: '#C9A96E',
-              letterSpacing: '0.1em',
-            }}
-          >
-            04
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-ui)',
-              fontSize: 11,
-              color: '#1A1714',
-              letterSpacing: '0.2em',
-              marginLeft: 16,
-              textTransform: 'uppercase',
-            }}
-          >
-            HOW WE WORK
-          </span>
+  return (
+    <section id="process" style={{ backgroundColor: '#0C1528', padding: '100px 0' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
+        <div style={{ marginBottom: 64 }}>
+          <p style={{
+            fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
+            color: '#818CF8', letterSpacing: '0.12em', textTransform: 'uppercase',
+            margin: '0 0 16px',
+          }}>
+            PROCESS
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(32px, 4vw, 52px)',
+            fontWeight: 700, color: '#E2E8F0',
+            margin: 0, letterSpacing: '-0.02em',
+          }}>
+            From conversation to transformation.
+          </h2>
         </div>
 
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontWeight: 700,
-            fontSize: 'clamp(32px, 4.5vw, 52px)',
-            color: '#1A1714',
-            letterSpacing: '-0.02em',
-            marginBottom: 64,
-            lineHeight: 1.1,
-          }}
-        >
-          From Brief to Launch.
-        </motion.h2>
-
-        {/* 2×2 step grid */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+        <div
+          ref={ref}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '0',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 40,
           }}
         >
           {STEPS.map((step, i) => (
             <motion.div
-              key={step.number}
-              variants={stepVariant}
-              style={{
-                padding: '40px 36px',
-                borderBottom: '1px solid #D5CFC8',
-                borderRight: i % 2 === 0 ? '1px solid #D5CFC8' : 'none',
-              }}
-              className={i % 2 === 0 ? 'border-r-rule' : ''}
+              key={step.num}
+              initial={{ opacity: 0, y: 32 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.12 }}
             >
-              {/* Decorative number */}
-              <div
-                style={{
-                  fontFamily: 'var(--font-accent)',
-                  fontSize: 72,
-                  color: '#C9A96E',
-                  opacity: 0.4,
-                  lineHeight: 1,
-                  marginBottom: 12,
-                }}
-              >
-                {step.number}
+              <div style={{
+                width: 64, height: 64, borderRadius: '50%',
+                backgroundColor: '#101E32',
+                border: '2px solid rgba(79,70,229,0.4)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 26, marginBottom: 24,
+                boxShadow: '0 0 20px rgba(79,70,229,0.2)',
+              }}>
+                {step.icon}
               </div>
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 600,
-                  fontSize: 22,
-                  color: '#1A1714',
-                  margin: '0 0 12px',
-                  lineHeight: 1.2,
-                }}
-              >
+
+              <div style={{
+                fontFamily: 'var(--font-ui)', fontSize: 11, fontWeight: 700,
+                color: '#4F46E5', letterSpacing: '0.12em', marginBottom: 10,
+              }}>
+                STEP {step.num}
+              </div>
+
+              <h3 style={{
+                fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700,
+                color: '#E2E8F0', margin: '0 0 12px',
+              }}>
                 {step.title}
               </h3>
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 15,
-                  color: '#5A5550',
-                  margin: 0,
-                  lineHeight: 1.75,
-                }}
-              >
+
+              <p style={{
+                fontFamily: 'var(--font-body)', fontSize: 15,
+                color: '#64748B', lineHeight: 1.7, margin: 0,
+              }}>
                 {step.description}
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

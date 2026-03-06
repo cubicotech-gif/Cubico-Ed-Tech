@@ -10,6 +10,7 @@ import {
 import CustomCursor from '@/components/CustomCursor';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import './globals.css';
 
 // ── Editorial typefaces (new design system) ───────────────────────────────────
@@ -63,18 +64,21 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Cubico Technologies — EdTech Agency',
+    default: 'Cubico Technologies | EdTech Solutions for Educational Institutions',
     template: '%s | Cubico Technologies',
   },
   description:
-    'Karachi-based EdTech agency delivering Moodle LMS setups, educational animations, digital apps, and multilingual content in English, Urdu, and Arabic.',
+    'Transform your school with management systems, animated lessons, game-based learning, and digital infrastructure. Serving institutions in Pakistan, Saudi Arabia, and beyond. English, Arabic, Urdu.',
   keywords: [
-    'EdTech', 'Moodle LMS', 'educational animations', 'school management system',
-    'e-learning', 'Karachi', 'Pakistan', 'Arabic', 'Urdu', 'educational content',
+    'edtech solutions', 'school management software', 'educational animation',
+    'game-based learning', 'Moodle setup', 'digital transformation schools',
+    'Islamic education technology', 'Arabic educational content',
+    'EdTech Pakistan', 'EdTech Saudi Arabia',
   ],
   openGraph: {
-    title: 'Cubico Technologies — EdTech Agency',
-    description: 'Building the future of education technology.',
+    title: 'Cubico Technologies — From Chalk-and-Board to World-Class',
+    description:
+      'Complete EdTech solutions for schools: management, animated content, game-based learning, and digital transformation. One partner, every solution.',
     type: 'website',
     locale: 'en_US',
     siteName: 'Cubico Technologies',
@@ -82,7 +86,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Cubico Technologies',
-    description: 'Premium EdTech solutions for educational institutions.',
+    description: 'Complete EdTech solutions for educational institutions. One partner, every solution.',
   },
   robots: { index: true, follow: true },
 };
@@ -106,6 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

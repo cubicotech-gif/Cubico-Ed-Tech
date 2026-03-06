@@ -4,17 +4,20 @@
 
 /* ── Custom scrollbar ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 4px; }
-::-webkit-scrollbar-track  { background: #080808; }
-::-webkit-scrollbar-thumb  { background: #2A2520; }
-::-webkit-scrollbar-thumb:hover { background: #E8622A; }
+::-webkit-scrollbar-track  { background: #060A15; }
+::-webkit-scrollbar-thumb  { background: #1A2E4A; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #4F46E5; }
 
 /* ── Base styles ──────────────────────────────────────────────────────────── */
 @layer base {
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-void text-ivory antialiased overflow-x-hidden;
+    background-color: #060A15;
+    color: #E2E8F0;
     font-family: var(--font-body), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   /* Hide native cursor on desktop — CustomCursor replaces it */
@@ -34,9 +37,24 @@
     background-clip: text;
   }
 
+  /* Indigo gradient text */
+  .gradient-text-indigo {
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   /* Legacy glass (used by other pages) */
   .glass {
     background: rgba(22, 27, 36, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Navy glass */
+  .glass-navy {
+    background: rgba(12, 21, 40, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
@@ -48,6 +66,12 @@
       linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 75%);
+  }
+
+  /* Grid dot pattern */
+  .grid-dot-pattern {
+    background-image: radial-gradient(rgba(79,70,229,0.15) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
   /* ServicesReveal: responsive service-name typography */
@@ -62,5 +86,31 @@
     animation: marquee 30s linear infinite;
     white-space: nowrap;
   }
-  .marquee-track:hover { animation-play-state: paused; }
+  .marquee-track-slow {
+    animation: marquee 50s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track:hover,
+  .marquee-track-slow:hover { animation-play-state: paused; }
+
+  /* Glow borders */
+  .border-glow-indigo {
+    border: 1px solid rgba(79,70,229,0.3);
+    box-shadow: 0 0 20px rgba(79,70,229,0.1);
+  }
+  .border-glow-indigo:hover {
+    border-color: rgba(79,70,229,0.6);
+    box-shadow: 0 0 30px rgba(79,70,229,0.2);
+  }
+
+  /* Responsive two-col hero grid */
+  .hero-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero-two-col { grid-template-columns: 1fr; }
+  }
 }

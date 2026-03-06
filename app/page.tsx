@@ -1,48 +1,65 @@
 import type { Metadata } from 'next';
-import HeroSection       from '@/components/home/HeroSection';
-import MarqueeStrip      from '@/components/home/MarqueeStrip';
-import ServicesReveal    from '@/components/home/ServicesReveal';
-import ServicesCards     from '@/components/home/ServicesCards';
-import PortfolioPreview  from '@/components/home/PortfolioPreview';
-import ProcessSection    from '@/components/home/ProcessSection';
-import ImpactNumbers     from '@/components/home/ImpactNumbers';
-import LanguagesSection  from '@/components/home/LanguagesSection';
-import CTASection        from '@/components/home/CTASection';
+import HeroSection        from '@/components/home/HeroSection';
+import TrustMarquee       from '@/components/home/TrustMarquee';
+import ImpactNumbers      from '@/components/home/ImpactNumbers';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
+import PillarsSection     from '@/components/home/PillarsSection';
+import ProcessSection     from '@/components/home/ProcessSection';
+import WhyCubicoSection   from '@/components/home/WhyCubicoSection';
+import InstitutionTypes   from '@/components/home/InstitutionTypes';
+import FAQSection         from '@/components/home/FAQSection';
+import CTASection         from '@/components/home/CTASection';
 
 export const metadata: Metadata = {
-  title: 'Cubico Technologies — EdTech Agency',
+  title: 'Cubico Technologies | EdTech Solutions for Educational Institutions',
   description:
-    'Karachi-based EdTech agency. Moodle LMS setups, 2D/3D animations, digital solutions, and multilingual educational content.',
+    'Transform your school with management systems, animated lessons, game-based learning, and digital infrastructure. Serving institutions in Pakistan, Saudi Arabia, and beyond. English, Arabic, Urdu.',
+  keywords: [
+    'edtech solutions', 'school management software', 'educational animation',
+    'game-based learning', 'Moodle setup', 'digital transformation schools',
+    'Islamic education technology', 'Arabic educational content',
+  ],
+  openGraph: {
+    title: 'Cubico Technologies — From Chalk-and-Board to World-Class',
+    description:
+      'Complete EdTech solutions for schools: management, animated content, game-based learning, and digital transformation. One partner, every solution.',
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Cubico Technologies',
+  },
 };
 
 export default function HomePage() {
   return (
     <>
-      {/* 01 — Hero ──────────────────────────────────────────────────────── */}
+      {/* 01 — Hero with dashboard mockup */}
       <HeroSection />
 
-      {/* Marquee transition strip */}
-      <MarqueeStrip />
+      {/* 02 — Trust marquee strip */}
+      <TrustMarquee />
 
-      {/* 02 — The Living Services List (replaces original marquee section) */}
-      <ServicesReveal />
-
-      {/* 03 — Services cards ────────────────────────────────────────────── */}
-      <ServicesCards />
-
-      {/* 04 — Portfolio preview ─────────────────────────────────────────── */}
-      <PortfolioPreview />
-
-      {/* 05 — Process (cream) ───────────────────────────────────────────── */}
-      <ProcessSection />
-
-      {/* 06 — Impact numbers ────────────────────────────────────────────── */}
+      {/* 03 — Impact numbers */}
       <ImpactNumbers />
 
-      {/* 07 — Languages ─────────────────────────────────────────────────── */}
-      <LanguagesSection />
+      {/* 04 — Testimonials */}
+      <TestimonialsSection />
 
-      {/* 08 — CTA (cream) ───────────────────────────────────────────────── */}
+      {/* 05 — Four Pillars / Solutions */}
+      <PillarsSection />
+
+      {/* 06 — How we work / Process */}
+      <ProcessSection />
+
+      {/* 07 — Why Cubico differentiators */}
+      <WhyCubicoSection />
+
+      {/* 08 — Institution types */}
+      <InstitutionTypes />
+
+      {/* 09 — FAQ */}
+      <FAQSection />
+
+      {/* 10 — Final CTA */}
       <CTASection />
     </>
   );
