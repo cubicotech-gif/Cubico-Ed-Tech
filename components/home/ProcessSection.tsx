@@ -7,100 +7,132 @@ const STEPS = [
   {
     num: '01',
     icon: '📞',
-    title: 'Discovery',
-    description: 'Free consultation. We learn your challenges, goals, and vision. No pitch — just listening.',
+    title: 'Discovery Call',
+    description: 'Free 30-minute consultation — no pitch, just listening. We learn your challenges, goals, and vision before suggesting anything.',
+    time: '30 min',
   },
   {
     num: '02',
     icon: '📋',
-    title: 'Roadmap',
-    description: 'Custom plan with clear scope, timelines, and deliverables you can share with your team.',
+    title: 'Custom Roadmap',
+    description: 'A clear plan with scope, timelines, and deliverables you can share with your board. Every step defined before we start.',
+    time: '3–5 days',
   },
   {
     num: '03',
     icon: '⚡',
     title: 'Build & Train',
-    description: 'Dedicated team develops, deploys, and trains your staff until everyone is confident.',
+    description: "Our dedicated team develops, deploys, and trains your staff on-site or remotely. We don't leave until everyone is confident.",
+    time: '2–8 weeks',
   },
   {
     num: '04',
     icon: '🛡️',
-    title: 'Grow',
-    description: '24/7 support. One month free. Content updates. We grow with your institution.',
+    title: 'Ongoing Growth',
+    description: '24/7 support, one month free after launch, continuous content updates. We grow with your institution long-term.',
+    time: 'Ongoing',
   },
 ];
 
 export default function ProcessSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const headRef = useRef<HTMLDivElement>(null);
+  const headInView = useInView(headRef, { once: true, margin: '-60px' });
 
   return (
-    <section id="process" style={{ backgroundColor: '#0C1528', padding: '100px 0' }}>
+    <section id="process" style={{ backgroundColor: '#FFF8F0', padding: '96px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
-        <div style={{ marginBottom: 64 }}>
-          <p style={{
-            fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
-            color: '#818CF8', letterSpacing: '0.12em', textTransform: 'uppercase',
-            margin: '0 0 16px',
-          }}>
-            PROCESS
-          </p>
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(32px, 4vw, 52px)',
-            fontWeight: 700, color: '#E2E8F0',
-            margin: 0, letterSpacing: '-0.02em',
-          }}>
+
+        <motion.div
+          ref={headRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={headInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55 }}
+          style={{ textAlign: 'center', marginBottom: 72 }}
+        >
+          <span
+            style={{
+              display: 'inline-block',
+              fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
+              color: '#F97316', letterSpacing: '0.12em', textTransform: 'uppercase',
+              backgroundColor: 'rgba(249,115,22,0.07)',
+              border: '1px solid rgba(249,115,22,0.18)',
+              borderRadius: 100, padding: '4px 14px', marginBottom: 16,
+            }}
+          >
+            How It Works
+          </span>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4vw, 48px)', fontWeight: 700, color: '#18181B', margin: '0 0 16px', letterSpacing: '-0.025em' }}>
             From conversation to transformation.
           </h2>
-        </div>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, color: '#71717A', maxWidth: 460, margin: '0 auto', lineHeight: 1.7 }}>
+            Simple, clear, and built around your institution's real timeline and readiness.
+          </p>
+        </motion.div>
 
         <div
           ref={ref}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 40,
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: 0,
+            position: 'relative',
           }}
         >
+          {/* Connecting line (desktop, hidden on small screens) */}
+          <div
+            style={{
+              position: 'absolute', top: 27, left: '12%', right: '12%', height: 1,
+              background: 'linear-gradient(90deg, #F97316 0%, rgba(249,115,22,0.15) 100%)',
+              zIndex: 0,
+            }}
+          />
+
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
+              transition={{ duration: 0.55, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center',
+                textAlign: 'center', padding: '0 20px', position: 'relative', zIndex: 1,
+              }}
             >
-              <div style={{
-                width: 64, height: 64, borderRadius: '50%',
-                backgroundColor: '#101E32',
-                border: '2px solid rgba(79,70,229,0.4)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 26, marginBottom: 24,
-                boxShadow: '0 0 20px rgba(79,70,229,0.2)',
-              }}>
+              {/* Circle */}
+              <div
+                style={{
+                  width: 54, height: 54, borderRadius: '50%',
+                  backgroundColor: i === 0 ? '#F97316' : '#FFFFFF',
+                  border: `2px solid ${i === 0 ? '#F97316' : '#E4E4E7'}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 20, marginBottom: 24,
+                  boxShadow: i === 0 ? '0 8px 24px rgba(249,115,22,0.35)' : '0 2px 8px rgba(0,0,0,0.06)',
+                }}
+              >
                 {step.icon}
               </div>
 
-              <div style={{
-                fontFamily: 'var(--font-ui)', fontSize: 11, fontWeight: 700,
-                color: '#4F46E5', letterSpacing: '0.12em', marginBottom: 10,
-              }}>
+              <div style={{ fontFamily: 'var(--font-ui)', fontSize: 11, fontWeight: 700, color: '#F97316', letterSpacing: '0.1em', marginBottom: 8 }}>
                 STEP {step.num}
               </div>
-
-              <h3 style={{
-                fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700,
-                color: '#E2E8F0', margin: '0 0 12px',
-              }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 19, fontWeight: 700, color: '#18181B', margin: '0 0 10px', letterSpacing: '-0.01em' }}>
                 {step.title}
               </h3>
-
-              <p style={{
-                fontFamily: 'var(--font-body)', fontSize: 15,
-                color: '#64748B', lineHeight: 1.7, margin: 0,
-              }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: '#71717A', lineHeight: 1.7, margin: '0 0 12px' }}>
                 {step.description}
               </p>
+              <span
+                style={{
+                  fontFamily: 'var(--font-ui)', fontSize: 11, fontWeight: 600,
+                  color: '#F97316', backgroundColor: 'rgba(249,115,22,0.07)',
+                  border: '1px solid rgba(249,115,22,0.2)',
+                  borderRadius: 100, padding: '3px 10px',
+                }}
+              >
+                {step.time}
+              </span>
             </motion.div>
           ))}
         </div>
