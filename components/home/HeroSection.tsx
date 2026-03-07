@@ -1,1167 +1,883 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import type React from "react";
+import { motion } from "framer-motion";
 
 const WA_LINK =
   "https://wa.me/923001234567?text=Hi%20Cubico!%20I'm%20interested%20in%20learning%20about%20your%20EdTech%20solutions%20for%20our%20institution.";
 
-// ─── Static particle data (deterministic to avoid hydration mismatch) ─────────
-const PARTICLES = [
-  { id: 0,  x: 8,  y: 12, size: 2,   dur: 14, del: 0   },
-  { id: 1,  x: 22, y: 55, size: 1.5, dur: 18, del: 1.2 },
-  { id: 2,  x: 40, y: 8,  size: 2.5, dur: 12, del: 0.5 },
-  { id: 3,  x: 58, y: 72, size: 1,   dur: 16, del: 2   },
-  { id: 4,  x: 75, y: 30, size: 2,   dur: 11, del: 0.8 },
-  { id: 5,  x: 88, y: 60, size: 1.5, dur: 19, del: 3   },
-  { id: 6,  x: 15, y: 80, size: 2,   dur: 13, del: 1.5 },
-  { id: 7,  x: 32, y: 40, size: 1,   dur: 17, del: 2.5 },
-  { id: 8,  x: 52, y: 20, size: 2.5, dur: 10, del: 0.3 },
-  { id: 9,  x: 68, y: 88, size: 1.5, dur: 15, del: 1.8 },
-  { id: 10, x: 80, y: 15, size: 1,   dur: 20, del: 4   },
-  { id: 11, x: 92, y: 45, size: 2,   dur: 14, del: 0.6 },
-  { id: 12, x: 5,  y: 95, size: 1.5, dur: 16, del: 2.2 },
-  { id: 13, x: 48, y: 65, size: 2,   dur: 12, del: 1   },
-  { id: 14, x: 63, y: 50, size: 1,   dur: 18, del: 3.5 },
-  { id: 15, x: 28, y: 25, size: 2.5, dur: 11, del: 0.9 },
-  { id: 16, x: 95, y: 78, size: 1.5, dur: 15, del: 2.8 },
-  { id: 17, x: 42, y: 92, size: 1,   dur: 13, del: 1.4 },
-  { id: 18, x: 71, y: 5,  size: 2,   dur: 17, del: 0.7 },
-  { id: 19, x: 18, y: 68, size: 1.5, dur: 14, del: 3.2 },
+// ─────────────────────────────────────────────────────────────────────────────
+// Dashboard: Sidebar
+// ─────────────────────────────────────────────────────────────────────────────
+const MENU_ITEMS = [
+  { icon: "▦", label: "Dashboard", active: true },
+  { icon: "◉", label: "My Tasks" },
+  { icon: "⊞", label: "Projects" },
+  { icon: "≡", label: "Reports" },
+  { icon: "⊙", label: "Team" },
+  { icon: "✦", label: "Chats" },
+];
+const GEN_ITEMS = [
+  { icon: "⚙", label: "Setting" },
+  { icon: "?", label: "Help" },
+  { icon: "→", label: "Logout" },
 ];
 
-// ─── Layer 1: Animated gradient mesh background ───────────────────────────────
-function GradientBackground() {
+function Sidebar() {
+  const s: React.CSSProperties = {
+    width: 130,
+    background: "#FFFFFF",
+    borderRight: "1px solid rgba(0,0,0,0.07)",
+    flexShrink: 0,
+    display: "flex",
+    flexDirection: "column",
+    padding: "14px 10px",
+    gap: 4,
+  };
+  const label: React.CSSProperties = {
+    fontSize: 7,
+    fontFamily: "var(--font-ui)",
+    color: "#9CA3AF",
+    letterSpacing: "0.06em",
+    textTransform: "uppercase",
+    padding: "8px 6px 4px",
+    fontWeight: 600,
+  };
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-      {/* Base deep background */}
-      <div style={{ position: "absolute", inset: 0, backgroundColor: "#060A15" }} />
-
-      {/* Animated mesh gradient (simulates WebGL shader) */}
-      <div
-        className="animate-gradient-shift"
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            radial-gradient(ellipse 60% 60% at 20% 30%, rgba(123,31,162,0.55) 0%, transparent 55%),
-            radial-gradient(ellipse 50% 50% at 80% 20%, rgba(194,24,91,0.45) 0%, transparent 50%),
-            radial-gradient(ellipse 55% 55% at 60% 80%, rgba(81,45,168,0.50) 0%, transparent 55%),
-            radial-gradient(ellipse 45% 45% at 10% 90%, rgba(136,14,79,0.40) 0%, transparent 45%)
-          `,
-          backgroundSize: "200% 200%",
-          filter: "blur(40px)",
-        }}
-      />
-
-      {/* Bright pink accent glow — top center */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-10%",
-          left: "35%",
-          width: 600,
-          height: 400,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(ellipse, rgba(255,43,122,0.18) 0%, transparent 70%)",
-          filter: "blur(60px)",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Purple accent glow — bottom right */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "0%",
-          right: "0%",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(ellipse, rgba(123,62,255,0.20) 0%, transparent 70%)",
-          filter: "blur(50px)",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Grid dot overlay */}
-      <div
-        className="grid-dot-pattern"
-        style={{ position: "absolute", inset: 0, opacity: 0.25 }}
-      />
-    </div>
-  );
-}
-
-// ─── Layer 2: Canvas film-grain noise overlay ─────────────────────────────────
-function NoiseOverlay() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    let frameId = 0;
-
-    const draw = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      if (canvas.width !== w) canvas.width = w;
-      if (canvas.height !== h) canvas.height = h;
-
-      const img = ctx.createImageData(w, h);
-      const d = img.data;
-      for (let i = 0; i < d.length; i += 4) {
-        const n = Math.random() * 30;
-        d[i] = n;
-        d[i + 1] = n;
-        d[i + 2] = n;
-        d[i + 3] = 10; // very subtle
-      }
-      ctx.putImageData(img, 0, 0);
-      frameId = requestAnimationFrame(draw);
-    };
-
-    draw();
-    return () => cancelAnimationFrame(frameId);
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "absolute",
-        inset: 0,
-        pointerEvents: "none",
-        mixBlendMode: "overlay",
-        opacity: 0.04,
-        zIndex: 2,
-      }}
-    />
-  );
-}
-
-// ─── Layer 3: Drifting particle field ────────────────────────────────────────
-function ParticleField() {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 1,
-        pointerEvents: "none",
-        overflow: "hidden",
-      }}
-    >
-      {PARTICLES.map((p) => (
-        <motion.div
-          key={p.id}
-          style={{
-            position: "absolute",
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-            borderRadius: "50%",
-            backgroundColor: "rgba(255,255,255,0.5)",
-          }}
-          animate={{
-            y: [0, -100, 0],
-            x: [0, p.id % 2 === 0 ? 40 : -40, 0],
-            opacity: [0, 0.7, 0],
-          }}
-          transition={{
-            duration: p.dur,
-            delay: p.del,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// ─── Dashboard: mini SVG line chart ──────────────────────────────────────────
-const CHART_VALUES = [82, 85, 78, 92, 88, 95, 91];
-
-function MiniLineChart() {
-  const W = 190;
-  const H = 52;
-  const MIN = 70;
-  const MAX = 100;
-
-  const pts = CHART_VALUES.map((v, i) => {
-    const x = (i / (CHART_VALUES.length - 1)) * W;
-    const y = H - ((v - MIN) / (MAX - MIN)) * H;
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(" ");
-
-  const areaPoints = `0,${H} ${pts} ${W},${H}`;
-
-  return (
-    <svg
-      width={W}
-      height={H}
-      viewBox={`0 0 ${W} ${H}`}
-      style={{ display: "block" }}
-    >
-      <defs>
-        <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#FF2B7A" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#FF2B7A" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <polygon points={areaPoints} fill="url(#chartFill)" />
-      <polyline
-        points={pts}
-        fill="none"
-        stroke="#FF2B7A"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Last point highlight dot */}
-      {(() => {
-        const lastX = W;
-        const lastY =
-          H - ((CHART_VALUES[CHART_VALUES.length - 1] - MIN) / (MAX - MIN)) * H;
-        return (
-          <circle cx={lastX} cy={lastY} r="3" fill="#FF2B7A">
-            <animate
-              attributeName="r"
-              values="2;4;2"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-          </circle>
-        );
-      })()}
-    </svg>
-  );
-}
-
-// ─── Dashboard: inline bar chart ─────────────────────────────────────────────
-const BAR_DATA = [65, 80, 55, 90, 75, 45, 85];
-const BAR_DAYS = ["M", "T", "W", "T", "F", "S", "S"];
-
-function MiniBarChart() {
-  return (
-    <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 44 }}>
-      {BAR_DATA.map((h, i) => (
+    <div style={s}>
+      {/* Logo */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 14, padding: "0 4px" }}>
         <div
-          key={i}
           style={{
-            flex: 1,
+            width: 22,
+            height: 22,
+            borderRadius: 6,
+            background: "linear-gradient(135deg, #F97316, #FBBF24)",
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: 3,
+            justifyContent: "center",
+            fontSize: 10,
           }}
         >
+          ◈
+        </div>
+        <span style={{ fontSize: 11, fontWeight: 700, fontFamily: "var(--font-ui)", color: "#111827" }}>
+          CUBICO
+        </span>
+      </div>
+
+      <div style={label}>Menu</div>
+      {MENU_ITEMS.map((item) => (
+        <div
+          key={item.label}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "5px 7px",
+            borderRadius: 6,
+            backgroundColor: item.active ? "rgba(249,115,22,0.1)" : "transparent",
+            color: item.active ? "#F97316" : "#6B7280",
+            fontSize: 9,
+            fontFamily: "var(--font-ui)",
+            fontWeight: item.active ? 600 : 400,
+          }}
+        >
+          <span style={{ fontSize: 9, width: 12, textAlign: "center" }}>{item.icon}</span>
+          {item.label}
+        </div>
+      ))}
+
+      <div style={label}>General</div>
+      {GEN_ITEMS.map((item) => (
+        <div
+          key={item.label}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "5px 7px",
+            borderRadius: 6,
+            color: "#9CA3AF",
+            fontSize: 9,
+            fontFamily: "var(--font-ui)",
+          }}
+        >
+          <span style={{ fontSize: 9, width: 12, textAlign: "center" }}>{item.icon}</span>
+          {item.label}
+        </div>
+      ))}
+
+      {/* Upgrade card */}
+      <div style={{ marginTop: "auto" }}>
+        <div
+          style={{
+            background: "linear-gradient(135deg, #FEF3C7, #FED7AA)",
+            borderRadius: 10,
+            padding: "10px 10px",
+            border: "1px solid rgba(249,115,22,0.2)",
+          }}
+        >
+          <div style={{ fontSize: 8, fontWeight: 700, color: "#92400E", fontFamily: "var(--font-ui)", marginBottom: 3 }}>
+            Become Pro
+          </div>
+          <div style={{ fontSize: 7, color: "#B45309", fontFamily: "var(--font-ui)", lineHeight: 1.4, marginBottom: 6 }}>
+            Unlock premium features, advance AI automation, and more.
+          </div>
           <div
             style={{
-              width: "100%",
-              height: Math.round((h / 100) * 36),
-              borderRadius: "3px 3px 0 0",
-              background:
-                i === 3
-                  ? "linear-gradient(180deg, #FF2B7A, #7B3EFF)"
-                  : "rgba(255,255,255,0.12)",
-            }}
-          />
-          <div
-            style={{
+              background: "#F97316",
+              borderRadius: 5,
+              padding: "4px 8px",
+              textAlign: "center",
+              color: "#fff",
               fontSize: 7,
-              color: "rgba(255,255,255,0.3)",
+              fontWeight: 600,
               fontFamily: "var(--font-ui)",
             }}
           >
-            {BAR_DAYS[i]}
+            View our plan
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dashboard: Stats row
+// ─────────────────────────────────────────────────────────────────────────────
+const STATS = [
+  { label: "Total Task", value: "1,247", change: "↑ 12%", changeColor: "#10B981" },
+  { label: "Due Today", value: "6", sub: "📋 3 done today", subColor: "#F97316" },
+  { label: "In Progress", value: "48", sub: "⬤ 12 Review", subColor: "#3B82F6" },
+  { label: "Overdue", value: "5", sub: "⚠ Missed deadline", subColor: "#EF4444" },
+  { label: "Completed", value: "892", change: "↑ 8%", changeColor: "#10B981" },
+];
+
+function StatsRow() {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginBottom: 12 }}>
+      {STATS.map((s) => (
+        <div
+          key={s.label}
+          style={{
+            background: "#FFFFFF",
+            border: "1px solid rgba(0,0,0,0.07)",
+            borderRadius: 8,
+            padding: "10px 10px",
+          }}
+        >
+          <div style={{ fontSize: 7, color: "#9CA3AF", fontFamily: "var(--font-ui)", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            {s.label}
+          </div>
+          <div style={{ fontSize: 18, fontWeight: 700, fontFamily: "var(--font-ui)", color: "#111827", lineHeight: 1 }}>
+            {s.value}
+          </div>
+          {s.change && (
+            <div style={{ fontSize: 7, color: s.changeColor, marginTop: 3, fontFamily: "var(--font-ui)", fontWeight: 500 }}>
+              {s.change}
+            </div>
+          )}
+          {s.sub && (
+            <div style={{ fontSize: 7, color: s.subColor, marginTop: 3, fontFamily: "var(--font-ui)" }}>
+              {s.sub}
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 }
 
-// ─── Dashboard UI inside the laptop screen ───────────────────────────────────
-const METRICS = [
-  { label: "Performance", value: "82%", delta: "+12%" },
-  { label: "Engagement", value: "+23%", delta: "↑ trend" },
-  { label: "Leadership", value: "+41%", delta: "↑ trend" },
+// ─────────────────────────────────────────────────────────────────────────────
+// Dashboard: Timeline / Gantt
+// ─────────────────────────────────────────────────────────────────────────────
+const TIMELINE_ROWS = [
+  { name: "UI Research",     status: "complete",     bar: { left: 4, width: 28 }, color: "#10B981" },
+  { name: "Web design",      status: "in-progress",  bar: { left: 20, width: 35 }, color: "#F97316" },
+  { name: "Design system",   status: "in-progress",  bar: { left: 30, width: 25 }, color: "#3B82F6" },
+  { name: "Mobile app",      status: "not-started",  bar: { left: 38, width: 22 }, color: "#F97316" },
+  { name: "Prototyping",     status: "not-started",  bar: { left: 50, width: 18 }, color: "#A855F7" },
 ];
+const TIMELINE_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-const NAV = ["Dashboard", "Analytics", "Coaching", "Team"];
-
-function DashboardUI() {
+function LessonTimeline() {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "grid",
-        gridTemplateColumns: "72px 1fr",
-        gap: 8,
-        padding: 10,
-        backgroundColor: "#0A0A12",
+        background: "#FFFFFF",
+        border: "1px solid rgba(0,0,0,0.07)",
+        borderRadius: 8,
+        padding: "10px 12px",
+        flex: 1,
       }}
     >
-      {/* Sidebar */}
-      <div
-        style={{
-          background: "rgba(255,255,255,0.04)",
-          backdropFilter: "blur(10px)",
-          border: "1px solid rgba(255,255,255,0.07)",
-          borderRadius: 10,
-          padding: "10px 8px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 14,
-        }}
-      >
-        {/* Logo mark */}
-        <div
-          style={{
-            width: 28,
-            height: 28,
-            borderRadius: 7,
-            background: "linear-gradient(135deg, #FF2B7A, #7B3EFF)",
-            margin: "0 auto 4px",
-            flexShrink: 0,
-          }}
-        />
-        {NAV.map((item, i) => (
-          <div
-            key={item}
-            style={{
-              padding: "5px 6px",
-              borderRadius: 6,
-              backgroundColor:
-                i === 0 ? "rgba(255,43,122,0.18)" : "transparent",
-              color:
-                i === 0 ? "#FF2B7A" : "rgba(255,255,255,0.35)",
-              fontSize: 8,
-              fontFamily: "var(--font-ui)",
-              fontWeight: i === 0 ? 600 : 400,
-              textAlign: "center",
-            }}
-          >
-            {item}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+        <span style={{ fontSize: 9, fontWeight: 600, color: "#111827", fontFamily: "var(--font-ui)" }}>
+          Project Timeline
+        </span>
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          {["Day", "Week", "Month", "Year"].map((t, i) => (
+            <span
+              key={t}
+              style={{
+                fontSize: 7,
+                fontFamily: "var(--font-ui)",
+                color: i === 1 ? "#F97316" : "#9CA3AF",
+                fontWeight: i === 1 ? 600 : 400,
+                borderBottom: i === 1 ? "1px solid #F97316" : "none",
+                paddingBottom: i === 1 ? 1 : 0,
+              }}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div style={{ display: "flex", gap: 10, marginBottom: 6 }}>
+        {[{ c: "#10B981", l: "Complete" }, { c: "#F97316", l: "On progress" }, { c: "#3B82F6", l: "Incomplete" }].map((leg) => (
+          <div key={leg.l} style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <div style={{ width: 6, height: 6, borderRadius: 2, background: leg.c }} />
+            <span style={{ fontSize: 7, color: "#9CA3AF", fontFamily: "var(--font-ui)" }}>{leg.l}</span>
           </div>
         ))}
       </div>
 
-      {/* Main pane */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-        {/* Top bar */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.07)",
-            borderRadius: 10,
-            padding: "7px 10px",
-          }}
-        >
-          <span
-            style={{
-              color: "rgba(255,255,255,0.85)",
-              fontSize: 9,
-              fontFamily: "var(--font-ui)",
-              fontWeight: 600,
-            }}
-          >
-            Performance Overview
-          </span>
-          <div
-            style={{
-              width: 18,
-              height: 18,
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #FF2B7A, #7B3EFF)",
-            }}
-          />
-        </div>
-
-        {/* Metric cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6 }}>
-          {METRICS.map((m) => (
-            <div
-              key={m.label}
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: 10,
-                padding: "9px 9px",
-              }}
-            >
-              <div
-                style={{
-                  color: "rgba(255,255,255,0.35)",
-                  fontSize: 7,
-                  fontFamily: "var(--font-ui)",
-                  marginBottom: 4,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                {m.label}
-              </div>
-              <div
-                style={{
-                  color: "#fff",
-                  fontSize: 15,
-                  fontWeight: 700,
-                  fontFamily: "var(--font-ui)",
-                  lineHeight: 1,
-                }}
-              >
-                {m.value}
-              </div>
-              <div
-                style={{
-                  color: "#4ADE80",
-                  fontSize: 7,
-                  marginTop: 3,
-                  fontFamily: "var(--font-ui)",
-                }}
-              >
-                {m.delta}
-              </div>
+      {/* Day headers */}
+      <div style={{ display: "flex", marginBottom: 4 }}>
+        <div style={{ width: 70, flexShrink: 0 }} />
+        <div style={{ flex: 1, display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+          {TIMELINE_DAYS.map((d) => (
+            <div key={d} style={{ fontSize: 6.5, color: "#9CA3AF", fontFamily: "var(--font-ui)", textAlign: "center" }}>
+              {d}
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Charts row */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, flex: 1 }}>
-          <div
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              borderRadius: 10,
-              padding: "9px 10px",
-            }}
-          >
-            <div
-              style={{
-                color: "rgba(255,255,255,0.35)",
-                fontSize: 7,
-                fontFamily: "var(--font-ui)",
-                marginBottom: 6,
-              }}
-            >
-              Trend
-            </div>
-            <MiniLineChart />
+      {/* Gantt rows */}
+      {TIMELINE_ROWS.map((row) => (
+        <div key={row.name} style={{ display: "flex", alignItems: "center", marginBottom: 5 }}>
+          <div style={{ width: 70, flexShrink: 0, fontSize: 7, color: "#374151", fontFamily: "var(--font-ui)", paddingRight: 6 }}>
+            {row.name}
           </div>
-          <div
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              borderRadius: 10,
-              padding: "9px 10px",
-            }}
-          >
+          <div style={{ flex: 1, position: "relative", height: 14, background: "rgba(0,0,0,0.04)", borderRadius: 4, overflow: "hidden" }}>
             <div
               style={{
-                color: "rgba(255,255,255,0.35)",
-                fontSize: 7,
-                fontFamily: "var(--font-ui)",
-                marginBottom: 6,
+                position: "absolute",
+                left: `${row.bar.left}%`,
+                width: `${row.bar.width}%`,
+                top: 0,
+                bottom: 0,
+                background: row.color,
+                borderRadius: 4,
+                display: "flex",
+                alignItems: "center",
+                paddingLeft: 5,
               }}
             >
-              Weekly
+              <span style={{ fontSize: 6, color: "#fff", fontFamily: "var(--font-ui)", whiteSpace: "nowrap", overflow: "hidden" }}>
+                {row.status === "complete" ? "Done ✓" : row.status === "in-progress" ? "In progress..." : "Planned"}
+              </span>
             </div>
-            <MiniBarChart />
           </div>
         </div>
+      ))}
+    </div>
+  );
+}
 
-        {/* Notifications row */}
+// ─────────────────────────────────────────────────────────────────────────────
+// Dashboard: Project Progress
+// ─────────────────────────────────────────────────────────────────────────────
+const PROGRESS_ITEMS = [
+  { name: "Web redesign",      pct: 67, color: "#F97316" },
+  { name: "Mobile platform",   pct: 43, color: "#F97316" },
+  { name: "User research",     pct: 180, note: "Complete", color: "#10B981" },
+  { name: "Prototyping",       pct: 32, color: "#F97316" },
+];
+
+function ProjectProgress() {
+  return (
+    <div
+      style={{
+        width: 180,
+        flexShrink: 0,
+        background: "#FFFFFF",
+        border: "1px solid rgba(0,0,0,0.07)",
+        borderRadius: 8,
+        padding: "10px 12px",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+        <span style={{ fontSize: 9, fontWeight: 600, color: "#111827", fontFamily: "var(--font-ui)" }}>
+          Project Progress
+        </span>
+        <span style={{ fontSize: 7, color: "#F97316", fontFamily: "var(--font-ui)", fontWeight: 500 }}>
+          + Add project
+        </span>
+      </div>
+
+      {PROGRESS_ITEMS.map((item) => (
+        <div key={item.name} style={{ marginBottom: 8 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+            <span style={{ fontSize: 7.5, color: "#374151", fontFamily: "var(--font-ui)" }}>{item.name}</span>
+            {item.note ? (
+              <span
+                style={{
+                  fontSize: 6.5,
+                  background: "#D1FAE5",
+                  color: "#065F46",
+                  borderRadius: 3,
+                  padding: "1px 4px",
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: 600,
+                }}
+              >
+                {item.note}
+              </span>
+            ) : (
+              <span style={{ fontSize: 7, color: "#9CA3AF", fontFamily: "var(--font-ui)" }}>
+                {item.pct}%
+              </span>
+            )}
+          </div>
+          <div style={{ height: 4, background: "#F3F4F6", borderRadius: 2, overflow: "hidden" }}>
+            <div
+              style={{
+                height: "100%",
+                width: `${Math.min(item.pct, 100)}%`,
+                background: item.color,
+                borderRadius: 2,
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dashboard: Bottom row — Task Priority, Reminders, Recent Activity
+// ─────────────────────────────────────────────────────────────────────────────
+function BottomRow() {
+  const tasks = [
+    { name: "Design icon set for navigation", status: "Completed", statusColor: "#D1FAE5", statusText: "#065F46" },
+    { name: "Design icon set for navigation", status: "On progress", statusColor: "#FEF3C7", statusText: "#92400E" },
+  ];
+  const reminders = [
+    { text: "Meeting with product designer team", sub: "Monday, Oct 27 at 10:30 · on·Zoom", avatar: "👥" },
+  ];
+  const activity = [
+    { text: "John completed design mockup", time: "1 hour ago", avatar: "J" },
+    { text: "Sarah added 3 new tasks", time: "2 hours ago", avatar: "S" },
+  ];
+
+  const cardStyle: React.CSSProperties = {
+    background: "#FFFFFF",
+    border: "1px solid rgba(0,0,0,0.07)",
+    borderRadius: 8,
+    padding: "10px 12px",
+    flex: 1,
+  };
+  const titleStyle: React.CSSProperties = {
+    fontSize: 9,
+    fontWeight: 600,
+    color: "#111827",
+    fontFamily: "var(--font-ui)",
+    marginBottom: 8,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
+
+  return (
+    <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+      {/* Task Priority */}
+      <div style={cardStyle}>
+        <div style={titleStyle}>
+          Task Priority
+          <span style={{ fontSize: 7, color: "#9CA3AF", cursor: "pointer" }}>✕</span>
+        </div>
+        {tasks.map((t, i) => (
+          <div key={i} style={{ marginBottom: 6 }}>
+            <div style={{ fontSize: 7.5, color: "#374151", fontFamily: "var(--font-ui)", marginBottom: 3 }}>
+              {t.name}
+            </div>
+            <div style={{ display: "flex", gap: 8 }}>
+              <span
+                style={{
+                  fontSize: 6.5,
+                  background: t.statusColor,
+                  color: t.statusText,
+                  borderRadius: 3,
+                  padding: "1px 5px",
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: 500,
+                }}
+              >
+                {t.status}
+              </span>
+              <span style={{ fontSize: 6.5, color: "#9CA3AF", fontFamily: "var(--font-ui)" }}>
+                0 Comments
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Reminders */}
+      <div style={cardStyle}>
+        <div style={titleStyle}>
+          Reminders
+          <span style={{ fontSize: 7, color: "#9CA3AF" }}>✕</span>
+        </div>
+        {reminders.map((r, i) => (
+          <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 6 }}>
+            <div
+              style={{
+                width: 26,
+                height: 26,
+                borderRadius: 6,
+                background: "#FEF3C7",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 12,
+                flexShrink: 0,
+              }}
+            >
+              {r.avatar}
+            </div>
+            <div>
+              <div style={{ fontSize: 7.5, color: "#374151", fontFamily: "var(--font-ui)", fontWeight: 500 }}>
+                {r.text}
+              </div>
+              <div style={{ fontSize: 6.5, color: "#9CA3AF", fontFamily: "var(--font-ui)", marginTop: 2, marginBottom: 5 }}>
+                {r.sub}
+              </div>
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 4,
+                  background: "#F97316",
+                  borderRadius: 4,
+                  padding: "3px 8px",
+                }}
+              >
+                <span style={{ fontSize: 7, color: "#fff", fontFamily: "var(--font-ui)", fontWeight: 600 }}>
+                  ▶ Join Meeting
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+        <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: 6, marginTop: 4 }}>
+          <div style={{ fontSize: 7.5, fontWeight: 600, color: "#111827", fontFamily: "var(--font-ui)", marginBottom: 3 }}>
+            Task Completion
+          </div>
+          <div style={{ height: 4, background: "#F3F4F6", borderRadius: 2 }}>
+            <div style={{ height: "100%", width: "72%", background: "linear-gradient(90deg, #F97316, #FBBF24)", borderRadius: 2 }} />
+          </div>
+          <div style={{ fontSize: 6.5, color: "#9CA3AF", fontFamily: "var(--font-ui)", marginTop: 2 }}>
+            72% completed this week
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Activity */}
+      <div style={cardStyle}>
+        <div style={titleStyle}>
+          Recent Activity
+          <span style={{ fontSize: 7, color: "#9CA3AF" }}>✕</span>
+        </div>
+        {activity.map((a, i) => (
+          <div key={i} style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 8 }}>
+            <div
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: "50%",
+                background: i === 0 ? "#E0E7FF" : "#FEE2E2",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 8,
+                fontWeight: 700,
+                color: i === 0 ? "#4F46E5" : "#EF4444",
+                fontFamily: "var(--font-ui)",
+                flexShrink: 0,
+              }}
+            >
+              {a.avatar}
+            </div>
+            <div>
+              <div style={{ fontSize: 7.5, color: "#374151", fontFamily: "var(--font-ui)", lineHeight: 1.4 }}>
+                {a.text}
+              </div>
+              <div style={{ fontSize: 6.5, color: "#9CA3AF", fontFamily: "var(--font-ui)", marginTop: 1 }}>
+                {a.time}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dashboard: Top bar
+// ─────────────────────────────────────────────────────────────────────────────
+function DashboardTopBar() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 14,
+      }}
+    >
+      <div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#111827", fontFamily: "var(--font-ui)" }}>
+          Welcome Back, Ashton!
+        </div>
+        <div style={{ fontSize: 8, color: "#9CA3AF", fontFamily: "var(--font-ui)", marginTop: 2 }}>
+          Monday, Sept 15
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+        }}
+      >
         <div
           style={{
             display: "flex",
+            alignItems: "center",
+            gap: 6,
+            background: "#F97316",
+            borderRadius: 6,
+            padding: "5px 10px",
+          }}
+        >
+          <span style={{ fontSize: 8, color: "#fff", fontFamily: "var(--font-ui)", fontWeight: 600 }}>
+            + Add new task
+          </span>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
             gap: 6,
           }}
         >
-          {[
-            { icon: "✅", text: "Attendance Synced", sub: "Grade 5-B · Just now" },
-            { icon: "🎬", text: "Lesson Ready", sub: "Arabic Grammar Ch.4" },
-          ].map((n) => (
-            <div
-              key={n.text}
-              style={{
-                flex: 1,
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: 8,
-                padding: "7px 8px",
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-              }}
-            >
-              <span style={{ fontSize: 12 }}>{n.icon}</span>
-              <div>
-                <div
-                  style={{
-                    color: "rgba(255,255,255,0.85)",
-                    fontSize: 8,
-                    fontWeight: 600,
-                    fontFamily: "var(--font-ui)",
-                  }}
-                >
-                  {n.text}
-                </div>
-                <div
-                  style={{
-                    color: "rgba(255,255,255,0.35)",
-                    fontSize: 7,
-                    fontFamily: "var(--font-ui)",
-                    marginTop: 1,
-                  }}
-                >
-                  {n.sub}
-                </div>
-              </div>
+          <div
+            style={{
+              width: 26,
+              height: 26,
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #F97316, #FBBF24)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 10,
+              color: "#fff",
+              fontWeight: 700,
+              fontFamily: "var(--font-ui)",
+            }}
+          >
+            A
+          </div>
+          <div>
+            <div style={{ fontSize: 7.5, fontWeight: 600, color: "#111827", fontFamily: "var(--font-ui)" }}>
+              Ashton Kucher
             </div>
-          ))}
+            <div style={{ fontSize: 6.5, color: "#9CA3AF", fontFamily: "var(--font-ui)" }}>
+              UX/UI Designer
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-// ─── Device mockup: laptop with 3-D tilt ─────────────────────────────────────
-function LaptopMockup() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: wrapRef,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 70]);
-
+// ─────────────────────────────────────────────────────────────────────────────
+// Dashboard: full composition
+// ─────────────────────────────────────────────────────────────────────────────
+function DashboardContent() {
   return (
-    <motion.div
-      ref={wrapRef}
-      className="hidden lg:flex"
-      style={{ y, justifyContent: "center", alignItems: "center" }}
-      initial={{ opacity: 0, x: 60, scale: 0.95 }}
-      animate={{ opacity: 1, x: 0, scale: 1 }}
-      transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <div style={{ position: "relative", width: 540 }}>
-        {/* Screen bezel */}
-        <div
-          style={{
-            backgroundColor: "#1C1C1E",
-            borderRadius: 18,
-            overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.1)",
-            boxShadow:
-              "0 0 0 1px rgba(255,255,255,0.06), 0 30px 90px rgba(0,0,0,0.7), 0 0 80px rgba(255,43,122,0.18)",
-            transform: "rotateY(-10deg) rotateX(3deg)",
-            transformStyle: "preserve-3d",
-            perspective: 1200,
-          }}
-        >
-          {/* Glass sheen */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(145deg, rgba(255,255,255,0.07) 0%, transparent 45%)",
-              pointerEvents: "none",
-              zIndex: 10,
-              borderRadius: 18,
-            }}
-          />
+    <div style={{ display: "flex", height: "100%" }}>
+      <Sidebar />
 
-          {/* Title bar */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "10px 16px",
-              backgroundColor: "#141418",
-              borderBottom: "1px solid rgba(255,255,255,0.06)",
-            }}
-          >
-            <div style={{ display: "flex", gap: 6 }}>
-              {["#FF5F57", "#FFBD2E", "#28C840"].map((c, i) => (
-                <div
-                  key={i}
-                  style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    backgroundColor: c,
-                  }}
-                />
-              ))}
-            </div>
-            <div
-              style={{
-                background: "rgba(255,255,255,0.07)",
-                borderRadius: 5,
-                padding: "3px 44px",
-                color: "rgba(255,255,255,0.25)",
-                fontSize: 9,
-                fontFamily: "var(--font-ui)",
-              }}
-            >
-              cubico.edu/dashboard
-            </div>
-            <div style={{ width: 52 }} />
-          </div>
+      {/* Main area */}
+      <div
+        style={{
+          flex: 1,
+          background: "#F8FAFC",
+          padding: "14px 16px",
+          overflow: "hidden",
+        }}
+      >
+        <DashboardTopBar />
+        <StatsRow />
 
-          {/* Live dashboard */}
-          <div style={{ height: 310 }}>
-            <DashboardUI />
-          </div>
+        {/* Middle row */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 0 }}>
+          <LessonTimeline />
+          <ProjectProgress />
         </div>
 
-        {/* Laptop base shadow */}
+        <BottomRow />
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Browser window chrome wrapper
+// ─────────────────────────────────────────────────────────────────────────────
+function BrowserMockup() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        background: "#FFFFFF",
+        borderRadius: 14,
+        boxShadow:
+          "0 4px 6px rgba(0,0,0,0.04), 0 20px 60px rgba(0,0,0,0.10), 0 60px 120px rgba(0,0,0,0.06)",
+        overflow: "hidden",
+        border: "1px solid rgba(0,0,0,0.08)",
+      }}
+    >
+      {/* Browser chrome */}
+      <div
+        style={{
+          background: "#F3F4F6",
+          padding: "9px 14px",
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
+        }}
+      >
+        {/* Traffic lights */}
+        <div style={{ display: "flex", gap: 5, flexShrink: 0 }}>
+          {["#FF5F57", "#FFBD2E", "#28C840"].map((c, i) => (
+            <div
+              key={i}
+              style={{ width: 9, height: 9, borderRadius: "50%", background: c }}
+            />
+          ))}
+        </div>
+
+        {/* URL bar */}
         <div
           style={{
-            position: "absolute",
-            bottom: -30,
-            left: "8%",
-            right: "8%",
-            height: 20,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(ellipse, rgba(255,43,122,0.45) 0%, transparent 70%)",
-            filter: "blur(18px)",
+            flex: 1,
+            background: "#FFFFFF",
+            borderRadius: 5,
+            padding: "4px 10px",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            border: "1px solid rgba(0,0,0,0.08)",
           }}
-        />
+        >
+          <span style={{ fontSize: 8, color: "#9CA3AF" }}>🔒</span>
+          <span
+            style={{
+              fontSize: 8,
+              color: "#6B7280",
+              fontFamily: "var(--font-ui)",
+            }}
+          >
+            cubico.edu/dashboard
+          </span>
+        </div>
+
+        {/* Right icons */}
+        <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+          {["≡", "↗", "⊞"].map((icon, i) => (
+            <span key={i} style={{ fontSize: 10, color: "#9CA3AF" }}>
+              {icon}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Dashboard content */}
+      <div style={{ height: 480 }}>
+        <DashboardContent />
       </div>
     </motion.div>
   );
 }
 
-// ─── Floating glassmorphic cards ──────────────────────────────────────────────
-function FloatingCards() {
-  return (
-    <>
-      {/* Performance score — top right */}
-      <motion.div
-        className="hidden lg:block"
-        style={{ position: "absolute", top: "18%", right: "5%", zIndex: 15 }}
-        initial={{ opacity: 0, y: 20, scale: 0.85 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.7, delay: 1.1 }}
-      >
-        <motion.div
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div
-            style={{
-              background: "rgba(10, 6, 22, 0.88)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,43,122,0.3)",
-              borderRadius: 14,
-              padding: "14px 18px",
-              boxShadow:
-                "0 8px 40px rgba(255,43,122,0.18), inset 0 1px 0 rgba(255,255,255,0.07)",
-              minWidth: 148,
-            }}
-          >
-            <div
-              style={{
-                color: "rgba(255,255,255,0.45)",
-                fontSize: 10,
-                fontFamily: "var(--font-ui)",
-                marginBottom: 6,
-                letterSpacing: "0.04em",
-              }}
-            >
-              Performance Score
-            </div>
-            <div
-              style={{
-                color: "#fff",
-                fontSize: 26,
-                fontWeight: 700,
-                fontFamily: "var(--font-ui)",
-                lineHeight: 1,
-              }}
-            >
-              82%
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                marginTop: 6,
-              }}
-            >
-              <span
-                style={{
-                  color: "#4ADE80",
-                  fontSize: 11,
-                  fontFamily: "var(--font-ui)",
-                  fontWeight: 600,
-                }}
-              >
-                ↑ +12%
-              </span>
-              <span
-                style={{
-                  color: "rgba(255,255,255,0.25)",
-                  fontSize: 10,
-                  fontFamily: "var(--font-ui)",
-                }}
-              >
-                vs last month
-              </span>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Coaching notification — bottom right of mockup */}
-      <motion.div
-        className="hidden lg:block"
-        style={{ position: "absolute", bottom: "24%", right: "4%", zIndex: 15 }}
-        initial={{ opacity: 0, y: 20, scale: 0.85 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.7, delay: 1.4 }}
-      >
-        <motion.div
-          animate={{ y: [0, 14, 0] }}
-          transition={{
-            duration: 6,
-            delay: 1,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <div
-            style={{
-              background: "rgba(10, 6, 22, 0.88)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(123,62,255,0.3)",
-              borderRadius: 14,
-              padding: "12px 16px",
-              boxShadow:
-                "0 8px 40px rgba(123,62,255,0.18), inset 0 1px 0 rgba(255,255,255,0.07)",
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              minWidth: 210,
-            }}
-          >
-            <div
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 9,
-                background: "linear-gradient(135deg, #7B3EFF, #FF2B7A)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 16,
-                flexShrink: 0,
-              }}
-            >
-              ✅
-            </div>
-            <div>
-              <div
-                style={{
-                  color: "#fff",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  fontFamily: "var(--font-ui)",
-                }}
-              >
-                Coaching session completed
-              </div>
-              <div
-                style={{
-                  color: "rgba(255,255,255,0.4)",
-                  fontSize: 9,
-                  fontFamily: "var(--font-ui)",
-                  marginTop: 2,
-                }}
-              >
-                Grade 8-A · Just now
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Live sessions — mid left */}
-      <motion.div
-        className="hidden xl:block"
-        style={{ position: "absolute", top: "48%", left: "3%", zIndex: 15 }}
-        initial={{ opacity: 0, x: -20, scale: 0.85 }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ duration: 0.7, delay: 1.7 }}
-      >
-        <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{
-            duration: 7,
-            delay: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <div
-            style={{
-              background: "rgba(10, 6, 22, 0.88)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: 14,
-              padding: "12px 16px",
-              boxShadow:
-                "0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07)",
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-            }}
-          >
-            {/* Stacked avatars */}
-            <div style={{ display: "flex" }}>
-              {["#FF2B7A", "#7B3EFF", "#4F46E5", "#06D6A0"].map((c, i) => (
-                <div
-                  key={i}
-                  style={{
-                    width: 26,
-                    height: 26,
-                    borderRadius: "50%",
-                    backgroundColor: c,
-                    marginLeft: i > 0 ? -9 : 0,
-                    border: "2px solid rgba(10,6,22,0.95)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 9,
-                    color: "#fff",
-                    fontWeight: 700,
-                    fontFamily: "var(--font-ui)",
-                  }}
-                >
-                  {["A", "B", "C", "+"][i]}
-                </div>
-              ))}
-            </div>
-            <div>
-              <div
-                style={{
-                  color: "#fff",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  fontFamily: "var(--font-ui)",
-                }}
-              >
-                3 active sessions
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
-                <div
-                  className="animate-pulse-dot"
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    backgroundColor: "#4ADE80",
-                  }}
-                />
-                <span
-                  style={{
-                    color: "#4ADE80",
-                    fontSize: 9,
-                    fontFamily: "var(--font-ui)",
-                  }}
-                >
-                  Live now
-                </span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </>
-  );
-}
-
-// ─── Hero text & CTAs ─────────────────────────────────────────────────────────
-function HeroContent() {
-  return (
-    <div style={{ position: "relative", zIndex: 5 }}>
-      {/* Badge */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          backgroundColor: "rgba(255,43,122,0.08)",
-          border: "1px solid rgba(255,43,122,0.28)",
-          borderRadius: 100,
-          padding: "6px 16px",
-          marginBottom: 28,
-        }}
-      >
-        <span
-          className="animate-pulse-dot"
-          style={{
-            width: 6,
-            height: 6,
-            borderRadius: "50%",
-            backgroundColor: "#FF2B7A",
-            display: "inline-block",
-            boxShadow: "0 0 8px #FF2B7A",
-          }}
-        />
-        <span
-          style={{
-            fontFamily: "var(--font-ui)",
-            fontSize: 13,
-            fontWeight: 500,
-            color: "#FF2B7A",
-            letterSpacing: "0.04em",
-          }}
-        >
-          AI-Powered EdTech for Institutions
-        </span>
-      </motion.div>
-
-      {/* Headline */}
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.1 }}
-        style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(42px, 5.5vw, 74px)",
-          fontWeight: 700,
-          lineHeight: 1.05,
-          color: "#E2E8F0",
-          margin: 0,
-          marginBottom: 22,
-          letterSpacing: "-0.025em",
-        }}
-      >
-        Build a workforce
-        <br />
-        <span
-          style={{
-            background:
-              "linear-gradient(135deg, #FF2B7A 0%, #A855F7 55%, #4F46E5 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          ready for anything.
-        </span>
-      </motion.h1>
-
-      {/* Subheadline */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: 18,
-          color: "rgba(255,255,255,0.5)",
-          lineHeight: 1.75,
-          margin: 0,
-          marginBottom: 42,
-          maxWidth: 480,
-        }}
-      >
-        AI-powered coaching and human guidance designed to unlock potential
-        and drive enterprise performance across every institution.
-      </motion.p>
-
-      {/* CTA buttons */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        style={{
-          display: "flex",
-          gap: 14,
-          flexWrap: "wrap",
-          alignItems: "center",
-          marginBottom: 52,
-        }}
-      >
-        <motion.a
-          href={WA_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{
-            scale: 1.04,
-            boxShadow: "0 0 60px rgba(255,43,122,0.55)",
-          }}
-          whileTap={{ scale: 0.97 }}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            background: "linear-gradient(135deg, #FF2B7A 0%, #7B3EFF 100%)",
-            color: "#fff",
-            fontFamily: "var(--font-ui)",
-            fontWeight: 600,
-            fontSize: 15,
-            padding: "14px 30px",
-            borderRadius: 100,
-            textDecoration: "none",
-            boxShadow: "0 0 40px rgba(255,43,122,0.38)",
-            letterSpacing: "0.01em",
-          }}
-        >
-          💬 Request a Demo
-        </motion.a>
-
-        <motion.a
-          href="#results"
-          whileHover={{ backgroundColor: "rgba(255,255,255,0.07)" }}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            color: "rgba(255,255,255,0.6)",
-            fontFamily: "var(--font-ui)",
-            fontWeight: 500,
-            fontSize: 15,
-            padding: "14px 24px",
-            textDecoration: "none",
-            border: "1px solid rgba(255,255,255,0.12)",
-            borderRadius: 100,
-            transition: "background-color 0.2s",
-          }}
-        >
-          Watch Video →
-        </motion.a>
-      </motion.div>
-
-      {/* Trust line */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 0.6 }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 20,
-          flexWrap: "wrap",
-        }}
-      >
-        <span
-          style={{
-            color: "rgba(255,255,255,0.2)",
-            fontSize: 11,
-            fontFamily: "var(--font-ui)",
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-          }}
-        >
-          Trusted in
-        </span>
-        {["🇵🇰 Pakistan", "🇸🇦 Saudi Arabia", "🇨🇦 Canada"].map((c) => (
-          <span
-            key={c}
-            style={{
-              color: "rgba(255,255,255,0.35)",
-              fontSize: 13,
-              fontFamily: "var(--font-ui)",
-              letterSpacing: "0.02em",
-            }}
-          >
-            {c}
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-// ─── Main cinematic hero section ──────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Main Hero Section
+// ─────────────────────────────────────────────────────────────────────────────
 export default function HeroSection() {
   return (
     <section
       className="hero-section"
       style={{
-        position: "relative",
-        minHeight: "100vh",
-        width: "100%",
+        background: "#FFFBF5",
+        paddingTop: 80,
+        paddingBottom: 0,
         overflow: "hidden",
-        backgroundColor: "#060A15",
-        display: "flex",
-        alignItems: "center",
-        paddingTop: 72,
+        position: "relative",
       }}
     >
-      {/* ── Background layers ── */}
-      <GradientBackground />
-      <NoiseOverlay />
-      <ParticleField />
-
-      {/* ── Main two-column layout ── */}
+      {/* ── Centered hero text ── */}
       <div
-        className="hero-two-col"
         style={{
-          maxWidth: 1260,
+          maxWidth: 680,
           margin: "0 auto",
-          padding: "80px 5%",
-          width: "100%",
-          position: "relative",
-          zIndex: 5,
+          padding: "40px 24px 48px",
+          textAlign: "center",
         }}
       >
-        <HeroContent />
-
-        <div
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           style={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(38px, 5.5vw, 60px)",
+            fontWeight: 700,
+            lineHeight: 1.12,
+            color: "#111827",
+            margin: 0,
+            marginBottom: 18,
+            letterSpacing: "-0.025em",
           }}
         >
-          <LaptopMockup />
-        </div>
+          Transform your team&apos;s
+          <br />
+          productivity
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: 17,
+            color: "#6B7280",
+            lineHeight: 1.7,
+            margin: "0 auto 32px",
+            maxWidth: 520,
+          }}
+        >
+          Cubico is the ultimate EdTech platform that brings your institution
+          together, streamlines learning workflows, and drives real results.
+        </motion.p>
+
+        {/* CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}
+        >
+          <motion.a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.04, boxShadow: "0 8px 30px rgba(249,115,22,0.4)" }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              background: "#F97316",
+              color: "#FFFFFF",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 600,
+              fontSize: 15,
+              padding: "13px 26px",
+              borderRadius: 8,
+              textDecoration: "none",
+              boxShadow: "0 4px 14px rgba(249,115,22,0.35)",
+              letterSpacing: "0.01em",
+            }}
+          >
+            Transform my team now
+          </motion.a>
+
+          <motion.a
+            href="#results"
+            whileHover={{
+              backgroundColor: "rgba(249,115,22,0.06)",
+              borderColor: "#F97316",
+              color: "#F97316",
+            }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              background: "transparent",
+              color: "#374151",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 500,
+              fontSize: 15,
+              padding: "13px 26px",
+              borderRadius: 8,
+              textDecoration: "none",
+              border: "1.5px solid #E5E7EB",
+              transition: "all 0.2s",
+            }}
+          >
+            Watch demo
+          </motion.a>
+        </motion.div>
       </div>
 
-      {/* ── Floating UI overlays ── */}
-      <FloatingCards />
-
-      {/* ── Bottom vignette fade ── */}
+      {/* ── Dashboard mockup with background glow ── */}
       <div
         style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 160,
-          background:
-            "linear-gradient(to top, #060A15 0%, transparent 100%)",
-          zIndex: 4,
-          pointerEvents: "none",
+          position: "relative",
+          maxWidth: 1180,
+          margin: "0 auto",
+          padding: "0 24px",
         }}
-      />
+      >
+        {/* Warm orange radial glow behind mockup */}
+        <div
+          style={{
+            position: "absolute",
+            top: "20%",
+            left: "50%",
+            transform: "translate(-50%, 0)",
+            width: "80%",
+            height: "60%",
+            background:
+              "radial-gradient(ellipse at center, rgba(249,115,22,0.22) 0%, rgba(251,191,36,0.10) 40%, transparent 70%)",
+            filter: "blur(50px)",
+            pointerEvents: "none",
+            zIndex: 0,
+          }}
+        />
+
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <BrowserMockup />
+        </div>
+      </div>
     </section>
   );
 }
