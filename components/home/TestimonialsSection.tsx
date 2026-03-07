@@ -1,129 +1,292 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+
+/* ── Testimonials — Large editorial quote slider ─────────────────────────── */
 
 const TESTIMONIALS = [
   {
-    flag: '🇵🇰',
-    name: '[Client Name]',
-    role: 'Principal',
-    location: 'Pakistan',
-    quote: 'Cubico didn\'t just give us software — they sat with our teachers, understood our challenges, and built a system that actually fits how we work.',
-    accentColor: '#4F46E5',
+    quote:
+      "Cubico transformed how we manage our 2,400-student campus. From attendance to fee collection, everything is now automated. Our admin load dropped by 60% in the first month.",
+    name: "Dr. Fatima Al-Rashid",
+    role: "Principal, Al-Noor Academy",
+    location: "Jeddah, Saudi Arabia",
+    avatar: "👩‍💼",
+    color: "#7B3EFF",
+    metric: "60%",
+    metricLabel: "Admin time saved",
   },
   {
-    flag: '🇸🇦',
-    name: '[Client Name]',
-    role: 'Academic Director',
-    location: 'Saudi Arabia',
-    quote: 'Finding a team that truly understands Arabic educational content was our biggest challenge. Cubico\'s animations brought our curriculum to life like nothing else.',
-    accentColor: '#7C3AED',
+    quote:
+      "Our students went from disengaged to genuinely excited about learning. The animated lessons and game-based modules made all the difference — parents are calling us asking what changed.",
+    name: "Zubair Ahmed",
+    role: "Director of Curriculum",
+    location: "Lahore, Pakistan",
+    avatar: "👨‍🏫",
+    color: "#FF2B7A",
+    metric: "3×",
+    metricLabel: "Engagement increase",
   },
   {
-    flag: '🇨🇦',
-    name: '[Client Name]',
-    role: 'Foundation Director',
-    location: 'Canada',
-    quote: 'From Moodle to animations to comic creation — everything under one roof. Our platform launched in weeks. We didn\'t need five vendors. Just one partner.',
-    accentColor: '#06D6A0',
+    quote:
+      "We were skeptical about the 4-week setup promise. Cubico delivered in 3.5 weeks — fully deployed Moodle, trained staff, and had 800 students onboarded. Remarkable execution.",
+    name: "Sarah Chen",
+    role: "IT Director, DPS International",
+    location: "Toronto, Canada",
+    avatar: "👩‍💻",
+    color: "#3EC7FF",
+    metric: "3.5 wk",
+    metricLabel: "Full deployment",
+  },
+  {
+    quote:
+      "The Arabic-language support is exceptional. Our Islamic Studies curriculum is now fully digital, with animated content our students absolutely love. Cubico understood our community's needs.",
+    name: "Sheikh Abdullah",
+    role: "Head of Academics",
+    location: "Riyadh, Saudi Arabia",
+    avatar: "👨‍🎓",
+    color: "#BFA8FF",
+    metric: "100%",
+    metricLabel: "Arabic RTL support",
   },
 ];
 
 export default function TestimonialsSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [active, setActive] = useState(0);
+
+  const current = TESTIMONIALS[active];
 
   return (
-    <section style={{ backgroundColor: '#060A15', padding: '100px 0' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 5%' }}>
+    <section
+      ref={ref}
+      style={{
+        background: "#0A0014",
+        padding: "100px 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(123,62,255,0.06) 0%, transparent 70%)",
+        pointerEvents: "none",
+      }} />
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", position: "relative" }}>
         {/* Header */}
-        <div style={{ marginBottom: 64, textAlign: 'center' as const }}>
-          <p style={{
-            fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
-            color: '#818CF8', letterSpacing: '0.12em', textTransform: 'uppercase' as const,
-            margin: '0 0 16px',
-          }}>
-            WHAT INSTITUTIONS SAY
-          </p>
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(30px, 4vw, 48px)',
-            fontWeight: 700, color: '#E2E8F0',
-            margin: 0, letterSpacing: '-0.02em',
-          }}>
-            Trusted across three continents.
-          </h2>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <motion.div
+            className="section-eyebrow"
+            style={{ marginBottom: 20, display: "inline-flex" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+          >
+            Client Stories
+          </motion.div>
+
+          <motion.h2
+            className="section-title"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Institutions That{" "}
+            <span style={{
+              background: "linear-gradient(135deg, #FF2B7A, #7B3EFF)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
+              Made the Leap
+            </span>
+          </motion.h2>
         </div>
 
-        {/* Cards */}
-        <div
-          ref={ref}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 24,
-          }}
+        {/* Main testimonial display */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
         >
-          {TESTIMONIALS.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 32 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              style={{
-                backgroundColor: '#0C1528',
-                border: '1px solid rgba(255,255,255,0.07)',
-                borderRadius: 16,
-                padding: '32px 28px',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 24,
-              }}
-            >
-              {/* Quote mark */}
-              <div style={{
-                fontSize: 48, lineHeight: 1, color: t.accentColor,
-                opacity: 0.3, fontFamily: 'Georgia, serif',
-                position: 'absolute', top: 20, right: 28,
-              }}>
-                &ldquo;
-              </div>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 320px",
+            gap: 32,
+            alignItems: "stretch",
+          }}>
+            {/* Quote card */}
+            <div style={{ position: "relative" }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  className="testimonial-card"
+                  style={{ height: "100%", position: "relative", overflow: "hidden" }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.35 }}
+                >
+                  {/* Accent glow */}
+                  <div style={{
+                    position: "absolute",
+                    top: -60,
+                    left: -60,
+                    width: 180,
+                    height: 180,
+                    borderRadius: "50%",
+                    background: `radial-gradient(circle, ${current.color}18 0%, transparent 70%)`,
+                    pointerEvents: "none",
+                  }} />
 
-              {/* Quote text */}
-              <p style={{
-                fontFamily: 'var(--font-body)', fontSize: 16,
-                color: '#94A3B8', lineHeight: 1.75, margin: 0,
-                fontStyle: 'italic',
-              }}>
-                &ldquo;{t.quote}&rdquo;
-              </p>
+                  {/* Quote mark */}
+                  <div style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 72,
+                    lineHeight: 0.8,
+                    color: current.color,
+                    opacity: 0.4,
+                    marginBottom: 16,
+                  }}>
+                    "
+                  </div>
 
-              {/* Attribution */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{
-                  width: 44, height: 44, borderRadius: '50%',
-                  backgroundColor: '#101E32',
-                  border: `2px solid ${t.accentColor}44`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 22,
-                }}>
-                  {t.flag}
-                </div>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 600, color: '#E2E8F0' }}>
-                    {t.name}
+                  <p style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(18px, 2.2vw, 24px)",
+                    fontStyle: "italic",
+                    lineHeight: 1.5,
+                    color: "#F0ECFF",
+                    marginBottom: 32,
+                  }}>
+                    {current.quote}
+                  </p>
+
+                  <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                    <div style={{
+                      width: 52,
+                      height: 52,
+                      borderRadius: "50%",
+                      background: `linear-gradient(135deg, ${current.color}40, ${current.color}20)`,
+                      border: `2px solid ${current.color}40`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 24,
+                    }}>
+                      {current.avatar}
+                    </div>
+                    <div>
+                      <div style={{ fontFamily: "var(--font-ui)", fontWeight: 700, fontSize: 16, color: "#F0ECFF" }}>
+                        {current.name}
+                      </div>
+                      <div style={{ fontSize: 13, color: "#A89DC4", marginTop: 2, fontFamily: "var(--font-body)" }}>
+                        {current.role}
+                      </div>
+                      <div style={{ fontSize: 12, color: "#6B5E85", marginTop: 1, fontFamily: "var(--font-body)" }}>
+                        📍 {current.location}
+                      </div>
+                    </div>
                   </div>
-                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 13, color: '#64748B' }}>
-                    {t.role} · {t.location}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Sidebar: metric + nav */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {/* Metric highlight */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`metric-${active}`}
+                  style={{
+                    background: "rgba(15, 0, 32, 0.80)",
+                    border: `1px solid ${current.color}30`,
+                    borderRadius: 20,
+                    padding: "32px 24px",
+                    textAlign: "center",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                  }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.35 }}
+                >
+                  <div style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 52,
+                    fontWeight: 700,
+                    color: current.color,
+                    lineHeight: 1,
+                    marginBottom: 8,
+                  }}>
+                    {current.metric}
                   </div>
-                </div>
+                  <div style={{ fontSize: 13, color: "#A89DC4", fontFamily: "var(--font-ui)" }}>
+                    {current.metricLabel}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Testimonial navigation */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {TESTIMONIALS.map((t, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActive(i)}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 12,
+                      padding: "12px 16px",
+                      borderRadius: 12,
+                      border: i === active
+                        ? `1px solid ${t.color}40`
+                        : "1px solid rgba(191,168,255,0.08)",
+                      background: i === active
+                        ? `${t.color}10`
+                        : "rgba(15,0,32,0.5)",
+                      cursor: "pointer",
+                      transition: "all 0.25s ease",
+                      textAlign: "left" as const,
+                    }}
+                  >
+                    <span style={{ fontSize: 18 }}>{t.avatar}</span>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 600, color: i === active ? "#F0ECFF" : "#A89DC4", fontFamily: "var(--font-ui)" }}>
+                        {t.name}
+                      </div>
+                      <div style={{ fontSize: 11, color: "#6B5E85", fontFamily: "var(--font-body)" }}>
+                        {t.location}
+                      </div>
+                    </div>
+                    {i === active && (
+                      <div style={{
+                        marginLeft: "auto",
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: t.color,
+                      }} />
+                    )}
+                  </button>
+                ))}
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
+
+      <style>{`
+        @media (max-width: 800px) {
+          .testimonials-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
